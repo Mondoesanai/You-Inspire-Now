@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community — You Inspire Now</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:#04040A;color:rgba(255,255,255,0.85);overflow-x:hidden;}
+.nav-link{position:relative;font-size:0.82rem;letter-spacing:0.1em;font-weight:700;color:rgba(255,255,255,0.75);text-transform:uppercase;transition:color 0.3s;text-decoration:none;}
+.nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:#2EB8B0;transition:width 0.3s;}
+.nav-link:hover{color:#2EB8B0;}.nav-link:hover::after{width:100%;}
+.nav-link.active{color:#fff;}.nav-link.active::after{width:100%;background:#C9A227;}
+.scrolled-nav{background:rgba(4,4,12,0.96)!important;backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.06);box-shadow:0 4px 40px rgba(0,0,0,0.5);}
+.section-tag{font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:#2EB8B0;font-weight:700;margin-bottom:0.75rem;display:block;}
+.section-tag.gold{color:#C9A227;}
+.section-h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);color:#fff;font-weight:700;letter-spacing:-0.025em;line-height:1.15;margin-bottom:1.25rem;}
+.btn-primary{display:inline-block;padding:1rem 2.5rem;background:linear-gradient(135deg,#2EB8B0,#0D9488);color:#fff;font-weight:700;font-size:0.88rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;transition:transform 0.25s,box-shadow 0.25s;box-shadow:0 8px 32px rgba(46,184,176,0.35);}
+.btn-primary:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 16px 48px rgba(46,184,176,0.5);}
+.btn-ghost{display:inline-block;padding:1rem 2.5rem;background:transparent;color:rgba(255,255,255,0.8);font-weight:700;font-size:0.88rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;border:1px solid rgba(255,255,255,0.2);text-decoration:none;transition:background 0.2s,border-color 0.2s,transform 0.2s;}
+.btn-ghost:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.4);transform:translateY(-2px);}
+.reveal-up{opacity:0;transform:translateY(40px);}
+.reveal-left{opacity:0;transform:translateX(-50px);}
+.reveal-right{opacity:0;transform:translateX(50px);}
+.reveal-scale{opacity:0;transform:scale(0.9);}
+.revealed{opacity:1!important;transform:none!important;transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.34,1.56,0.64,1)!important;}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");}
+.glass-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;transition:border-color 0.3s,background 0.3s;}
+.glass-card:hover{border-color:rgba(46,184,176,0.25);background:rgba(46,184,176,0.04);}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<!-- NAV -->
+<nav id="mainNav" style="position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 2.5rem;transition:all 0.3s ease;background:transparent;">
+  <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
+    <a href="index.html" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;">
+      <img src="assets/yin-logo.png" alt="You Inspire Now" style="height:48px;filter:brightness(0) invert(1) drop-shadow(0 0 12px rgba(46,184,176,0.5));">
+      <span style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#fff;letter-spacing:0.01em;">You Inspire Now</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="pillars.html" class="nav-link">Our Pillars</a>
+      <a href="community.html" class="nav-link active">Community</a>
+      <a href="resources.html" class="nav-link">Resources</a>
+      <a href="go-inspire-now.html" style="display:inline-block;padding:0.55rem 1.4rem;background:linear-gradient(135deg,#2EB8B0,#0D9488);border-radius:4px;color:#fff;font-size:0.78rem;font-weight:700;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;box-shadow:0 4px 20px rgba(46,184,176,0.3);transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.04)';this.style.boxShadow='0 8px 32px rgba(46,184,176,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(46,184,176,0.3)'">Go Inspire Now ♥</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section style="background:linear-gradient(160deg,#04040A 0%,#0D0520 50%,#06060E 100%);padding:10rem 2.5rem 0;position:relative;overflow:hidden;min-height:680px;display:flex;align-items:flex-end;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 30% 60%,rgba(46,184,176,0.08),transparent),radial-gradient(ellipse 50% 60% at 80% 30%,rgba(107,33,168,0.15),transparent);"></div>
+  <!-- Photo mosaic background -->
+  <div style="position:absolute;right:0;top:0;bottom:0;width:55%;display:grid;grid-template-columns:1fr 1fr;gap:2px;overflow:hidden;">
+    <div style="position:relative;overflow:hidden;">
+      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&h=700&fit=crop&q=80" alt="Women in community" style="width:100%;height:100%;object-fit:cover;opacity:0.25;">
+    </div>
+    <div style="position:relative;overflow:hidden;">
+      <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=500&h=700&fit=crop&q=80" alt="Diverse women" style="width:100%;height:100%;object-fit:cover;opacity:0.2;">
+    </div>
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,#04040A 0%,rgba(4,4,10,0.7) 40%,rgba(4,4,10,0.3) 100%);"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,#04040A 0%,transparent 40%);"></div>
+  </div>
+  <div style="max-width:1280px;margin:0 auto;position:relative;z-index:1;padding-bottom:7rem;width:100%;">
+    <div style="max-width:600px;">
+      <span class="section-tag gold reveal-up">You Are Not Alone</span>
+      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6vw,4.5rem);color:#fff;font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:1.5rem;" class="reveal-up">
+        A Place Where<br><em style="color:#2EB8B0;font-style:italic;">Women Belong</em>
+      </h1>
+      <p style="font-size:1.1rem;color:rgba(255,255,255,0.55);line-height:1.85;font-weight:300;margin-bottom:3rem;" class="reveal-up">
+        Relief from isolation. Reassurance of worth. A place to belong — and to grow alongside women who truly understand.
+      </p>
+      <div class="reveal-up">
+        <a href="#connect" class="btn-primary">Get Connected</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT COMMUNITY LOOKS LIKE -->
+<section style="padding:8rem 2.5rem;background:#06060E;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:5rem;">
+      <span class="section-tag reveal-up" style="display:block;justify-content:center;">What We Offer</span>
+      <h2 class="section-h2 reveal-up" style="max-width:600px;margin:0 auto 1rem;">Community That<br>Goes Deep</h2>
+      <p style="font-size:1.05rem;color:rgba(255,255,255,0.45);max-width:540px;margin:0 auto;line-height:1.85;font-weight:300;" class="reveal-up">This is not a surface-level community. This is a space designed for real growth, honest conversation, and lasting connection.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;">
+      <div class="glass-card reveal-up" style="padding:2.5rem;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#2EB8B0,transparent);"></div>
+        <div style="width:40px;height:40px;border:1px solid rgba(46,184,176,0.3);border-radius:2px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;color:#2EB8B0;font-size:1.1rem;">✦</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;color:#fff;margin-bottom:0.75rem;">Faith-Centered Conversations</h3>
+        <p style="font-size:0.93rem;color:rgba(255,255,255,0.45);line-height:1.8;">Spaces where faith is woven into every conversation — authentic, sincere, and grounding.</p>
+      </div>
+      <div class="glass-card reveal-up" style="padding:2.5rem;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#C9A227,transparent);"></div>
+        <div style="width:40px;height:40px;border:1px solid rgba(201,162,39,0.3);border-radius:2px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;color:#C9A227;font-size:1.1rem;">✦</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;color:#fff;margin-bottom:0.75rem;">Mentorship &amp; Connection</h3>
+        <p style="font-size:0.93rem;color:rgba(255,255,255,0.45);line-height:1.8;">Supportive connections that help women grow — from women who have walked the road before them.</p>
+      </div>
+      <div class="glass-card reveal-up" style="padding:2.5rem;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#A855F7,transparent);"></div>
+        <div style="width:40px;height:40px;border:1px solid rgba(168,85,247,0.3);border-radius:2px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;color:#A855F7;font-size:1.1rem;">✦</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;color:#fff;margin-bottom:0.75rem;">Mothers &amp; Family Support</h3>
+        <p style="font-size:0.93rem;color:rgba(255,255,255,0.45);line-height:1.8;">For mothers in the trenches — seeking hope, practical encouragement, and renewed strength.</p>
+      </div>
+      <div class="glass-card reveal-up" style="padding:2.5rem;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#2EB8B0,transparent);"></div>
+        <div style="width:40px;height:40px;border:1px solid rgba(46,184,176,0.3);border-radius:2px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;color:#2EB8B0;font-size:1.1rem;">✦</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;color:#fff;margin-bottom:0.75rem;">Accountability &amp; Growth</h3>
+        <p style="font-size:0.93rem;color:rgba(255,255,255,0.45);line-height:1.8;">Women who will hold you to the best version of yourself — with grace, honesty, and love.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY COMMUNITY MATTERS -->
+<section style="padding:8rem 2.5rem;background:#04040A;">
+  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
+    <div class="reveal-left">
+      <span class="section-tag">Why It Matters</span>
+      <h2 class="section-h2">Isolation Is the Enemy<br>of Growth</h2>
+      <div style="display:flex;flex-direction:column;gap:2rem;margin-top:2.5rem;">
+        <div style="display:flex;gap:1.25rem;align-items:flex-start;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <div style="width:2px;height:48px;background:linear-gradient(to bottom,#2EB8B0,transparent);flex-shrink:0;margin-top:4px;"></div>
+          <div>
+            <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:#fff;margin-bottom:0.4rem;">You were not made to do this alone</h4>
+            <p style="font-size:0.9rem;color:rgba(255,255,255,0.45);line-height:1.7;">Every woman thrives in the presence of other women who genuinely see and support her.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:1.25rem;align-items:flex-start;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <div style="width:2px;height:48px;background:linear-gradient(to bottom,#C9A227,transparent);flex-shrink:0;margin-top:4px;"></div>
+          <div>
+            <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:#fff;margin-bottom:0.4rem;">Your story becomes someone else's lifeline</h4>
+            <p style="font-size:0.9rem;color:rgba(255,255,255,0.45);line-height:1.7;">When you show up as yourself — healed or healing — you give other women permission to do the same.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:1.25rem;align-items:flex-start;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <div style="width:2px;height:48px;background:linear-gradient(to bottom,#A855F7,transparent);flex-shrink:0;margin-top:4px;"></div>
+          <div>
+            <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:#fff;margin-bottom:0.4rem;">Growth accelerates in community</h4>
+            <p style="font-size:0.9rem;color:rgba(255,255,255,0.45);line-height:1.7;">Accountability, shared wisdom, and collective encouragement move you forward faster than you can go alone.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:1.25rem;align-items:flex-start;">
+          <div style="width:2px;height:48px;background:linear-gradient(to bottom,#2EB8B0,transparent);flex-shrink:0;margin-top:4px;"></div>
+          <div>
+            <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:#fff;margin-bottom:0.4rem;">You deserve to feel seen and celebrated</h4>
+            <p style="font-size:0.9rem;color:rgba(255,255,255,0.45);line-height:1.7;">Not just tolerated. Not just noticed. Genuinely seen, valued, and cheered on.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal-right">
+      <div style="position:relative;margin-bottom:1.5rem;">
+        <div style="border-radius:4px;overflow:hidden;height:320px;position:relative;">
+          <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=700&h=500&fit=crop&q=80" alt="Diverse women together" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(4,4,10,0.85),rgba(107,33,168,0.15) 50%,transparent);"></div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(46,184,176,0.15);border-radius:4px;padding:2.5rem;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#2EB8B0,transparent);"></div>
+        <p style="font-family:'Playfair Display',serif;font-size:1.2rem;font-style:italic;color:#fff;line-height:1.65;margin-bottom:1rem;">
+          "The woman you are becoming is already cheering for the woman you are today."
+        </p>
+        <p style="color:#2EB8B0;font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;">Community Truth</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO CONNECT -->
+<section id="connect" style="padding:8rem 2.5rem;background:#06060E;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:5rem;">
+      <span class="section-tag reveal-up" style="display:block;justify-content:center;">Get Connected</span>
+      <h2 class="section-h2 reveal-up" style="max-width:600px;margin:0 auto 1rem;">Your Invitation<br>Is Open</h2>
+      <p style="font-size:1.05rem;color:rgba(255,255,255,0.45);max-width:540px;margin:0 auto;line-height:1.85;font-weight:300;" class="reveal-up">However you want to connect — we want to meet you there. Come as you are.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
+      <!-- Online -->
+      <div class="reveal-scale" style="background:rgba(255,255,255,0.04);border:1px solid rgba(46,184,176,0.15);border-radius:4px;padding:2.75rem;position:relative;overflow:hidden;transition:border-color 0.3s,background 0.3s;" onmouseover="this.style.borderColor='rgba(46,184,176,0.35)';this.style.background='rgba(46,184,176,0.05)'" onmouseout="this.style.borderColor='rgba(46,184,176,0.15)';this.style.background='rgba(255,255,255,0.04)'">
+        <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#2EB8B0,transparent);"></div>
+        <div style="width:44px;height:44px;border:1px solid rgba(46,184,176,0.3);border-radius:2px;display:flex;align-items:center;justify-content:center;margin-bottom:1.75rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2EB8B0" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+        </div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:#fff;margin-bottom:0.75rem;">Online Community</h3>
+        <p style="color:rgba(255,255,255,0.45);font-size:0.93rem;line-height:1.8;margin-bottom:2rem;">Connect with women wherever you are — encouraging conversations, shared resources, and real community online.</p>
+        <a href="#" style="color:#2EB8B0;font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;">Join Online <span>→</span></a>
+      </div>
+      <!-- Events -->
+      <div class="reveal-scale" style="background:rgba(255,255,255,0.04);border:1px solid rgba(201,162,39,0.15);border-radius:4px;padding:2.75rem;position:relative;overflow:hidden;transition:border-color 0.3s,background 0.3s;" onmouseover="this.style.borderColor='rgba(201,162,39,0.35)';this.style.background='rgba(201,162,39,0.04)'" onmouseout="this.style.borderColor='rgba(201,162,39,0.15)';this.style.background='rgba(255,255,255,0.04)'">
+        <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#C9A227,transparent);"></div>
+        <div style="width:44px;height:44px;border:1px solid rgba(201,162,39,0.3);border-radius:2px;display:flex;align-items:center;justify-content:center;margin-bottom:1.75rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:#fff;margin-bottom:0.75rem;">Events &amp; Gatherings</h3>
+        <p style="color:rgba(255,255,255,0.45);font-size:0.93rem;line-height:1.8;margin-bottom:2rem;">In-person and virtual events where women gather to grow, connect, be encouraged, and move forward together.</p>
+        <a href="#" style="color:#C9A227;font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;">See Events <span>→</span></a>
+      </div>
+      <!-- Mentorship -->
+      <div class="reveal-scale" style="background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.15);border-radius:4px;padding:2.75rem;position:relative;overflow:hidden;transition:border-color 0.3s,background 0.3s;" onmouseover="this.style.borderColor='rgba(168,85,247,0.35)';this.style.background='rgba(168,85,247,0.04)'" onmouseout="this.style.borderColor='rgba(168,85,247,0.15)';this.style.background='rgba(255,255,255,0.04)'">
+        <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#A855F7,transparent);"></div>
+        <div style="width:44px;height:44px;border:1px solid rgba(168,85,247,0.3);border-radius:2px;display:flex;align-items:center;justify-content:center;margin-bottom:1.75rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:#fff;margin-bottom:0.75rem;">Mentorship &amp; Support</h3>
+        <p style="color:rgba(255,255,255,0.45);font-size:0.93rem;line-height:1.8;margin-bottom:2rem;">One-on-one mentorship and small group support for women in specific seasons of healing, growth, and transition.</p>
+        <a href="#" style="color:#A855F7;font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;">Find Support <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO BAND -->
+<div style="display:grid;grid-template-columns:repeat(4,1fr);height:280px;overflow:hidden;">
+  <div style="position:relative;overflow:hidden;">
+    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=400&fit=crop&crop=faces&q=80" alt="" style="width:100%;height:100%;object-fit:cover;">
+    <div style="position:absolute;inset:0;background:rgba(4,4,10,0.4);mix-blend-mode:multiply;"></div>
+    <div style="position:absolute;inset:0;background:rgba(46,184,176,0.08);"></div>
+  </div>
+  <div style="position:relative;overflow:hidden;">
+    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=faces&q=80" alt="" style="width:100%;height:100%;object-fit:cover;">
+    <div style="position:absolute;inset:0;background:rgba(4,4,10,0.4);mix-blend-mode:multiply;"></div>
+  </div>
+  <div style="position:relative;overflow:hidden;">
+    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&h=400&fit=crop&crop=faces&q=80" alt="" style="width:100%;height:100%;object-fit:cover;">
+    <div style="position:absolute;inset:0;background:rgba(4,4,10,0.4);mix-blend-mode:multiply;"></div>
+    <div style="position:absolute;inset:0;background:rgba(201,162,39,0.06);"></div>
+  </div>
+  <div style="position:relative;overflow:hidden;">
+    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=faces&q=80" alt="" style="width:100%;height:100%;object-fit:cover;">
+    <div style="position:absolute;inset:0;background:rgba(4,4,10,0.4);mix-blend-mode:multiply;"></div>
+  </div>
+</div>
+
+<!-- CTA BAND -->
+<section style="background:linear-gradient(160deg,#04040A 0%,#0D0520 60%,#04040A 100%);padding:8rem 2.5rem;text-align:center;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(107,33,168,0.22),transparent);"></div>
+  <div style="max-width:680px;margin:0 auto;position:relative;z-index:1;">
+    <span class="section-tag gold reveal-up" style="display:block;justify-content:center;">Your Invitation</span>
+    <h2 class="section-h2 reveal-up">You Belong<br><em style="color:#2EB8B0;font-style:italic;">Here</em></h2>
+    <p style="color:rgba(255,255,255,0.5);line-height:1.85;margin-bottom:3rem;font-size:1.05rem;" class="reveal-up">Every woman who walks through our community doors comes as she is — and leaves stronger than she was.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" class="reveal-up">
+      <a href="#connect" class="btn-primary">Start Your Journey</a>
+      <a href="about.html" class="btn-ghost">Our Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#030307;border-top:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.45);padding:5rem 2.5rem 2.5rem;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:5rem;">
+      <div>
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
+          <img src="assets/yin-logo.png" alt="You Inspire Now" style="height:40px;filter:brightness(0) invert(1);opacity:0.8;">
+          <span style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:rgba(255,255,255,0.6);">You Inspire Now</span>
+        </div>
+        <p style="font-size:0.88rem;line-height:1.8;max-width:280px;color:rgba(255,255,255,0.35);">Faith-rooted empowerment for women who are ready to rise into who they were created to be.</p>
+      </div>
+      <div>
+        <h4 style="color:rgba(255,255,255,0.5);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:1.5rem;">Navigate</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;">
+          <li><a href="index.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Home</a></li>
+          <li><a href="about.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">About</a></li>
+          <li><a href="pillars.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Our Pillars</a></li>
+          <li><a href="community.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Community</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:rgba(255,255,255,0.5);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:1.5rem;">Resources</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;">
+          <li><a href="resources.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Encouragement</a></li>
+          <li><a href="resources.html#faith" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Faith &amp; Surrender</a></li>
+          <li><a href="resources.html#health" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Health &amp; Wholeness</a></li>
+          <li><a href="resources.html#stories" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Stories</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:rgba(255,255,255,0.5);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:1.5rem;">Give</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;">
+          <li><a href="go-inspire-now.html" style="color:#2EB8B0;text-decoration:none;font-size:0.88rem;">Go Inspire Now ♥</a></li>
+          <li><a href="go-inspire-now.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Donate</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.05);padding-top:2rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;align-items:center;">
+      <p style="font-size:0.78rem;">© 2026 You Inspire Now. All rights reserved.</p>
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.25);">Purpose · Family · Health · Leadership</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>{if(window.scrollY>60)nav.classList.add('scrolled-nav');else nav.classList.remove('scrolled-nav');});
+const ro=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){const siblings=[...e.target.parentElement.querySelectorAll('.reveal-up,.reveal-left,.reveal-right,.reveal-scale')];const i=siblings.indexOf(e.target);e.target.style.transitionDelay=`${i*0.1}s`;e.target.classList.add('revealed');ro.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal-up,.reveal-left,.reveal-right,.reveal-scale').forEach(el=>ro.observe(el));
+</script>
+</body>
+</html>

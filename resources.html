@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources — You Inspire Now</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:#04040A;color:rgba(255,255,255,0.85);overflow-x:hidden;}
+.nav-link{position:relative;font-size:0.82rem;letter-spacing:0.1em;font-weight:700;color:rgba(255,255,255,0.75);text-transform:uppercase;transition:color 0.3s;text-decoration:none;}
+.nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:#2EB8B0;transition:width 0.3s;}
+.nav-link:hover{color:#2EB8B0;}.nav-link:hover::after{width:100%;}
+.nav-link.active{color:#fff;}.nav-link.active::after{width:100%;background:#C9A227;}
+.scrolled-nav{background:rgba(4,4,12,0.96)!important;backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.06);box-shadow:0 4px 40px rgba(0,0,0,0.5);}
+.section-tag{font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:#2EB8B0;font-weight:700;margin-bottom:0.75rem;display:block;}
+.section-tag.gold{color:#C9A227;}
+.section-h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);color:#fff;font-weight:700;letter-spacing:-0.025em;line-height:1.15;margin-bottom:1.25rem;}
+.btn-primary{display:inline-block;padding:1rem 2.5rem;background:linear-gradient(135deg,#2EB8B0,#0D9488);color:#fff;font-weight:700;font-size:0.88rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;transition:transform 0.25s,box-shadow 0.25s;box-shadow:0 8px 32px rgba(46,184,176,0.35);}
+.btn-primary:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 16px 48px rgba(46,184,176,0.5);}
+.btn-ghost{display:inline-block;padding:1rem 2.5rem;background:transparent;color:rgba(255,255,255,0.8);font-weight:700;font-size:0.88rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;border:1px solid rgba(255,255,255,0.2);text-decoration:none;transition:background 0.2s,border-color 0.2s,transform 0.2s;}
+.btn-ghost:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.4);transform:translateY(-2px);}
+.reveal-up{opacity:0;transform:translateY(40px);}
+.reveal-left{opacity:0;transform:translateX(-50px);}
+.reveal-right{opacity:0;transform:translateX(50px);}
+.reveal-scale{opacity:0;transform:scale(0.9);}
+.revealed{opacity:1!important;transform:none!important;transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.34,1.56,0.64,1)!important;}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");}
+
+/* Resource cards */
+.resource-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;overflow:hidden;transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;}
+.resource-card:hover{border-color:rgba(46,184,176,0.25);transform:translateY(-5px);box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+.resource-card-img{height:200px;position:relative;overflow:hidden;}
+.resource-card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;}
+.resource-card:hover .resource-card-img img{transform:scale(1.05);}
+.resource-card-img .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(4,4,10,0.85),rgba(4,4,10,0.2));}
+.resource-card-body{padding:1.75rem;}
+.resource-cat{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:0.6rem;}
+.resource-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff;font-weight:600;margin-bottom:0.75rem;line-height:1.35;}
+.resource-excerpt{font-size:0.88rem;color:rgba(255,255,255,0.45);line-height:1.8;margin-bottom:1.25rem;}
+.resource-link{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;transition:opacity 0.2s;}
+.resource-link:hover{opacity:0.7;}
+
+/* Dark mini-cards for faith/health */
+.mini-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:1.5rem;transition:border-color 0.3s,background 0.3s;}
+.mini-card:hover{background:rgba(255,255,255,0.06);}
+
+/* Filter bar */
+.theme-filter{display:inline-block;padding:0.5rem 1.1rem;border-radius:2px;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all 0.2s;border:1px solid transparent;}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<!-- NAV -->
+<nav id="mainNav" style="position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 2.5rem;transition:all 0.3s ease;background:transparent;">
+  <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
+    <a href="index.html" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;">
+      <img src="assets/yin-logo.png" alt="You Inspire Now" style="height:48px;filter:brightness(0) invert(1) drop-shadow(0 0 12px rgba(46,184,176,0.5));">
+      <span style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#fff;letter-spacing:0.01em;">You Inspire Now</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="pillars.html" class="nav-link">Our Pillars</a>
+      <a href="community.html" class="nav-link">Community</a>
+      <a href="resources.html" class="nav-link active">Resources</a>
+      <a href="go-inspire-now.html" style="display:inline-block;padding:0.55rem 1.4rem;background:linear-gradient(135deg,#2EB8B0,#0D9488);border-radius:4px;color:#fff;font-size:0.78rem;font-weight:700;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;box-shadow:0 4px 20px rgba(46,184,176,0.3);transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.04)';this.style.boxShadow='0 8px 32px rgba(46,184,176,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(46,184,176,0.3)'">Go Inspire Now ♥</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section style="background:linear-gradient(160deg,#04040A 0%,#0D0520 50%,#06060E 100%);padding:10rem 2.5rem 7rem;text-align:center;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 60%,rgba(107,33,168,0.2),transparent),radial-gradient(ellipse 40% 50% at 80% 20%,rgba(46,184,176,0.07),transparent);"></div>
+  <div style="position:relative;z-index:1;max-width:680px;margin:0 auto;">
+    <span class="section-tag gold reveal-up" style="display:block;justify-content:center;">Practical Encouragement</span>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6vw,4.5rem);color:#fff;font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:1.5rem;" class="reveal-up">
+      Resources to Help<br><em style="color:#2EB8B0;font-style:italic;">You Move Forward</em>
+    </h1>
+    <p style="font-size:1.1rem;color:rgba(255,255,255,0.55);line-height:1.85;font-weight:300;" class="reveal-up">
+      Real encouragement, practical wisdom, and faith-centered guidance across every area of a woman's life.
+    </p>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div style="background:rgba(6,6,14,0.98);backdrop-filter:blur(24px);padding:1.25rem 2.5rem;border-bottom:1px solid rgba(255,255,255,0.06);position:sticky;top:80px;z-index:100;">
+  <div style="max-width:1000px;margin:0 auto;display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+    <a href="#purpose" class="theme-filter" style="background:rgba(201,162,39,0.1);color:#C9A227;border-color:rgba(201,162,39,0.25);" onmouseover="this.style.background='rgba(201,162,39,0.2)'" onmouseout="this.style.background='rgba(201,162,39,0.1)'">Purpose &amp; Calling</a>
+    <a href="#healing" class="theme-filter" style="background:rgba(168,85,247,0.1);color:#A855F7;border-color:rgba(168,85,247,0.25);" onmouseover="this.style.background='rgba(168,85,247,0.2)'" onmouseout="this.style.background='rgba(168,85,247,0.1)'">Healing</a>
+    <a href="#faith" class="theme-filter" style="background:rgba(46,184,176,0.08);color:#2EB8B0;border-color:rgba(46,184,176,0.2);" onmouseover="this.style.background='rgba(46,184,176,0.15)'" onmouseout="this.style.background='rgba(46,184,176,0.08)'">Faith &amp; Surrender</a>
+    <a href="#health" class="theme-filter" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);border-color:rgba(255,255,255,0.1);" onmouseover="this.style.background='rgba(255,255,255,0.09)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">Health &amp; Wholeness</a>
+    <a href="#stories" class="theme-filter" style="background:rgba(201,162,39,0.08);color:#C9A227;border-color:rgba(201,162,39,0.2);" onmouseover="this.style.background='rgba(201,162,39,0.15)'" onmouseout="this.style.background='rgba(201,162,39,0.08)'">Stories</a>
+  </div>
+</div>
+
+<!-- PURPOSE & CALLING -->
+<section id="purpose" style="padding:7rem 2.5rem;background:#06060E;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="margin-bottom:3.5rem;">
+      <span class="section-tag gold reveal-up">Purpose &amp; Calling</span>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);color:#fff;font-weight:700;letter-spacing:-0.02em;" class="reveal-up">Move Toward Your Calling</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;">
+      <div class="resource-card reveal-up">
+        <div class="resource-card-img">
+          <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=600&h=300&fit=crop&crop=faces&q=80" alt="">
+          <div class="overlay"></div>
+          <div style="position:absolute;bottom:1rem;left:1.5rem;"><span style="font-size:0.65rem;letter-spacing:0.15em;font-weight:700;color:#C9A227;text-transform:uppercase;">Purpose &amp; Calling</span></div>
+        </div>
+        <div class="resource-card-body">
+          <h3 class="resource-title">Stop Waiting for Perfect Conditions</h3>
+          <p class="resource-excerpt">The assignment on your life does not require you to have it all together first. Take the first step — even an imperfect one.</p>
+          <a href="#" class="resource-link" style="color:#C9A227;">Read More →</a>
+        </div>
+      </div>
+      <div class="resource-card reveal-up">
+        <div class="resource-card-img">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=300&fit=crop&crop=faces&q=80" alt="">
+          <div class="overlay"></div>
+          <div style="position:absolute;bottom:1rem;left:1.5rem;"><span style="font-size:0.65rem;letter-spacing:0.15em;font-weight:700;color:#C9A227;text-transform:uppercase;">Purpose &amp; Calling</span></div>
+        </div>
+        <div class="resource-card-body">
+          <h3 class="resource-title">Discovering Your God-Given Assignment</h3>
+          <p class="resource-excerpt">A practical guide to identifying the gifts, passions, and callings that point toward your unique purpose.</p>
+          <a href="#" class="resource-link" style="color:#C9A227;">Read More →</a>
+        </div>
+      </div>
+      <div class="resource-card reveal-up">
+        <div class="resource-card-img">
+          <img src="https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?w=600&h=300&fit=crop&crop=faces&q=80" alt="">
+          <div class="overlay"></div>
+          <div style="position:absolute;bottom:1rem;left:1.5rem;"><span style="font-size:0.65rem;letter-spacing:0.15em;font-weight:700;color:#C9A227;text-transform:uppercase;">Purpose &amp; Calling</span></div>
+        </div>
+        <div class="resource-card-body">
+          <h3 class="resource-title">Leadership for Women Who Never Saw Themselves as Leaders</h3>
+          <p class="resource-excerpt">Leadership is influence. And you are already influencing the people around you — it is time to do it with intention.</p>
+          <a href="#" class="resource-link" style="color:#C9A227;">Read More →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HEALING -->
+<section id="healing" style="padding:7rem 2.5rem;background:#04040A;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="margin-bottom:3.5rem;">
+      <span class="section-tag reveal-up" style="color:#A855F7;">Healing from the Past</span>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);color:#fff;font-weight:700;letter-spacing:-0.02em;" class="reveal-up">Your Healing Is Possible</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;">
+      <div class="resource-card reveal-up" style="border-color:rgba(168,85,247,0.1);" onmouseover="this.style.borderColor='rgba(168,85,247,0.3)'" onmouseout="this.style.borderColor='rgba(168,85,247,0.1)'">
+        <div class="resource-card-img">
+          <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600&h=300&fit=crop&crop=faces&q=80" alt="">
+          <div class="overlay" style="background:linear-gradient(to top,rgba(4,4,10,0.9),rgba(168,85,247,0.1) 50%,transparent);"></div>
+          <div style="position:absolute;bottom:1rem;left:1.5rem;"><span style="font-size:0.65rem;letter-spacing:0.15em;font-weight:700;color:#A855F7;text-transform:uppercase;">Healing</span></div>
+        </div>
+        <div class="resource-card-body">
+          <h3 class="resource-title">Breaking Free from Shame</h3>
+          <p class="resource-excerpt">Shame tells you that you are the problem. Healing shows you that what happened to you does not define who you are.</p>
+          <a href="#" class="resource-link" style="color:#A855F7;">Read More →</a>
+        </div>
+      </div>
+      <div class="resource-card reveal-up" style="border-color:rgba(168,85,247,0.1);" onmouseover="this.style.borderColor='rgba(168,85,247,0.3)'" onmouseout="this.style.borderColor='rgba(168,85,247,0.1)'">
+        <div class="resource-card-img">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&h=300&fit=crop&crop=faces&q=80" alt="">
+          <div class="overlay" style="background:linear-gradient(to top,rgba(4,4,10,0.9),rgba(168,85,247,0.1) 50%,transparent);"></div>
+          <div style="position:absolute;bottom:1rem;left:1.5rem;"><span style="font-size:0.65rem;letter-spacing:0.15em;font-weight:700;color:#A855F7;text-transform:uppercase;">Healing</span></div>
+        </div>
+        <div class="resource-card-body">
+          <h3 class="resource-title">Motherhood &amp; the Unseen Weight</h3>
+          <p class="resource-excerpt">For mothers carrying more than they can hold — this is permission to put it down, breathe, and receive support.</p>
+          <a href="#" class="resource-link" style="color:#A855F7;">Read More →</a>
+        </div>
+      </div>
+      <div class="resource-card reveal-up" style="border-color:rgba(168,85,247,0.1);" onmouseover="this.style.borderColor='rgba(168,85,247,0.3)'" onmouseout="this.style.borderColor='rgba(168,85,247,0.1)'">
+        <div class="resource-card-img">
+          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&h=300&fit=crop&crop=faces&q=80" alt="">
+          <div class="overlay" style="background:linear-gradient(to top,rgba(4,4,10,0.9),rgba(168,85,247,0.1) 50%,transparent);"></div>
+          <div style="position:absolute;bottom:1rem;left:1.5rem;"><span style="font-size:0.65rem;letter-spacing:0.15em;font-weight:700;color:#A855F7;text-transform:uppercase;">Healing</span></div>
+        </div>
+        <div class="resource-card-body">
+          <h3 class="resource-title">From Abandonment to Belonging</h3>
+          <p class="resource-excerpt">Whether from family, relationships, or circumstances — abandonment wounds deeply. Here is the path to belonging again.</p>
+          <a href="#" class="resource-link" style="color:#A855F7;">Read More →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAITH & HEALTH SIDE BY SIDE -->
+<section style="padding:7rem 2.5rem;background:#06060E;">
+  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;">
+    <!-- FAITH -->
+    <div id="faith">
+      <span class="section-tag reveal-up">Faith &amp; Surrender</span>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);color:#fff;font-weight:700;letter-spacing:-0.02em;margin-bottom:2rem;" class="reveal-up">Rooted in Faith</h2>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div class="mini-card reveal-up" style="border-left:2px solid #2EB8B0;" onmouseover="this.style.borderColor='#2EB8B0'" onmouseout="this.style.borderLeftColor='#2EB8B0'">
+          <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:#fff;margin-bottom:0.5rem;">The Power of Surrender</h4>
+          <p style="font-size:0.88rem;color:rgba(255,255,255,0.45);line-height:1.7;">What it looks like to release control and trust the process of becoming.</p>
+          <a href="#" style="font-size:0.7rem;font-weight:700;color:#2EB8B0;text-transform:uppercase;letter-spacing:0.1em;text-decoration:none;display:inline-block;margin-top:0.75rem;">Read More →</a>
+        </div>
+        <div class="mini-card reveal-up" style="border-left:2px solid #2EB8B0;">
+          <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:#fff;margin-bottom:0.5rem;">When Prayer Feels Hard</h4>
+          <p style="font-size:0.88rem;color:rgba(255,255,255,0.45);line-height:1.7;">Permission to show up to God exactly as you are — not as you wish you were.</p>
+          <a href="#" style="font-size:0.7rem;font-weight:700;color:#2EB8B0;text-transform:uppercase;letter-spacing:0.1em;text-decoration:none;display:inline-block;margin-top:0.75rem;">Read More →</a>
+        </div>
+        <div class="mini-card reveal-up" style="border-left:2px solid rgba(46,184,176,0.4);">
+          <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:#fff;margin-bottom:0.5rem;">Faith for the Dark Seasons</h4>
+          <p style="font-size:0.88rem;color:rgba(255,255,255,0.45);line-height:1.7;">How to hold onto hope when circumstances make it hard to believe anything will change.</p>
+          <a href="#" style="font-size:0.7rem;font-weight:700;color:#2EB8B0;text-transform:uppercase;letter-spacing:0.1em;text-decoration:none;display:inline-block;margin-top:0.75rem;">Read More →</a>
+        </div>
+      </div>
+    </div>
+    <!-- HEALTH -->
+    <div id="health">
+      <span class="section-tag reveal-up" style="color:#A855F7;">Health &amp; Wholeness</span>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);color:#fff;font-weight:700;letter-spacing:-0.02em;margin-bottom:2rem;" class="reveal-up">Thriving in Every Area</h2>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div class="mini-card reveal-up" style="border-left:2px solid #A855F7;">
+          <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:#fff;margin-bottom:0.5rem;">Building a Health Rhythm That Works for Your Life</h4>
+          <p style="font-size:0.88rem;color:rgba(255,255,255,0.45);line-height:1.7;">Practical rhythms for women who are ready to care for their bodies without perfectionistic pressure.</p>
+          <a href="#" style="font-size:0.7rem;font-weight:700;color:#A855F7;text-transform:uppercase;letter-spacing:0.1em;text-decoration:none;display:inline-block;margin-top:0.75rem;">Read More →</a>
+        </div>
+        <div class="mini-card reveal-up" style="border-left:2px solid #A855F7;">
+          <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:#fff;margin-bottom:0.5rem;">Emotional Health Is Real Health</h4>
+          <p style="font-size:0.88rem;color:rgba(255,255,255,0.45);line-height:1.7;">Your emotional wellbeing is not optional — it is the foundation of every other area of your life.</p>
+          <a href="#" style="font-size:0.7rem;font-weight:700;color:#A855F7;text-transform:uppercase;letter-spacing:0.1em;text-decoration:none;display:inline-block;margin-top:0.75rem;">Read More →</a>
+        </div>
+        <div class="mini-card reveal-up" style="border-left:2px solid rgba(168,85,247,0.4);">
+          <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:#fff;margin-bottom:0.5rem;">Rest Is Not Weakness</h4>
+          <p style="font-size:0.88rem;color:rgba(255,255,255,0.45);line-height:1.7;">For women who have confused exhaustion with dedication — a permission slip to rest, recover, and refuel.</p>
+          <a href="#" style="font-size:0.7rem;font-weight:700;color:#A855F7;text-transform:uppercase;letter-spacing:0.1em;text-decoration:none;display:inline-block;margin-top:0.75rem;">Read More →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section id="stories" style="padding:7rem 2.5rem;background:#04040A;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:5rem;">
+      <span class="section-tag gold reveal-up" style="display:block;justify-content:center;">Stories of Resilience &amp; Becoming</span>
+      <h2 class="section-h2 reveal-up" style="max-width:600px;margin:0 auto;">Real Women.<br>Real Journeys.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;">
+      <div class="reveal-scale" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:2.75rem;position:relative;overflow:hidden;transition:border-color 0.3s;" onmouseover="this.style.borderColor='rgba(46,184,176,0.2)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#2EB8B0,transparent);"></div>
+        <div style="font-family:'Playfair Display',serif;font-size:5rem;color:rgba(46,184,176,0.08);line-height:1;position:absolute;top:-1rem;left:1rem;">"</div>
+        <p style="font-family:'Playfair Display',serif;font-size:1.05rem;color:rgba(255,255,255,0.8);line-height:1.8;font-style:italic;padding-top:1.5rem;position:relative;z-index:1;">I came to You Inspire Now feeling invisible. I leave every gathering feeling like I finally exist — like someone truly sees me and believes in what God has placed in me.</p>
+        <div style="margin-top:1.75rem;display:flex;align-items:center;gap:0.75rem;">
+          <div style="width:32px;height:1px;background:#2EB8B0;"></div>
+          <p style="font-size:0.7rem;color:#2EB8B0;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">Community Member</p>
+        </div>
+      </div>
+      <div class="reveal-scale" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:2.75rem;position:relative;overflow:hidden;transition:border-color 0.3s;" onmouseover="this.style.borderColor='rgba(201,162,39,0.2)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#C9A227,transparent);"></div>
+        <div style="font-family:'Playfair Display',serif;font-size:5rem;color:rgba(201,162,39,0.08);line-height:1;position:absolute;top:-1rem;left:1rem;">"</div>
+        <p style="font-family:'Playfair Display',serif;font-size:1.05rem;color:rgba(255,255,255,0.8);line-height:1.8;font-style:italic;padding-top:1.5rem;position:relative;z-index:1;">After years of believing my past disqualified me, You Inspire Now helped me understand that my story was never meant to be a dead end. It was always meant to become a testimony.</p>
+        <div style="margin-top:1.75rem;display:flex;align-items:center;gap:0.75rem;">
+          <div style="width:32px;height:1px;background:#C9A227;"></div>
+          <p style="font-size:0.7rem;color:#C9A227;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">Community Member</p>
+        </div>
+      </div>
+      <div class="reveal-scale" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:2.75rem;position:relative;overflow:hidden;transition:border-color 0.3s;" onmouseover="this.style.borderColor='rgba(168,85,247,0.2)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#A855F7,transparent);"></div>
+        <div style="font-family:'Playfair Display',serif;font-size:5rem;color:rgba(168,85,247,0.08);line-height:1;position:absolute;top:-1rem;left:1rem;">"</div>
+        <p style="font-family:'Playfair Display',serif;font-size:1.05rem;color:rgba(255,255,255,0.8);line-height:1.8;font-style:italic;padding-top:1.5rem;position:relative;z-index:1;">As a mother who felt completely lost in her own life, finding this community was like finding oxygen. I did not know I needed this until I was in it.</p>
+        <div style="margin-top:1.75rem;display:flex;align-items:center;gap:0.75rem;">
+          <div style="width:32px;height:1px;background:#A855F7;"></div>
+          <p style="font-size:0.7rem;color:#A855F7;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">Community Member</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:linear-gradient(160deg,#04040A 0%,#0D0520 60%,#04040A 100%);padding:8rem 2.5rem;text-align:center;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(107,33,168,0.22),transparent);"></div>
+  <div style="max-width:680px;margin:0 auto;position:relative;z-index:1;">
+    <span class="section-tag gold reveal-up" style="display:block;justify-content:center;">Keep Growing</span>
+    <h2 class="section-h2 reveal-up">Ready to<br><em style="color:#2EB8B0;font-style:italic;">Explore More?</em></h2>
+    <p style="color:rgba(255,255,255,0.5);line-height:1.85;margin-bottom:3rem;font-size:1.05rem;" class="reveal-up">Join a community of women who are healing, growing, and discovering their purpose together.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" class="reveal-up">
+      <a href="community.html" class="btn-primary">Find Your Community</a>
+      <a href="pillars.html" class="btn-ghost">Our Pillars</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#030307;border-top:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.45);padding:5rem 2.5rem 2.5rem;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:5rem;">
+      <div>
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
+          <img src="assets/yin-logo.png" alt="You Inspire Now" style="height:40px;filter:brightness(0) invert(1);opacity:0.8;">
+          <span style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:rgba(255,255,255,0.6);">You Inspire Now</span>
+        </div>
+        <p style="font-size:0.88rem;line-height:1.8;max-width:280px;color:rgba(255,255,255,0.35);">Faith-rooted empowerment for women who are ready to rise into who they were created to be.</p>
+      </div>
+      <div>
+        <h4 style="color:rgba(255,255,255,0.5);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:1.5rem;">Navigate</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;">
+          <li><a href="index.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Home</a></li>
+          <li><a href="about.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">About</a></li>
+          <li><a href="pillars.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Our Pillars</a></li>
+          <li><a href="community.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Community</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:rgba(255,255,255,0.5);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:1.5rem;">Resources</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;">
+          <li><a href="resources.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Encouragement</a></li>
+          <li><a href="resources.html#faith" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Faith &amp; Surrender</a></li>
+          <li><a href="resources.html#health" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Health &amp; Wholeness</a></li>
+          <li><a href="resources.html#stories" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Stories</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:rgba(255,255,255,0.5);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:1.5rem;">Give</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;">
+          <li><a href="go-inspire-now.html" style="color:#2EB8B0;text-decoration:none;font-size:0.88rem;">Go Inspire Now ♥</a></li>
+          <li><a href="go-inspire-now.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Donate</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.05);padding-top:2rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;align-items:center;">
+      <p style="font-size:0.78rem;">© 2026 You Inspire Now. All rights reserved.</p>
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.25);">Purpose · Family · Health · Leadership</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>{if(window.scrollY>60)nav.classList.add('scrolled-nav');else nav.classList.remove('scrolled-nav');});
+const ro=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){const siblings=[...e.target.parentElement.querySelectorAll('.reveal-up,.reveal-left,.reveal-right,.reveal-scale')];const i=siblings.indexOf(e.target);e.target.style.transitionDelay=`${i*0.1}s`;e.target.classList.add('revealed');ro.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal-up,.reveal-left,.reveal-right,.reveal-scale').forEach(el=>ro.observe(el));
+</script>
+</body>
+</html>
