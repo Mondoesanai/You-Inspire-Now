@@ -407,132 +407,185 @@ let wordIdx=0;
 function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
 window.addEventListener('resize',resize);resize();
 
-// ---- MOON DUST PARTICLE ----
-// Tiny particles that scatter outward like lunar soil displaced on impact
-class MoonDust{
-  constructor(x,y){
-    const angle=Math.random()*Math.PI*2;
-    const spd=Math.random()*2.8+0.4;
-    this.x=x+(Math.random()-.5)*18;
+// ---- VOLUMETRIC SMOKE PUFF ----
+// Large billowing blue-purple smoke that rises from each searing footstep
+class SmokePuff{
+  constructor(x,y,layer){
+    // layer 0=background(slow,large,dark) 1=mid 2=foreground(fast,bright)
+    this.layer=layer||0;
+    const spread=layer===0?36:layer===1?20:10;
+    this.x=x+(Math.random()-.5)*spread;
     this.y=y+(Math.random()-.5)*8;
-    this.vx=Math.cos(angle)*spd;
-    // Slight upward bias + mostly horizontal — moon dust low-arc physics
-    this.vy=Math.sin(angle)*spd*0.35-(Math.random()*0.9+0.2);
-    this.gravity=0.038;
-    this.size=Math.random()*1.6+0.3;
+    this.vx=(Math.random()-.45)*(layer===0?1.1:layer===1?0.7:0.4);
+    this.vy=-(Math.random()*(layer===2?1.4:layer===1?1.0:0.6)+0.4);
+    this.r=Math.random()*(layer===0?20:layer===1?14:8)+10;
+    this.targetR=this.r+(Math.random()*(layer===0?60:layer===1?44:28)+(layer===0?45:layer===1?30:18));
     this.age=0;
-    this.maxAge=Math.floor(Math.random()*55+30);
-    // Pale dusty lavender-white
-    this.R=Math.floor(180+Math.random()*65);
-    this.G=Math.floor(145+Math.random()*55);
-    this.B=Math.floor(200+Math.random()*55);
+    this.maxAge=Math.floor(Math.random()*(layer===0?100:80)+65);
+    this.wobble=Math.random()*Math.PI*2;
+    // Deep blue-purple palette — rich & volumetric
+    const pals=[
+      [[12,4,50],[48,10,115]],   // deep indigo
+      [[50,10,110],[95,22,165]], // deep purple
+      [[30,6,85],[72,18,148]],   // dark violet
+      [[8,12,65],[38,10,100]],   // blue-purple
+      [[65,18,125],[115,38,185]],// bright purple (layer 2)
+      [[20,8,90],[55,14,130]],   // mid blue-purple
+    ];
+    const pi=Math.min(layer+(Math.random()<0.5?0:1),pals.length-1);
+    this.c0=pals[pi][0];this.c1=pals[pi][1];
   }
-  update(){this.vy+=this.gravity;this.x+=this.vx;this.y+=this.vy;this.vx*=0.994;this.age++;}
+  update(){
+    this.age++;
+    this.r+=(this.targetR-this.r)*0.032;
+    this.x+=this.vx+Math.sin(this.age*0.038+this.wobble)*0.3;
+    this.y+=this.vy;
+    this.vy*=0.976;this.vx*=0.980;
+  }
   draw(){
-    const a=Math.max(0,(1-this.age/this.maxAge))*0.72;
-    ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
-    ctx.fillStyle=`rgba(${this.R},${this.G},${this.B},${a})`;ctx.fill();
+    const t=this.age/this.maxAge;
+    const peak=this.layer===0?0.62:this.layer===1?0.58:0.52;
+    const alpha=t<0.14?(t/0.14)*peak:(1-t)*peak;
+    if(alpha<0.008)return;
+    const [r0,g0,b0]=this.c0;const [r1,g1,b1]=this.c1;
+    const g=ctx.createRadialGradient(this.x,this.y,this.r*0.05,this.x,this.y,this.r);
+    g.addColorStop(0,`rgba(${r1},${g1},${b1},${alpha})`);
+    g.addColorStop(0.5,`rgba(${Math.floor((r0+r1)/2)},${Math.floor((g0+g1)/2)},${Math.floor((b0+b1)/2)},${alpha*0.8})`);
+    g.addColorStop(1,`rgba(${r0},${g0},${b0},0)`);
+    ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle=g;ctx.fill();
+  }
+  alive(){return this.age<this.maxAge;}
+}
+
+// ---- IMPACT SHOCKWAVE RING ----
+class ImpactRing{
+  constructor(x,y){this.x=x;this.y=y;this.r=6;this.age=0;this.maxAge=32;}
+  update(){this.age++;this.r+=(100-this.r)*0.26;}
+  draw(){
+    const a=(1-this.age/this.maxAge);
+    // Outer teal ring
+    ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(46,184,176,${a*0.9})`;
+    ctx.lineWidth=Math.max(0.3,2.5*(1-this.age/this.maxAge));ctx.stroke();
+    // Second inner ring
+    ctx.beginPath();ctx.arc(this.x,this.y,this.r*0.58,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(180,245,240,${a*0.4})`;
+    ctx.lineWidth=Math.max(0.2,1.2*(1-this.age/this.maxAge));ctx.stroke();
   }
   alive(){return this.age<this.maxAge;}
 }
 
 // ---- FOOTSTEP ----
-// Boot/shoe print facing the direction of travel, alternating L/R
 class Footstep{
   constructor(x,y,isLeft,angle){
     this.x=x;this.y=y;this.isLeft=isLeft;this.angle=angle;
-    this.age=0;this.maxAge=200;this.sc=0;
-    this.dust=[];
-    // Impact burst of moon dust
-    const n=Math.floor(Math.random()*12+22);
-    for(let i=0;i<n;i++)this.dust.push(new MoonDust(x,y));
+    this.age=0;this.maxAge=220;this.sc=0;
+    this.smoke=[];
+    this.rings=[];
+    // Impact ring
+    this.rings.push(new ImpactRing(x,y));
+    // Layered smoke: 3 background, 3 mid, 2 foreground
+    for(let i=0;i<3;i++)this.smoke.push(new SmokePuff(x,y,0));
+    for(let i=0;i<4;i++)this.smoke.push(new SmokePuff(x,y,1));
+    for(let i=0;i<3;i++)this.smoke.push(new SmokePuff(x,y,2));
   }
   update(){
     this.age++;
-    this.sc+=(1-this.sc)*0.30;
-    this.dust=this.dust.filter(d=>{d.update();return d.alive();});
+    this.sc+=(1-this.sc)*0.28;
+    // Extra smoke puffs in first 25 frames
+    if(this.age===8){for(let i=0;i<3;i++)this.smoke.push(new SmokePuff(this.x,this.y,1));}
+    if(this.age===16){for(let i=0;i<2;i++)this.smoke.push(new SmokePuff(this.x,this.y,0));}
+    this.smoke=this.smoke.filter(s=>{s.update();return s.alive();});
+    this.rings=this.rings.filter(r=>{r.update();return r.alive();});
     return this.age<this.maxAge;
   }
   draw(){
-    // Dust behind the print
-    this.dust.forEach(d=>d.draw());
+    // Rings + smoke BEHIND the footprint
+    this.rings.forEach(r=>r.draw());
+    this.smoke.forEach(s=>s.draw());
 
     const t=this.age/this.maxAge;
-    // Quick fade-in, long slow fade-out
-    const alpha=t<0.05?(t/0.05):Math.max(0,1-(t-0.15)/0.85);
+    const alpha=t<0.04?(t/0.04):Math.max(0,1-(t-0.12)/0.88);
     if(alpha<=0.005)return;
 
     ctx.save();
     ctx.translate(this.x,this.y);
-    // KEY FIX: rotate so toe (drawn at -Y) points in travel direction
-    // atan2 gives angle from +X; -Y→+X needs +90°
-    ctx.rotate(this.angle+Math.PI/2);
-    if(this.isLeft)ctx.scale(-1,1); // mirror for left foot
+    ctx.rotate(this.angle+Math.PI/2); // toe faces travel direction
+    if(this.isLeft)ctx.scale(-1,1);   // mirror = left foot
     ctx.scale(this.sc,this.sc);
 
-    const H=22; // half-length of shoe (toe at -H, heel at +H*0.9)
-    const W=H*0.50; // max half-width at ball of foot
+    const H=28; // shoe half-length — bigger, more visible
+    const W=H*0.50;
 
-    // === IMPACT FLASH ===
-    if(this.age<10){
-      const fi=1-this.age/10;
-      const fg=ctx.createRadialGradient(0,-H*0.1,0,0,-H*0.1,H*2.8);
-      fg.addColorStop(0,`rgba(220,240,255,${fi*0.7})`);
-      fg.addColorStop(0.3,`rgba(46,184,176,${fi*0.4})`);
-      fg.addColorStop(1,'rgba(46,184,176,0)');
-      ctx.beginPath();ctx.arc(0,0,H*2.8,0,Math.PI*2);ctx.fillStyle=fg;ctx.fill();
+    // === WHITE-HOT SEAR FLASH (frames 0-14) ===
+    if(this.age<14){
+      const fi=1-this.age/14;
+      // Bright white-blue core that cools to teal
+      const hg=ctx.createRadialGradient(0,0,0,0,0,H*3.2);
+      hg.addColorStop(0,`rgba(210,240,255,${fi*0.95})`);
+      hg.addColorStop(0.2,`rgba(46,184,176,${fi*0.7})`);
+      hg.addColorStop(0.6,`rgba(107,33,168,${fi*0.4})`);
+      hg.addColorStop(1,'rgba(60,15,120,0)');
+      ctx.beginPath();ctx.arc(0,0,H*3.2,0,Math.PI*2);ctx.fillStyle=hg;ctx.fill();
     }
 
-    // === SOFT GLOW under print ===
-    const grd=ctx.createRadialGradient(0,0,0,0,0,H*1.6);
-    grd.addColorStop(0,`rgba(46,184,176,${alpha*0.18})`);
-    grd.addColorStop(1,'rgba(0,0,0,0)');
-    ctx.beginPath();ctx.arc(0,0,H*1.6,0,Math.PI*2);ctx.fillStyle=grd;ctx.fill();
+    // === PERSISTENT HEAT GLOW (burns under the print) ===
+    const heatIntensity=alpha*(this.age<30?1:Math.max(0.3,(1-t)*1.5));
+    const hg2=ctx.createRadialGradient(0,H*0.1,0,0,H*0.1,H*2.0);
+    hg2.addColorStop(0,`rgba(107,33,168,${heatIntensity*0.45})`);
+    hg2.addColorStop(0.5,`rgba(60,10,130,${heatIntensity*0.25})`);
+    hg2.addColorStop(1,'rgba(20,5,50,0)');
+    ctx.beginPath();ctx.arc(0,H*0.1,H*2.0,0,Math.PI*2);ctx.fillStyle=hg2;ctx.fill();
 
-    // === SHOE SOLE OUTLINE ===
-    // Right shoe viewed from above, toe at top (-Y), heel at bottom (+Y)
-    // Toe box: wider, rounded
-    // Waist/arch: slight inward on inner (left) side
-    // Heel: narrower, round
+    // === SHOE SOLE PATH ===
+    // Right shoe viewed from above. Toe at -Y (up). Heel at +Y (down).
     ctx.beginPath();
-    ctx.moveTo(W*0.36,-H*0.88);           // toe top-right
-    ctx.bezierCurveTo(W*0.56,-H*0.88,W*0.58,-H*0.62,W*0.55,-H*0.38); // outer toe round
-    ctx.bezierCurveTo(W*0.58,-H*0.15,W*0.56,H*0.1,W*0.50,H*0.28);    // outer mid-sole
-    ctx.bezierCurveTo(W*0.52,H*0.50,W*0.40,H*0.88,0,H*0.88);         // outer heel
-    ctx.bezierCurveTo(-W*0.40,H*0.88,-W*0.52,H*0.50,-W*0.50,H*0.28); // inner heel
-    ctx.bezierCurveTo(-W*0.46,H*0.10,-W*0.44,-H*0.12,-W*0.42,-H*0.38); // inner arch (less curve = flatter arch)
-    ctx.bezierCurveTo(-W*0.44,-H*0.62,-W*0.34,-H*0.88,-W*0.36,-H*0.88); // inner toe
-    ctx.bezierCurveTo(-W*0.12,-H*1.0,W*0.12,-H*1.0,W*0.36,-H*0.88);   // toe cap (top of shoe)
+    ctx.moveTo(W*0.34,-H*0.86);
+    ctx.bezierCurveTo(W*0.55,-H*0.86,W*0.58,-H*0.60,W*0.54,-H*0.36);
+    ctx.bezierCurveTo(W*0.58,-H*0.14,W*0.56, H*0.10,W*0.50, H*0.28);
+    ctx.bezierCurveTo(W*0.52, H*0.52,W*0.38, H*0.86,   0, H*0.86);
+    ctx.bezierCurveTo(-W*0.38,H*0.86,-W*0.52,H*0.52,-W*0.50,H*0.28);
+    ctx.bezierCurveTo(-W*0.46,H*0.10,-W*0.44,-H*0.10,-W*0.40,-H*0.36);
+    ctx.bezierCurveTo(-W*0.44,-H*0.60,-W*0.33,-H*0.86,-W*0.34,-H*0.86);
+    ctx.bezierCurveTo(-W*0.10,-H*0.98, W*0.10,-H*0.98, W*0.34,-H*0.86);
     ctx.closePath();
 
-    // Subtle fill
-    const fill=ctx.createLinearGradient(0,-H,0,H);
-    fill.addColorStop(0,`rgba(46,184,176,${alpha*0.13})`);
-    fill.addColorStop(0.5,`rgba(107,33,168,${alpha*0.07})`);
-    fill.addColorStop(1,`rgba(0,0,0,0)`);
-    ctx.fillStyle=fill;ctx.fill();
+    // Filled with a searing inner glow
+    const fillG=ctx.createRadialGradient(0,-H*0.1,0,0,H*0.3,H*1.1);
+    fillG.addColorStop(0,`rgba(80,200,195,${alpha*0.22})`);
+    fillG.addColorStop(0.4,`rgba(46,184,176,${alpha*0.12})`);
+    fillG.addColorStop(1,`rgba(107,33,168,${alpha*0.05})`);
+    ctx.fillStyle=fillG;ctx.fill();
 
-    // Main teal outline
-    ctx.strokeStyle=`rgba(46,184,176,${alpha*0.92})`;
-    ctx.lineWidth=1.4;ctx.stroke();
+    // Bright teal outline — glows hot on impact, dims to subtle
+    const outlineGlow=this.age<20?alpha*1.0:alpha*0.88;
+    const outlineWidth=this.age<20?2.2:1.6;
+    ctx.strokeStyle=`rgba(46,184,176,${outlineGlow})`;
+    ctx.lineWidth=outlineWidth;ctx.stroke();
 
-    // === TREAD PATTERN (clipped inside sole) ===
-    ctx.save();ctx.clip();
-    // Horizontal tread bars
-    const bars=[
-      [-H*0.72,W*0.42],[-H*0.52,W*0.46],[-H*0.32,W*0.48],
-      [-H*0.12,W*0.46],[ H*0.08,W*0.44],[ H*0.28,W*0.42],
-      [ H*0.50,W*0.38],[ H*0.68,W*0.32],
-    ];
-    bars.forEach(([ty,hw])=>{
-      ctx.beginPath();ctx.moveTo(-hw,ty);ctx.lineTo(hw,ty);
-      ctx.strokeStyle=`rgba(46,184,176,${alpha*0.32})`;
+    // Bright inner edge highlight (hot metal look)
+    if(this.age<40){
+      const hi=Math.max(0,1-this.age/40)*0.6;
+      ctx.strokeStyle=`rgba(180,250,245,${hi*alpha})`;
       ctx.lineWidth=0.7;ctx.stroke();
+    }
+
+    // === TREAD DETAILS (clipped inside sole) ===
+    ctx.save();ctx.clip();
+    const treadAlpha=alpha*0.38;
+    // Horizontal tread bars
+    [[-H*0.70,W*0.40],[-H*0.50,W*0.44],[-H*0.30,W*0.46],
+     [-H*0.10,W*0.45],[H*0.10,W*0.43],[H*0.30,W*0.40],
+     [H*0.52,W*0.35],[H*0.68,W*0.28]].forEach(([ty,hw])=>{
+      ctx.beginPath();ctx.moveTo(-hw,ty);ctx.lineTo(hw,ty);
+      ctx.strokeStyle=`rgba(46,184,176,${treadAlpha})`;
+      ctx.lineWidth=0.8;ctx.stroke();
     });
-    // Heel circle detail
-    ctx.beginPath();ctx.arc(0,H*0.62,W*0.28,0,Math.PI*2);
-    ctx.strokeStyle=`rgba(46,184,176,${alpha*0.28})`;
-    ctx.lineWidth=0.6;ctx.stroke();
+    // Heel oval
+    ctx.beginPath();ctx.ellipse(0,H*0.62,W*0.26,H*0.18,0,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(46,184,176,${treadAlpha*0.8})`;
+    ctx.lineWidth=0.7;ctx.stroke();
     ctx.restore();
 
     ctx.restore();
@@ -543,20 +596,24 @@ class Footstep{
 class WordBurst{
   constructor(x,y,word){
     this.x=x;this.y=y;this.word=word;
-    this.vy=-1.6;this.age=0;this.maxAge=115;this.sc=0;
-    // Moon-dust scatter from word
-    this.dust=[];
-    for(let i=0;i<14;i++)this.dust.push(new MoonDust(x,y+8));
+    this.vy=-1.8;this.age=0;this.maxAge=120;this.sc=0;
+    this.smoke=[];
+    // Smoke burst on word pop
+    for(let i=0;i<4;i++)this.smoke.push(new SmokePuff(x,y+10,1));
+    for(let i=0;i<3;i++)this.smoke.push(new SmokePuff(x,y+6,2));
+    this.ring=new ImpactRing(x,y);
   }
   update(){
-    this.y+=this.vy;this.vy*=0.965;
-    this.sc+=(1-this.sc)*0.14;
+    this.y+=this.vy;this.vy*=0.964;
+    this.sc+=(1-this.sc)*0.16;
     this.age++;
-    this.dust=this.dust.filter(d=>{d.update();return d.alive();});
+    this.smoke=this.smoke.filter(s=>{s.update();return s.alive();});
+    this.ring.update();
     return this.age<this.maxAge;
   }
   draw(){
-    this.dust.forEach(d=>d.draw());
+    if(this.ring.alive())this.ring.draw();
+    this.smoke.forEach(s=>s.draw());
     const t=this.age/this.maxAge;
     const alpha=t<0.1?(t/0.1):Math.max(0,1-t);
     if(alpha<=0.01)return;
@@ -564,12 +621,12 @@ class WordBurst{
     ctx.globalAlpha=alpha;
     ctx.translate(this.x,this.y);
     ctx.scale(this.sc,this.sc);
-    ctx.font=`700 27px 'Playfair Display',serif`;
+    ctx.font=`700 28px 'Playfair Display',serif`;
     ctx.textAlign='center';ctx.textBaseline='middle';
-    ctx.shadowColor='rgba(201,162,39,0.95)';ctx.shadowBlur=22;
+    ctx.shadowColor='rgba(201,162,39,1)';ctx.shadowBlur=28;
     ctx.fillStyle='#C9A227';ctx.fillText(this.word,0,0);
     ctx.shadowBlur=0;
-    ctx.fillStyle='rgba(255,255,255,0.12)';ctx.fillText(this.word,0,0);
+    ctx.fillStyle='rgba(255,255,255,0.1)';ctx.fillText(this.word,0,0);
     ctx.restore();
   }
 }
