@@ -75,9 +75,6 @@ footer{background:#030307;border-top:1px solid rgba(255,255,255,0.06);color:rgba
 .footer-link:hover{color:#2EB8B0;}
 .grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");}
 @keyframes logoFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-/* Footstep cursor hint */
-.hero-cursor-hint{position:absolute;bottom:8rem;left:50%;transform:translateX(-50%);z-index:10;font-size:0.65rem;letter-spacing:0.2em;color:rgba(255,255,255,0.25);text-transform:uppercase;animation:hintFade 4s ease-in-out 2s forwards;}
-@keyframes hintFade{0%{opacity:1;}100%{opacity:0;}}
 </style>
 </head>
 <body>
@@ -120,7 +117,6 @@ footer{background:#030307;border-top:1px solid rgba(255,255,255,0.06);color:rgba
       <a href="community.html" class="btn-ghost">Join the Movement</a>
     </div>
   </div>
-  <div class="hero-cursor-hint">Move your mouse · Click to inspire</div>
   <div class="scroll-hint"><div class="line"></div><span>Discover</span></div>
 </section>
 
@@ -394,303 +390,195 @@ footer{background:#030307;border-top:1px solid rgba(255,255,255,0.06);color:rgba
 
 <script>
 // ============================================================
-// FOOTSTEP CANVAS ANIMATION  — moon landing edition
+// AURORA + SHIMMER PARTICLE BACKGROUND ANIMATION
 // ============================================================
 const canvas=document.getElementById('heroCanvas'),ctx=canvas.getContext('2d');
-let footsteps=[],wordBursts=[];
-let lastStepPos={x:0,y:0};
-let stepCount=0;
-const STEP_DIST=55;
-const WORDS=['Inspire','Identity','Purpose','Power','Rise','Become','Strength','Believe','Chosen','Worthy'];
-let wordIdx=0;
-
 function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
 window.addEventListener('resize',resize);resize();
+let T=0;
 
-// ---- VOLUMETRIC SMOKE PUFF ----
-// Large billowing blue-purple smoke that rises from each searing footstep
-class SmokePuff{
-  constructor(x,y,layer){
-    // layer 0=background(slow,large,dark) 1=mid 2=foreground(fast,bright)
-    this.layer=layer||0;
-    const spread=layer===0?36:layer===1?20:10;
-    this.x=x+(Math.random()-.5)*spread;
-    this.y=y+(Math.random()-.5)*8;
-    this.vx=(Math.random()-.45)*(layer===0?1.1:layer===1?0.7:0.4);
-    this.vy=-(Math.random()*(layer===2?1.4:layer===1?1.0:0.6)+0.4);
-    this.r=Math.random()*(layer===0?20:layer===1?14:8)+10;
-    this.targetR=this.r+(Math.random()*(layer===0?60:layer===1?44:28)+(layer===0?45:layer===1?30:18));
-    this.age=0;
-    this.maxAge=Math.floor(Math.random()*(layer===0?100:80)+65);
-    this.wobble=Math.random()*Math.PI*2;
-    // Deep blue-purple palette — rich & volumetric
-    const pals=[
-      [[12,4,50],[48,10,115]],   // deep indigo
-      [[50,10,110],[95,22,165]], // deep purple
-      [[30,6,85],[72,18,148]],   // dark violet
-      [[8,12,65],[38,10,100]],   // blue-purple
-      [[65,18,125],[115,38,185]],// bright purple (layer 2)
-      [[20,8,90],[55,14,130]],   // mid blue-purple
-    ];
-    const pi=Math.min(layer+(Math.random()<0.5?0:1),pals.length-1);
-    this.c0=pals[pi][0];this.c1=pals[pi][1];
+// ── SHIMMER PARTICLES ──────────────────────────────────────
+const PARTICLE_COUNT=115;
+const particles=[];
+class Particle{
+  constructor(init){this.reset();if(init)this.y=Math.random()*canvas.height;}
+  reset(){
+    this.x=Math.random()*canvas.width;
+    this.y=canvas.height+8;
+    this.vy=-(Math.random()*0.45+0.18);
+    this.r=Math.random()*1.6+0.4;
+    this.glowR=this.r*(3+Math.random()*3);
+    this.pulsePhase=Math.random()*Math.PI*2;
+    this.pulseSpeed=Math.random()*0.03+0.01;
+    this.driftAmp=Math.random()*0.22+0.05;
+    this.driftFreq=Math.random()*0.012+0.004;
+    this.driftPhase=Math.random()*Math.PI*2;
+    this.maxAlpha=Math.random()*0.75+0.25;
+    this.life=0;
+    this.maxLife=(canvas.height+20)/Math.abs(this.vy);
+    const roll=Math.random();
+    if(roll<0.52){
+      this.rgb=`${220+Math.floor(Math.random()*35)},${145+Math.floor(Math.random()*65)},${25+Math.floor(Math.random()*40)}`;
+    }else if(roll<0.77){
+      this.rgb=`${15+Math.floor(Math.random()*25)},${170+Math.floor(Math.random()*50)},${185+Math.floor(Math.random()*70)}`;
+    }else{
+      this.rgb=`${135+Math.floor(Math.random()*60)},${15+Math.floor(Math.random()*25)},${220+Math.floor(Math.random()*35)}`;
+    }
   }
   update(){
-    this.age++;
-    this.r+=(this.targetR-this.r)*0.032;
-    this.x+=this.vx+Math.sin(this.age*0.038+this.wobble)*0.3;
     this.y+=this.vy;
-    this.vy*=0.976;this.vx*=0.980;
+    this.x+=Math.sin(this.driftPhase+this.life*this.driftFreq)*this.driftAmp;
+    this.pulsePhase+=this.pulseSpeed;
+    this.life++;
+    if(this.y<-10)this.reset();
   }
   draw(){
-    const t=this.age/this.maxAge;
-    const peak=this.layer===0?0.62:this.layer===1?0.58:0.52;
-    const alpha=t<0.14?(t/0.14)*peak:(1-t)*peak;
-    if(alpha<0.008)return;
-    const [r0,g0,b0]=this.c0;const [r1,g1,b1]=this.c1;
-    const g=ctx.createRadialGradient(this.x,this.y,this.r*0.05,this.x,this.y,this.r);
-    g.addColorStop(0,`rgba(${r1},${g1},${b1},${alpha})`);
-    g.addColorStop(0.5,`rgba(${Math.floor((r0+r1)/2)},${Math.floor((g0+g1)/2)},${Math.floor((b0+b1)/2)},${alpha*0.8})`);
-    g.addColorStop(1,`rgba(${r0},${g0},${b0},0)`);
+    const fadeIn=Math.min(1,this.life/45);
+    const fadeOut=Math.min(1,(this.maxLife-this.life)/45);
+    const pulse=0.75+Math.sin(this.pulsePhase)*0.25;
+    const a=this.maxAlpha*Math.min(fadeIn,fadeOut)*pulse;
+    if(a<0.01)return;
+    const g=ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.glowR);
+    g.addColorStop(0,`rgba(${this.rgb},${a*0.9})`);
+    g.addColorStop(0.35,`rgba(${this.rgb},${a*0.35})`);
+    g.addColorStop(1,`rgba(${this.rgb},0)`);
+    ctx.beginPath();ctx.arc(this.x,this.y,this.glowR,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
     ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-    ctx.fillStyle=g;ctx.fill();
+    ctx.fillStyle=`rgba(255,255,255,${a})`;ctx.fill();
   }
-  alive(){return this.age<this.maxAge;}
 }
 
-// ---- IMPACT SHOCKWAVE RING ----
-class ImpactRing{
-  constructor(x,y){this.x=x;this.y=y;this.r=6;this.age=0;this.maxAge=32;}
-  update(){this.age++;this.r+=(100-this.r)*0.26;}
-  draw(){
-    const a=(1-this.age/this.maxAge);
-    // Outer teal ring
-    ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-    ctx.strokeStyle=`rgba(46,184,176,${a*0.9})`;
-    ctx.lineWidth=Math.max(0.3,2.5*(1-this.age/this.maxAge));ctx.stroke();
-    // Second inner ring
-    ctx.beginPath();ctx.arc(this.x,this.y,this.r*0.58,0,Math.PI*2);
-    ctx.strokeStyle=`rgba(180,245,240,${a*0.4})`;
-    ctx.lineWidth=Math.max(0.2,1.2*(1-this.age/this.maxAge));ctx.stroke();
+// ── BOKEH ORBS ─────────────────────────────────────────────
+class BokehOrb{
+  constructor(i,n){
+    this.cx=(i/n+Math.random()/n)*canvas.width;
+    this.cy=Math.random()*canvas.height;
+    this.r=75+Math.random()*140;
+    this.phase=Math.random()*Math.PI*2;
+    this.orbitX=35+Math.random()*75;
+    this.orbitY=20+Math.random()*50;
+    this.speed=0.0007+Math.random()*0.0011;
+    this.pulsePhase=Math.random()*Math.PI*2;
+    this.pulseSpeed=0.004+Math.random()*0.007;
+    this.maxAlpha=0.045+Math.random()*0.08;
+    const pals=[[105,0,205],[75,0,175],[145,15,255],[0,150,185],[25,165,205],[60,0,165],[190,130,20]];
+    this.rgb=pals[Math.floor(Math.random()*pals.length)];
   }
-  alive(){return this.age<this.maxAge;}
+  get x(){return this.cx+Math.cos(this.phase)*this.orbitX;}
+  get y(){return this.cy+Math.sin(this.phase*0.68)*this.orbitY;}
+  update(){this.phase+=this.speed;this.pulsePhase+=this.pulseSpeed;}
+  draw(){
+    const [r,g,b]=this.rgb;
+    const a=this.maxAlpha*(0.7+Math.sin(this.pulsePhase)*0.3);
+    const gr=ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.r);
+    gr.addColorStop(0,`rgba(${r},${g},${b},${a})`);
+    gr.addColorStop(0.5,`rgba(${r},${g},${b},${a*0.5})`);
+    gr.addColorStop(1,`rgba(${r},${g},${b},0)`);
+    ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=gr;ctx.fill();
+  }
 }
 
-// ---- FOOTSTEP ----
-class Footstep{
-  constructor(x,y,isLeft,angle){
-    this.x=x;this.y=y;this.isLeft=isLeft;this.angle=angle;
-    this.age=0;this.maxAge=220;this.sc=0;
-    this.smoke=[];
-    this.rings=[];
-    // Impact ring
-    this.rings.push(new ImpactRing(x,y));
-    // Layered smoke: 3 background, 3 mid, 2 foreground
-    for(let i=0;i<3;i++)this.smoke.push(new SmokePuff(x,y,0));
-    for(let i=0;i<4;i++)this.smoke.push(new SmokePuff(x,y,1));
-    for(let i=0;i<3;i++)this.smoke.push(new SmokePuff(x,y,2));
-  }
-  update(){
-    this.age++;
-    this.sc+=(1-this.sc)*0.28;
-    // Extra smoke puffs in first 25 frames
-    if(this.age===8){for(let i=0;i<3;i++)this.smoke.push(new SmokePuff(this.x,this.y,1));}
-    if(this.age===16){for(let i=0;i<2;i++)this.smoke.push(new SmokePuff(this.x,this.y,0));}
-    this.smoke=this.smoke.filter(s=>{s.update();return s.alive();});
-    this.rings=this.rings.filter(r=>{r.update();return r.alive();});
-    return this.age<this.maxAge;
-  }
-  draw(){
-    // Rings + smoke BEHIND the footprint
-    this.rings.forEach(r=>r.draw());
-    this.smoke.forEach(s=>s.draw());
-
-    const t=this.age/this.maxAge;
-    const alpha=t<0.04?(t/0.04):Math.max(0,1-(t-0.12)/0.88);
-    if(alpha<=0.005)return;
-
-    ctx.save();
-    ctx.translate(this.x,this.y);
-    ctx.rotate(this.angle+Math.PI/2); // toe faces travel direction
-    if(this.isLeft)ctx.scale(-1,1);   // mirror = left foot
-    ctx.scale(this.sc,this.sc);
-
-    const H=28; // shoe half-length — bigger, more visible
-    const W=H*0.50;
-
-    // === WHITE-HOT SEAR FLASH (frames 0-14) ===
-    if(this.age<14){
-      const fi=1-this.age/14;
-      // Bright white-blue core that cools to teal
-      const hg=ctx.createRadialGradient(0,0,0,0,0,H*3.2);
-      hg.addColorStop(0,`rgba(210,240,255,${fi*0.95})`);
-      hg.addColorStop(0.2,`rgba(46,184,176,${fi*0.7})`);
-      hg.addColorStop(0.6,`rgba(107,33,168,${fi*0.4})`);
-      hg.addColorStop(1,'rgba(60,15,120,0)');
-      ctx.beginPath();ctx.arc(0,0,H*3.2,0,Math.PI*2);ctx.fillStyle=hg;ctx.fill();
+// ── AURORA RIBBONS ─────────────────────────────────────────
+const BANDS=[
+  {yFrac:0.28,amp:0.13,speed:1.00,phase:0.0, rgb:[110,10,220],alpha:0.09,thick:0.10},
+  {yFrac:0.50,amp:0.15,speed:0.72,phase:2.4, rgb:[0,170,195], alpha:0.07,thick:0.12},
+  {yFrac:0.70,amp:0.11,speed:1.30,phase:4.8, rgb:[145,15,245],alpha:0.08,thick:0.09},
+  {yFrac:0.14,amp:0.07,speed:0.52,phase:1.2, rgb:[200,155,25],alpha:0.05,thick:0.07},
+];
+function drawAuroras(){
+  const W=canvas.width,H=canvas.height;
+  BANDS.forEach(band=>{
+    const [r,g,b]=band.rgb;
+    const N=70,pts=[];
+    for(let i=0;i<=N;i++){
+      const x=(i/N)*W;
+      const t=T*band.speed*0.00040;
+      const y=H*band.yFrac
+        +Math.sin(x*0.0034+t        +band.phase)*H*band.amp
+        +Math.sin(x*0.0078+t*1.65   +band.phase*1.3)*H*band.amp*0.4
+        +Math.sin(x*0.0017+t*0.65   +band.phase*0.6)*H*band.amp*0.65;
+      pts.push([x,y]);
     }
-
-    // === PERSISTENT HEAT GLOW (burns under the print) ===
-    const heatIntensity=alpha*(this.age<30?1:Math.max(0.3,(1-t)*1.5));
-    const hg2=ctx.createRadialGradient(0,H*0.1,0,0,H*0.1,H*2.0);
-    hg2.addColorStop(0,`rgba(107,33,168,${heatIntensity*0.45})`);
-    hg2.addColorStop(0.5,`rgba(60,10,130,${heatIntensity*0.25})`);
-    hg2.addColorStop(1,'rgba(20,5,50,0)');
-    ctx.beginPath();ctx.arc(0,H*0.1,H*2.0,0,Math.PI*2);ctx.fillStyle=hg2;ctx.fill();
-
-    // === SHOE SOLE PATH ===
-    // Right shoe viewed from above. Toe at -Y (up). Heel at +Y (down).
+    const th=H*band.thick;
     ctx.beginPath();
-    ctx.moveTo(W*0.34,-H*0.86);
-    ctx.bezierCurveTo(W*0.55,-H*0.86,W*0.58,-H*0.60,W*0.54,-H*0.36);
-    ctx.bezierCurveTo(W*0.58,-H*0.14,W*0.56, H*0.10,W*0.50, H*0.28);
-    ctx.bezierCurveTo(W*0.52, H*0.52,W*0.38, H*0.86,   0, H*0.86);
-    ctx.bezierCurveTo(-W*0.38,H*0.86,-W*0.52,H*0.52,-W*0.50,H*0.28);
-    ctx.bezierCurveTo(-W*0.46,H*0.10,-W*0.44,-H*0.10,-W*0.40,-H*0.36);
-    ctx.bezierCurveTo(-W*0.44,-H*0.60,-W*0.33,-H*0.86,-W*0.34,-H*0.86);
-    ctx.bezierCurveTo(-W*0.10,-H*0.98, W*0.10,-H*0.98, W*0.34,-H*0.86);
-    ctx.closePath();
-
-    // Filled with a searing inner glow
-    const fillG=ctx.createRadialGradient(0,-H*0.1,0,0,H*0.3,H*1.1);
-    fillG.addColorStop(0,`rgba(80,200,195,${alpha*0.22})`);
-    fillG.addColorStop(0.4,`rgba(46,184,176,${alpha*0.12})`);
-    fillG.addColorStop(1,`rgba(107,33,168,${alpha*0.05})`);
-    ctx.fillStyle=fillG;ctx.fill();
-
-    // Bright teal outline — glows hot on impact, dims to subtle
-    const outlineGlow=this.age<20?alpha*1.0:alpha*0.88;
-    const outlineWidth=this.age<20?2.2:1.6;
-    ctx.strokeStyle=`rgba(46,184,176,${outlineGlow})`;
-    ctx.lineWidth=outlineWidth;ctx.stroke();
-
-    // Bright inner edge highlight (hot metal look)
-    if(this.age<40){
-      const hi=Math.max(0,1-this.age/40)*0.6;
-      ctx.strokeStyle=`rgba(180,250,245,${hi*alpha})`;
-      ctx.lineWidth=0.7;ctx.stroke();
+    ctx.moveTo(pts[0][0],pts[0][1]);
+    for(let i=1;i<N;i++){
+      const mx=(pts[i][0]+pts[i+1][0])/2,my=(pts[i][1]+pts[i+1][1])/2;
+      ctx.quadraticCurveTo(pts[i][0],pts[i][1],mx,my);
     }
-
-    // === TREAD DETAILS (clipped inside sole) ===
-    ctx.save();ctx.clip();
-    const treadAlpha=alpha*0.38;
-    // Horizontal tread bars
-    [[-H*0.70,W*0.40],[-H*0.50,W*0.44],[-H*0.30,W*0.46],
-     [-H*0.10,W*0.45],[H*0.10,W*0.43],[H*0.30,W*0.40],
-     [H*0.52,W*0.35],[H*0.68,W*0.28]].forEach(([ty,hw])=>{
-      ctx.beginPath();ctx.moveTo(-hw,ty);ctx.lineTo(hw,ty);
-      ctx.strokeStyle=`rgba(46,184,176,${treadAlpha})`;
-      ctx.lineWidth=0.8;ctx.stroke();
-    });
-    // Heel oval
-    ctx.beginPath();ctx.ellipse(0,H*0.62,W*0.26,H*0.18,0,0,Math.PI*2);
-    ctx.strokeStyle=`rgba(46,184,176,${treadAlpha*0.8})`;
-    ctx.lineWidth=0.7;ctx.stroke();
-    ctx.restore();
-
-    ctx.restore();
-  }
+    ctx.lineTo(pts[N][0],pts[N][1]+th);
+    for(let i=N-1;i>=1;i--){
+      const mx=(pts[i][0]+pts[i+1][0])/2,my=(pts[i][1]+pts[i+1][1])/2+th;
+      ctx.quadraticCurveTo(pts[i][0],pts[i][1]+th,mx,my);
+    }
+    ctx.closePath();
+    let minY=Infinity,maxY=-Infinity;
+    pts.forEach(([,y])=>{if(y<minY)minY=y;if(y+th>maxY)maxY=y+th;});
+    const grad=ctx.createLinearGradient(0,minY-10,0,maxY+10);
+    grad.addColorStop(0,   `rgba(${r},${g},${b},0)`);
+    grad.addColorStop(0.25,`rgba(${r},${g},${b},${band.alpha})`);
+    grad.addColorStop(0.5, `rgba(${r},${g},${b},${band.alpha*1.5})`);
+    grad.addColorStop(0.75,`rgba(${r},${g},${b},${band.alpha})`);
+    grad.addColorStop(1,   `rgba(${r},${g},${b},0)`);
+    ctx.fillStyle=grad;ctx.fill();
+  });
 }
 
-// ---- WORD BURST (on click) ----
-class WordBurst{
-  constructor(x,y,word){
-    this.x=x;this.y=y;this.word=word;
-    this.vy=-1.8;this.age=0;this.maxAge=120;this.sc=0;
-    this.smoke=[];
-    // Smoke burst on word pop
-    for(let i=0;i<4;i++)this.smoke.push(new SmokePuff(x,y+10,1));
-    for(let i=0;i<3;i++)this.smoke.push(new SmokePuff(x,y+6,2));
-    this.ring=new ImpactRing(x,y);
+// ── CLICK BURST ────────────────────────────────────────────
+const bursts=[];
+class BurstParticle{
+  constructor(x,y){
+    this.x=x;this.y=y;
+    const angle=Math.random()*Math.PI*2,spd=Math.random()*3.5+1;
+    this.vx=Math.cos(angle)*spd;this.vy=Math.sin(angle)*spd;
+    this.r=Math.random()*2+0.5;
+    this.life=0;this.maxLife=40+Math.floor(Math.random()*30);
+    const roll=Math.random();
+    if(roll<0.5)this.rgb=`${220+Math.floor(Math.random()*35)},${145+Math.floor(Math.random()*65)},${25+Math.floor(Math.random()*40)}`;
+    else if(roll<0.75)this.rgb=`15,${170+Math.floor(Math.random()*50)},${190+Math.floor(Math.random()*65)}`;
+    else this.rgb=`${135+Math.floor(Math.random()*60)},15,${220+Math.floor(Math.random()*35)}`;
   }
   update(){
-    this.y+=this.vy;this.vy*=0.964;
-    this.sc+=(1-this.sc)*0.16;
-    this.age++;
-    this.smoke=this.smoke.filter(s=>{s.update();return s.alive();});
-    this.ring.update();
-    return this.age<this.maxAge;
+    this.x+=this.vx;this.y+=this.vy;
+    this.vx*=0.92;this.vy*=0.92;
+    this.life++;return this.life<this.maxLife;
   }
   draw(){
-    if(this.ring.alive())this.ring.draw();
-    this.smoke.forEach(s=>s.draw());
-    const t=this.age/this.maxAge;
-    const alpha=t<0.1?(t/0.1):Math.max(0,1-t);
-    if(alpha<=0.01)return;
-    ctx.save();
-    ctx.globalAlpha=alpha;
-    ctx.translate(this.x,this.y);
-    ctx.scale(this.sc,this.sc);
-    ctx.font=`700 28px 'Playfair Display',serif`;
-    ctx.textAlign='center';ctx.textBaseline='middle';
-    ctx.shadowColor='rgba(201,162,39,1)';ctx.shadowBlur=28;
-    ctx.fillStyle='#C9A227';ctx.fillText(this.word,0,0);
-    ctx.shadowBlur=0;
-    ctx.fillStyle='rgba(255,255,255,0.1)';ctx.fillText(this.word,0,0);
-    ctx.restore();
+    const a=1-this.life/this.maxLife;
+    const g=ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.r*5);
+    g.addColorStop(0,`rgba(${this.rgb},${a})`);g.addColorStop(1,`rgba(${this.rgb},0)`);
+    ctx.beginPath();ctx.arc(this.x,this.y,this.r*5,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
+    ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,255,255,${a})`;ctx.fill();
   }
 }
 
-// ---- ANIMATION LOOP ----
+// ── INIT ───────────────────────────────────────────────────
+for(let i=0;i<PARTICLE_COUNT;i++)particles.push(new Particle(true));
+const bokehOrbs=Array.from({length:7},(_,i)=>new BokehOrb(i,7));
+
+// ── ANIMATION LOOP ─────────────────────────────────────────
 function anim(){
+  T++;
   ctx.clearRect(0,0,canvas.width,canvas.height);
-  footsteps=footsteps.filter(f=>{f.draw();return f.update();});
-  wordBursts=wordBursts.filter(w=>{w.draw();return w.update();});
+  bokehOrbs.forEach(o=>{o.update();o.draw();});
+  drawAuroras();
+  particles.forEach(p=>{p.update();p.draw();});
+  for(let i=bursts.length-1;i>=0;i--){
+    if(!bursts[i].update())bursts.splice(i,1);
+    else bursts[i].draw();
+  }
   requestAnimationFrame(anim);
 }
 anim();
 
-// ---- MOUSE / TOUCH TRACKING ----
-const hero=document.getElementById('hero');
-hero.addEventListener('mousemove',e=>{
-  const r=canvas.getBoundingClientRect();
-  const mx=e.clientX-r.left,my=e.clientY-r.top;
-  const dx=mx-lastStepPos.x,dy=my-lastStepPos.y;
-  const dist=Math.sqrt(dx*dx+dy*dy);
-  if(dist>STEP_DIST){
-    const moveAngle=Math.atan2(dy,dx);
-    const isLeft=stepCount%2===0;
-    // Offset perpendicular to travel: right foot = right of direction, left = left
-    const perpR=moveAngle+Math.PI/2; // right of travel
-    const perpL=moveAngle-Math.PI/2; // left of travel
-    const offDist=16;
-    const offAngle=isLeft?perpL:perpR;
-    const sx=mx+Math.cos(offAngle)*offDist;
-    const sy=my+Math.sin(offAngle)*offDist;
-    footsteps.push(new Footstep(sx,sy,isLeft,moveAngle));
-    if(footsteps.length>80)footsteps.shift();
-    lastStepPos={x:mx,y:my};
-    stepCount++;
-  }
+// Click: shimmer burst
+document.getElementById('hero').addEventListener('click',e=>{
+  const rect=canvas.getBoundingClientRect();
+  for(let i=0;i<22;i++)bursts.push(new BurstParticle(e.clientX-rect.left,e.clientY-rect.top));
 });
 
-hero.addEventListener('click',e=>{
-  const r=canvas.getBoundingClientRect();
-  wordBursts.push(new WordBurst(e.clientX-r.left,e.clientY-r.top,WORDS[wordIdx%WORDS.length]));
-  wordIdx++;
-  if(wordBursts.length>20)wordBursts.shift();
-});
 
-hero.addEventListener('touchmove',e=>{
-  e.preventDefault();
-  const r=canvas.getBoundingClientRect();
-  const mx=e.touches[0].clientX-r.left,my=e.touches[0].clientY-r.top;
-  const dx=mx-lastStepPos.x,dy=my-lastStepPos.y;
-  const dist=Math.sqrt(dx*dx+dy*dy);
-  if(dist>STEP_DIST){
-    const angle=Math.atan2(dy,dx);
-    const isLeft=stepCount%2===0;
-    const offAngle=isLeft?(angle-Math.PI/2):(angle+Math.PI/2);
-    footsteps.push(new Footstep(mx+Math.cos(offAngle)*16,my+Math.sin(offAngle)*16,isLeft,angle));
-    lastStepPos={x:mx,y:my};stepCount++;
-  }
-},{passive:false});
-hero.addEventListener('touchend',e=>{
-  const r=canvas.getBoundingClientRect();
-  const t=e.changedTouches[0];
-  wordBursts.push(new WordBurst(t.clientX-r.left,t.clientY-r.top,WORDS[wordIdx%WORDS.length]));
-  wordIdx++;
-});
 
 // ---- NAV SCROLL ----
 const nav=document.getElementById('mainNav');
