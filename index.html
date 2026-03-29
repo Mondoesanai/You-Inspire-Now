@@ -394,147 +394,146 @@ footer{background:#030307;border-top:1px solid rgba(255,255,255,0.06);color:rgba
 
 <script>
 // ============================================================
-// FOOTSTEP CANVAS ANIMATION
+// FOOTSTEP CANVAS ANIMATION  — moon landing edition
 // ============================================================
 const canvas=document.getElementById('heroCanvas'),ctx=canvas.getContext('2d');
-let mouse={x:-1000,y:-1000,active:false};
 let footsteps=[],wordBursts=[];
 let lastStepPos={x:0,y:0};
 let stepCount=0;
-const STEP_DIST=60;
+const STEP_DIST=55;
 const WORDS=['Inspire','Identity','Purpose','Power','Rise','Become','Strength','Believe','Chosen','Worthy'];
 let wordIdx=0;
 
 function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
 window.addEventListener('resize',resize);resize();
 
-// ---- SMOKE PARTICLE ----
-class Smoke{
-  constructor(x,y,size,fast){
-    this.x=x+(Math.random()-.5)*28;
-    this.y=y+(Math.random()-.5)*10;
-    this.vx=(Math.random()-.5)*0.5;
-    this.vy=fast?-(Math.random()*1.2+0.8):-(Math.random()*0.6+0.3);
-    this.size=size||Math.random()*20+10;
+// ---- MOON DUST PARTICLE ----
+// Tiny particles that scatter outward like lunar soil displaced on impact
+class MoonDust{
+  constructor(x,y){
+    const angle=Math.random()*Math.PI*2;
+    const spd=Math.random()*2.8+0.4;
+    this.x=x+(Math.random()-.5)*18;
+    this.y=y+(Math.random()-.5)*8;
+    this.vx=Math.cos(angle)*spd;
+    // Slight upward bias + mostly horizontal — moon dust low-arc physics
+    this.vy=Math.sin(angle)*spd*0.35-(Math.random()*0.9+0.2);
+    this.gravity=0.038;
+    this.size=Math.random()*1.6+0.3;
     this.age=0;
-    this.maxAge=Math.random()*80+50;
-    const C=[[107,33,168],[88,28,135],[60,20,110],[46,16,101],[30,40,120],[80,30,160]];
-    this.c=C[Math.floor(Math.random()*C.length)];
+    this.maxAge=Math.floor(Math.random()*55+30);
+    // Pale dusty lavender-white
+    this.R=Math.floor(180+Math.random()*65);
+    this.G=Math.floor(145+Math.random()*55);
+    this.B=Math.floor(200+Math.random()*55);
   }
-  update(){this.x+=this.vx;this.y+=this.vy;this.vy*=0.975;this.vx*=0.97;this.size*=1.02;this.age++;}
+  update(){this.vy+=this.gravity;this.x+=this.vx;this.y+=this.vy;this.vx*=0.994;this.age++;}
   draw(){
-    const t=this.age/this.maxAge;
-    const a=t<0.2?(t/0.2)*0.5:(1-t)*0.5;
-    const g=ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.size);
-    g.addColorStop(0,`rgba(${this.c[0]},${this.c[1]},${this.c[2]},${a})`);
-    g.addColorStop(1,`rgba(${this.c[0]},${this.c[1]},${this.c[2]},0)`);
-    ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
+    const a=Math.max(0,(1-this.age/this.maxAge))*0.72;
+    ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fillStyle=`rgba(${this.R},${this.G},${this.B},${a})`;ctx.fill();
   }
   alive(){return this.age<this.maxAge;}
 }
 
 // ---- FOOTSTEP ----
+// Boot/shoe print facing the direction of travel, alternating L/R
 class Footstep{
   constructor(x,y,isLeft,angle){
     this.x=x;this.y=y;this.isLeft=isLeft;this.angle=angle;
-    this.age=0;this.maxAge=160;this.sc=0;
-    this.smoke=[];
-    // Burst smoke on impact
-    for(let i=0;i<12;i++)this.smoke.push(new Smoke(x,y,null,true));
+    this.age=0;this.maxAge=200;this.sc=0;
+    this.dust=[];
+    // Impact burst of moon dust
+    const n=Math.floor(Math.random()*12+22);
+    for(let i=0;i<n;i++)this.dust.push(new MoonDust(x,y));
   }
   update(){
     this.age++;
-    this.sc+=(1-this.sc)*0.22;
-    // Continuous drip smoke for first 40 frames
-    if(this.age%5===0&&this.age<40)this.smoke.push(new Smoke(this.x,this.y));
-    this.smoke=this.smoke.filter(s=>{s.update();return s.alive();});
+    this.sc+=(1-this.sc)*0.30;
+    this.dust=this.dust.filter(d=>{d.update();return d.alive();});
     return this.age<this.maxAge;
   }
   draw(){
-    // Draw smoke behind foot
-    this.smoke.forEach(s=>s.draw());
+    // Dust behind the print
+    this.dust.forEach(d=>d.draw());
 
     const t=this.age/this.maxAge;
-    const alpha=t<0.08?(t/0.08):Math.max(0,1-(t-0.25)/0.75);
-    if(alpha<=0.01)return;
+    // Quick fade-in, long slow fade-out
+    const alpha=t<0.05?(t/0.05):Math.max(0,1-(t-0.15)/0.85);
+    if(alpha<=0.005)return;
 
     ctx.save();
     ctx.translate(this.x,this.y);
-    ctx.rotate(this.angle);
-    // Mirror for left foot
-    if(this.isLeft)ctx.scale(-1,1);
+    // KEY FIX: rotate so toe (drawn at -Y) points in travel direction
+    // atan2 gives angle from +X; -Y→+X needs +90°
+    ctx.rotate(this.angle+Math.PI/2);
+    if(this.isLeft)ctx.scale(-1,1); // mirror for left foot
     ctx.scale(this.sc,this.sc);
 
-    const S=20; // foot size
+    const H=22; // half-length of shoe (toe at -H, heel at +H*0.9)
+    const W=H*0.50; // max half-width at ball of foot
 
-    // === IMPACT FLASH (first 12 frames) ===
-    if(this.age<12){
-      const fi=1-this.age/12;
-      const fg=ctx.createRadialGradient(0,0,0,0,0,S*3.5);
-      fg.addColorStop(0,`rgba(46,184,176,${fi*0.9})`);
-      fg.addColorStop(0.4,`rgba(107,33,168,${fi*0.5})`);
-      fg.addColorStop(1,'rgba(107,33,168,0)');
-      ctx.beginPath();ctx.arc(0,0,S*3.5,0,Math.PI*2);ctx.fillStyle=fg;ctx.fill();
+    // === IMPACT FLASH ===
+    if(this.age<10){
+      const fi=1-this.age/10;
+      const fg=ctx.createRadialGradient(0,-H*0.1,0,0,-H*0.1,H*2.8);
+      fg.addColorStop(0,`rgba(220,240,255,${fi*0.7})`);
+      fg.addColorStop(0.3,`rgba(46,184,176,${fi*0.4})`);
+      fg.addColorStop(1,'rgba(46,184,176,0)');
+      ctx.beginPath();ctx.arc(0,0,H*2.8,0,Math.PI*2);ctx.fillStyle=fg;ctx.fill();
     }
 
-    // === AMBIENT GLOW ===
-    const ag=ctx.createRadialGradient(0,0,0,0,0,S*2.2);
-    ag.addColorStop(0,`rgba(107,33,168,${alpha*0.35})`);
-    ag.addColorStop(0.6,`rgba(46,16,101,${alpha*0.2})`);
-    ag.addColorStop(1,'rgba(46,16,101,0)');
-    ctx.beginPath();ctx.arc(0,0,S*2.2,0,Math.PI*2);ctx.fillStyle=ag;ctx.fill();
+    // === SOFT GLOW under print ===
+    const grd=ctx.createRadialGradient(0,0,0,0,0,H*1.6);
+    grd.addColorStop(0,`rgba(46,184,176,${alpha*0.18})`);
+    grd.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.beginPath();ctx.arc(0,0,H*1.6,0,Math.PI*2);ctx.fillStyle=grd;ctx.fill();
 
-    // === FOOT SILHOUETTE (right foot, viewed from top) ===
+    // === SHOE SOLE OUTLINE ===
+    // Right shoe viewed from above, toe at top (-Y), heel at bottom (+Y)
+    // Toe box: wider, rounded
+    // Waist/arch: slight inward on inner (left) side
+    // Heel: narrower, round
     ctx.beginPath();
-    ctx.moveTo(S*0.2,S*0.55);           // heel center-right
-    ctx.bezierCurveTo(S*0.42,S*0.55,S*0.48,S*0.3,S*0.44,-S*0.05);  // outer heel curve up
-    ctx.bezierCurveTo(S*0.5,-S*0.35,S*0.42,-S*0.55,S*0.22,-S*0.58); // outer ball
-    ctx.bezierCurveTo(S*0.08,-S*0.66,-S*0.2,-S*0.66,-S*0.35,-S*0.55); // toes
-    ctx.bezierCurveTo(-S*0.46,-S*0.42,-S*0.38,-S*0.15,-S*0.2,S*0.12); // inner arch
-    ctx.bezierCurveTo(-S*0.12,S*0.42,S*0.02,S*0.55,S*0.2,S*0.55);    // heel inner
+    ctx.moveTo(W*0.36,-H*0.88);           // toe top-right
+    ctx.bezierCurveTo(W*0.56,-H*0.88,W*0.58,-H*0.62,W*0.55,-H*0.38); // outer toe round
+    ctx.bezierCurveTo(W*0.58,-H*0.15,W*0.56,H*0.1,W*0.50,H*0.28);    // outer mid-sole
+    ctx.bezierCurveTo(W*0.52,H*0.50,W*0.40,H*0.88,0,H*0.88);         // outer heel
+    ctx.bezierCurveTo(-W*0.40,H*0.88,-W*0.52,H*0.50,-W*0.50,H*0.28); // inner heel
+    ctx.bezierCurveTo(-W*0.46,H*0.10,-W*0.44,-H*0.12,-W*0.42,-H*0.38); // inner arch (less curve = flatter arch)
+    ctx.bezierCurveTo(-W*0.44,-H*0.62,-W*0.34,-H*0.88,-W*0.36,-H*0.88); // inner toe
+    ctx.bezierCurveTo(-W*0.12,-H*1.0,W*0.12,-H*1.0,W*0.36,-H*0.88);   // toe cap (top of shoe)
     ctx.closePath();
 
-    // Fill: dark purple gradient
-    const ff=ctx.createRadialGradient(0,-S*0.1,0,0,-S*0.1,S*0.9);
-    ff.addColorStop(0,`rgba(107,33,168,${alpha*0.5})`);
-    ff.addColorStop(1,`rgba(46,16,101,${alpha*0.25})`);
-    ctx.fillStyle=ff;ctx.fill();
+    // Subtle fill
+    const fill=ctx.createLinearGradient(0,-H,0,H);
+    fill.addColorStop(0,`rgba(46,184,176,${alpha*0.13})`);
+    fill.addColorStop(0.5,`rgba(107,33,168,${alpha*0.07})`);
+    fill.addColorStop(1,`rgba(0,0,0,0)`);
+    ctx.fillStyle=fill;ctx.fill();
 
-    // Outline: teal glow
-    ctx.strokeStyle=`rgba(46,184,176,${alpha*0.85})`;
-    ctx.lineWidth=1.5;ctx.stroke();
+    // Main teal outline
+    ctx.strokeStyle=`rgba(46,184,176,${alpha*0.92})`;
+    ctx.lineWidth=1.4;ctx.stroke();
 
-    // Inner glow highlight on outline
-    ctx.strokeStyle=`rgba(100,220,210,${alpha*0.3})`;
-    ctx.lineWidth=0.5;ctx.stroke();
-
-    // === TOE DOTS ===
-    const toes=[[-S*0.35,-S*0.66],[-S*0.18,-S*0.73],[S*0.02,-S*0.73],[S*0.18,-S*0.69],[S*0.3,-S*0.62]];
-    toes.forEach(([tx,ty])=>{
-      ctx.beginPath();ctx.arc(tx,ty,S*0.09,0,Math.PI*2);
-      ctx.fillStyle=`rgba(46,184,176,${alpha*0.7})`;ctx.fill();
-      // Toe glow
-      const tg=ctx.createRadialGradient(tx,ty,0,tx,ty,S*0.22);
-      tg.addColorStop(0,`rgba(46,184,176,${alpha*0.25})`);
-      tg.addColorStop(1,'rgba(46,184,176,0)');
-      ctx.beginPath();ctx.arc(tx,ty,S*0.22,0,Math.PI*2);ctx.fillStyle=tg;ctx.fill();
+    // === TREAD PATTERN (clipped inside sole) ===
+    ctx.save();ctx.clip();
+    // Horizontal tread bars
+    const bars=[
+      [-H*0.72,W*0.42],[-H*0.52,W*0.46],[-H*0.32,W*0.48],
+      [-H*0.12,W*0.46],[ H*0.08,W*0.44],[ H*0.28,W*0.42],
+      [ H*0.50,W*0.38],[ H*0.68,W*0.32],
+    ];
+    bars.forEach(([ty,hw])=>{
+      ctx.beginPath();ctx.moveTo(-hw,ty);ctx.lineTo(hw,ty);
+      ctx.strokeStyle=`rgba(46,184,176,${alpha*0.32})`;
+      ctx.lineWidth=0.7;ctx.stroke();
     });
-
-    // === SEAR MARKS (ground burn lines) ===
-    if(alpha>0.1){
-      ctx.save();
-      ctx.globalAlpha=alpha*0.4;
-      for(let i=0;i<4;i++){
-        const mx=(Math.random()-.5)*S*0.6;
-        const my=(Math.random()-.5)*S*0.4;
-        ctx.beginPath();
-        ctx.moveTo(mx,my);
-        ctx.lineTo(mx+(Math.random()-.5)*S*0.3,my-(Math.random()*S*0.3));
-        ctx.strokeStyle=`rgba(201,162,39,${Math.random()*0.4})`;
-        ctx.lineWidth=0.5;ctx.stroke();
-      }
-      ctx.restore();
-    }
+    // Heel circle detail
+    ctx.beginPath();ctx.arc(0,H*0.62,W*0.28,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(46,184,176,${alpha*0.28})`;
+    ctx.lineWidth=0.6;ctx.stroke();
+    ctx.restore();
 
     ctx.restore();
   }
@@ -544,37 +543,33 @@ class Footstep{
 class WordBurst{
   constructor(x,y,word){
     this.x=x;this.y=y;this.word=word;
-    this.vy=-1.8;this.age=0;this.maxAge=110;this.sc=0;
-    this.smoke=[];
-    for(let i=0;i<8;i++)this.smoke.push(new Smoke(x,y+12,14,false));
+    this.vy=-1.6;this.age=0;this.maxAge=115;this.sc=0;
+    // Moon-dust scatter from word
+    this.dust=[];
+    for(let i=0;i<14;i++)this.dust.push(new MoonDust(x,y+8));
   }
   update(){
-    this.y+=this.vy;this.vy*=0.96;
-    this.sc+=(1-this.sc)*0.12;
+    this.y+=this.vy;this.vy*=0.965;
+    this.sc+=(1-this.sc)*0.14;
     this.age++;
-    if(this.age%6===0&&this.age<30)this.smoke.push(new Smoke(this.x,this.y+10,12));
-    this.smoke=this.smoke.filter(s=>{s.update();return s.alive();});
+    this.dust=this.dust.filter(d=>{d.update();return d.alive();});
     return this.age<this.maxAge;
   }
   draw(){
-    this.smoke.forEach(s=>s.draw());
+    this.dust.forEach(d=>d.draw());
     const t=this.age/this.maxAge;
-    const alpha=t<0.12?(t/0.12):Math.max(0,1-t);
+    const alpha=t<0.1?(t/0.1):Math.max(0,1-t);
     if(alpha<=0.01)return;
     ctx.save();
     ctx.globalAlpha=alpha;
     ctx.translate(this.x,this.y);
     ctx.scale(this.sc,this.sc);
-    ctx.font=`700 28px 'Playfair Display',serif`;
+    ctx.font=`700 27px 'Playfair Display',serif`;
     ctx.textAlign='center';ctx.textBaseline='middle';
-    // Glow
-    ctx.shadowColor='rgba(201,162,39,0.9)';ctx.shadowBlur=20;
-    ctx.fillStyle='#C9A227';
-    ctx.fillText(this.word,0,0);
-    // White highlight
-    ctx.shadowBlur=6;ctx.shadowColor='rgba(255,255,255,0.5)';
-    ctx.fillStyle='rgba(255,255,255,0.15)';
-    ctx.fillText(this.word,0,0);
+    ctx.shadowColor='rgba(201,162,39,0.95)';ctx.shadowBlur=22;
+    ctx.fillStyle='#C9A227';ctx.fillText(this.word,0,0);
+    ctx.shadowBlur=0;
+    ctx.fillStyle='rgba(255,255,255,0.12)';ctx.fillText(this.word,0,0);
     ctx.restore();
   }
 }
@@ -593,24 +588,24 @@ const hero=document.getElementById('hero');
 hero.addEventListener('mousemove',e=>{
   const r=canvas.getBoundingClientRect();
   const mx=e.clientX-r.left,my=e.clientY-r.top;
-  mouse.x=mx;mouse.y=my;mouse.active=true;
-
   const dx=mx-lastStepPos.x,dy=my-lastStepPos.y;
   const dist=Math.sqrt(dx*dx+dy*dy);
   if(dist>STEP_DIST){
     const moveAngle=Math.atan2(dy,dx);
-    // Offset feet left/right of travel direction
-    const perpAngle=moveAngle-Math.PI/2;
     const isLeft=stepCount%2===0;
-    const offX=Math.cos(perpAngle)*(isLeft?-16:16);
-    const offY=Math.sin(perpAngle)*(isLeft?-16:16);
-    footsteps.push(new Footstep(mx+offX,my+offY,isLeft,moveAngle));
-    if(footsteps.length>60)footsteps.shift();
+    // Offset perpendicular to travel: right foot = right of direction, left = left
+    const perpR=moveAngle+Math.PI/2; // right of travel
+    const perpL=moveAngle-Math.PI/2; // left of travel
+    const offDist=16;
+    const offAngle=isLeft?perpL:perpR;
+    const sx=mx+Math.cos(offAngle)*offDist;
+    const sy=my+Math.sin(offAngle)*offDist;
+    footsteps.push(new Footstep(sx,sy,isLeft,moveAngle));
+    if(footsteps.length>80)footsteps.shift();
     lastStepPos={x:mx,y:my};
     stepCount++;
   }
 });
-hero.addEventListener('mouseleave',()=>{mouse.active=false;});
 
 hero.addEventListener('click',e=>{
   const r=canvas.getBoundingClientRect();
@@ -627,9 +622,9 @@ hero.addEventListener('touchmove',e=>{
   const dist=Math.sqrt(dx*dx+dy*dy);
   if(dist>STEP_DIST){
     const angle=Math.atan2(dy,dx);
-    const perpAngle=angle-Math.PI/2;
     const isLeft=stepCount%2===0;
-    footsteps.push(new Footstep(mx+Math.cos(perpAngle)*(isLeft?-16:16),my+Math.sin(perpAngle)*(isLeft?-16:16),isLeft,angle));
+    const offAngle=isLeft?(angle-Math.PI/2):(angle+Math.PI/2);
+    footsteps.push(new Footstep(mx+Math.cos(offAngle)*16,my+Math.sin(offAngle)*16,isLeft,angle));
     lastStepPos={x:mx,y:my};stepCount++;
   }
 },{passive:false});
