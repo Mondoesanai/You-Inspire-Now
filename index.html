@@ -6,1002 +6,298 @@
 <title>You Inspire Now — Rise Into Who You Were Born to Be</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'Lato',sans-serif;background:#04040A;color:rgba(255,255,255,0.85);overflow-x:hidden;}
-.nav-link{position:relative;font-size:0.82rem;letter-spacing:0.1em;font-weight:700;color:rgba(255,255,255,0.75);text-transform:uppercase;transition:color 0.3s;text-decoration:none;}
-.nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:#2EB8B0;transition:width 0.3s;}
-.nav-link:hover{color:#2EB8B0;}.nav-link:hover::after{width:100%;}
-.nav-link.active{color:#fff;}.nav-link.active::after{width:100%;background:#C9A227;}
-.scrolled-nav{background:rgba(4,4,12,0.96)!important;backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.06);box-shadow:0 4px 40px rgba(0,0,0,0.5);}
-#heroCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
-.hero-section{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center;
-  background:radial-gradient(ellipse 120% 80% at 50% 0%,#1E0B45 0%,#0C0018 45%,#030306 100%);}
-.hero-mist{position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(ellipse 60% 40% at 50% 100%,rgba(46,184,176,0.06),transparent),
-             radial-gradient(ellipse 40% 30% at 20% 60%,rgba(107,33,168,0.1),transparent);}
-.hero-tag{display:inline-block;font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:#C9A227;font-weight:700;margin-bottom:1.75rem;padding:0.4rem 1.4rem;border:1px solid rgba(201,162,39,0.3);border-radius:100px;background:rgba(201,162,39,0.06);}
-.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,7vw,5.8rem);line-height:1.08;color:#fff;font-weight:700;letter-spacing:-0.025em;margin-bottom:1.75rem;text-shadow:0 4px 40px rgba(107,33,168,0.5);}
-.hero-h1 em{color:#2EB8B0;font-style:italic;}
-.hero-h1 strong{color:#C9A227;font-style:normal;}
-.hero-sub{font-size:clamp(1rem,2vw,1.15rem);color:rgba(255,255,255,0.65);max-width:520px;margin:0 auto 2.5rem;line-height:1.85;font-weight:300;}
-.btn-primary{display:inline-block;padding:1rem 2.5rem;background:linear-gradient(135deg,#2EB8B0,#0D9488);color:#fff;font-weight:700;font-size:0.88rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.25s;box-shadow:0 8px 32px rgba(46,184,176,0.35);}
-.btn-primary:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 16px 48px rgba(46,184,176,0.5);}
-.btn-ghost{display:inline-block;padding:1rem 2.5rem;background:transparent;color:rgba(255,255,255,0.8);font-weight:700;font-size:0.88rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;border:1px solid rgba(255,255,255,0.2);text-decoration:none;transition:background 0.2s,border-color 0.2s,transform 0.2s;}
-.btn-ghost:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.4);transform:translateY(-2px);}
-.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.3);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;}
-.scroll-hint .line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(46,184,176,0.6),transparent);animation:scrollPulse 2.5s ease-in-out infinite;}
-@keyframes scrollPulse{0%,100%{opacity:0.3;}50%{opacity:1;}}
-.section-tag{font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:#2EB8B0;font-weight:700;margin-bottom:0.75rem;display:block;}
-.section-tag.gold{color:#C9A227;}
-.section-h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);color:#fff;font-weight:700;letter-spacing:-0.025em;line-height:1.15;margin-bottom:1.25rem;}
-.pillar-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:2.5rem 2rem;position:relative;overflow:hidden;transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.35s,border-color 0.3s;}
-.pillar-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);}
-.pillar-card:hover{transform:translateY(-8px);box-shadow:0 24px 80px rgba(0,0,0,0.5);border-color:rgba(255,255,255,0.14);}
-.pillar-icon{width:52px;height:52px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;font-size:1.5rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);}
-.pillar-title{font-family:'Playfair Display',serif;font-size:1.35rem;color:#fff;font-weight:600;margin-bottom:0.75rem;}
-.pillar-text{font-size:0.93rem;color:rgba(255,255,255,0.5);line-height:1.8;}
-.transform-item{display:flex;align-items:flex-start;gap:2rem;padding:2.5rem 0;border-bottom:1px solid rgba(255,255,255,0.06);}
-.transform-item:last-child{border-bottom:none;}
-.transform-num{font-family:'Playfair Display',serif;font-size:4rem;color:rgba(255,255,255,0.05);font-weight:700;line-height:1;min-width:72px;}
-.transform-from{font-size:0.8rem;color:rgba(255,255,255,0.35);margin-bottom:0.3rem;font-weight:300;letter-spacing:0.1em;text-transform:uppercase;}
-.transform-to{font-family:'Playfair Display',serif;font-size:1.6rem;color:#fff;font-weight:600;line-height:1.3;}
-.transform-to .arr{color:#2EB8B0;font-style:normal;}
-.transform-to .dest{color:#C9A227;font-style:italic;}
-.quote-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:2.5rem;position:relative;overflow:hidden;}
-.quote-card .bq{position:absolute;top:-1rem;left:1.5rem;font-family:'Playfair Display',serif;font-size:7rem;color:rgba(255,255,255,0.04);line-height:1;pointer-events:none;}
-.quote-text{font-family:'Playfair Display',serif;font-size:1.05rem;color:rgba(255,255,255,0.85);line-height:1.8;font-style:italic;position:relative;z-index:1;}
-.feature-img-wrap{position:relative;overflow:hidden;}
-.feature-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}
-.feature-img-wrap:hover img{transform:scale(1.04);}
-.feature-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(30,11,69,0.6),rgba(46,184,176,0.15));mix-blend-mode:multiply;}
-.gallery-cell{overflow:hidden;position:relative;}
-.gallery-cell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
-.gallery-cell:hover img{transform:scale(1.06);}
-.gallery-cell::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(4,4,10,0.7) 0%,transparent 50%);pointer-events:none;}
-.photo-strip-img{height:300px;width:230px;flex-shrink:0;object-fit:cover;border:1px solid rgba(255,255,255,0.07);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1),border-color 0.3s;}
-.photo-strip-img:hover{transform:scale(1.04) translateY(-8px);border-color:rgba(46,184,176,0.5);}
-.stat-num{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:700;color:#2EB8B0;line-height:1.1;}
-.h-divider{height:1px;background:linear-gradient(to right,transparent,rgba(255,255,255,0.08),transparent);}
-.reveal-up{opacity:0;transform:translateY(40px);}
-.reveal-left{opacity:0;transform:translateX(-50px);}
-.reveal-right{opacity:0;transform:translateX(50px);}
-.reveal-scale{opacity:0;transform:scale(0.9);}
-.revealed{opacity:1!important;transform:none!important;transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.34,1.56,0.64,1)!important;}
-footer{background:#030307;border-top:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.45);padding:5rem 2rem 2.5rem;}
-.footer-link{color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;}
+body{font-family:'Lato',sans-serif;background:#FAF8FF;color:#231D2D;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2.5rem;background:rgba(250,248,255,0.94);backdrop-filter:blur(20px);border-bottom:1px solid rgba(91,59,140,0.08);transition:box-shadow 0.3s;}
+nav.scrolled{box-shadow:0 2px 24px rgba(91,59,140,0.1);}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none;}
+.nav-logo img{height:38px;}
+.nav-logo span{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#35204F;letter-spacing:0.01em;}
+.nav-links{display:flex;align-items:center;gap:2rem;}
+.nav-links a{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(35,29,45,0.45);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:#5B3B8C;}
+.nav-donate{padding:0.5rem 1.35rem;background:#5B3B8C;color:#fff !important;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:4px;transition:transform 0.2s,box-shadow 0.2s;}
+.nav-donate:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(91,59,140,0.35);}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:8rem 2.5rem 5rem;position:relative;overflow:hidden;
+  background:linear-gradient(160deg,#FAF8FF 0%,#EDE4F8 55%,#E6F7F6 100%);}
+.hero-bg{position:absolute;inset:0;
+  background:radial-gradient(ellipse 65% 55% at 25% 25%,rgba(91,59,140,0.07),transparent),
+             radial-gradient(ellipse 55% 65% at 80% 75%,rgba(46,184,176,0.08),transparent),
+             radial-gradient(ellipse 40% 40% at 60% 20%,rgba(201,162,39,0.04),transparent);}
+.hero-inner{max-width:720px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+.hero-logo{height:80px;margin:0 auto 2rem;display:block;filter:drop-shadow(0 4px 20px rgba(91,59,140,0.2));}
+.hero-tag{display:inline-block;font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:#5B3B8C;font-weight:700;margin-bottom:1.5rem;padding:0.35rem 1.2rem;border:1px solid rgba(91,59,140,0.22);border-radius:100px;background:rgba(91,59,140,0.05);}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,6vw,4.8rem);font-weight:700;line-height:1.08;letter-spacing:-0.025em;color:#35204F;margin-bottom:1.25rem;}
+h1 em{color:#2EB8B0;font-style:italic;display:block;}
+.hero-sub{font-size:1.05rem;font-weight:300;color:rgba(35,29,45,0.6);line-height:1.9;max-width:540px;margin:0 auto 2.5rem;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-primary{display:inline-block;padding:1rem 2.5rem;background:#5B3B8C;color:#fff;font-weight:700;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s;box-shadow:0 8px 32px rgba(91,59,140,0.28);}
+.btn-primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 48px rgba(91,59,140,0.4);}
+.btn-teal{display:inline-block;padding:1rem 2.5rem;background:transparent;color:#2EB8B0;font-weight:700;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;border:1.5px solid rgba(46,184,176,0.4);text-decoration:none;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),background 0.2s,border-color 0.2s;}
+.btn-teal:hover{transform:translateY(-3px);background:rgba(46,184,176,0.06);border-color:#2EB8B0;}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(to right,transparent,rgba(91,59,140,0.12),transparent);}
+
+/* SECTIONS */
+.sec{padding:6rem 2.5rem;}
+.sec-inner{max-width:1100px;margin:0 auto;}
+.tag{font-size:0.62rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:#2EB8B0;display:block;margin-bottom:0.75rem;}
+.tag.gold{color:#C9A227;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-0.025em;line-height:1.15;color:#35204F;margin-bottom:1rem;}
+h2 em{color:#2EB8B0;font-style:italic;}
+.body-text{font-size:0.97rem;font-weight:300;color:rgba(35,29,45,0.65);line-height:1.9;}
+
+/* MISSION */
+#mission{background:#fff;}
+.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.mission-card{background:linear-gradient(135deg,#EDE4F8 0%,#E6F7F6 100%);padding:3rem 2.5rem;border-radius:2px;position:relative;overflow:hidden;}
+.mission-card::before{content:'\201C';font-family:'Playfair Display',serif;font-size:7rem;color:rgba(91,59,140,0.15);position:absolute;top:-1.5rem;left:1rem;line-height:1;pointer-events:none;}
+.mission-quote{font-family:'Playfair Display',serif;font-size:1.3rem;color:#35204F;font-style:italic;line-height:1.7;position:relative;z-index:1;}
+.mission-attr{display:block;margin-top:1.25rem;font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(91,59,140,0.55);}
+
+/* PILLARS */
+#pillars{background:#FAF8FF;}
+.pillars-intro{text-align:center;max-width:560px;margin:0 auto 3.5rem;}
+.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.pillar-card{padding:2.25rem 1.75rem;background:#fff;border-radius:2px;border:1px solid rgba(91,59,140,0.08);border-top:3px solid var(--c);transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s;}
+.pillar-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(91,59,140,0.1);}
+.pillar-icon{font-size:1.6rem;margin-bottom:1rem;display:block;}
+.pillar-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:#35204F;font-weight:700;margin-bottom:0.5rem;}
+.pillar-text{font-size:0.86rem;color:rgba(35,29,45,0.58);line-height:1.8;}
+
+/* IMPACT STRIP */
+#impact{background:linear-gradient(135deg,#35204F 0%,#5B3B8C 100%);padding:6rem 2.5rem;}
+.impact-inner{max-width:800px;margin:0 auto;text-align:center;}
+#impact .tag{color:rgba(237,228,248,0.6);}
+#impact h2{color:#fff;margin-bottom:0;}
+.impact-quote{font-family:'Playfair Display',serif;font-size:clamp(1.15rem,2.2vw,1.55rem);color:rgba(255,255,255,0.88);font-style:italic;line-height:1.8;margin-top:2rem;position:relative;}
+.impact-quote::before{content:'\201C';font-size:5rem;color:rgba(46,184,176,0.3);position:absolute;top:-1.5rem;left:-0.5rem;line-height:1;font-style:normal;font-family:'Playfair Display',serif;}
+.impact-attr{display:block;margin-top:1.25rem;font-size:0.7rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(46,184,176,0.6);}
+
+/* DONATE */
+#donate{background:#fff;padding:6rem 2.5rem;}
+.donate-inner{max-width:640px;margin:0 auto;text-align:center;}
+.donate-inner .body-text{margin:0.85rem 0 2.25rem;}
+.amounts{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
+.amount{padding:0.55rem 1.5rem;border:1.5px solid rgba(91,59,140,0.22);border-radius:100px;font-size:0.83rem;font-weight:700;color:#5B3B8C;cursor:pointer;transition:background 0.2s,border-color 0.2s,color 0.2s;text-decoration:none;}
+.amount:hover{background:#5B3B8C;color:#fff;border-color:#5B3B8C;}
+.donate-btn{display:inline-block;padding:1.15rem 4rem;background:#5B3B8C;color:#fff;font-weight:700;font-size:0.9rem;letter-spacing:0.12em;text-transform:uppercase;border-radius:4px;text-decoration:none;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s;box-shadow:0 8px 40px rgba(91,59,140,0.3);margin-bottom:1.25rem;}
+.donate-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 18px 60px rgba(91,59,140,0.4);}
+.donate-note{font-size:0.72rem;color:rgba(35,29,45,0.35);letter-spacing:0.06em;}
+
+/* FOOTER */
+footer{background:#35204F;padding:3rem 2.5rem 2rem;text-align:center;}
+.footer-logo{height:44px;margin:0 auto 1.25rem;display:block;filter:invert(1) opacity(0.65);}
+.footer-links{display:flex;gap:2rem;justify-content:center;margin-bottom:1.5rem;flex-wrap:wrap;}
+.footer-link{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(237,228,248,0.38);text-decoration:none;transition:color 0.2s;}
 .footer-link:hover{color:#2EB8B0;}
-.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");}
-@keyframes logoFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+.footer-name{font-family:'Playfair Display',serif;font-size:0.9rem;color:rgba(237,228,248,0.5);}
+.footer-tag{font-size:0.6rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:rgba(46,184,176,0.4);margin-top:0.4rem;}
+.footer-copy{margin-top:1.5rem;font-size:0.62rem;color:rgba(237,228,248,0.2);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1),transform 0.7s cubic-bezier(0.34,1.56,0.64,1);}
+.reveal.in{opacity:1;transform:none;}
+
+/* GRAIN */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.015;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* TABLET */
+@media(max-width:860px){
+  .mission-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .pillars-grid{grid-template-columns:1fr 1fr;gap:1.25rem;}
+  nav .nav-links a:not(.nav-donate){display:none;}
+}
+
+/* MOBILE */
+@media(max-width:560px){
+  nav{padding:0.85rem 1.25rem;}
+  .nav-logo span{font-size:0.85rem;}
+  .nav-donate{padding:0.45rem 1rem;font-size:0.65rem;}
+  #hero{padding:6.5rem 1.25rem 3.5rem;}
+  h1{font-size:2.35rem;}
+  .hero-sub{font-size:0.92rem;}
+  .hero-btns{flex-direction:column;align-items:stretch;}
+  .btn-primary,.btn-teal{text-align:center;}
+  .sec{padding:4rem 1.25rem;}
+  #impact,#donate{padding:4rem 1.25rem;}
+  .pillars-grid{grid-template-columns:1fr;}
+  h2{font-size:1.7rem;}
+  .amounts{gap:0.5rem;}
+  .amount{padding:0.5rem 1.1rem;font-size:0.78rem;}
+  .donate-btn{padding:1rem 2rem;width:100%;text-align:center;}
+  .footer-links{gap:1.25rem;}
+}
 </style>
 </head>
 <body>
 <div class="grain"></div>
 
 <!-- NAV -->
-<nav id="mainNav" style="position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 2.5rem;transition:all 0.3s ease;background:transparent;">
-  <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
-    <a href="index.html" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;">
-      <img src="assets/yin-logo.png" alt="You Inspire Now" style="height:48px;filter:invert(1) drop-shadow(0 0 10px rgba(46,184,176,0.6));">
-      <span style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:#fff;letter-spacing:0.01em;">You Inspire Now</span>
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <img src="assets/yin-logo.png" alt="You Inspire Now">
+      <span>You Inspire Now</span>
     </a>
-    <div style="display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;">
-      <a href="index.html" class="nav-link active">Home</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="pillars.html" class="nav-link">Our Pillars</a>
-      <a href="community.html" class="nav-link">Community</a>
-      <a href="resources.html" class="nav-link">Resources</a>
-      <a href="go-inspire-now.html" style="display:inline-block;padding:0.55rem 1.4rem;background:linear-gradient(135deg,#2EB8B0,#0D9488);border-radius:4px;color:#fff;font-size:0.78rem;font-weight:700;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;box-shadow:0 4px 20px rgba(46,184,176,0.3);transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.04)';this.style.boxShadow='0 8px 32px rgba(46,184,176,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(46,184,176,0.3)'">Go Inspire Now ♥</a>
+    <div class="nav-links">
+      <a href="#mission">About</a>
+      <a href="#pillars">Our Pillars</a>
+      <a href="#donate">Give</a>
+      <a href="#donate" class="nav-donate">Donate ♥</a>
     </div>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero-section" id="hero">
-  <canvas id="heroCanvas"></canvas>
-  <div class="hero-mist"></div>
-  <!-- Forest floor silhouette -->
-  <div style="position:absolute;bottom:0;left:0;right:0;z-index:2;pointer-events:none;">
-    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" style="width:100%;height:100px;display:block;">
-      <path d="M0,100 L0,60 Q80,30 160,58 Q240,80 320,42 Q400,10 480,50 Q560,82 640,48 Q720,18 800,56 Q880,88 960,50 Q1040,16 1120,55 Q1200,88 1280,52 Q1360,18 1440,60 L1440,100 Z" fill="#04040A"/>
-    </svg>
-  </div>
-  <div style="position:relative;z-index:10;text-align:center;padding:2rem;width:100%;max-width:860px;margin:0 auto;padding-top:8rem;">
-    <div class="hero-tag">✦ Identity · Purpose · Power · Movement ✦</div>
-    <h1 class="hero-h1">Rise Into<br><em>Who You Were</em><br><strong>Born to Be</strong></h1>
-    <p class="hero-sub">You carry something sacred. Something unbroken. This is a space for women who are ready to step out of survival — and into the fullness of who they were made to become.</p>
-    <div style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:1rem;">
-      <a href="about.html" class="btn-primary">Begin Your Journey</a>
-      <a href="community.html" class="btn-ghost">Join the Movement</a>
-    </div>
-  </div>
-  <div class="scroll-hint"><div class="line"></div><span>Discover</span></div>
-</section>
-
-<!-- MISSION BAND -->
-<section style="background:linear-gradient(135deg,#0D0520 0%,#14072A 50%,#070D20 100%);padding:6rem 2rem;text-align:center;position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 50% 50%,rgba(46,184,176,0.06),transparent);pointer-events:none;"></div>
-  <div style="max-width:800px;margin:0 auto;position:relative;z-index:1;">
-    <p class="reveal-up" style="font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,2.1rem);color:rgba(255,255,255,0.9);font-style:italic;line-height:1.7;">"To inspire women through encouragement, empowerment, community, and mentorship — building resilience, strengthening identity and purpose, helping women move forward with <span style="color:#C9A227;font-style:normal;font-weight:600;">confidence and power.</span>"</p>
-    <div class="reveal-up" style="margin-top:2.5rem;display:flex;align-items:center;justify-content:center;gap:1rem;">
-      <div style="height:1px;width:60px;background:linear-gradient(to right,transparent,rgba(46,184,176,0.5));"></div>
-      <span style="font-size:0.7rem;letter-spacing:0.3em;color:#2EB8B0;text-transform:uppercase;">You Inspire Now</span>
-      <div style="height:1px;width:60px;background:linear-gradient(to left,transparent,rgba(46,184,176,0.5));"></div>
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <img src="assets/yin-logo.png" alt="You Inspire Now" class="hero-logo">
+    <div class="hero-tag">Women's Faith-Based Nonprofit</div>
+    <h1>Rise Into Who<em>You Were Born to Be.</em></h1>
+    <p class="hero-sub">You Inspire Now is a community for women who are ready to step into their identity, walk in purpose, and build a life that reflects who God created them to be.</p>
+    <div class="hero-btns">
+      <a href="#donate" class="btn-primary">Support Our Mission ♥</a>
+      <a href="#mission" class="btn-teal">Learn More</a>
     </div>
   </div>
 </section>
 
-<!-- PHOTO STRIP -->
-<section style="padding:5rem 0;background:#04040A;overflow:hidden;">
-  <div style="max-width:1280px;margin:0 auto;padding:0 2.5rem;margin-bottom:2rem;text-align:center;">
-    <span class="section-tag reveal-up">Real Women. Real Strength.</span>
-    <h2 class="section-h2 reveal-up" style="margin:0 auto;">Strength Looks Like You</h2>
-  </div>
-  <div style="display:flex;gap:0.75rem;padding:0.5rem 3rem;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;">
-    <img class="photo-strip-img" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=460&h=600&fit=crop&crop=faces&q=80" alt="Inspired woman" loading="lazy">
-    <img class="photo-strip-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=460&h=600&fit=crop&crop=faces&q=80" alt="Confident woman" loading="lazy">
-    <img class="photo-strip-img" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=460&h=600&fit=crop&crop=faces&q=80" alt="Woman smiling" loading="lazy">
-    <img class="photo-strip-img" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=460&h=600&fit=crop&crop=faces&q=80" alt="Woman of faith" loading="lazy">
-    <img class="photo-strip-img" src="https://images.unsplash.com/photo-1502767089025-6572583495b9?w=460&h=600&fit=crop&crop=faces&q=80" alt="Women community" loading="lazy">
-    <img class="photo-strip-img" src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=460&h=600&fit=crop&crop=faces&q=80" alt="Woman rising" loading="lazy">
-    <img class="photo-strip-img" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=460&h=600&fit=crop&crop=faces&q=80" alt="Woman of purpose" loading="lazy">
+<div class="divider"></div>
+
+<!-- MISSION -->
+<section id="mission" class="sec">
+  <div class="sec-inner">
+    <div class="mission-grid">
+      <div class="reveal">
+        <span class="tag">Who We Are</span>
+        <h2>A Community Built on <em>Faith & Purpose</em></h2>
+        <p class="body-text" style="margin-bottom:1.5rem;">You Inspire Now exists to pour into women at every stage — the ones searching for identity, the ones healing, the ones stepping into leadership for the first time. We walk alongside them with resources, real community, and unshakeable truth.</p>
+        <p class="body-text">Founded on five core pillars — Identity, Purpose, Resilience, Community, and Wholeness — everything we do is designed to help women rise into the fullness of who God created them to be.</p>
+      </div>
+      <div class="mission-card reveal">
+        <p class="mission-quote">Every woman carries a story worth telling and a purpose worth pursuing. You Inspire Now exists to remind her of that truth — and give her the community to walk it out.</p>
+        <span class="mission-attr">— You Inspire Now</span>
+      </div>
+    </div>
   </div>
 </section>
 
-<div class="h-divider"></div>
+<div class="divider"></div>
 
 <!-- PILLARS -->
-<section style="padding:8rem 2.5rem;background:#04040A;">
-  <div style="max-width:1280px;margin:0 auto;">
-    <div style="text-align:center;margin-bottom:5rem;">
-      <span class="section-tag gold reveal-up">The Movement's Foundation</span>
-      <h2 class="section-h2 reveal-up" style="margin:0 auto 1.25rem;">Four Pillars.<br>One Transformation.</h2>
-      <p class="reveal-up" style="font-size:1rem;color:rgba(255,255,255,0.45);max-width:520px;margin:0 auto;line-height:1.85;font-weight:300;">Everything we do is built around the domains where women are called to rise — and where real transformation happens.</p>
+<section id="pillars" class="sec">
+  <div class="sec-inner">
+    <div class="pillars-intro reveal">
+      <span class="tag">Our Five Pillars</span>
+      <h2>What We Stand On</h2>
+      <p class="body-text">Every program, resource, and conversation we have is rooted in these five foundations.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);">
-      <div class="pillar-card reveal-up" style="--accent:linear-gradient(90deg,#C9A227,#E8C547);">
-        <div class="pillar-icon">✦</div>
+    <div class="pillars-grid">
+      <div class="pillar-card reveal" style="--c:#5B3B8C;">
+        <span class="pillar-icon">🌿</span>
+        <div class="pillar-title">Identity</div>
+        <p class="pillar-text">Knowing who you are before the world tells you who to be. We help women anchor their identity in faith, not circumstance.</p>
+      </div>
+      <div class="pillar-card reveal" style="--c:#2EB8B0;">
+        <span class="pillar-icon">✦</span>
         <div class="pillar-title">Purpose</div>
-        <p class="pillar-text">Discover the assignment you were created for and step confidently into the life that was always meant for you.</p>
-        <a href="pillars.html#purpose" style="display:inline-block;margin-top:1.5rem;font-size:0.75rem;font-weight:700;color:#C9A227;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">Explore →</a>
+        <p class="pillar-text">Purpose isn't a destination — it's a direction. We help women discover the calling God placed inside them and take the first step.</p>
       </div>
-      <div class="pillar-card reveal-up" style="--accent:linear-gradient(90deg,#2EB8B0,#06D6A0);">
-        <div class="pillar-icon">🌿</div>
-        <div class="pillar-title">Family</div>
-        <p class="pillar-text">Strengthening the bonds that matter most — mother, daughter, sister, wife — building legacy that outlasts you.</p>
-        <a href="pillars.html#family" style="display:inline-block;margin-top:1.5rem;font-size:0.75rem;font-weight:700;color:#2EB8B0;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">Explore →</a>
+      <div class="pillar-card reveal" style="--c:#C9A227;">
+        <span class="pillar-icon">🔥</span>
+        <div class="pillar-title">Resilience</div>
+        <p class="pillar-text">Resilience is learning that your hardest seasons were preparing you for your greatest chapters. You are stronger than your story.</p>
       </div>
-      <div class="pillar-card reveal-up" style="--accent:linear-gradient(90deg,#A855F7,#7C3AED);">
-        <div class="pillar-icon">💜</div>
-        <div class="pillar-title">Health</div>
-        <p class="pillar-text">Wholeness in spirit, mind, and body. Because a woman who is well pours life into everything she touches.</p>
-        <a href="pillars.html#health" style="display:inline-block;margin-top:1.5rem;font-size:0.75rem;font-weight:700;color:#A855F7;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">Explore →</a>
+      <div class="pillar-card reveal" style="--c:#5B3B8C;">
+        <span class="pillar-icon">🤝</span>
+        <div class="pillar-title">Community</div>
+        <p class="pillar-text">You were never meant to do life alone. Our community creates space for real connection, accountability, and sisterhood.</p>
       </div>
-      <div class="pillar-card reveal-up" style="--accent:linear-gradient(90deg,rgba(255,255,255,0.6),rgba(255,255,255,0.2));">
-        <div class="pillar-icon">👑</div>
-        <div class="pillar-title">Leadership</div>
-        <p class="pillar-text">You are already leading — in your home, your community, your calling. We help you do it with clarity and confidence.</p>
-        <a href="pillars.html#leadership" style="display:inline-block;margin-top:1.5rem;font-size:0.75rem;font-weight:700;color:rgba(255,255,255,0.7);letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">Explore →</a>
+      <div class="pillar-card reveal" style="--c:#2EB8B0;">
+        <span class="pillar-icon">🕊️</span>
+        <div class="pillar-title">Wholeness</div>
+        <p class="pillar-text">Wholeness is not perfection — it's integration. Mind, body, spirit, and relationships all moving together toward the life you were made for.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<div class="h-divider"></div>
-
-<!-- FEATURE ROW 1 -->
-<section style="padding:8rem 2.5rem;background:#06060E;overflow:hidden;">
-  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
-    <div class="feature-img-wrap reveal-left" style="height:580px;">
-      <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=720&h=900&fit=crop&crop=faces&q=80" alt="Woman of purpose" loading="lazy">
-    </div>
-    <div class="reveal-right">
-      <span class="section-tag gold">Your Identity</span>
-      <h2 class="section-h2">You Were Not<br>Made to Shrink</h2>
-      <p style="font-size:1rem;color:rgba(255,255,255,0.55);line-height:1.9;margin-bottom:1.5rem;font-weight:300;">You were made to rise. To take up space. To walk into a room and know — without apology — who you are and whose you are.</p>
-      <p style="font-size:1rem;color:rgba(255,255,255,0.55);line-height:1.9;margin-bottom:2.5rem;font-weight:300;">You Inspire Now exists to remind you of your identity when the world has told you to stay small. You are a warrior. A creator. A carrier of something sacred.</p>
-      <div style="display:flex;align-items:center;gap:2rem;margin-bottom:2.5rem;">
-        <div style="text-align:center;">
-          <div class="stat-num" style="font-size:2.5rem;">4</div>
-          <div style="font-size:0.72rem;letter-spacing:0.15em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:0.25rem;">Pillars</div>
-        </div>
-        <div style="height:40px;width:1px;background:rgba(255,255,255,0.1);"></div>
-        <div style="text-align:center;">
-          <div style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:#C9A227;line-height:1.1;">You</div>
-          <div style="font-size:0.72rem;letter-spacing:0.15em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:0.25rem;">Are the Mission</div>
-        </div>
-      </div>
-      <a href="about.html" class="btn-primary">Our Story</a>
-    </div>
-  </div>
-</section>
-
-<!-- TRANSFORMATION -->
-<section style="padding:8rem 2.5rem;background:linear-gradient(180deg,#04040A,#0D0520 50%,#04040A);position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(107,33,168,0.08),transparent);pointer-events:none;"></div>
-  <div style="max-width:960px;margin:0 auto;">
-    <div style="text-align:center;margin-bottom:5rem;position:relative;z-index:1;">
-      <span class="section-tag reveal-up">The Central Transformation</span>
-      <h2 class="section-h2 reveal-up">This Is What Becoming Looks Like</h2>
-    </div>
-    <div class="transform-item reveal-left"><div class="transform-num">01</div><div style="flex:1;"><div class="transform-from">From</div><div class="transform-to">Invisible <span class="arr">→</span> <span class="dest">Deeply Seen</span></div></div></div>
-    <div class="transform-item reveal-right"><div class="transform-num">02</div><div style="flex:1;"><div class="transform-from">From</div><div class="transform-to">Exhausted <span class="arr">→</span> <span class="dest">Unstoppable</span></div></div></div>
-    <div class="transform-item reveal-left"><div class="transform-num">03</div><div style="flex:1;"><div class="transform-from">From</div><div class="transform-to">Disqualified <span class="arr">→</span> <span class="dest">Fully Chosen</span></div></div></div>
-    <div class="transform-item reveal-right"><div class="transform-num">04</div><div style="flex:1;"><div class="transform-from">From</div><div class="transform-to">Surviving <span class="arr">→</span> <span class="dest">Fully Becoming</span></div></div></div>
-  </div>
-</section>
-
-<!-- FEATURE ROW 2 -->
-<section style="padding:8rem 2.5rem;background:#06060E;overflow:hidden;">
-  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
-    <div class="reveal-left">
-      <span class="section-tag">Community & Power</span>
-      <h2 class="section-h2">You Don't Have<br>to Carry This Alone</h2>
-      <p style="font-size:1rem;color:rgba(255,255,255,0.55);line-height:1.9;margin-bottom:1.5rem;font-weight:300;">There is something powerful that happens when women gather with honest hearts and open hands. Healing moves faster. Clarity comes sooner. Courage multiplies.</p>
-      <p style="font-size:1rem;color:rgba(255,255,255,0.55);line-height:1.9;margin-bottom:2.5rem;font-weight:300;">Our community is not a performance space. It is a belonging space — where no woman is too broken, too late, or too far behind.</p>
-      <ul style="list-style:none;display:flex;flex-direction:column;gap:1rem;margin-bottom:2.5rem;">
-        <li style="display:flex;align-items:center;gap:1rem;font-size:0.93rem;color:rgba(255,255,255,0.6);"><span style="width:4px;height:24px;background:linear-gradient(to bottom,#C9A227,transparent);border-radius:2px;flex-shrink:0;"></span>Mentorship and faith-centered connections</li>
-        <li style="display:flex;align-items:center;gap:1rem;font-size:0.93rem;color:rgba(255,255,255,0.6);"><span style="width:4px;height:24px;background:linear-gradient(to bottom,#2EB8B0,transparent);border-radius:2px;flex-shrink:0;"></span>Encouragement through every season</li>
-        <li style="display:flex;align-items:center;gap:1rem;font-size:0.93rem;color:rgba(255,255,255,0.6);"><span style="width:4px;height:24px;background:linear-gradient(to bottom,#A855F7,transparent);border-radius:2px;flex-shrink:0;"></span>Space to heal, grow, and move forward</li>
-      </ul>
-      <a href="community.html" class="btn-primary">Join the Community</a>
-    </div>
-    <div style="position:relative;" class="reveal-right">
-      <div class="feature-img-wrap" style="height:580px;">
-        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=720&h=900&fit=crop&crop=faces&q=80" alt="Women in community" loading="lazy">
-      </div>
-      <div style="position:absolute;bottom:-24px;left:-24px;background:#04040A;border:1px solid rgba(46,184,176,0.25);padding:1.5rem 2rem;max-width:200px;z-index:10;">
-        <div style="font-size:2rem;margin-bottom:0.5rem;">🌿</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1rem;color:#fff;font-weight:600;line-height:1.4;">"Sisters in Strength"</div>
-        <div style="font-size:0.7rem;color:#2EB8B0;margin-top:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Community</div>
+      <div class="pillar-card reveal" style="--c:#C9A227;background:linear-gradient(135deg,#EDE4F8,#E6F7F6);border-color:transparent;">
+        <span class="pillar-icon" style="font-size:2rem;">♥</span>
+        <div class="pillar-title" style="color:#5B3B8C;">Ready to Rise?</div>
+        <p class="pillar-text" style="margin-bottom:1.5rem;">Your support directly funds programs that change women's lives. Every gift matters.</p>
+        <a href="#donate" class="btn-primary" style="font-size:0.75rem;padding:0.7rem 1.6rem;">Give Today</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- GALLERY MOSAIC -->
-<section style="padding:8rem 2.5rem;background:#04040A;overflow:hidden;">
-  <div style="max-width:1280px;margin:0 auto;">
-    <div style="text-align:center;margin-bottom:4rem;">
-      <span class="section-tag gold reveal-up">Power Has a Face</span>
-      <h2 class="section-h2 reveal-up" style="margin:0 auto;">Every Woman is the Story</h2>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:300px 300px;gap:3px;background:rgba(255,255,255,0.04);">
-      <div class="gallery-cell reveal-scale" style="grid-row:span 2;">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop&crop=faces&q=80" alt="" loading="lazy" style="height:100%;">
-      </div>
-      <div class="gallery-cell reveal-up"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=600&h=400&fit=crop&crop=faces&q=80" alt="" loading="lazy" style="height:100%;"></div>
-      <div class="gallery-cell reveal-up"><img src="https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?w=600&h=400&fit=crop&crop=faces&q=80" alt="" loading="lazy" style="height:100%;"></div>
-      <div class="gallery-cell reveal-up"><img src="https://images.unsplash.com/photo-1542385651-430f37fe0a36?w=600&h=400&fit=crop&crop=faces&q=80" alt="" loading="lazy" style="height:100%;"></div>
-      <div class="gallery-cell reveal-up"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=400&fit=crop&crop=faces&q=80" alt="" loading="lazy" style="height:100%;"></div>
-    </div>
-    <div style="text-align:center;margin-top:3.5rem;" class="reveal-up">
-      <a href="about.html" class="btn-primary">Join the Movement</a>
-    </div>
+<!-- IMPACT QUOTE -->
+<section id="impact">
+  <div class="impact-inner">
+    <span class="tag reveal">Our Mission</span>
+    <h2 class="reveal" style="color:#fff;">Every Woman Deserves<br>to <em style="color:#2EB8B0;">Rise.</em></h2>
+    <p class="impact-quote reveal">
+      "The world needs women who are fully alive — women who know their worth, walk in their calling, and refuse to shrink from the life God designed them to live."
+      <span class="impact-attr">— You Inspire Now</span>
+    </p>
   </div>
 </section>
 
-<div class="h-divider"></div>
-
-<!-- QUOTES -->
-<section style="padding:8rem 2.5rem;background:#06060E;">
-  <div style="max-width:1280px;margin:0 auto;">
-    <div style="text-align:center;margin-bottom:5rem;">
-      <span class="section-tag reveal-up">Truth to Hold On To</span>
-      <h2 class="section-h2 reveal-up">Words That Carry Weight</h2>
+<!-- DONATE -->
+<section id="donate">
+  <div class="sec-inner">
+    <div class="donate-inner">
+      <span class="tag reveal">Make a Difference</span>
+      <h2 class="reveal">Your Gift Inspires <em>Real Lives.</em></h2>
+      <p class="body-text reveal">Every donation goes directly toward empowering women with resources, community, and the support they need to step into their God-given purpose.</p>
+      <div class="amounts reveal">
+        <span class="amount">$25</span>
+        <span class="amount">$50</span>
+        <span class="amount">$100</span>
+        <span class="amount">$250</span>
+        <span class="amount">Other</span>
+      </div>
+      <a href="#" class="donate-btn reveal">Donate Now ♥</a>
+      <p class="donate-note reveal">You Inspire Now is a faith-based women's nonprofit. All gifts support women's empowerment programs.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:rgba(255,255,255,0.06);">
-      <div class="quote-card reveal-left" style="border-left:2px solid #C9A227;">
-        <div class="bq">"</div>
-        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
-          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=faces&q=80" alt="" style="width:44px;height:44px;object-fit:cover;border:1px solid rgba(201,162,39,0.4);">
-          <div><div style="font-weight:700;font-size:0.88rem;color:#fff;">Walking in Purpose</div><div style="font-size:0.72rem;color:#C9A227;letter-spacing:0.1em;text-transform:uppercase;margin-top:0.2rem;">Purpose</div></div>
-        </div>
-        <p class="quote-text">You are not disqualified by what you have walked through. Your past does not get the final word on your future.</p>
-      </div>
-      <div class="quote-card reveal-up" style="border-left:2px solid #2EB8B0;">
-        <div class="bq">"</div>
-        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=faces&q=80" alt="" style="width:44px;height:44px;object-fit:cover;border:1px solid rgba(46,184,176,0.4);">
-          <div><div style="font-weight:700;font-size:0.88rem;color:#fff;">Rooted in Strength</div><div style="font-size:0.72rem;color:#2EB8B0;letter-spacing:0.1em;text-transform:uppercase;margin-top:0.2rem;">Health</div></div>
-        </div>
-        <p class="quote-text">Your healing matters. Your story matters. You matter — not just to those around you, but to the purpose you carry.</p>
-      </div>
-      <div class="quote-card reveal-right" style="border-left:2px solid #A855F7;">
-        <div class="bq">"</div>
-        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
-          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=faces&q=80" alt="" style="width:44px;height:44px;object-fit:cover;border:1px solid rgba(168,85,247,0.4);">
-          <div><div style="font-weight:700;font-size:0.88rem;color:#fff;">Leading Her World</div><div style="font-size:0.72rem;color:#A855F7;letter-spacing:0.1em;text-transform:uppercase;margin-top:0.2rem;">Leadership</div></div>
-        </div>
-        <p class="quote-text">This is your time to rise, lead, and move forward with confidence. You were made for exactly this moment.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- GO INSPIRE NOW TEASER -->
-<section style="padding:8rem 2.5rem;background:linear-gradient(160deg,#04040A,#0C0520 40%,#040A18 100%);text-align:center;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 70% at 50% 50%,rgba(46,184,176,0.06),transparent);pointer-events:none;"></div>
-  <div style="max-width:700px;margin:0 auto;position:relative;z-index:1;">
-    <img src="assets/gin-logo.png" alt="Go Inspire Now" class="reveal-scale" style="height:120px;margin:0 auto 2.5rem;display:block;filter:drop-shadow(0 0 32px rgba(46,184,176,0.6)) drop-shadow(0 0 70px rgba(107,33,168,0.4));animation:logoFloat 4s ease-in-out infinite;">
-    <span class="reveal-up" style="font-size:0.68rem;letter-spacing:0.3em;text-transform:uppercase;color:#C9A227;font-weight:700;display:block;margin-bottom:0.75rem;">Give &amp; Make an Impact</span>
-    <h2 class="reveal-up section-h2">Support the Movement</h2>
-    <p class="reveal-up" style="color:rgba(255,255,255,0.55);line-height:1.85;margin-bottom:3rem;font-size:1rem;">Go Inspire Now encourages, equips, and empowers women through community programs, mentorship, and supportive connections. Every gift goes directly to changing lives.</p>
-    <a href="go-inspire-now.html" class="btn-primary reveal-up">Give to Go Inspire Now ♥</a>
-  </div>
-</section>
-
-<!-- CTA -->
-<section style="background:#0A0018;padding:8rem 2.5rem;text-align:center;position:relative;overflow:hidden;">
-  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,162,39,0.4),transparent);"></div>
-  <div style="max-width:720px;margin:0 auto;position:relative;z-index:1;">
-    <span class="reveal-up section-tag gold" style="display:block;text-align:center;">Your Next Step</span>
-    <h2 class="reveal-up" style="font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4rem);color:#fff;font-weight:700;letter-spacing:-0.025em;margin-bottom:1.5rem;line-height:1.1;">This Is Your Time<br>to <em style="color:#2EB8B0;">Move Forward</em></h2>
-    <p class="reveal-up" style="color:rgba(255,255,255,0.5);line-height:1.9;margin-bottom:3rem;font-size:1rem;">Your story is still being written. You were created for more than survival. This is your invitation to step into everything you were made to become.</p>
-    <a href="about.html" class="btn-primary reveal-up">Discover Your Next Step</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div style="max-width:1280px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:5rem;">
-      <div>
-        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
-          <img src="assets/yin-logo.png" alt="You Inspire Now" style="height:36px;filter:invert(1);opacity:0.75;">
-          <span style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:rgba(255,255,255,0.5);">You Inspire Now</span>
-        </div>
-        <p style="font-size:0.88rem;line-height:1.8;max-width:280px;color:rgba(255,255,255,0.3);">Faith-rooted empowerment for women who are ready to rise into who they were created to be.</p>
-      </div>
-      <div>
-        <h4 style="color:rgba(255,255,255,0.5);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:1.5rem;">Navigate</h4>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;">
-          <li><a href="index.html" class="footer-link">Home</a></li>
-          <li><a href="about.html" class="footer-link">About</a></li>
-          <li><a href="pillars.html" class="footer-link">Our Pillars</a></li>
-          <li><a href="community.html" class="footer-link">Community</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 style="color:rgba(255,255,255,0.5);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:1.5rem;">Resources</h4>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;">
-          <li><a href="resources.html" class="footer-link">Encouragement</a></li>
-          <li><a href="resources.html#faith" class="footer-link">Faith &amp; Surrender</a></li>
-          <li><a href="resources.html#health" class="footer-link">Health &amp; Wholeness</a></li>
-          <li><a href="resources.html#stories" class="footer-link">Stories</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 style="color:rgba(255,255,255,0.5);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:1.5rem;">Give</h4>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;">
-          <li><a href="go-inspire-now.html" class="footer-link" style="color:#2EB8B0;">Go Inspire Now ♥</a></li>
-          <li><a href="go-inspire-now.html" class="footer-link">Donate</a></li>
-        </ul>
-      </div>
-    </div>
-    <div style="border-top:1px solid rgba(255,255,255,0.05);padding-top:2rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;align-items:center;">
-      <p style="font-size:0.78rem;">© 2026 You Inspire Now. All rights reserved.</p>
-      <p style="font-size:0.78rem;color:rgba(255,255,255,0.25);">Purpose · Family · Health · Leadership</p>
-    </div>
+  <img src="assets/yin-logo.png" alt="You Inspire Now" class="footer-logo">
+  <div class="footer-links">
+    <a href="#mission" class="footer-link">About</a>
+    <a href="#pillars" class="footer-link">Our Pillars</a>
+    <a href="#donate" class="footer-link">Donate</a>
   </div>
-</footer>
-
-
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'Lato',sans-serif;background:#04040A;color:rgba(255,255,255,0.85);overflow-x:hidden;}
-.nav-link{position:relative;font-size:0.82rem;letter-spacing:0.1em;font-weight:700;color:rgba(255,255,255,0.75);text-transform:uppercase;transition:color 0.3s;text-decoration:none;}
-.nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:#2EB8B0;transition:width 0.3s;}
-.nav-link:hover{color:#2EB8B0;}.nav-link:hover::after{width:100%;}
-.nav-link.active{color:#fff;}.nav-link.active::after{width:100%;background:#C9A227;}
-.scrolled-nav{background:rgba(4,4,12,0.96)!important;backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.06);box-shadow:0 4px 40px rgba(0,0,0,0.5);}
-#heroCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
-.hero-section{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center;
-  background:radial-gradient(ellipse 120% 80% at 50% 0%,#1E0B45 0%,#0C0018 45%,#030306 100%);}
-.hero-mist{position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(ellipse 60% 40% at 50% 100%,rgba(46,184,176,0.06),transparent),
-             radial-gradient(ellipse 40% 30% at 20% 60%,rgba(107,33,168,0.1),transparent);}
-.hero-tag{display:inline-block;font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:#C9A227;font-weight:700;margin-bottom:1.75rem;padding:0.4rem 1.4rem;border:1px solid rgba(201,162,39,0.3);border-radius:100px;background:rgba(201,162,39,0.06);}
-.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,7vw,5.8rem);line-height:1.08;color:#fff;font-weight:700;letter-spacing:-0.025em;margin-bottom:1.75rem;text-shadow:0 4px 40px rgba(107,33,168,0.5);}
-.hero-h1 em{color:#2EB8B0;font-style:italic;}
-.hero-h1 strong{color:#C9A227;font-style:normal;}
-.hero-sub{font-size:clamp(1rem,2vw,1.15rem);color:rgba(255,255,255,0.65);max-width:520px;margin:0 auto 2.5rem;line-height:1.85;font-weight:300;}
-.btn-primary{display:inline-block;padding:1rem 2.5rem;background:linear-gradient(135deg,#2EB8B0,#0D9488);color:#fff;font-weight:700;font-size:0.88rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.25s;box-shadow:0 8px 32px rgba(46,184,176,0.35);}
-.btn-primary:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 16px 48px rgba(46,184,176,0.5);}
-.btn-ghost{display:inline-block;padding:1rem 2.5rem;background:transparent;color:rgba(255,255,255,0.8);font-weight:700;font-size:0.88rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;border:1px solid rgba(255,255,255,0.2);text-decoration:none;transition:background 0.2s,border-color 0.2s,transform 0.2s;}
-.btn-ghost:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.4);transform:translateY(-2px);}
-.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.3);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;}
-.scroll-hint .line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(46,184,176,0.6),transparent);animation:scrollPulse 2.5s ease-in-out infinite;}
-@keyframes scrollPulse{0%,100%{opacity:0.3;}50%{opacity:1;}}
-.section-tag{font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:#2EB8B0;font-weight:700;margin-bottom:0.75rem;display:block;}
-.section-tag.gold{color:#C9A227;}
-.section-h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);color:#fff;font-weight:700;letter-spacing:-0.025em;line-height:1.15;margin-bottom:1.25rem;}
-.pillar-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:2.5rem 2rem;position:relative;overflow:hidden;transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.35s,border-color 0.3s;}
-.pillar-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);}
-.pillar-card:hover{transform:translateY(-8px);box-shadow:0 24px 80px rgba(0,0,0,0.5);border-color:rgba(255,255,255,0.14);}
-.pillar-icon{width:52px;height:52px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;font-size:1.5rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);}
-.pillar-title{font-family:'Playfair Display',serif;font-size:1.35rem;color:#fff;font-weight:600;margin-bottom:0.75rem;}
-.pillar-text{font-size:0.93rem;color:rgba(255,255,255,0.5);line-height:1.8;}
-.transform-item{display:flex;align-items:flex-start;gap:2rem;padding:2.5rem 0;border-bottom:1px solid rgba(255,255,255,0.06);}
-.transform-item:last-child{border-bottom:none;}
-.transform-num{font-family:'Playfair Display',serif;font-size:4rem;color:rgba(255,255,255,0.05);font-weight:700;line-height:1;min-width:72px;}
-.transform-from{font-size:0.8rem;color:rgba(255,255,255,0.35);margin-bottom:0.3rem;font-weight:300;letter-spacing:0.1em;text-transform:uppercase;}
-.transform-to{font-family:'Playfair Display',serif;font-size:1.6rem;color:#fff;font-weight:600;line-height:1.3;}
-.transform-to .arr{color:#2EB8B0;font-style:normal;}
-.transform-to .dest{color:#C9A227;font-style:italic;}
-.quote-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:2.5rem;position:relative;overflow:hidden;}
-.quote-card .bq{position:absolute;top:-1rem;left:1.5rem;font-family:'Playfair Display',serif;font-size:7rem;color:rgba(255,255,255,0.04);line-height:1;pointer-events:none;}
-.quote-text{font-family:'Playfair Display',serif;font-size:1.05rem;color:rgba(255,255,255,0.85);line-height:1.8;font-style:italic;position:relative;z-index:1;}
-.feature-img-wrap{position:relative;overflow:hidden;}
-.feature-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}
-.feature-img-wrap:hover img{transform:scale(1.04);}
-.feature-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(30,11,69,0.6),rgba(46,184,176,0.15));mix-blend-mode:multiply;}
-.gallery-cell{overflow:hidden;position:relative;}
-.gallery-cell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
-.gallery-cell:hover img{transform:scale(1.06);}
-.gallery-cell::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(4,4,10,0.7) 0%,transparent 50%);pointer-events:none;}
-.photo-strip-img{height:300px;width:230px;flex-shrink:0;object-fit:cover;border:1px solid rgba(255,255,255,0.07);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1),border-color 0.3s;}
-.photo-strip-img:hover{transform:scale(1.04) translateY(-8px);border-color:rgba(46,184,176,0.5);}
-.stat-num{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:700;color:#2EB8B0;line-height:1.1;}
-.h-divider{height:1px;background:linear-gradient(to right,transparent,rgba(255,255,255,0.08),transparent);}
-.reveal-up{opacity:0;transform:translateY(40px);}
-.reveal-left{opacity:0;transform:translateX(-50px);}
-.reveal-right{opacity:0;transform:translateX(50px);}
-.reveal-scale{opacity:0;transform:scale(0.9);}
-.revealed{opacity:1!important;transform:none!important;transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.34,1.56,0.64,1)!important;}
-footer{background:#030307;border-top:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.45);padding:5rem 2rem 2.5rem;}
-.footer-link{color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;}
-.footer-link:hover{color:#2EB8B0;}
-.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");}
-@keyframes logoFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-</style>
-</head>
-<body>
-<div class="grain"></div>
-
-<!-- NAV -->
-<nav id="mainNav" style="position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 2.5rem;transition:all 0.3s ease;background:transparent;">
-  <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
-    <a href="index.html" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;">
-      <img src="assets/yin-logo.png" alt="You Inspire Now" style="height:48px;filter:invert(1) drop-shadow(0 0 10px rgba(46,184,176,0.6));">
-      <span style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:#fff;letter-spacing:0.01em;">You Inspire Now</span>
-    </a>
-    <div style="display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;">
-      <a href="index.html" class="nav-link active">Home</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="pillars.html" class="nav-link">Our Pillars</a>
-      <a href="community.html" class="nav-link">Community</a>
-      <a href="resources.html" class="nav-link">Resources</a>
-      <a href="go-inspire-now.html" style="display:inline-block;padding:0.55rem 1.4rem;background:linear-gradient(135deg,#2EB8B0,#0D9488);border-radius:4px;color:#fff;font-size:0.78rem;font-weight:700;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;box-shadow:0 4px 20px rgba(46,184,176,0.3);transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.04)';this.style.boxShadow='0 8px 32px rgba(46,184,176,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(46,184,176,0.3)'">Go Inspire Now ♥</a>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero-section" id="hero">
-  <canvas id="heroCanvas"></canvas>
-  <div class="hero-mist"></div>
-  <!-- Forest floor silhouette -->
-  <div style="position:absolute;bottom:0;left:0;right:0;z-index:2;pointer-events:none;">
-    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" style="width:100%;height:100px;display:block;">
-      <path d="M0,100 L0,60 Q80,30 160,58 Q240,80 320,42 Q400,10 480,50 Q560,82 640,48 Q720,18 800,56 Q880,88 960,50 Q1040,16 1120,55 Q1200,88 1280,52 Q1360,18 1440,60 L1440,100 Z" fill="#04040A"/>
-    </svg>
-  </div>
-  <div style="position:relative;z-index:10;text-align:center;padding:2rem;width:100%;max-width:860px;margin:0 auto;padding-top:8rem;">
-    <div class="hero-tag">✦ Identity · Purpose · Power · Movement ✦</div>
-    <h1 class="hero-h1">Rise Into<br><em>Who You Were</em><br><strong>Born to Be</strong></h1>
-    <p class="hero-sub">You carry something sacred. Something unbroken. This is a space for women who are ready to step out of survival — and into the fullness of who they were made to become.</p>
-    <div style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:1rem;">
-      <a href="about.html" class="btn-primary">Begin Your Journey</a>
-      <a href="community.html" class="btn-ghost">Join the Movement</a>
-    </div>
-  </div>
-  <div class="scroll-hint"><div class="line"></div><span>Discover</span></div>
-</section>
-
-<!-- MISSION BAND -->
-<section style="background:linear-gradient(135deg,#0D0520 0%,#14072A 50%,#070D20 100%);padding:6rem 2rem;text-align:center;position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 50% 50%,rgba(46,184,176,0.06),transparent);pointer-events:none;"></div>
-  <div style="max-width:800px;margin:0 auto;position:relative;z-index:1;">
-    <p class="reveal-up" style="font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,2.1rem);color:rgba(255,255,255,0.9);font-style:italic;line-height:1.7;">"To inspire women through encouragement, empowerment, community, and mentorship — building resilience, strengthening identity and purpose, helping women move forward with <span style="color:#C9A227;font-style:normal;font-weight:600;">confidence and power.</span>"</p>
-    <div class="reveal-up" style="margin-top:2.5rem;display:flex;align-items:center;justify-content:center;gap:1rem;">
-      <div style="height:1px;width:60px;background:linear-gradient(to right,transparent,rgba(46,184,176,0.5));"></div>
-      <span style="font-size:0.7rem;letter-spacing:0.3em;color:#2EB8B0;text-transform:uppercase;">You Inspire Now</span>
-      <div style="height:1px;width:60px;background:linear-gradient(to left,transparent,rgba(46,184,176,0.5));"></div>
-    </div>
-  </div>
-</section>
-
-<!-- PHOTO STRIP -->
-<section style="padding:5rem 0;background:#04040A;overflow:hidden;">
-  <div style="max-width:1280px;margin:0 auto;padding:0 2.5rem;margin-bottom:2rem;text-align:center;">
-    <span class="section-tag reveal-up">Real Women. Real Strength.</span>
-    <h2 class="section-h2 reveal-up" style="margin:0 auto;">Strength Looks Like You</h2>
-  </div>
-  <div style="display:flex;gap:0.75rem;padding:0.5rem 3rem;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;">
-    <img class="photo-strip-img" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=460&h=600&fit=crop&crop=faces&q=80" alt="Inspired woman" loading="lazy">
-    <img class="photo-strip-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=460&h=600&fit=crop&crop=faces&q=80" alt="Confident woman" loading="lazy">
-    <img class="photo-strip-img" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=460&h=600&fit=crop&crop=faces&q=80" alt="Woman smiling" loading="lazy">
-    <img class="photo-strip-img" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=460&h=600&fit=crop&crop=faces&q=80" alt="Woman of faith" loading="lazy">
-    <img class="photo-strip-img" src="https://images.unsplash.com/photo-1502767089025-6572583495b9?w=460&h=600&fit=crop&crop=faces&q=80" alt="Women community" loading="lazy">
-    <img class="photo-strip-img" src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=460&h=600&fit=crop&crop=faces&q=80" alt="Woman rising" loading="lazy">
-    <img class="photo-strip-img" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=460&h=600&fit=crop&crop=faces&q=80" alt="Woman of purpose" loading="lazy">
-  </div>
-</section>
-
-<div class="h-divider"></div>
-
-<!-- PILLARS -->
-<section style="padding:8rem 2.5rem;background:#04040A;">
-  <div style="max-width:1280px;margin:0 auto;">
-    <div style="text-align:center;margin-bottom:5rem;">
-      <span class="section-tag gold reveal-up">The Movement's Foundation</span>
-      <h2 class="section-h2 reveal-up" style="margin:0 auto 1.25rem;">Four Pillars.<br>One Transformation.</h2>
-      <p class="reveal-up" style="font-size:1rem;color:rgba(255,255,255,0.45);max-width:520px;margin:0 auto;line-height:1.85;font-weight:300;">Everything we do is built around the domains where women are called to rise — and where real transformation happens.</p>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);">
-      <div class="pillar-card reveal-up" style="--accent:linear-gradient(90deg,#C9A227,#E8C547);">
-        <div class="pillar-icon">✦</div>
-        <div class="pillar-title">Purpose</div>
-        <p class="pillar-text">Discover the assignment you were created for and step confidently into the life that was always meant for you.</p>
-        <a href="pillars.html#purpose" style="display:inline-block;margin-top:1.5rem;font-size:0.75rem;font-weight:700;color:#C9A227;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">Explore →</a>
-      </div>
-      <div class="pillar-card reveal-up" style="--accent:linear-gradient(90deg,#2EB8B0,#06D6A0);">
-        <div class="pillar-icon">🌿</div>
-        <div class="pillar-title">Family</div>
-        <p class="pillar-text">Strengthening the bonds that matter most — mother, daughter, sister, wife — building legacy that outlasts you.</p>
-        <a href="pillars.html#family" style="display:inline-block;margin-top:1.5rem;font-size:0.75rem;font-weight:700;color:#2EB8B0;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">Explore →</a>
-      </div>
-      <div class="pillar-card reveal-up" style="--accent:linear-gradient(90deg,#A855F7,#7C3AED);">
-        <div class="pillar-icon">💜</div>
-        <div class="pillar-title">Health</div>
-        <p class="pillar-text">Wholeness in spirit, mind, and body. Because a woman who is well pours life into everything she touches.</p>
-        <a href="pillars.html#health" style="display:inline-block;margin-top:1.5rem;font-size:0.75rem;font-weight:700;color:#A855F7;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">Explore →</a>
-      </div>
-      <div class="pillar-card reveal-up" style="--accent:linear-gradient(90deg,rgba(255,255,255,0.6),rgba(255,255,255,0.2));">
-        <div class="pillar-icon">👑</div>
-        <div class="pillar-title">Leadership</div>
-        <p class="pillar-text">You are already leading — in your home, your community, your calling. We help you do it with clarity and confidence.</p>
-        <a href="pillars.html#leadership" style="display:inline-block;margin-top:1.5rem;font-size:0.75rem;font-weight:700;color:rgba(255,255,255,0.7);letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">Explore →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="h-divider"></div>
-
-<!-- FEATURE ROW 1 -->
-<section style="padding:8rem 2.5rem;background:#06060E;overflow:hidden;">
-  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
-    <div class="feature-img-wrap reveal-left" style="height:580px;">
-      <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=720&h=900&fit=crop&crop=faces&q=80" alt="Woman of purpose" loading="lazy">
-    </div>
-    <div class="reveal-right">
-      <span class="section-tag gold">Your Identity</span>
-      <h2 class="section-h2">You Were Not<br>Made to Shrink</h2>
-      <p style="font-size:1rem;color:rgba(255,255,255,0.55);line-height:1.9;margin-bottom:1.5rem;font-weight:300;">You were made to rise. To take up space. To walk into a room and know — without apology — who you are and whose you are.</p>
-      <p style="font-size:1rem;color:rgba(255,255,255,0.55);line-height:1.9;margin-bottom:2.5rem;font-weight:300;">You Inspire Now exists to remind you of your identity when the world has told you to stay small. You are a warrior. A creator. A carrier of something sacred.</p>
-      <div style="display:flex;align-items:center;gap:2rem;margin-bottom:2.5rem;">
-        <div style="text-align:center;">
-          <div class="stat-num" style="font-size:2.5rem;">4</div>
-          <div style="font-size:0.72rem;letter-spacing:0.15em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:0.25rem;">Pillars</div>
-        </div>
-        <div style="height:40px;width:1px;background:rgba(255,255,255,0.1);"></div>
-        <div style="text-align:center;">
-          <div style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:#C9A227;line-height:1.1;">You</div>
-          <div style="font-size:0.72rem;letter-spacing:0.15em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:0.25rem;">Are the Mission</div>
-        </div>
-      </div>
-      <a href="about.html" class="btn-primary">Our Story</a>
-    </div>
-  </div>
-</section>
-
-<!-- TRANSFORMATION -->
-<section style="padding:8rem 2.5rem;background:linear-gradient(180deg,#04040A,#0D0520 50%,#04040A);position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(107,33,168,0.08),transparent);pointer-events:none;"></div>
-  <div style="max-width:960px;margin:0 auto;">
-    <div style="text-align:center;margin-bottom:5rem;position:relative;z-index:1;">
-      <span class="section-tag reveal-up">The Central Transformation</span>
-      <h2 class="section-h2 reveal-up">This Is What Becoming Looks Like</h2>
-    </div>
-    <div class="transform-item reveal-left"><div class="transform-num">01</div><div style="flex:1;"><div class="transform-from">From</div><div class="transform-to">Invisible <span class="arr">→</span> <span class="dest">Deeply Seen</span></div></div></div>
-    <div class="transform-item reveal-right"><div class="transform-num">02</div><div style="flex:1;"><div class="transform-from">From</div><div class="transform-to">Exhausted <span class="arr">→</span> <span class="dest">Unstoppable</span></div></div></div>
-    <div class="transform-item reveal-left"><div class="transform-num">03</div><div style="flex:1;"><div class="transform-from">From</div><div class="transform-to">Disqualified <span class="arr">→</span> <span class="dest">Fully Chosen</span></div></div></div>
-    <div class="transform-item reveal-right"><div class="transform-num">04</div><div style="flex:1;"><div class="transform-from">From</div><div class="transform-to">Surviving <span class="arr">→</span> <span class="dest">Fully Becoming</span></div></div></div>
-  </div>
-</section>
-
-<!-- FEATURE ROW 2 -->
-<section style="padding:8rem 2.5rem;background:#06060E;overflow:hidden;">
-  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
-    <div class="reveal-left">
-      <span class="section-tag">Community & Power</span>
-      <h2 class="section-h2">You Don't Have<br>to Carry This Alone</h2>
-      <p style="font-size:1rem;color:rgba(255,255,255,0.55);line-height:1.9;margin-bottom:1.5rem;font-weight:300;">There is something powerful that happens when women gather with honest hearts and open hands. Healing moves faster. Clarity comes sooner. Courage multiplies.</p>
-      <p style="font-size:1rem;color:rgba(255,255,255,0.55);line-height:1.9;margin-bottom:2.5rem;font-weight:300;">Our community is not a performance space. It is a belonging space — where no woman is too broken, too late, or too far behind.</p>
-      <ul style="list-style:none;display:flex;flex-direction:column;gap:1rem;margin-bottom:2.5rem;">
-        <li style="display:flex;align-items:center;gap:1rem;font-size:0.93rem;color:rgba(255,255,255,0.6);"><span style="width:4px;height:24px;background:linear-gradient(to bottom,#C9A227,transparent);border-radius:2px;flex-shrink:0;"></span>Mentorship and faith-centered connections</li>
-        <li style="display:flex;align-items:center;gap:1rem;font-size:0.93rem;color:rgba(255,255,255,0.6);"><span style="width:4px;height:24px;background:linear-gradient(to bottom,#2EB8B0,transparent);border-radius:2px;flex-shrink:0;"></span>Encouragement through every season</li>
-        <li style="display:flex;align-items:center;gap:1rem;font-size:0.93rem;color:rgba(255,255,255,0.6);"><span style="width:4px;height:24px;background:linear-gradient(to bottom,#A855F7,transparent);border-radius:2px;flex-shrink:0;"></span>Space to heal, grow, and move forward</li>
-      </ul>
-      <a href="community.html" class="btn-primary">Join the Community</a>
-    </div>
-    <div style="position:relative;" class="reveal-right">
-      <div class="feature-img-wrap" style="height:580px;">
-        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=720&h=900&fit=crop&crop=faces&q=80" alt="Women in community" loading="lazy">
-      </div>
-      <div style="position:absolute;bottom:-24px;left:-24px;background:#04040A;border:1px solid rgba(46,184,176,0.25);padding:1.5rem 2rem;max-width:200px;z-index:10;">
-        <div style="font-size:2rem;margin-bottom:0.5rem;">🌿</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1rem;color:#fff;font-weight:600;line-height:1.4;">"Sisters in Strength"</div>
-        <div style="font-size:0.7rem;color:#2EB8B0;margin-top:0.4rem;letter-spacing:0.1em;text-transform:uppercase;">Community</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY MOSAIC -->
-<section style="padding:8rem 2.5rem;background:#04040A;overflow:hidden;">
-  <div style="max-width:1280px;margin:0 auto;">
-    <div style="text-align:center;margin-bottom:4rem;">
-      <span class="section-tag gold reveal-up">Power Has a Face</span>
-      <h2 class="section-h2 reveal-up" style="margin:0 auto;">Every Woman is the Story</h2>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:300px 300px;gap:3px;background:rgba(255,255,255,0.04);">
-      <div class="gallery-cell reveal-scale" style="grid-row:span 2;">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop&crop=faces&q=80" alt="" loading="lazy" style="height:100%;">
-      </div>
-      <div class="gallery-cell reveal-up"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=600&h=400&fit=crop&crop=faces&q=80" alt="" loading="lazy" style="height:100%;"></div>
-      <div class="gallery-cell reveal-up"><img src="https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?w=600&h=400&fit=crop&crop=faces&q=80" alt="" loading="lazy" style="height:100%;"></div>
-      <div class="gallery-cell reveal-up"><img src="https://images.unsplash.com/photo-1542385651-430f37fe0a36?w=600&h=400&fit=crop&crop=faces&q=80" alt="" loading="lazy" style="height:100%;"></div>
-      <div class="gallery-cell reveal-up"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=400&fit=crop&crop=faces&q=80" alt="" loading="lazy" style="height:100%;"></div>
-    </div>
-    <div style="text-align:center;margin-top:3.5rem;" class="reveal-up">
-      <a href="about.html" class="btn-primary">Join the Movement</a>
-    </div>
-  </div>
-</section>
-
-<div class="h-divider"></div>
-
-<!-- QUOTES -->
-<section style="padding:8rem 2.5rem;background:#06060E;">
-  <div style="max-width:1280px;margin:0 auto;">
-    <div style="text-align:center;margin-bottom:5rem;">
-      <span class="section-tag reveal-up">Truth to Hold On To</span>
-      <h2 class="section-h2 reveal-up">Words That Carry Weight</h2>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:rgba(255,255,255,0.06);">
-      <div class="quote-card reveal-left" style="border-left:2px solid #C9A227;">
-        <div class="bq">"</div>
-        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
-          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=faces&q=80" alt="" style="width:44px;height:44px;object-fit:cover;border:1px solid rgba(201,162,39,0.4);">
-          <div><div style="font-weight:700;font-size:0.88rem;color:#fff;">Walking in Purpose</div><div style="font-size:0.72rem;color:#C9A227;letter-spacing:0.1em;text-transform:uppercase;margin-top:0.2rem;">Purpose</div></div>
-        </div>
-        <p class="quote-text">You are not disqualified by what you have walked through. Your past does not get the final word on your future.</p>
-      </div>
-      <div class="quote-card reveal-up" style="border-left:2px solid #2EB8B0;">
-        <div class="bq">"</div>
-        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=faces&q=80" alt="" style="width:44px;height:44px;object-fit:cover;border:1px solid rgba(46,184,176,0.4);">
-          <div><div style="font-weight:700;font-size:0.88rem;color:#fff;">Rooted in Strength</div><div style="font-size:0.72rem;color:#2EB8B0;letter-spacing:0.1em;text-transform:uppercase;margin-top:0.2rem;">Health</div></div>
-        </div>
-        <p class="quote-text">Your healing matters. Your story matters. You matter — not just to those around you, but to the purpose you carry.</p>
-      </div>
-      <div class="quote-card reveal-right" style="border-left:2px solid #A855F7;">
-        <div class="bq">"</div>
-        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
-          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=faces&q=80" alt="" style="width:44px;height:44px;object-fit:cover;border:1px solid rgba(168,85,247,0.4);">
-          <div><div style="font-weight:700;font-size:0.88rem;color:#fff;">Leading Her World</div><div style="font-size:0.72rem;color:#A855F7;letter-spacing:0.1em;text-transform:uppercase;margin-top:0.2rem;">Leadership</div></div>
-        </div>
-        <p class="quote-text">This is your time to rise, lead, and move forward with confidence. You were made for exactly this moment.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- GO INSPIRE NOW TEASER -->
-<section style="padding:8rem 2.5rem;background:linear-gradient(160deg,#04040A,#0C0520 40%,#040A18 100%);text-align:center;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 70% at 50% 50%,rgba(46,184,176,0.06),transparent);pointer-events:none;"></div>
-  <div style="max-width:700px;margin:0 auto;position:relative;z-index:1;">
-    <img src="assets/gin-logo.png" alt="Go Inspire Now" class="reveal-scale" style="height:120px;margin:0 auto 2.5rem;display:block;filter:drop-shadow(0 0 32px rgba(46,184,176,0.6)) drop-shadow(0 0 70px rgba(107,33,168,0.4));animation:logoFloat 4s ease-in-out infinite;">
-    <span class="reveal-up" style="font-size:0.68rem;letter-spacing:0.3em;text-transform:uppercase;color:#C9A227;font-weight:700;display:block;margin-bottom:0.75rem;">Give &amp; Make an Impact</span>
-    <h2 class="reveal-up section-h2">Support the Movement</h2>
-    <p class="reveal-up" style="color:rgba(255,255,255,0.55);line-height:1.85;margin-bottom:3rem;font-size:1rem;">Go Inspire Now encourages, equips, and empowers women through community programs, mentorship, and supportive connections. Every gift goes directly to changing lives.</p>
-    <a href="go-inspire-now.html" class="btn-primary reveal-up">Give to Go Inspire Now ♥</a>
-  </div>
-</section>
-
-<!-- CTA -->
-<section style="background:#0A0018;padding:8rem 2.5rem;text-align:center;position:relative;overflow:hidden;">
-  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,162,39,0.4),transparent);"></div>
-  <div style="max-width:720px;margin:0 auto;position:relative;z-index:1;">
-    <span class="reveal-up section-tag gold" style="display:block;text-align:center;">Your Next Step</span>
-    <h2 class="reveal-up" style="font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4rem);color:#fff;font-weight:700;letter-spacing:-0.025em;margin-bottom:1.5rem;line-height:1.1;">This Is Your Time<br>to <em style="color:#2EB8B0;">Move Forward</em></h2>
-    <p class="reveal-up" style="color:rgba(255,255,255,0.5);line-height:1.9;margin-bottom:3rem;font-size:1rem;">Your story is still being written. You were created for more than survival. This is your invitation to step into everything you were made to become.</p>
-    <a href="about.html" class="btn-primary reveal-up">Discover Your Next Step</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div style="max-width:1280px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:5rem;">
-      <div>
-        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
-          <img src="assets/yin-logo.png" alt="You Inspire Now" style="height:36px;filter:invert(1);opacity:0.75;">
-          <span style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:rgba(255,255,255,0.5);">You Inspire Now</span>
-        </div>
-        <p style="font-size:0.88rem;line-height:1.8;max-width:280px;color:rgba(255,255,255,0.3);">Faith-rooted empowerment for women who are ready to rise into who they were created to be.</p>
-      </div>
-      <div>
-        <h4 style="color:rgba(255,255,255,0.5);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:1.5rem;">Navigate</h4>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;">
-          <li><a href="index.html" class="footer-link">Home</a></li>
-          <li><a href="about.html" class="footer-link">About</a></li>
-          <li><a href="pillars.html" class="footer-link">Our Pillars</a></li>
-          <li><a href="community.html" class="footer-link">Community</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 style="color:rgba(255,255,255,0.5);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:1.5rem;">Resources</h4>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;">
-          <li><a href="resources.html" class="footer-link">Encouragement</a></li>
-          <li><a href="resources.html#faith" class="footer-link">Faith &amp; Surrender</a></li>
-          <li><a href="resources.html#health" class="footer-link">Health &amp; Wholeness</a></li>
-          <li><a href="resources.html#stories" class="footer-link">Stories</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 style="color:rgba(255,255,255,0.5);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:1.5rem;">Give</h4>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;">
-          <li><a href="go-inspire-now.html" class="footer-link" style="color:#2EB8B0;">Go Inspire Now ♥</a></li>
-          <li><a href="go-inspire-now.html" class="footer-link">Donate</a></li>
-        </ul>
-      </div>
-    </div>
-    <div style="border-top:1px solid rgba(255,255,255,0.05);padding-top:2rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;align-items:center;">
-      <p style="font-size:0.78rem;">© 2026 You Inspire Now. All rights reserved.</p>
-      <p style="font-size:0.78rem;color:rgba(255,255,255,0.25);">Purpose · Family · Health · Leadership</p>
-    </div>
-  </div>
+  <p class="footer-name">You Inspire Now</p>
+  <p class="footer-tag">Identity · Purpose · Resilience · Community · Wholeness</p>
+  <p class="footer-copy">© 2026 You Inspire Now. All rights reserved.</p>
 </footer>
 
 <script>
-// === LEAF / WIND ANIMATION ===
-const canvas=document.getElementById('heroCanvas'),ctx=canvas.getContext('2d');
-let mouse={x:-1000,y:-1000,active:false},leaves=[],time=0;
-
-function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
-window.addEventListener('resize',()=>{resize();initLeaves();});
-resize();
-
-// Leaf color palettes
-const PALETTES=[
-  {r:46,g:184,b:176,a:0.45},   // teal
-  {r:201,g:162,b:39,a:0.35},   // gold
-  {r:168,g:85,b:247,a:0.3},    // purple
-  {r:255,g:255,b:255,a:0.2},   // white ethereal
-  {r:46,g:184,b:176,a:0.2},    // faint teal
-  {r:201,g:162,b:39,a:0.55},   // bright gold
-];
-
-class Leaf{
-  constructor(init){
-    this.init=init;
-    this.reset(init);
-  }
-  reset(fromLeft){
-    // Start from left edge (or random if initial)
-    if(fromLeft){
-      this.x=Math.random()*canvas.width;
-      this.y=Math.random()*canvas.height;
-    }else{
-      this.x=-40;
-      this.y=Math.random()*canvas.height*0.9+canvas.height*0.05;
-    }
-    const p=PALETTES[Math.floor(Math.random()*PALETTES.length)];
-    this.r=p.r;this.g=p.g;this.b=p.b;this.a=p.a;
-    // Wind speed varies — creates depth illusion
-    this.speed=Math.random()*1.4+0.3;
-    this.size=Math.random()*10+5;
-    this.rotation=Math.random()*Math.PI*2;
-    this.rotSpeed=(Math.random()-0.5)*0.06;
-    // Wobble phase for up/down drift
-    this.wobblePhase=Math.random()*Math.PI*2;
-    this.wobbleAmp=Math.random()*0.5+0.2;
-    this.wobbleFreq=Math.random()*0.02+0.008;
-    this.vy=0;
-    this.glowing=Math.random()<0.2;
-    // Some leaves are just outlines (ghostly)
-    this.outlined=Math.random()<0.15;
-    this.opacity=Math.random()*0.5+0.2;
-  }
-  update(t){
-    this.wobblePhase+=this.wobbleFreq;
-    const windY=Math.sin(this.wobblePhase)*this.wobbleAmp;
-
-    // Mouse interaction: nearby leaves swirl
-    const dx=this.x-mouse.x,dy=this.y-mouse.y;
-    const d=Math.sqrt(dx*dx+dy*dy);
-    let mouseForceX=0,mouseForceY=0;
-    if(mouse.active&&d<180){
-      const f=(180-d)/180;
-      // Swirl effect — push perpendicular
-      mouseForceX=(dy/d)*f*0.8;
-      mouseForceY=(-dx/d)*f*0.8;
-      this.opacity=Math.min(0.9,this.opacity+f*0.4);
-    }else{
-      this.opacity=Math.max(this.a,this.opacity*0.995);
-    }
-
-    this.x+=this.speed+mouseForceX;
-    this.y+=windY+mouseForceY;
-    this.rotation+=this.rotSpeed;
-
-    // Wrap when off-screen
-    if(this.x>canvas.width+50)this.reset(false);
-    if(this.y<-50)this.y=canvas.height+10;
-    if(this.y>canvas.height+50)this.y=-10;
-  }
-  draw(){
-    ctx.save();
-    ctx.translate(this.x,this.y);
-    ctx.rotate(this.rotation);
-    ctx.globalAlpha=this.opacity;
-
-    // Glow halo for glowing leaves
-    if(this.glowing){
-      const grd=ctx.createRadialGradient(0,0,0,0,0,this.size*4);
-      grd.addColorStop(0,`rgba(${this.r},${this.g},${this.b},0.25)`);
-      grd.addColorStop(1,`rgba(${this.r},${this.g},${this.b},0)`);
-      ctx.beginPath();
-      ctx.arc(0,0,this.size*4,0,Math.PI*2);
-      ctx.fillStyle=grd;
-      ctx.fill();
-    }
-
-    // Leaf shape — teardrop/ellipse rotated
-    ctx.beginPath();
-    ctx.moveTo(0,-this.size);
-    ctx.bezierCurveTo(
-      this.size*0.75,-this.size*0.4,
-      this.size*0.75,this.size*0.4,
-      0,this.size
-    );
-    ctx.bezierCurveTo(
-      -this.size*0.75,this.size*0.4,
-      -this.size*0.75,-this.size*0.4,
-      0,-this.size
-    );
-
-    if(this.outlined){
-      ctx.strokeStyle=`rgba(${this.r},${this.g},${this.b},${this.opacity*0.8})`;
-      ctx.lineWidth=0.8;
-      ctx.stroke();
-    }else{
-      ctx.fillStyle=`rgba(${this.r},${this.g},${this.b},${this.opacity})`;
-      ctx.fill();
-    }
-
-    // Center vein line
-    ctx.beginPath();
-    ctx.moveTo(0,-this.size*0.9);
-    ctx.lineTo(0,this.size*0.9);
-    ctx.strokeStyle=`rgba(${this.r},${this.g},${this.b},${this.opacity*0.4})`;
-    ctx.lineWidth=0.5;
-    ctx.stroke();
-
-    ctx.globalAlpha=1;
-    ctx.restore();
-  }
-}
-
-function initLeaves(){
-  const count=Math.min(120,Math.floor((canvas.width*canvas.height)/10000));
-  leaves=Array.from({length:count},()=>new Leaf(true));
-}
-
-// Floating orbs of light (mist/atmosphere)
-class Orb{
-  constructor(){this.reset();}
-  reset(){
-    this.x=Math.random()*canvas.width;
-    this.y=Math.random()*canvas.height;
-    this.r=Math.random()*120+40;
-    this.vx=(Math.random()-0.5)*0.08;
-    this.vy=(Math.random()-0.5)*0.06;
-    const opts=[[46,184,176,0.04],[201,162,39,0.03],[107,33,168,0.04]];
-    const c=opts[Math.floor(Math.random()*opts.length)];
-    this.cr=c[0];this.cg=c[1];this.cb=c[2];this.ca=c[3];
-  }
-  update(){
-    this.x+=this.vx;this.y+=this.vy;
-    if(this.x<-this.r*2)this.x=canvas.width+this.r;
-    if(this.x>canvas.width+this.r*2)this.x=-this.r;
-    if(this.y<-this.r*2)this.y=canvas.height+this.r;
-    if(this.y>canvas.height+this.r*2)this.y=-this.r;
-  }
-  draw(){
-    const g=ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.r);
-    g.addColorStop(0,`rgba(${this.cr},${this.cg},${this.cb},${this.ca})`);
-    g.addColorStop(1,`rgba(${this.cr},${this.cg},${this.cb},0)`);
-    ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-    ctx.fillStyle=g;ctx.fill();
-  }
-}
-const orbs=Array.from({length:8},()=>new Orb());
-
-function anim(){
-  time++;
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  orbs.forEach(o=>{o.update();o.draw();});
-  leaves.forEach(l=>{l.update(time);l.draw();});
-  requestAnimationFrame(anim);
-}
-initLeaves();
-anim();
-
-// Mouse tracking
-const he=document.getElementById('hero');
-he.addEventListener('mousemove',e=>{
-  const r=canvas.getBoundingClientRect();
-  mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;mouse.active=true;
-});
-he.addEventListener('mouseleave',()=>{mouse.active=false;mouse.x=-1000;mouse.y=-1000;});
-he.addEventListener('touchmove',e=>{
-  e.preventDefault();
-  const r=canvas.getBoundingClientRect();
-  mouse.x=e.touches[0].clientX-r.left;mouse.y=e.touches[0].clientY-r.top;mouse.active=true;
-},{passive:false});
-he.addEventListener('touchend',()=>{mouse.active=false;});
-
-// Click burst
-he.addEventListener('click',e=>{
-  const r=canvas.getBoundingClientRect();
-  const bx=e.clientX-r.left,by=e.clientY-r.top;
-  // Spawn 8 new leaves from click point
-  for(let i=0;i<8;i++){
-    const l=new Leaf(false);
-    l.x=bx+(Math.random()-0.5)*40;
-    l.y=by+(Math.random()-0.5)*40;
-    l.speed=Math.random()*3+1;
-    l.vy=(Math.random()-0.5)*3;
-    l.opacity=0.8;
-    l.size=Math.random()*8+4;
-    leaves.push(l);
-  }
-  if(leaves.length>200)leaves.splice(0,8);
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
 });
 
-// === NAV SCROLL ===
-const nav=document.getElementById('mainNav');
-window.addEventListener('scroll',()=>{
-  if(window.scrollY>60)nav.classList.add('scrolled-nav');
-  else nav.classList.remove('scrolled-nav');
-});
-
-// === SCROLL REVEAL ===
-const revealObs=new IntersectionObserver((entries)=>{
-  entries.forEach((entry,idx)=>{
-    if(entry.isIntersecting){
-      // Stagger siblings
-      const siblings=[...entry.target.parentElement.querySelectorAll('.reveal-up,.reveal-left,.reveal-right,.reveal-scale')];
-      const sibIdx=siblings.indexOf(entry.target);
-      const delay=sibIdx*0.1;
-      entry.target.style.transitionDelay=`${delay}s`;
-      entry.target.classList.add('revealed');
-      revealObs.unobserve(entry.target);
+const ro = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('in'), i * 70);
+      ro.unobserve(e.target);
     }
   });
-},{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
-
-document.querySelectorAll('.reveal-up,.reveal-left,.reveal-right,.reveal-scale').forEach(el=>{
-  revealObs.observe(el);
-});
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 </script>
 </body>
 </html>
