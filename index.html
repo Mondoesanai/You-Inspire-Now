@@ -66,40 +66,20 @@ h2 em{font-style:italic;color:#2EB8B0;}
 .btn-teal{display:inline-block;padding:0.9rem 2.25rem;background:#2EB8B0;color:#fff;font-weight:700;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s;box-shadow:0 6px 24px rgba(46,184,176,0.3);}
 .btn-teal:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 40px rgba(46,184,176,0.4);}
 
-/* ── PERSONAS ── */
-#personas{background:#FAF8FF;}
-.personas-intro{text-align:center;max-width:600px;margin:0 auto 3.5rem;}
-.personas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-.persona-card{border-radius:2px;overflow:hidden;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s;cursor:default;}
-.persona-card:hover{transform:translateY(-8px);box-shadow:0 24px 72px rgba(53,32,79,0.18);}
-.persona-photo{height:260px;position:relative;overflow:hidden;}
-.persona-photo img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform 0.5s ease;}
-.persona-card:hover .persona-photo img{transform:scale(1.05);}
-.persona-photo-overlay{position:absolute;inset:0;mix-blend-mode:multiply;}
-.persona-body{padding:2rem 1.75rem 2.25rem;}
-.persona-label{font-size:0.6rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;margin-bottom:0.6rem;display:block;}
-.persona-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;line-height:1.25;margin-bottom:0.75rem;}
-.persona-text{font-size:0.86rem;color:rgba(35,29,45,0.6);line-height:1.8;margin-bottom:1.5rem;}
-.persona-btn{display:inline-block;padding:0.65rem 1.5rem;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;transition:transform 0.2s,opacity 0.2s;color:#fff;border:none;}
-.persona-btn:hover{transform:translateY(-2px);opacity:0.9;}
-/* card 1 — purple */
-.pc1{background:#fff;border:1px solid rgba(91,59,140,0.12);}
-.pc1 .persona-photo-overlay{background:rgba(91,59,140,0.45);}
-.pc1 .persona-label{color:#5B3B8C;}
-.pc1 .persona-title{color:#35204F;}
-.pc1 .persona-btn{background:#5B3B8C;box-shadow:0 6px 20px rgba(91,59,140,0.3);}
-/* card 2 — teal */
-.pc2{background:#fff;border:1px solid rgba(46,184,176,0.15);}
-.pc2 .persona-photo-overlay{background:rgba(31,143,138,0.4);}
-.pc2 .persona-label{color:#1F8F8A;}
-.pc2 .persona-title{color:#1a4f4c;}
-.pc2 .persona-btn{background:#2EB8B0;box-shadow:0 6px 20px rgba(46,184,176,0.3);}
-/* card 3 — gold */
-.pc3{background:#fff;border:1px solid rgba(201,162,39,0.15);}
-.pc3 .persona-photo-overlay{background:rgba(160,120,32,0.4);}
-.pc3 .persona-label{color:#A07820;}
-.pc3 .persona-title{color:#4a3000;}
-.pc3 .persona-btn{background:#C9A227;box-shadow:0 6px 20px rgba(201,162,39,0.3);}
+/* ── ABOUT ── */
+#about{background:#FAF8FF;}
+.about-split{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.about-img{position:relative;height:520px;border-radius:2px;overflow:hidden;}
+.about-img img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+.about-img::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(91,59,140,0.25),rgba(46,184,176,0.15));mix-blend-mode:multiply;pointer-events:none;}
+.about-img-badge{position:absolute;bottom:1.75rem;left:1.75rem;background:rgba(255,255,255,0.95);padding:1rem 1.5rem;border-left:4px solid #5B3B8C;}
+.about-img-badge strong{font-family:'Playfair Display',serif;font-size:1.1rem;color:#35204F;display:block;font-style:italic;}
+.about-img-badge span{font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(35,29,45,0.45);margin-top:0.2rem;display:block;}
+.about-blocks{display:flex;flex-direction:column;gap:2rem;margin-top:2.5rem;}
+.about-block{display:flex;gap:1.25rem;align-items:flex-start;}
+.ab-icon{width:44px;height:44px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0;}
+.ab-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#35204F;margin-bottom:0.4rem;}
+.ab-text{font-size:0.88rem;color:rgba(35,29,45,0.62);line-height:1.8;}
 
 /* ── HOW IT WORKS (horizontal scroll) ── */
 #how-outer{position:relative;}
@@ -107,16 +87,23 @@ h2 em{font-style:italic;color:#2EB8B0;}
 .how-sticky-header h2{color:#35204F;}
 .how-sticky-header .body-p{max-width:500px;margin:0.5rem auto 0;}
 /* sticky scroll container */
-.hscroll-outer{height:280vh;position:relative;}
-.hscroll-sticky{position:sticky;top:0;height:100vh;overflow:hidden;background:#EDE4F8;display:flex;align-items:center;}
-.hscroll-track{display:flex;align-items:center;gap:2rem;padding:0 5vw;will-change:transform;}
-.step-card{width:340px;flex-shrink:0;background:#fff;padding:2.5rem 2rem;border-radius:2px;position:relative;overflow:hidden;box-shadow:0 4px 30px rgba(91,59,140,0.1);}
+.hscroll-outer{height:350vh;position:relative;}
+.hscroll-sticky{position:sticky;top:0;height:100vh;overflow:hidden;background:#EDE4F8;display:flex;flex-direction:column;justify-content:center;}
+.hscroll-track{display:flex;align-items:center;gap:2.5rem;padding:0 8vw;will-change:transform;flex-shrink:0;}
+.step-card{width:360px;flex-shrink:0;background:#fff;padding:2.5rem 2.25rem;border-radius:2px;position:relative;overflow:hidden;box-shadow:0 4px 30px rgba(91,59,140,0.1);}
 .step-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--sc);}
 .step-num{font-family:'Playfair Display',serif;font-size:4.5rem;font-weight:700;line-height:1;color:rgba(91,59,140,0.08);margin-bottom:0.25rem;letter-spacing:-0.04em;}
 .step-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#35204F;margin-bottom:0.65rem;}
 .step-text{font-size:0.88rem;color:rgba(35,29,45,0.6);line-height:1.8;}
 .step-icon{font-size:2rem;margin-bottom:0.75rem;display:block;}
-/* scroll progress bar */
+/* numbered step indicator */
+.step-indicator{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:2.5rem;padding:0 2rem;position:relative;z-index:5;}
+.si-dot{width:34px;height:34px;border-radius:50%;border:2px solid rgba(91,59,140,0.2);background:#fff;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:900;color:rgba(91,59,140,0.35);transition:background 0.3s,border-color 0.3s,color 0.3s,transform 0.3s;flex-shrink:0;position:relative;z-index:2;}
+.si-dot.done{background:#5B3B8C;border-color:#5B3B8C;color:#fff;}
+.si-dot.active{background:#5B3B8C;border-color:#5B3B8C;color:#fff;transform:scale(1.2);box-shadow:0 0 0 4px rgba(91,59,140,0.15);}
+.si-line{height:2px;width:60px;background:rgba(91,59,140,0.12);position:relative;flex-shrink:0;}
+.si-line-fill{position:absolute;left:0;top:0;height:100%;background:#5B3B8C;width:0%;transition:width 0.08s linear;}
+/* bottom progress bar */
 .hscroll-progress{position:absolute;bottom:0;left:0;height:3px;background:linear-gradient(90deg,#5B3B8C,#2EB8B0);transition:width 0.05s linear;z-index:10;}
 
 /* ── FIND AN EVENT ── */
@@ -190,7 +177,8 @@ footer{background:#231D2D;padding:3rem 2.5rem 2rem;}
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:2.5rem;}
   .hero-photo-area{height:320px;}
-  .personas-grid{grid-template-columns:1fr;}
+  .about-split{grid-template-columns:1fr;gap:2.5rem;}
+  .about-img{height:320px;}
   .events-inner{grid-template-columns:1fr;gap:2.5rem;}
   .donate-grid{grid-template-columns:1fr;gap:2.5rem;}
   .donate-visual{height:260px;}
@@ -227,7 +215,7 @@ footer{background:#231D2D;padding:3rem 2.5rem 2rem;}
       <span class="nav-logo-text">You Inspire Now</span>
     </a>
     <div class="nav-links">
-      <a href="#personas">Who We Serve</a>
+      <a href="#about">About Us</a>
       <a href="#events">Events</a>
       <a href="#donate">Give</a>
       <a href="#donate" class="nav-cta">Donate ♥</a>
@@ -263,52 +251,48 @@ footer{background:#231D2D;padding:3rem 2.5rem 2rem;}
   </div>
 </section>
 
-<!-- ══ WHO WE SERVE ══ -->
-<section id="personas" class="sec">
+<!-- ══ ABOUT ══ -->
+<section id="about" class="sec">
   <div class="sec-inner">
-    <div class="personas-intro reveal">
-      <span class="chip purple">Who We Serve</span>
-      <h2>Every Woman Has a<br><em>Story Worth Rising Into.</em></h2>
-      <p class="body-p">Wherever you are in your journey, there's a community here for you. Find your place below.</p>
-    </div>
-    <div class="personas-grid">
-      <!-- Card 1 -->
-      <div class="persona-card pc1 reveal">
-        <div class="persona-photo">
-          <img src="https://placehold.co/400x260/5B3B8C/EDE4F8?text=Identity+%26+Purpose" alt="Women seeking identity">
-          <div class="persona-photo-overlay"></div>
-        </div>
-        <div class="persona-body">
-          <span class="persona-label" style="color:#5B3B8C;">For Women Seeking Identity + Purpose</span>
-          <div class="persona-title" style="color:#35204F;">You know God is calling you somewhere — but you're not sure where.</div>
-          <p class="persona-text">You feel the pull. The restlessness. The sense that there's more. We'll help you hear God's voice clearly, know who you are, and take the first step toward the life you were made for.</p>
-          <a href="#events" class="persona-btn" style="background:#5B3B8C;box-shadow:0 6px 20px rgba(91,59,140,0.3);">Find a Community →</a>
+    <div class="about-split">
+      <!-- photo -->
+      <div class="about-img reveal">
+        <img src="https://placehold.co/560x520/C9B8E8/35204F?text=😊" alt="You Inspire Now — Women's Community">
+        <div class="about-img-badge">
+          <strong>"You were born for more."</strong>
+          <span>You Inspire Now</span>
         </div>
       </div>
-      <!-- Card 2 -->
-      <div class="persona-card pc2 reveal">
-        <div class="persona-photo">
-          <img src="https://placehold.co/400x260/2EB8B0/E6F7F6?text=Young+Moms+Rising" alt="Young moms">
-          <div class="persona-photo-overlay"></div>
+      <!-- text -->
+      <div class="reveal">
+        <span class="chip purple">About Us</span>
+        <h2>Built for Women.<br><em>Rooted in Faith.</em></h2>
+        <p class="body-p">You Inspire Now is a faith-based women's nonprofit dedicated to helping women step into their identity, walk in purpose, and build a life that reflects who God created them to be.</p>
+        <div class="about-blocks">
+          <div class="about-block">
+            <div class="ab-icon" style="background:rgba(91,59,140,0.1);">🌿</div>
+            <div>
+              <div class="ab-title">What We Do</div>
+              <p class="ab-text">We create community, resources, and events for women at every stage — from searching for identity to walking in full purpose.</p>
+            </div>
+          </div>
+          <div class="about-block">
+            <div class="ab-icon" style="background:rgba(46,184,176,0.1);">❤️</div>
+            <div>
+              <div class="ab-title">Why We Do It</div>
+              <p class="ab-text">Too many women are living below the life God designed for them — not because they don't want more, but because no one ever walked alongside them.</p>
+            </div>
+          </div>
+          <div class="about-block">
+            <div class="ab-icon" style="background:rgba(201,162,39,0.1);">✨</div>
+            <div>
+              <div class="ab-title">Who We Are</div>
+              <p class="ab-text">A faith-rooted community founded on five pillars: Identity, Purpose, Resilience, Community, and Wholeness. Real women, doing real life, together.</p>
+            </div>
+          </div>
         </div>
-        <div class="persona-body">
-          <span class="persona-label" style="color:#1F8F8A;">For Young Moms Ready to Rise</span>
-          <div class="persona-title" style="color:#1a4f4c;">Motherhood is beautiful — and hard. You don't have to do it alone.</div>
-          <p class="persona-text">Whether you're a single mom, a new mom, or a mom who's lost herself in the process — we have a community that gets it. Real women, real support, real love.</p>
-          <a href="#events" class="persona-btn" style="background:#2EB8B0;box-shadow:0 6px 20px rgba(46,184,176,0.3);">Find a Community →</a>
-        </div>
-      </div>
-      <!-- Card 3 -->
-      <div class="persona-card pc3 reveal">
-        <div class="persona-photo">
-          <img src="https://placehold.co/400x260/C9A227/FFF8E1?text=Women+in+Healing" alt="Women in healing">
-          <div class="persona-photo-overlay"></div>
-        </div>
-        <div class="persona-body">
-          <span class="persona-label" style="color:#A07820;">For Women in Healing + Transition</span>
-          <div class="persona-title" style="color:#4a3000;">Whatever you've been through — your story isn't over.</div>
-          <p class="persona-text">Grief, trauma, broken relationships, lost identity — healing takes a community. We walk alongside women who are in the process of becoming, not the other side of it yet.</p>
-          <a href="#events" class="persona-btn" style="background:#C9A227;box-shadow:0 6px 20px rgba(201,162,39,0.3);">Find a Community →</a>
+        <div style="margin-top:2.25rem;">
+          <a href="#events" class="btn-purple">Find a Local Event →</a>
         </div>
       </div>
     </div>
@@ -325,6 +309,18 @@ footer{background:#231D2D;padding:3rem 2.5rem 2rem;}
   <div class="hscroll-outer" id="hscrollOuter">
     <div class="hscroll-sticky">
       <div class="hscroll-progress" id="hscrollProgress" style="width:0%;"></div>
+      <!-- step indicator -->
+      <div class="step-indicator" id="stepIndicator">
+        <div class="si-dot active" data-i="0">1</div>
+        <div class="si-line"><div class="si-line-fill"></div></div>
+        <div class="si-dot" data-i="1">2</div>
+        <div class="si-line"><div class="si-line-fill"></div></div>
+        <div class="si-dot" data-i="2">3</div>
+        <div class="si-line"><div class="si-line-fill"></div></div>
+        <div class="si-dot" data-i="3">4</div>
+        <div class="si-line"><div class="si-line-fill"></div></div>
+        <div class="si-dot" data-i="4">5</div>
+      </div>
       <div class="hscroll-track" id="hscrollTrack">
         <div class="step-card" style="--sc:#5B3B8C;">
           <span class="step-num">01</span>
@@ -468,7 +464,7 @@ footer{background:#231D2D;padding:3rem 2.5rem 2rem;}
   <div class="footer-inner">
     <img src="assets/yin-logo.png" alt="You Inspire Now" class="footer-logo">
     <div class="footer-links">
-      <a href="#personas" class="footer-link">Who We Serve</a>
+      <a href="#about" class="footer-link">About Us</a>
       <a href="#events" class="footer-link">Events</a>
       <a href="#impact" class="footer-link">Our Mission</a>
       <a href="#donate" class="footer-link">Donate</a>
@@ -487,23 +483,55 @@ window.addEventListener('scroll', () => {
 });
 
 /* Horizontal scroll — How It Works */
-const hOuter = document.getElementById('hscrollOuter');
-const hTrack = document.getElementById('hscrollTrack');
-const hBar   = document.getElementById('hscrollProgress');
+const hOuter  = document.getElementById('hscrollOuter');
+const hTrack  = document.getElementById('hscrollTrack');
+const hBar    = document.getElementById('hscrollProgress');
+const siDots  = document.querySelectorAll('.si-dot');
+const siLines = document.querySelectorAll('.si-line-fill');
+const NUM_STEPS = 5;
+
+// Get true document-relative top (fixes parent offset bug)
+function absTop(el) {
+  let t = 0;
+  while (el) { t += el.offsetTop; el = el.offsetParent; }
+  return t;
+}
 
 function updateHScroll() {
   if (!hOuter || !hTrack) return;
-  const outerTop    = hOuter.offsetTop;
-  const scrolled    = window.scrollY - outerTop;
-  const scrollable  = hOuter.offsetHeight - window.innerHeight;
+  const outerTop   = absTop(hOuter);
+  const scrolled   = window.scrollY - outerTop;
+  const scrollable = hOuter.offsetHeight - window.innerHeight;
   if (scrollable <= 0) return;
-  const progress    = Math.max(0, Math.min(1, scrolled / scrollable));
-  const maxTranslate = hTrack.scrollWidth - window.innerWidth + 80;
-  hTrack.style.transform = `translateX(-${progress * Math.max(0,maxTranslate)}px)`;
+  const progress   = Math.max(0, Math.min(1, scrolled / scrollable));
+
+  // Slide the track
+  const maxX = Math.max(0, hTrack.scrollWidth - window.innerWidth + 120);
+  hTrack.style.transform = `translateX(-${progress * maxX}px)`;
+
+  // Bottom bar
   if (hBar) hBar.style.width = (progress * 100) + '%';
+
+  // Step indicator — which step are we on?
+  const raw        = progress * NUM_STEPS;           // 0 → 5
+  const activeIdx  = Math.min(Math.floor(raw), NUM_STEPS - 1);
+  const fraction   = raw - Math.floor(raw);          // 0→1 within current step
+
+  siDots.forEach((dot, i) => {
+    dot.classList.remove('active', 'done');
+    if (i < activeIdx)      dot.classList.add('done');
+    else if (i === activeIdx) dot.classList.add('active');
+  });
+  siLines.forEach((fill, i) => {
+    if (i < activeIdx)        fill.style.width = '100%';
+    else if (i === activeIdx) fill.style.width = (fraction * 100) + '%';
+    else                      fill.style.width = '0%';
+  });
 }
 window.addEventListener('scroll', updateHScroll, { passive: true });
-window.addEventListener('resize', updateHScroll);
+window.addEventListener('resize', () => { updateHScroll(); });
+// Run once after layout settles
+requestAnimationFrame(updateHScroll);
 
 /* Scroll reveal */
 const ro = new IntersectionObserver(entries => {
