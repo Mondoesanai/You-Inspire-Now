@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Events — You Inspire Now</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<script src="config.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:#fff;color:#231D2D;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:0.9rem 2.5rem;
+  background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(91,59,140,0.08);box-shadow:0 2px 20px rgba(91,59,140,0.06);}
+.nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo img{height:44px;display:block;}
+.nav-links{display:flex;align-items:center;gap:1.75rem;}
+.nav-links a{font-size:0.68rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;
+  color:rgba(35,29,45,0.5);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:#5B3B8C;}
+.nav-links a.active{color:#5B3B8C;}
+.nav-donate{padding:0.5rem 1.4rem;background:#C9A227;color:#fff!important;font-size:0.68rem;
+  font-weight:900;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;
+  border-radius:3px;transition:transform 0.2s,box-shadow 0.2s;}
+.nav-donate:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,162,39,0.4);}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:#35204F;}
+
+/* ── PAGE HEADER ── */
+.page-header{padding:8rem 2.5rem 4rem;
+  background:linear-gradient(140deg,#2C1846 0%,#4A2B7A 40%,#2EB8B0 100%);
+  position:relative;overflow:hidden;}
+.page-header-noise{position:absolute;inset:0;opacity:0.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px;}
+.page-header-orb{position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(46,184,176,0.3) 0%,transparent 70%);
+  top:-150px;right:-100px;pointer-events:none;}
+.page-header-inner{max-width:1160px;margin:0 auto;position:relative;z-index:1;}
+.page-header-label{font-size:0.6rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(201,162,39,0.85);margin-bottom:0.75rem;}
+.page-header-h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.8rem);
+  font-weight:700;line-height:1.1;letter-spacing:-0.025em;color:#fff;margin-bottom:1rem;}
+.page-header-h1 em{color:#A8E6E3;font-style:italic;}
+.page-header-sub{font-size:1rem;color:rgba(255,255,255,0.65);max-width:520px;line-height:1.85;}
+
+/* ── FILTERS ── */
+.filters-bar{padding:2rem 2.5rem;background:#FAF8FF;
+  border-bottom:1px solid rgba(91,59,140,0.08);}
+.filters-inner{max-width:1160px;margin:0 auto;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;}
+.search-wrap{position:relative;flex:1;min-width:220px;max-width:400px;}
+.search-wrap input{width:100%;padding:0.75rem 0.9rem 0.75rem 2.6rem;
+  border:1.5px solid rgba(91,59,140,0.18);border-radius:5px;font-size:0.85rem;
+  font-family:'Lato',sans-serif;outline:none;background:#fff;color:#231D2D;
+  transition:border-color 0.2s,box-shadow 0.2s;}
+.search-wrap input:focus{border-color:#5B3B8C;box-shadow:0 0 0 3px rgba(91,59,140,0.1);}
+.search-icon{position:absolute;left:0.8rem;top:50%;transform:translateY(-50%);font-size:0.9rem;pointer-events:none;}
+.filter-count{font-size:0.78rem;color:rgba(35,29,45,0.45);font-weight:700;margin-left:auto;}
+
+/* ── EVENTS MAIN ── */
+.events-main{padding:4rem 2.5rem 7rem;min-height:60vh;}
+.events-container{max-width:1160px;margin:0 auto;}
+
+/* month group */
+.month-group{margin-bottom:3rem;}
+.month-heading{font-size:0.65rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(91,59,140,0.55);padding-bottom:0.75rem;
+  border-bottom:1px solid rgba(91,59,140,0.1);margin-bottom:1.25rem;}
+
+/* event card */
+.event-card{display:flex;align-items:stretch;background:#fff;
+  border:1px solid rgba(91,59,140,0.08);border-radius:8px;overflow:hidden;
+  margin-bottom:1rem;box-shadow:0 4px 20px rgba(53,32,79,0.05);
+  transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.25s;}
+.event-card:hover{transform:translateY(-4px);box-shadow:0 16px 50px rgba(53,32,79,0.12);}
+.event-date-col{flex:0 0 96px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:1.5rem 0.75rem;
+  background:linear-gradient(160deg,#35204F,#5B3B8C);min-height:100px;}
+.event-month{font-size:0.58rem;font-weight:900;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(201,162,39,0.9);}
+.event-day{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;
+  color:#fff;line-height:1;}
+.event-day-name{font-size:0.55rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(255,255,255,0.45);}
+.event-body{flex:1;padding:1.5rem 1.75rem;}
+.event-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;
+  color:#35204F;margin-bottom:0.4rem;}
+.event-meta{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;margin-bottom:0.65rem;}
+.event-loc{font-size:0.78rem;color:rgba(35,29,45,0.5);font-weight:400;}
+.event-loc::before{content:'📍 ';}
+.event-time{font-size:0.78rem;color:rgba(35,29,45,0.5);}
+.event-time::before{content:'🕐 ';}
+.event-desc{font-size:0.85rem;color:rgba(35,29,45,0.55);line-height:1.75;}
+.event-cta{flex:0 0 auto;padding:1.5rem 1.75rem;display:flex;align-items:center;}
+.event-rsvp{display:inline-block;padding:0.65rem 1.5rem;background:#5B3B8C;color:#fff;
+  font-size:0.68rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;
+  border-radius:4px;text-decoration:none;white-space:nowrap;
+  transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s;}
+.event-rsvp:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 10px 28px rgba(91,59,140,0.4);}
+.event-rsvp:active{transform:scale(0.97);}
+
+/* loading / empty */
+.events-loading{text-align:center;padding:6rem 2rem;}
+.events-spinner{display:inline-block;width:44px;height:44px;border:3px solid rgba(91,59,140,0.15);
+  border-top-color:#5B3B8C;border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.events-empty{text-align:center;padding:5rem 2rem;}
+.events-empty-icon{font-size:3.5rem;margin-bottom:1.5rem;}
+.events-empty h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:#35204F;margin-bottom:0.65rem;}
+.events-empty p{font-size:0.9rem;color:rgba(35,29,45,0.5);line-height:1.8;}
+
+/* footer */
+footer{background:#1A0F2E;padding:3rem 2.5rem;}
+.footer-inner{max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:1.5rem;}
+.footer-brand img{height:36px;}
+.footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.25);}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{font-size:0.72rem;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:#fff;}
+
+@media(max-width:700px){
+  .nav-links{display:none;}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;
+    top:66px;left:0;right:0;background:rgba(255,255,255,0.99);
+    padding:1.5rem 2rem;box-shadow:0 12px 40px rgba(0,0,0,0.15);gap:1rem;z-index:299;}
+  .nav-hamburger{display:flex;}
+  .event-card{flex-wrap:wrap;}
+  .event-date-col{flex:0 0 100%;flex-direction:row;min-height:auto;padding:0.75rem 1.25rem;gap:0.6rem;}
+  .event-cta{padding:0.75rem 1.25rem 1.25rem;}
+  .footer-inner{flex-direction:column;text-align:center;}
+  .footer-links{flex-wrap:wrap;justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="assets/yin-logo.png" alt="You Inspire Now"></a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html#who-we-serve">Who We Serve</a>
+      <a href="index.html#how-it-works">How It Works</a>
+      <a href="index.html#events">Find Events</a>
+      <a href="#" class="active">All Events</a>
+      <a href="index.html#donate" class="nav-donate">Donate</a>
+    </div>
+    <button class="nav-hamburger" id="nav-burger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-noise"></div>
+  <div class="page-header-orb"></div>
+  <div class="page-header-inner">
+    <p class="page-header-label">You Inspire Now</p>
+    <h1 class="page-header-h1">All Upcoming <em>Events</em></h1>
+    <p class="page-header-sub">
+      Every event is free to attend. Find one in your community, RSVP, and show up ready to be inspired.
+    </p>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters-bar">
+  <div class="filters-inner">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search-input" placeholder="Search by city, title, or zip…" autocomplete="off">
+    </div>
+    <div class="filter-count" id="filter-count"></div>
+  </div>
+</div>
+
+<!-- EVENTS -->
+<div class="events-main">
+  <div class="events-container" id="events-container">
+    <div class="events-loading"><div class="events-spinner"></div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="index.html"><img src="assets/yin-logo.png" alt="You Inspire Now" style="height:40px;display:block;"></a>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#who-we-serve">Who We Serve</a>
+      <a href="index.html#donate">Donate</a>
+    </div>
+    <p class="footer-copy">© 2026 You Inspire Now</p>
+  </div>
+</footer>
+
+<script>
+const DAYS   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+// nav burger
+document.getElementById('nav-burger').addEventListener('click', () => {
+  document.getElementById('nav-links').classList.toggle('open');
+});
+
+function getDemoEvents(){
+  return [
+    { id:'d1', title:"Women's Identity Workshop",       location:"Milton, FL",            startDate:new Date('2026-05-10T10:00:00'), description:"Discover who you were created to be. A powerful morning of reflection, community, and purpose." },
+    { id:'d2', title:"Family Empowerment Night",        location:"Pensacola, FL",          startDate:new Date('2026-05-18T18:30:00'), description:"An evening for families — hear stories, share meals, and build the village you deserve." },
+    { id:'d3', title:"Single Moms Support Circle",      location:"Fort Walton Beach, FL",  startDate:new Date('2026-06-07T11:00:00'), description:"You are not alone. A safe space to share, heal, and connect with other incredible moms." },
+    { id:'d4', title:"Purpose & Passion Summit",        location:"Milton, FL",             startDate:new Date('2026-06-21T09:00:00'), description:"A half-day event filled with keynote speakers, workshops, and community building." },
+    { id:'d5', title:"Health & Wholeness Walk",         location:"Navarre, FL",            startDate:new Date('2026-07-12T08:00:00'), description:"Start your healing journey one step at a time. A community wellness walk followed by brunch." },
+    { id:'d6', title:"Back-to-School Family Cookout",   location:"Pensacola, FL",          startDate:new Date('2026-07-26T15:00:00'), description:"Celebrate the new school year together. Food, fun, supplies, and community love." },
+    { id:'d7', title:"Leadership for Women Workshop",   location:"Milton, FL",             startDate:new Date('2026-08-08T10:00:00'), description:"Step into your authority. A hands-on workshop for women who are ready to lead." },
+    { id:'d8', title:"Fall Community Celebration",      location:"Fort Walton Beach, FL",  startDate:new Date('2026-09-13T14:00:00'), description:"A community celebration of growth, transformation, and gratitude. All welcome." },
+  ];
+}
+
+function formatGCalEvent(item){
+  const start = item.start.dateTime || item.start.date;
+  return {
+    id: item.id,
+    title: item.summary || 'Untitled Event',
+    location: item.location || '',
+    startDate: new Date(start),
+    description: item.description || '',
+  };
+}
+
+async function fetchCalendarEvents(){
+  const cfg = window.YIN_CONFIG || {};
+  if(!cfg.CALENDAR_ID || !cfg.GOOGLE_API_KEY) return getDemoEvents();
+  try {
+    const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(cfg.CALENDAR_ID)}/events?key=${cfg.GOOGLE_API_KEY}&timeMin=${new Date().toISOString()}&singleEvents=true&orderBy=startTime&maxResults=100`;
+    const res = await fetch(url);
+    if(!res.ok) throw new Error('API error');
+    const data = await res.json();
+    return (data.items || []).map(formatGCalEvent);
+  } catch(e){
+    console.warn('Calendar fetch failed, using demo:', e);
+    return getDemoEvents();
+  }
+}
+
+function formatTime(d){
+  return d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});
+}
+
+function renderEventCard(ev, rsvpLink){
+  const d = ev.startDate;
+  return `
+    <div class="event-card" data-search="${(ev.title+' '+(ev.location||'')).toLowerCase()}">
+      <div class="event-date-col">
+        <span class="event-month">${MONTHS[d.getMonth()]}</span>
+        <span class="event-day">${d.getDate()}</span>
+        <span class="event-day-name">${DAYS[d.getDay()]}</span>
+      </div>
+      <div class="event-body">
+        <div class="event-title">${ev.title}</div>
+        <div class="event-meta">
+          ${ev.location ? `<span class="event-loc">${ev.location}</span>` : ''}
+          <span class="event-time">${formatTime(d)}</span>
+        </div>
+        ${ev.description ? `<div class="event-desc">${ev.description.replace(/<[^>]*>/g,'')}</div>` : ''}
+      </div>
+      <div class="event-cta">
+        <a href="${rsvpLink||'#'}" class="event-rsvp" target="_blank" rel="noopener">RSVP →</a>
+      </div>
+    </div>`;
+}
+
+function groupByMonth(events){
+  const groups = {};
+  events.forEach(ev => {
+    const key = `${ev.startDate.getFullYear()}-${ev.startDate.getMonth()}`;
+    if(!groups[key]) groups[key] = {label:`${MONTH_NAMES[ev.startDate.getMonth()]} ${ev.startDate.getFullYear()}`, events:[]};
+    groups[key].events.push(ev);
+  });
+  return Object.values(groups);
+}
+
+let allEvents = [];
+const container = document.getElementById('events-container');
+const countEl   = document.getElementById('filter-count');
+
+function renderEvents(query){
+  const q = (query||'').toLowerCase().trim();
+  const cfg = window.YIN_CONFIG || {};
+  const rsvp = (cfg.RSVP_LINK && cfg.RSVP_LINK !== '#') ? cfg.RSVP_LINK : '#';
+
+  const filtered = q
+    ? allEvents.filter(e => (e.title+' '+(e.location||'')).toLowerCase().includes(q))
+    : allEvents;
+
+  countEl.textContent = filtered.length
+    ? `${filtered.length} event${filtered.length !== 1 ? 's' : ''}`
+    : '';
+
+  if(!filtered.length){
+    container.innerHTML = `
+      <div class="events-empty">
+        <div class="events-empty-icon">📅</div>
+        <h3>No Events Found</h3>
+        <p>${q ? `We couldn't find events matching "${query}". Try a different search.` : 'No upcoming events right now. Check back soon!'}</p>
+      </div>`;
+    return;
+  }
+
+  const groups = groupByMonth(filtered);
+  container.innerHTML = groups.map(g => `
+    <div class="month-group">
+      <div class="month-heading">${g.label}</div>
+      ${g.events.map(e => renderEventCard(e, rsvp)).join('')}
+    </div>`).join('');
+}
+
+async function init(){
+  allEvents = await fetchCalendarEvents();
+  allEvents.sort((a,b) => a.startDate - b.startDate);
+  renderEvents('');
+}
+
+document.getElementById('search-input').addEventListener('input', e => renderEvents(e.target.value));
+
+// pre-fill from URL param
+const urlQ = new URLSearchParams(window.location.search).get('q');
+if(urlQ) document.getElementById('search-input').value = urlQ;
+
+init().then(() => {
+  if(urlQ) renderEvents(urlQ);
+});
+</script>
+</body>
+</html>

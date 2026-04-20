@@ -3,539 +3,836 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>You Inspire Now — Rise Into Who You Were Born to Be</title>
+<title>You Inspire Now — Find Your Community, Ignite Your Purpose</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="config.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{font-family:'Lato',sans-serif;background:#fff;color:#231D2D;overflow-x:hidden;}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1rem 2.5rem;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(91,59,140,0.1);transition:box-shadow 0.3s;}
-nav.scrolled{box-shadow:0 2px 30px rgba(91,59,140,0.12);}
-.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
-.nav-logo{display:flex;align-items:center;text-decoration:none;}
-.nav-logo img{height:42px;}
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:0.9rem 2.5rem;
+  background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(91,59,140,0.08);transition:box-shadow 0.3s;}
+nav.scrolled{box-shadow:0 2px 30px rgba(91,59,140,0.1);}
+.nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo img{height:44px;display:block;}
 .nav-links{display:flex;align-items:center;gap:1.75rem;}
-.nav-links a{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(35,29,45,0.5);text-decoration:none;transition:color 0.2s;}
-.nav-links a:hover{color:#5B3B8C;}
-.nav-cta{padding:0.5rem 1.35rem;background:#5B3B8C;color:#fff!important;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:4px;transition:transform 0.2s,box-shadow 0.2s;}
-.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(91,59,140,0.4);}
+.nav-links a{font-size:0.68rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;
+  color:rgba(35,29,45,0.5);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a:focus-visible{color:#5B3B8C;outline:none;}
+.nav-donate{padding:0.5rem 1.4rem;background:#C9A227;color:#fff!important;font-size:0.68rem;
+  font-weight:900;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;
+  border-radius:3px;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s;}
+.nav-donate:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,162,39,0.4);}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:#35204F;transition:transform 0.2s,opacity 0.2s;}
 
-/* HERO */
-#hero{min-height:100vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem;position:relative;overflow:hidden;
-  background:linear-gradient(135deg,#35204F 0%,#5B3B8C 55%,#2EB8B0 100%);}
-.hero-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:2;width:100%;}
-.hero-tag{display:inline-block;font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(237,228,248,0.7);font-weight:700;margin-bottom:1.25rem;padding:0.35rem 1.1rem;border:1px solid rgba(237,228,248,0.25);border-radius:100px;}
-.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(2.1rem,4.8vw,3.7rem);font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:#fff;margin-bottom:1rem;}
-.hero-h1 em{color:#C9E8E6;font-style:italic;display:block;}
-.hero-tagline{font-size:0.73rem;font-weight:900;letter-spacing:0.18em;text-transform:uppercase;color:rgba(201,162,39,0.9);margin-bottom:1.5rem;line-height:1.75;}
-.hero-sub{font-size:1rem;font-weight:300;color:rgba(255,255,255,0.72);line-height:1.9;margin-bottom:2.25rem;max-width:480px;}
-.hero-actions{display:flex;gap:0.85rem;flex-wrap:wrap;}
-.btn-white{display:inline-block;padding:0.9rem 2.25rem;background:#fff;color:#35204F;font-weight:900;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s;box-shadow:0 8px 32px rgba(0,0,0,0.2);}
-.btn-white:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 48px rgba(0,0,0,0.3);}
-.btn-outline-white{display:inline-block;padding:0.9rem 2.25rem;background:transparent;color:#fff;font-weight:700;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;border:1.5px solid rgba(255,255,255,0.45);text-decoration:none;transition:background 0.2s,border-color 0.2s,transform 0.2s;}
-.btn-outline-white:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.7);transform:translateY(-2px);}
-.hero-photo-area{position:relative;height:560px;}
-.hero-photo-bg{position:absolute;inset:0;border-radius:2px;overflow:hidden;border:1px solid rgba(255,255,255,0.15);}
-.hero-photo-bg img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
-.hero-photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(53,32,79,0.55) 0%,transparent 55%);}
-.hero-photo-label{position:absolute;bottom:1.75rem;left:1.75rem;right:1.75rem;}
-.hero-photo-label p{font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.65);}
-.hero-photo-label strong{font-family:'Playfair Display',serif;font-size:1.2rem;color:#fff;font-style:italic;display:block;margin-top:0.2rem;}
-.hero-dots{position:absolute;top:-1.5rem;right:-1.5rem;width:100px;height:100px;background-image:radial-gradient(circle,rgba(201,162,39,0.45) 1.5px,transparent 1.5px);background-size:12px 12px;z-index:1;}
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;align-items:center;padding:7rem 2.5rem 5rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;
+  background:linear-gradient(140deg,#2C1846 0%,#4A2B7A 40%,#2EB8B0 100%);}
+.hero-noise{position:absolute;inset:0;opacity:0.03;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px;}
+.hero-orb1{position:absolute;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(46,184,176,0.35) 0%,transparent 70%);
+  top:-100px;right:-100px;pointer-events:none;}
+.hero-orb2{position:absolute;width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,162,39,0.2) 0%,transparent 70%);
+  bottom:0;left:100px;pointer-events:none;}
+.hero-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;position:relative;z-index:2;width:100%;}
 
-/* SHARED */
-.sec{padding:6rem 2.5rem;}
-.sec-inner{max-width:1100px;margin:0 auto;}
-.chip{display:inline-block;font-size:0.6rem;font-weight:900;letter-spacing:0.3em;text-transform:uppercase;padding:0.3rem 1rem;border-radius:100px;margin-bottom:0.85rem;}
-.chip.purple{background:rgba(91,59,140,0.1);color:#5B3B8C;}
-.chip.teal{background:rgba(46,184,176,0.12);color:#1F8F8A;}
-.chip.gold{background:rgba(201,162,39,0.12);color:#A07820;}
-.chip.white{background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.85);}
-h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;letter-spacing:-0.025em;line-height:1.15;color:#35204F;margin-bottom:1rem;}
-h2 em{font-style:italic;color:#2EB8B0;}
-.body-p{font-size:0.97rem;font-weight:400;color:rgba(35,29,45,0.62);line-height:1.9;}
-.btn-purple{display:inline-block;padding:0.9rem 2.25rem;background:#5B3B8C;color:#fff;font-weight:700;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s;box-shadow:0 6px 24px rgba(91,59,140,0.3);}
-.btn-purple:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 40px rgba(91,59,140,0.4);}
-.divider{height:1px;background:linear-gradient(to right,transparent,rgba(91,59,140,0.12),transparent);}
+.hero-text-col{}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;
+  font-size:0.6rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(201,162,39,0.9);border:1px solid rgba(201,162,39,0.35);
+  padding:0.4rem 1rem;border-radius:100px;margin-bottom:1.5rem;}
+.hero-badge-dot{width:6px;height:6px;background:#C9A227;border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4.5vw,3.8rem);
+  font-weight:700;line-height:1.08;letter-spacing:-0.025em;color:#fff;margin-bottom:1.25rem;}
+.hero-h1 em{color:#A8E6E3;font-style:italic;display:block;}
+.hero-sub{font-size:1rem;font-weight:300;color:rgba(255,255,255,0.7);line-height:1.85;
+  max-width:460px;margin-bottom:2.5rem;}
 
-/* DEFINITION BANNER */
-#definition{background:linear-gradient(135deg,#EDE4F8 0%,#E6F7F6 100%);padding:5rem 2.5rem;}
-.def-inner{max-width:800px;margin:0 auto;text-align:center;}
-.def-word{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:700;color:#35204F;margin-bottom:0.35rem;}
-.def-phonetic{font-size:0.85rem;color:rgba(91,59,140,0.55);margin-bottom:1.25rem;font-style:italic;}
-.def-text{font-size:1.05rem;color:rgba(35,29,45,0.65);line-height:1.85;font-style:italic;max-width:620px;margin:0 auto;}
-.def-example{font-size:0.85rem;color:#5B3B8C;font-weight:700;margin-top:0.75rem;}
-.def-shout{font-size:clamp(1rem,2vw,1.3rem);font-weight:900;letter-spacing:0.07em;text-transform:uppercase;color:#35204F;margin-top:2.25rem;line-height:1.65;}
-.def-shout span{color:#2EB8B0;}
+/* search box */
+.hero-search-wrap{position:relative;max-width:440px;}
+.hero-search-label{font-size:0.6rem;font-weight:900;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(255,255,255,0.55);margin-bottom:0.6rem;}
+.hero-search-box{display:flex;background:rgba(255,255,255,0.97);border-radius:6px;
+  overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.35);}
+.hero-search-box input{flex:1;padding:0.9rem 1.25rem;font-size:0.88rem;font-family:'Lato',sans-serif;
+  border:none;outline:none;background:transparent;color:#231D2D;}
+.hero-search-box input::placeholder{color:rgba(35,29,45,0.38);}
+.hero-search-btn{padding:0.9rem 1.5rem;background:#5B3B8C;color:#fff;
+  font-size:0.72rem;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;
+  border:none;cursor:pointer;font-family:'Lato',sans-serif;
+  transition:background 0.2s,transform 0.15s;}
+.hero-search-btn:hover{background:#4A2B7A;transform:scale(1.03);}
+.hero-search-btn:active{transform:scale(0.98);}
 
-/* ABOUT */
-#about{background:#FAF8FF;}
-.about-split{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:start;}
-.about-img{position:relative;border-radius:2px;overflow:hidden;}
-.about-img img{width:100%;height:540px;object-fit:cover;object-position:top center;display:block;}
-.about-img::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(91,59,140,0.18),rgba(46,184,176,0.1));mix-blend-mode:multiply;pointer-events:none;}
-.about-badge{position:absolute;bottom:1.75rem;left:1.75rem;right:2rem;background:rgba(255,255,255,0.96);padding:1rem 1.5rem;border-left:4px solid #5B3B8C;}
-.about-badge strong{font-family:'Playfair Display',serif;font-size:1rem;color:#35204F;display:block;font-style:italic;}
-.about-badge span{font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(35,29,45,0.4);margin-top:0.2rem;display:block;}
-.story-p{font-size:0.93rem;color:rgba(35,29,45,0.65);line-height:1.9;margin-bottom:1rem;}
+/* photo */
+.hero-photo-col{position:relative;height:580px;}
+.hero-photo-frame{position:absolute;inset:0;border-radius:4px;overflow:hidden;
+  box-shadow:0 40px 100px rgba(0,0,0,0.5);}
+.hero-photo-frame img{width:100%;height:100%;object-fit:cover;object-position:top center;
+  display:block;transition:transform 0.1s linear;}
+.hero-photo-overlay{position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(44,24,70,0.6) 0%,transparent 50%);}
+.hero-photo-credit{position:absolute;bottom:1.5rem;left:1.5rem;}
+.hero-photo-credit p{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(255,255,255,0.55);font-weight:700;}
+.hero-photo-credit strong{font-family:'Playfair Display',serif;font-size:1.1rem;
+  color:#fff;font-style:italic;display:block;margin-top:0.15rem;}
+.hero-dots{position:absolute;top:-2rem;right:-2rem;width:110px;height:110px;
+  background-image:radial-gradient(circle,rgba(201,162,39,0.5) 1.5px,transparent 1.5px);
+  background-size:13px 13px;z-index:-1;}
 
-/* PILLARS */
-#pillars{background:#fff;}
-.pillars-header{text-align:center;max-width:600px;margin:0 auto 3.5rem;}
-.pillars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
-.pillar-card{padding:2.5rem 2rem;border-radius:2px;border:1px solid rgba(91,59,140,0.08);border-top:4px solid var(--pc);background:#fff;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s;}
-.pillar-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(91,59,140,0.1);}
-.pillar-icon{font-size:2rem;margin-bottom:1rem;display:block;}
-.pillar-name{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#35204F;margin-bottom:0.65rem;}
-.pillar-quote{font-family:'Playfair Display',serif;font-size:0.97rem;font-style:italic;color:rgba(35,29,45,0.7);line-height:1.8;margin-bottom:0.5rem;}
-.pillar-attr{font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(35,29,45,0.35);}
+/* stats strip */
+.hero-stats{position:absolute;bottom:0;left:0;right:0;z-index:2;
+  display:flex;justify-content:center;gap:0;}
+.hero-stat{flex:1;max-width:200px;padding:1.5rem 2rem;text-align:center;
+  background:rgba(255,255,255,0.07);backdrop-filter:blur(12px);
+  border-top:1px solid rgba(255,255,255,0.12);}
+.hero-stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;
+  color:#C9A227;line-height:1;}
+.hero-stat-lbl{font-size:0.58rem;font-weight:700;letter-spacing:0.18em;
+  text-transform:uppercase;color:rgba(255,255,255,0.55);margin-top:0.35rem;}
 
-/* HOW IT WORKS */
+/* ── WHO WE SERVE ── */
+#who-we-serve{padding:7rem 2.5rem;background:#FAF8FF;}
+.section-label{font-size:0.6rem;font-weight:900;letter-spacing:0.3em;text-transform:uppercase;
+  color:#2EB8B0;margin-bottom:0.65rem;}
+.section-h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,2.9rem);
+  font-weight:700;letter-spacing:-0.025em;line-height:1.15;color:#35204F;margin-bottom:1rem;}
+.section-h2 em{font-style:italic;color:#2EB8B0;}
+.section-sub{font-size:0.97rem;color:rgba(35,29,45,0.55);line-height:1.9;max-width:560px;}
+.who-grid{margin-top:4rem;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+.who-card{position:relative;border-radius:6px;overflow:hidden;
+  box-shadow:0 8px 40px rgba(53,32,79,0.1);transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s;}
+.who-card:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(53,32,79,0.18);}
+.who-card-img{height:340px;position:relative;}
+.who-card-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.who-card-img-overlay{position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(53,32,79,0.78) 0%,rgba(53,32,79,0.1) 55%);}
+.who-card-body{position:absolute;bottom:0;left:0;right:0;padding:1.75rem;}
+.who-card-tag{display:inline-block;font-size:0.58rem;font-weight:900;letter-spacing:0.22em;
+  text-transform:uppercase;padding:0.25rem 0.75rem;border-radius:100px;margin-bottom:0.6rem;}
+.who-card-tag.purple{background:rgba(91,59,140,0.9);color:#E8D8FF;}
+.who-card-tag.teal{background:rgba(46,184,176,0.9);color:#fff;}
+.who-card-tag.gold{background:rgba(201,162,39,0.9);color:#231D2D;}
+.who-card-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;
+  color:#fff;line-height:1.25;margin-bottom:0.5rem;}
+.who-card-text{font-size:0.8rem;color:rgba(255,255,255,0.72);line-height:1.7;}
+.who-card-link{display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;
+  font-size:0.68rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;
+  color:#C9A227;text-decoration:none;transition:gap 0.2s;}
+.who-card-link:hover{gap:0.7rem;}
+.who-card-link::after{content:'→';}
+
+/* ── HOW IT WORKS ── */
 #how-outer{position:relative;}
-.how-header{background:#EDE4F8;padding:4rem 2.5rem 2.5rem;text-align:center;}
-.how-header h2{color:#35204F;}
-.hscroll-outer{height:350vh;position:relative;}
-.hscroll-sticky{position:sticky;top:0;height:100vh;overflow:hidden;background:#EDE4F8;display:flex;flex-direction:column;justify-content:center;}
-.step-indicator{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:2.5rem;padding:0 2rem;}
-.si-dot{width:36px;height:36px;border-radius:50%;border:2px solid rgba(91,59,140,0.2);background:#fff;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:900;color:rgba(91,59,140,0.35);transition:background 0.3s,border-color 0.3s,color 0.3s,transform 0.3s;flex-shrink:0;}
-.si-dot.done{background:#5B3B8C;border-color:#5B3B8C;color:#fff;}
-.si-dot.active{background:#5B3B8C;border-color:#5B3B8C;color:#fff;transform:scale(1.25);box-shadow:0 0 0 5px rgba(91,59,140,0.15);}
-.si-line{height:2px;width:72px;background:rgba(91,59,140,0.12);position:relative;flex-shrink:0;}
-.si-line-fill{position:absolute;left:0;top:0;height:100%;background:#5B3B8C;width:0%;}
-.hscroll-track{display:flex;align-items:center;gap:2.5rem;padding:0 8vw;will-change:transform;flex-shrink:0;}
-.step-card{width:380px;flex-shrink:0;background:#fff;padding:2.75rem 2.25rem;border-radius:2px;position:relative;overflow:hidden;box-shadow:0 4px 30px rgba(91,59,140,0.1);}
-.step-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--sc);}
-.step-num{font-family:'Playfair Display',serif;font-size:4.5rem;font-weight:700;line-height:1;color:rgba(91,59,140,0.07);margin-bottom:0.25rem;letter-spacing:-0.04em;}
-.step-icon{font-size:2rem;margin-bottom:0.75rem;display:block;}
-.step-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#35204F;margin-bottom:0.65rem;}
-.step-text{font-size:0.88rem;color:rgba(35,29,45,0.6);line-height:1.8;}
-.hscroll-progress{position:absolute;bottom:0;left:0;height:3px;background:linear-gradient(90deg,#5B3B8C,#2EB8B0);z-index:10;}
+.how-sticky{position:sticky;top:0;height:100vh;overflow:hidden;}
+.how-track{display:flex;align-items:center;will-change:transform;}
+.how-intro-panel{flex:0 0 100vw;height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:0 2.5rem;background:#fff;}
+.how-intro-inner{max-width:560px;margin:0 auto;}
+.how-step-panel{flex:0 0 420px;height:100vh;display:flex;align-items:center;
+  padding:0 2.5rem;}
+.how-step-card{background:#fff;border-radius:8px;padding:2.5rem;
+  box-shadow:0 16px 60px rgba(53,32,79,0.1);position:relative;
+  border-top:4px solid #5B3B8C;width:100%;}
+.how-step-card.teal-top{border-top-color:#2EB8B0;}
+.how-step-card.gold-top{border-top-color:#C9A227;}
+.how-step-num{font-family:'Playfair Display',serif;font-size:4.5rem;font-weight:700;
+  line-height:1;color:rgba(91,59,140,0.08);margin-bottom:0.5rem;letter-spacing:-0.03em;}
+.how-step-icon{font-size:2.25rem;margin-bottom:1rem;}
+.how-step-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;
+  color:#35204F;margin-bottom:0.6rem;}
+.how-step-text{font-size:0.9rem;color:rgba(35,29,45,0.6);line-height:1.8;}
 
-/* EVENTS */
-#events{background:linear-gradient(135deg,#1F8F8A 0%,#2EB8B0 60%,#35B5AD 100%);padding:6rem 2.5rem;}
-.events-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
-.events-text h2{color:#fff;}
-.events-text .body-p{color:rgba(255,255,255,0.78);margin:0.75rem 0 2rem;}
-.event-cards{display:flex;flex-direction:column;gap:1rem;}
-.event-card{background:rgba(255,255,255,0.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1.25rem;transition:background 0.2s;}
-.event-card:hover{background:rgba(255,255,255,0.2);}
-.event-date{min-width:52px;text-align:center;background:rgba(255,255,255,0.18);padding:0.5rem 0.25rem;border-radius:2px;}
-.event-month{font-size:0.55rem;font-weight:900;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.8);display:block;}
-.event-day{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:#fff;line-height:1;display:block;}
-.event-info{flex:1;}
-.event-name{font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.2rem;}
-.event-loc{font-size:0.75rem;color:rgba(255,255,255,0.65);}
-.event-action{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;white-space:nowrap;}
-.event-action:hover{color:#fff;}
-.find-event-btn{display:inline-block;margin-top:1.75rem;padding:0.95rem 2.5rem;background:#fff;color:#1F8F8A;font-weight:900;font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s;box-shadow:0 8px 32px rgba(0,0,0,0.15);}
-.find-event-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 48px rgba(0,0,0,0.2);}
+/* progress dots */
+.how-dots{position:fixed;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:0;z-index:100;opacity:0;transition:opacity 0.3s;}
+.how-dots.visible{opacity:1;}
+.how-dot{width:8px;height:8px;border-radius:50%;background:rgba(91,59,140,0.2);
+  transition:background 0.3s,transform 0.2s;}
+.how-dot.active{background:#5B3B8C;transform:scale(1.3);}
+.how-dot-line{width:24px;height:2px;background:rgba(91,59,140,0.12);transition:background 0.4s;}
+.how-dot-line.filled{background:#5B3B8C;}
 
-/* MISSION */
-#mission{background:#35204F;padding:5.5rem 2.5rem;text-align:center;}
-.mission-inner{max-width:800px;margin:0 auto;}
-#mission h2{color:#fff;}
-.mission-text{font-size:clamp(0.93rem,1.8vw,1.1rem);color:rgba(255,255,255,0.78);line-height:1.95;margin:1.75rem 0 2rem;font-style:italic;font-family:'Playfair Display',serif;}
-.mission-shout{font-size:0.75rem;font-weight:900;letter-spacing:0.25em;text-transform:uppercase;color:rgba(201,162,39,0.75);margin-bottom:2.5rem;}
-.stat-row{display:flex;gap:0;justify-content:center;border-top:1px solid rgba(255,255,255,0.08);padding-top:3rem;}
-.stat-item{flex:1;text-align:center;padding:0 2rem;border-right:1px solid rgba(255,255,255,0.08);}
-.stat-item:last-child{border-right:none;}
-.stat-n{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;color:#2EB8B0;line-height:1;}
-.stat-l{font-size:0.62rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.32);margin-top:0.4rem;}
+/* ── EVENTS ── */
+#events{padding:7rem 2.5rem;background:linear-gradient(180deg,#FAF8FF 0%,#fff 100%);}
+.events-header{display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:3rem;flex-wrap:wrap;gap:1.5rem;}
+.events-search-wrap{position:relative;width:300px;}
+.events-search-wrap input{width:100%;padding:0.7rem 0.9rem 0.7rem 2.5rem;
+  border:1.5px solid rgba(91,59,140,0.18);border-radius:5px;font-size:0.85rem;
+  font-family:'Lato',sans-serif;outline:none;transition:border-color 0.2s,box-shadow 0.2s;
+  background:#fff;color:#231D2D;}
+.events-search-wrap input:focus{border-color:#5B3B8C;box-shadow:0 0 0 3px rgba(91,59,140,0.1);}
+.events-search-icon{position:absolute;left:0.75rem;top:50%;transform:translateY(-50%);
+  font-size:0.9rem;pointer-events:none;}
+.events-grid{display:flex;flex-direction:column;gap:1px;
+  border-radius:8px;overflow:hidden;box-shadow:0 8px 40px rgba(53,32,79,0.08);}
+.event-card{display:flex;align-items:center;gap:0;background:#fff;
+  transition:background 0.2s,transform 0.15s;}
+.event-card:hover{background:#FAF8FF;transform:translateX(4px);}
+.event-date-col{flex:0 0 90px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:1.5rem 1rem;background:linear-gradient(160deg,#35204F,#5B3B8C);
+  min-height:90px;}
+.event-month{font-size:0.58rem;font-weight:900;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(201,162,39,0.9);}
+.event-day{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;
+  color:#fff;line-height:1;}
+.event-day-name{font-size:0.55rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(255,255,255,0.45);}
+.event-info-col{flex:1;padding:1.25rem 1.75rem;border-bottom:1px solid rgba(91,59,140,0.06);}
+.event-name{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;
+  color:#35204F;margin-bottom:0.3rem;}
+.event-meta{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;}
+.event-loc,.event-time{font-size:0.75rem;color:rgba(35,29,45,0.5);font-weight:400;}
+.event-loc::before{content:'📍 ';}
+.event-time::before{content:'🕐 ';}
+.event-desc{font-size:0.8rem;color:rgba(35,29,45,0.45);margin-top:0.4rem;line-height:1.6;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.event-action-col{flex:0 0 auto;padding:1.25rem 1.75rem;border-bottom:1px solid rgba(91,59,140,0.06);}
+.event-rsvp{display:inline-block;padding:0.55rem 1.25rem;background:#5B3B8C;color:#fff;
+  font-size:0.65rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;
+  border-radius:3px;text-decoration:none;white-space:nowrap;
+  transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s;}
+.event-rsvp:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 8px 20px rgba(91,59,140,0.35);}
+.event-rsvp:active{transform:scale(0.97);}
+.events-footer{text-align:center;margin-top:3rem;}
+.events-empty{text-align:center;padding:4rem 2rem;color:rgba(35,29,45,0.4);
+  font-size:0.9rem;font-style:italic;}
+.events-loading{text-align:center;padding:3rem 2rem;}
+.events-spinner{display:inline-block;width:36px;height:36px;border:3px solid rgba(91,59,140,0.15);
+  border-top-color:#5B3B8C;border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
 
-/* DONATE */
-#donate{background:#fff;padding:6rem 2.5rem;}
-.donate-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
-.donate-visual{position:relative;height:440px;border-radius:2px;overflow:hidden;}
-.donate-visual img{width:100%;height:100%;object-fit:cover;display:block;}
-.donate-visual-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(91,59,140,0.5),rgba(46,184,176,0.3));}
-.donate-visual-text{position:absolute;bottom:2rem;left:2rem;right:2rem;}
-.donate-visual-text p{font-family:'Playfair Display',serif;font-size:1.3rem;color:#fff;font-style:italic;line-height:1.6;}
-.donate-form .body-p{margin-bottom:2rem;}
-.amounts{display:flex;gap:0.65rem;flex-wrap:wrap;margin-bottom:1.75rem;}
-.amt{padding:0.55rem 1.35rem;border:1.5px solid rgba(91,59,140,0.2);border-radius:100px;font-size:0.82rem;font-weight:700;color:#5B3B8C;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;}
-.amt:hover,.amt.active{background:#5B3B8C;color:#fff;border-color:#5B3B8C;}
-.donate-main-btn{display:block;width:100%;padding:1.15rem;background:linear-gradient(135deg,#5B3B8C,#2EB8B0);color:#fff;font-weight:900;font-size:0.88rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;text-align:center;border-radius:4px;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s;box-shadow:0 8px 40px rgba(91,59,140,0.3);}
-.donate-main-btn:hover{transform:translateY(-3px) scale(1.01);box-shadow:0 18px 60px rgba(91,59,140,0.4);}
-.donate-note{font-size:0.72rem;color:rgba(35,29,45,0.35);text-align:center;margin-top:1rem;}
+/* ── MISSION / IMPACT ── */
+#mission{padding:7rem 2.5rem;
+  background:linear-gradient(160deg,#35204F 0%,#4A2B7A 60%,#2EB8B0 100%);
+  position:relative;overflow:hidden;}
+.mission-noise{position:absolute;inset:0;opacity:0.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px;}
+.mission-inner{max-width:1160px;margin:0 auto;position:relative;z-index:1;}
+.mission-quote{text-align:center;max-width:780px;margin:0 auto 5rem;}
+.mission-quote-mark{font-family:'Playfair Display',serif;font-size:6rem;line-height:0.5;
+  color:rgba(201,162,39,0.3);display:block;margin-bottom:0.5rem;}
+.mission-quote blockquote{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2.1rem);
+  font-style:italic;color:#fff;line-height:1.5;margin-bottom:1.5rem;}
+.mission-quote cite{font-size:0.7rem;font-weight:900;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(201,162,39,0.8);}
+.mission-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:rgba(255,255,255,0.08);border-radius:8px;overflow:hidden;}
+.mission-stat{padding:2.5rem 1.5rem;text-align:center;background:rgba(255,255,255,0.04);
+  transition:background 0.2s;}
+.mission-stat:hover{background:rgba(255,255,255,0.08);}
+.mission-stat-num{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,4vw,3.5rem);
+  font-weight:700;color:#C9A227;line-height:1;display:block;}
+.mission-stat-lbl{font-size:0.62rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(255,255,255,0.5);margin-top:0.5rem;line-height:1.5;}
 
-/* FOOTER */
-footer{background:#231D2D;padding:3.5rem 2.5rem 2rem;}
-.footer-inner{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.25rem;}
-.footer-logo{height:46px;filter:invert(1) opacity(0.55);}
-.footer-links{display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;}
-.footer-link{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s;}
-.footer-link:hover{color:#2EB8B0;}
-.footer-pillars{font-size:0.6rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(46,184,176,0.4);}
-.footer-copy{font-size:0.6rem;color:rgba(255,255,255,0.18);margin-top:0.25rem;}
+/* ── DONATE ── */
+#donate{padding:7rem 2.5rem;background:#fff;}
+.donate-inner{max-width:700px;margin:0 auto;text-align:center;}
+.donate-icon{font-size:3.5rem;margin-bottom:1.5rem;}
+.donate-card{background:linear-gradient(140deg,#EDE4F8,#E6F7F6);
+  border-radius:12px;padding:4rem 3rem;
+  box-shadow:0 20px 60px rgba(91,59,140,0.12);}
+.btn-gold{display:inline-block;padding:1rem 2.75rem;background:#C9A227;color:#231D2D;
+  font-weight:900;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;
+  border-radius:4px;text-decoration:none;margin-top:2rem;
+  transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s;
+  box-shadow:0 8px 30px rgba(201,162,39,0.35);}
+.btn-gold:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 16px 45px rgba(201,162,39,0.5);}
+.btn-gold:active{transform:scale(0.98);}
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s cubic-bezier(0.22,1,0.36,1),transform 0.65s cubic-bezier(0.34,1.56,0.64,1);}
-.reveal.in{opacity:1;transform:none;}
+/* ── FOOTER ── */
+footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
+.footer-inner{max-width:1160px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;margin-bottom:3rem;}
+.footer-brand img{height:40px;margin-bottom:1rem;}
+.footer-brand p{font-size:0.82rem;color:rgba(255,255,255,0.38);line-height:1.8;max-width:280px;}
+.footer-col-title{font-size:0.62rem;font-weight:900;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(201,162,39,0.8);margin-bottom:1rem;}
+.footer-links{display:flex;flex-direction:column;gap:0.55rem;}
+.footer-links a{font-size:0.8rem;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:1.5rem;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.25);}
+.footer-copy a{color:rgba(201,162,39,0.6);text-decoration:none;}
 
-/* GRAIN */
-.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.018;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
 
-/* TABLET */
+/* ── RESPONSIVE ── */
 @media(max-width:900px){
-  .hero-grid,.about-split,.events-inner,.donate-grid{grid-template-columns:1fr!important;gap:2.5rem!important;}
-  .hero-photo-area{height:380px;}
-  .about-img img{height:380px;}
-  .pillars-grid{grid-template-columns:1fr;}
-  nav .nav-links a:not(.nav-cta){display:none;}
-  .stat-row{flex-wrap:wrap;}
-  .stat-item{flex:0 0 45%;border:none;padding:1rem;}
-  .donate-visual{height:260px;}
+  .hero-inner{grid-template-columns:1fr;gap:2.5rem;}
+  .hero-photo-col{height:400px;order:-1;}
+  .hero-stats{flex-wrap:wrap;}
+  .who-grid{grid-template-columns:1fr;}
+  .mission-stats{grid-template-columns:repeat(2,1fr);}
+  .footer-top{grid-template-columns:1fr 1fr;}
 }
-/* MOBILE */
-@media(max-width:560px){
-  nav{padding:0.85rem 1.25rem;}
-  #hero{padding:6rem 1.25rem 3rem;}
-  .hero-h1{font-size:2rem;}
-  .hero-actions{flex-direction:column;}
-  .btn-white,.btn-outline-white{text-align:center;}
-  .sec{padding:4rem 1.25rem;}
-  #definition,#events,#mission,#donate{padding:4rem 1.25rem;}
-  h2{font-size:1.75rem;}
-  .hscroll-sticky{align-items:flex-start;padding-top:3rem;}
-  .step-card{width:290px;}
-  .si-line{width:36px;}
-  .amounts{gap:0.5rem;}
+@media(max-width:700px){
+  .nav-links{display:none;}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;
+    top:66px;left:0;right:0;background:rgba(255,255,255,0.99);
+    padding:1.5rem 2rem;box-shadow:0 12px 40px rgba(0,0,0,0.15);gap:1rem;z-index:299;}
+  .nav-hamburger{display:flex;}
+  .event-card{flex-wrap:wrap;}
+  .event-date-col{flex:0 0 100%;flex-direction:row;padding:0.75rem 1.25rem;min-height:auto;gap:0.6rem;}
+  .event-action-col{padding:0.75rem 1.25rem 1rem;}
+  .events-header{flex-direction:column;align-items:flex-start;}
+  .events-search-wrap{width:100%;}
+  .mission-stats{grid-template-columns:repeat(2,1fr);}
+  .footer-top{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+  .hero-search-wrap{max-width:100%;}
 }
 </style>
 </head>
 <body>
-<div class="grain"></div>
 
-<!-- NAV -->
-<nav id="mainNav">
+<!-- ══════ NAV ══════ -->
+<nav id="main-nav">
   <div class="nav-inner">
-    <a href="#hero" class="nav-logo">
+    <a href="index.html" class="nav-logo" aria-label="You Inspire Now home">
       <img src="assets/yin-logo.png" alt="You Inspire Now">
     </a>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#pillars">Pillars</a>
-      <a href="#events">Events</a>
-      <a href="#donate">Give</a>
-      <a href="#donate" class="nav-cta">Donate ♥</a>
+    <div class="nav-links" id="nav-links">
+      <a href="#who-we-serve">Who We Serve</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#events">Find Events</a>
+      <a href="#mission">Our Mission</a>
+      <a href="events.html">All Events</a>
+      <a href="#donate" class="nav-donate">Donate</a>
     </div>
+    <button class="nav-hamburger" id="nav-burger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ══════ HERO ══════ -->
 <section id="hero">
-  <div class="hero-grid">
-    <div>
-      <div class="hero-tag">Women's Faith-Based Nonprofit</div>
-      <h1 class="hero-h1">Welcome to the wonderful journey of discovering that<em>You Inspire Now.</em></h1>
-      <p class="hero-tagline">Hear the call — it's calling out the greatness within,<br>while inspiring those around you.</p>
-      <p class="hero-sub">You Inspire Now is a faith-rooted community for women ready to step into their identity, walk in purpose, and build a life that reflects who God created them to be.</p>
-      <div class="hero-actions">
-        <a href="#events" class="btn-white">Find a Local Event</a>
-        <a href="#donate" class="btn-outline-white">Support Our Mission ♥</a>
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+
+  <div class="hero-inner">
+    <div class="hero-text-col">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Community Events Near You
+      </div>
+      <h1 class="hero-h1">
+        Inspiring Lives,
+        <em>One Community</em>
+        at a Time
+      </h1>
+      <p class="hero-sub">
+        You Inspire Now connects women, families, and communities to empowering local events —
+        workshops, gatherings, and experiences that ignite your purpose and elevate your story.
+      </p>
+
+      <div class="hero-search-wrap">
+        <div class="hero-search-label">Find a Local Event</div>
+        <div class="hero-search-box">
+          <input type="text" id="hero-search" placeholder="Enter city, state, or zip code…" autocomplete="off">
+          <button class="hero-search-btn" id="hero-search-btn" aria-label="Search events">Search</button>
+        </div>
       </div>
     </div>
-    <div class="hero-photo-area">
+
+    <div class="hero-photo-col" id="hero-photo-col">
       <div class="hero-dots"></div>
-      <div class="hero-photo-bg">
-        <img src="assets/leelee-hero.png" alt="Leelee Davis — You Inspire Now Founder">
+      <div class="hero-photo-frame" id="hero-photo-frame">
+        <img src="assets/leelee-hero.png" alt="Leelee — You Inspire Now founder" id="hero-img">
         <div class="hero-photo-overlay"></div>
       </div>
-      <div class="hero-photo-label">
-        <p>Founder · You Inspire Now</p>
+      <div class="hero-photo-credit">
+        <p>Founder & Visionary</p>
         <strong>Leelee Davis</strong>
       </div>
     </div>
   </div>
-</section>
 
-<!-- DEFINITION BANNER -->
-<section id="definition">
-  <div class="def-inner reveal">
-    <div class="def-word">in·spire</div>
-    <div class="def-phonetic">/inˈspī(ə)r/</div>
-    <p class="def-text">"Fill someone with the urge or ability to do or feel something, especially to do something creative."</p>
-    <p class="def-example">"Her passion for life inspired her to begin living."</p>
-    <p class="def-shout">Lady, <span>You Are Changing the World!</span></p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">500+</div>
+      <div class="hero-stat-lbl">Lives Inspired</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">50+</div>
+      <div class="hero-stat-lbl">Local Events</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">12+</div>
+      <div class="hero-stat-lbl">Communities</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">100%</div>
+      <div class="hero-stat-lbl">Free to Attend</div>
+    </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- ══════ WHO WE SERVE ══════ -->
+<section id="who-we-serve">
+  <div class="sec-inner reveal" style="max-width:1160px;margin:0 auto;">
+    <div style="max-width:560px;">
+      <p class="section-label">Who We Serve</p>
+      <h2 class="section-h2">Every Woman. Every <em>Season</em>.</h2>
+      <p class="section-sub">
+        You Inspire Now was built for women at every chapter — because every season of life
+        deserves a community that sees you, supports you, and sends you forward.
+      </p>
+    </div>
 
-<!-- ABOUT / STORY -->
-<section id="about" class="sec">
-  <div class="sec-inner">
-    <div class="about-split">
-      <div class="about-img reveal">
-        <img src="assets/leelee-hero.png" alt="Leelee Davis">
-        <div class="about-badge">
-          <strong>"Your story matters. YOU matter."</strong>
-          <span>Leelee Davis · Founder</span>
+    <div class="who-grid">
+      <div class="who-card reveal">
+        <div class="who-card-img">
+          <img src="https://placehold.co/600x340/35204F/EDE4F8?text=Women+Finding+Purpose" alt="Women Finding Purpose">
+          <div class="who-card-img-overlay"></div>
+        </div>
+        <div class="who-card-body">
+          <span class="who-card-tag purple">Purpose &amp; Identity</span>
+          <div class="who-card-title">Women Seeking Purpose</div>
+          <p class="who-card-text">Rediscover who you were created to be — workshops and gatherings that reconnect you to your calling.</p>
+          <a href="#events" class="who-card-link">Find an Event</a>
         </div>
       </div>
-      <div class="reveal">
-        <span class="chip purple">My Story</span>
-        <h2>Hey Sista-friend,<br><em>Let me tell you about my journey.</em></h2>
-        <p class="story-p">My journey has been nothing short of a miraculous story in itself. I grew up in much turmoil — raised mostly through my teen years by a single father. I was raised to be confident, strong, and focused. But I had difficulty understanding my place as a woman, my true value, and my beauty. Although I internally struggled, no one could see it on the outside.</p>
-        <p class="story-p">I finished college with two degrees, married my college sweetheart (who was fine, muscular, and headed to the NFL), and began our family. But inwardly I felt worse with time. One day — after eight years of marriage, a few children, and even living a "Christian life" — I was done. Done with religion, done with acting like I had it altogether, done with being a fruitless Christian.</p>
-        <p class="story-p">That moment of surrender changed everything. My husband walked with me through a verbal dedication of my life to Christ — and my life has never been the same. I stopped the comparison, the excuses, and hiding behind the shame of my past. The very things we think will disqualify us are the very things God uses to set others free.</p>
-        <p class="story-p" style="margin-bottom:1.75rem;">We're now a family of 13 — 11 children. It's been a true privilege to do life together. <em style="color:#5B3B8C;">A transformation took place in my heart that shifted every area of my life.</em></p>
-        <a href="#pillars" class="btn-purple">See Our Pillars →</a>
+
+      <div class="who-card reveal" style="transition-delay:0.12s">
+        <div class="who-card-img">
+          <img src="https://placehold.co/600x340/2EB8B0/E6F7F6?text=Single+Moms+%26+Families" alt="Single Moms and Families">
+          <div class="who-card-img-overlay"></div>
+        </div>
+        <div class="who-card-body">
+          <span class="who-card-tag teal">Family &amp; Community</span>
+          <div class="who-card-title">Single Moms &amp; Families</div>
+          <p class="who-card-text">Find your village. Events and resources designed to strengthen families and bring communities together.</p>
+          <a href="#events" class="who-card-link">Find an Event</a>
+        </div>
+      </div>
+
+      <div class="who-card reveal" style="transition-delay:0.24s">
+        <div class="who-card-img">
+          <img src="https://placehold.co/600x340/C9A227/FAF3DC?text=Women+in+Transition" alt="Women in Transition">
+          <div class="who-card-img-overlay"></div>
+        </div>
+        <div class="who-card-body">
+          <span class="who-card-tag gold">Healing &amp; Growth</span>
+          <div class="who-card-title">Women in Transition</div>
+          <p class="who-card-text">Starting over — or starting fresh. Our community walks with you through every season of change.</p>
+          <a href="#events" class="who-card-link">Find an Event</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- ══════ HOW IT WORKS ══════ -->
+<div id="how-outer" style="height:500vh;">
+<a id="how-it-works" style="position:absolute;top:-80px;"></a>
+  <div class="how-sticky" id="how-sticky">
+    <div class="how-track" id="how-track">
 
-<!-- PILLARS -->
-<section id="pillars" class="sec">
-  <div class="sec-inner">
-    <div class="pillars-header reveal">
-      <span class="chip teal">Pillars of the Journey</span>
-      <h2>What We <em>Stand On</em></h2>
-      <p class="body-p">Every woman's journey runs through these four foundations. This is where transformation begins.</p>
-    </div>
-    <div class="pillars-grid">
-      <div class="pillar-card reveal" style="--pc:#5B3B8C;">
-        <span class="pillar-icon">🌿</span>
-        <div class="pillar-name">Purpose</div>
-        <p class="pillar-quote">"The purpose of life is to find your gift. The meaning of life is to give it away."</p>
-        <p class="pillar-attr">— Pablo Picasso</p>
+      <!-- intro panel -->
+      <div class="how-intro-panel">
+        <div class="how-intro-inner reveal">
+          <p class="section-label">How It Works</p>
+          <h2 class="section-h2">From Search<br>to <em>Community</em></h2>
+          <p style="font-size:0.97rem;color:rgba(35,29,45,0.55);line-height:1.9;margin-bottom:2rem;">
+            Getting connected to a You Inspire Now event is simple.
+            Five steps from finding to attending — your transformation starts now.
+          </p>
+          <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.72rem;
+            font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#5B3B8C;">
+            <span>Scroll to explore</span>
+            <span style="font-size:1rem;">→</span>
+          </div>
+        </div>
       </div>
-      <div class="pillar-card reveal" style="--pc:#2EB8B0;">
-        <span class="pillar-icon">🥗</span>
-        <div class="pillar-name">Health</div>
-        <p class="pillar-quote">"Change your plate. Change your fate."</p>
-        <p class="pillar-attr">— Kris Carr</p>
-      </div>
-      <div class="pillar-card reveal" style="--pc:#C9A227;">
-        <span class="pillar-icon">🏡</span>
-        <div class="pillar-name">Family</div>
-        <p class="pillar-quote">"To impact the world, you must first impact those in your home."</p>
-        <p class="pillar-attr">— The Davis Family</p>
-      </div>
-      <div class="pillar-card reveal" style="--pc:#A67FD8;">
-        <span class="pillar-icon">👑</span>
-        <div class="pillar-name">Leadership</div>
-        <p class="pillar-quote">"What you do has far greater impact than what you say."</p>
-        <p class="pillar-attr">— Stephen Covey</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- HOW IT WORKS -->
-<div id="how-outer">
-  <div class="how-header">
-    <span class="chip purple">Your Journey</span>
-    <h2>Your Journey to <em>Rising</em></h2>
-    <p class="body-p" style="max-width:500px;margin:0.5rem auto 0;">Scroll through the path — from where you are now to where God designed you to be.</p>
-  </div>
-  <div class="hscroll-outer" id="hscrollOuter">
-    <div class="hscroll-sticky">
-      <div class="hscroll-progress" id="hscrollProgress" style="width:0%;"></div>
-      <div class="step-indicator">
-        <div class="si-dot active">1</div>
-        <div class="si-line"><div class="si-line-fill" id="sfill0"></div></div>
-        <div class="si-dot" id="sdot1">2</div>
-        <div class="si-line"><div class="si-line-fill" id="sfill1"></div></div>
-        <div class="si-dot" id="sdot2">3</div>
-        <div class="si-line"><div class="si-line-fill" id="sfill2"></div></div>
-        <div class="si-dot" id="sdot3">4</div>
-        <div class="si-line"><div class="si-line-fill" id="sfill3"></div></div>
-        <div class="si-dot" id="sdot4">5</div>
-      </div>
-      <div class="hscroll-track" id="hscrollTrack">
-        <div class="step-card" style="--sc:#5B3B8C;">
-          <span class="step-num">01</span>
-          <span class="step-icon">🌱</span>
-          <div class="step-title">Find Your Purpose</div>
-          <p class="step-text">Make it your absolute business on this Earth to find out why you were created. What value are you here to bring? Your assignment can't be erased by what you think disqualifies you.</p>
-        </div>
-        <div class="step-card" style="--sc:#2EB8B0;">
-          <span class="step-num">02</span>
-          <span class="step-icon">🤝</span>
-          <div class="step-title">Connect at a Local Event</div>
-          <p class="step-text">You come to an event — maybe nervous, maybe hopeful. You meet women in the same season. You immediately feel like you belong. The women of You Inspire Now are here to cheer you on.</p>
-        </div>
-        <div class="step-card" style="--sc:#C9A227;">
-          <span class="step-num">03</span>
-          <span class="step-icon">🔑</span>
-          <div class="step-title">Commit to Your Greatness</div>
-          <p class="step-text">Commit yourself to your future with mindfulness. We provide hope, inspiration, and practical resources — locally, online, books, podcasts — to help you get started on your journey of self-discovery.</p>
-        </div>
-        <div class="step-card" style="--sc:#5B3B8C;">
-          <span class="step-num">04</span>
-          <span class="step-icon">🔥</span>
-          <div class="step-title">Walk in Your Purpose</div>
-          <p class="step-text">It wasn't until I laid it ALL down — expectations, ideas, stresses — that I could pick up what was designed just for me from creation. You start showing up differently in every area of your life.</p>
-        </div>
-        <div class="step-card" style="--sc:#2EB8B0;">
-          <span class="step-num">05</span>
-          <span class="step-icon">⬆️</span>
-          <div class="step-title">Rise — and Inspire Others</div>
-          <p class="step-text">Our journeys are for us to walk through, share, and for others to grab as fuel. We overcome by the power of our story. The woman who walked in needing community becomes the woman pouring into the next one.</p>
+      <!-- step 1 -->
+      <div class="how-step-panel">
+        <div class="how-step-card">
+          <div class="how-step-num">01</div>
+          <div class="how-step-icon">🔍</div>
+          <div class="how-step-title">Search Your Area</div>
+          <p class="how-step-text">Type your city, state, or zip code into the search bar. We'll show you every upcoming event in your community — from workshops to celebrations.</p>
         </div>
       </div>
+
+      <!-- step 2 -->
+      <div class="how-step-panel">
+        <div class="how-step-card teal-top">
+          <div class="how-step-num">02</div>
+          <div class="how-step-icon">📅</div>
+          <div class="how-step-title">Find Your Event</div>
+          <p class="how-step-text">Browse events by date and type. Each listing shows the full details — location, time, what to expect, and who it's designed for.</p>
+        </div>
+      </div>
+
+      <!-- step 3 -->
+      <div class="how-step-panel">
+        <div class="how-step-card gold-top">
+          <div class="how-step-num">03</div>
+          <div class="how-step-icon">✅</div>
+          <div class="how-step-title">RSVP in Seconds</div>
+          <p class="how-step-text">Click the RSVP button, fill in your name and contact — done. You'll receive confirmation and all the details you need to show up ready.</p>
+        </div>
+      </div>
+
+      <!-- step 4 -->
+      <div class="how-step-panel">
+        <div class="how-step-card">
+          <div class="how-step-num">04</div>
+          <div class="how-step-icon">🤝</div>
+          <div class="how-step-title">Show Up &amp; Connect</div>
+          <p class="how-step-text">Arrive, be welcomed, and meet women on similar journeys. Our events are intentional, warm, and created to make every person feel at home.</p>
+        </div>
+      </div>
+
+      <!-- step 5 -->
+      <div class="how-step-panel">
+        <div class="how-step-card teal-top">
+          <div class="how-step-num">05</div>
+          <div class="how-step-icon">✨</div>
+          <div class="how-step-title">Leave Inspired</div>
+          <p class="how-step-text">Walk away with tools, connections, and a renewed sense of purpose. Then invite someone — because inspiration multiplies when it's shared.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
 
-<!-- EVENTS -->
+<!-- progress dots -->
+<div class="how-dots" id="how-dots">
+  <div class="how-dot active" data-idx="0"></div>
+  <div class="how-dot-line" data-line="0"></div>
+  <div class="how-dot" data-idx="1"></div>
+  <div class="how-dot-line" data-line="1"></div>
+  <div class="how-dot" data-idx="2"></div>
+  <div class="how-dot-line" data-line="2"></div>
+  <div class="how-dot" data-idx="3"></div>
+  <div class="how-dot-line" data-line="3"></div>
+  <div class="how-dot" data-idx="4"></div>
+</div>
+
+<!-- ══════ EVENTS ══════ -->
 <section id="events">
-  <div class="events-inner">
-    <div class="events-text reveal">
-      <span class="chip white">Find an Event</span>
-      <h2 style="color:#fff;">Find a Local Event<br>Near <em style="color:#C9E8E6;">You.</em></h2>
-      <p class="body-p" style="color:rgba(255,255,255,0.75);">We host life-changing, fun events that totally get you out of your comfort zone — every chance we can. Find one near you and take the first step.</p>
-      <a href="#" class="find-event-btn">See All Events →</a>
-    </div>
-    <div class="reveal">
-      <div class="event-cards">
-        <div class="event-card">
-          <div class="event-date"><span class="event-month">May</span><span class="event-day">10</span></div>
-          <div class="event-info">
-            <div class="event-name">Women's Identity Workshop</div>
-            <div class="event-loc">📍 Community Center · Local Area</div>
-          </div>
-          <a href="#" class="event-action">RSVP →</a>
-        </div>
-        <div class="event-card">
-          <div class="event-date"><span class="event-month">May</span><span class="event-day">18</span></div>
-          <div class="event-info">
-            <div class="event-name">Purpose &amp; Prayer Brunch</div>
-            <div class="event-loc">📍 Local Church · Morning Session</div>
-          </div>
-          <a href="#" class="event-action">RSVP →</a>
-        </div>
-        <div class="event-card">
-          <div class="event-date"><span class="event-month">Jun</span><span class="event-day">07</span></div>
-          <div class="event-info">
-            <div class="event-name">Rise Women's Conference</div>
-            <div class="event-loc">📍 Faith &amp; Life Center · All Day</div>
-          </div>
-          <a href="#" class="event-action">RSVP →</a>
-        </div>
+  <div style="max-width:1160px;margin:0 auto;">
+    <div class="events-header reveal">
+      <div>
+        <p class="section-label">Upcoming Events</p>
+        <h2 class="section-h2">Events <em>Near You</em></h2>
       </div>
+      <div class="events-search-wrap">
+        <span class="events-search-icon">🔍</span>
+        <input type="text" id="events-search" placeholder="Filter by city or zip…" autocomplete="off">
+      </div>
+    </div>
+
+    <div id="events-container">
+      <div class="events-loading"><div class="events-spinner"></div></div>
+    </div>
+
+    <div class="events-footer reveal">
+      <a href="events.html" class="btn-purple" style="display:inline-block;">
+        See All Events &nbsp;→
+      </a>
     </div>
   </div>
 </section>
 
-<!-- MISSION -->
+<!-- ══════ MISSION ══════ -->
 <section id="mission">
+  <div class="mission-noise"></div>
   <div class="mission-inner">
-    <span class="chip white reveal">Our Mission</span>
-    <h2 class="reveal" style="color:#fff;">Every Woman Deserves to <em style="color:#2EB8B0;">Rise.</em></h2>
-    <p class="mission-text reveal">Our Mission is to inspire ALL WOMEN to boldly continue on her journey of becoming HER best self. We believe every woman is purposefully unique and handcrafted by a Great GOD. To Inspire is to encourage, to give hope, and to breathe life into. We join journeys with our fellow sisters and allow encouragement to move them towards greatness to take the next step.</p>
-    <p class="mission-shout reveal">Your story matters · YOU matter · Our journeys are for us to walk through, share, and for others to grab as fuel</p>
-    <div class="stat-row">
-      <div class="stat-item reveal"><div class="stat-n">13</div><div class="stat-l">Family Members</div></div>
-      <div class="stat-item reveal"><div class="stat-n">500+</div><div class="stat-l">Women Reached</div></div>
-      <div class="stat-item reveal"><div class="stat-n">4</div><div class="stat-l">Core Pillars</div></div>
+    <div class="mission-quote reveal">
+      <span class="mission-quote-mark">"</span>
+      <blockquote>
+        You don't have to have it all figured out. You just have to show up —
+        and let the community carry you the rest of the way.
+      </blockquote>
+      <cite>— Leelee Davis, Founder · You Inspire Now</cite>
+    </div>
+
+    <div class="mission-stats reveal">
+      <div class="mission-stat">
+        <span class="mission-stat-num">500+</span>
+        <div class="mission-stat-lbl">Women & Families<br>Impacted</div>
+      </div>
+      <div class="mission-stat">
+        <span class="mission-stat-num">50+</span>
+        <div class="mission-stat-lbl">Events<br>Hosted</div>
+      </div>
+      <div class="mission-stat">
+        <span class="mission-stat-num">12+</span>
+        <div class="mission-stat-lbl">Communities<br>Reached</div>
+      </div>
+      <div class="mission-stat">
+        <span class="mission-stat-num">3</span>
+        <div class="mission-stat-lbl">Pillars:<br>Purpose · Health · Family</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- DONATE -->
+<!-- ══════ DONATE ══════ -->
 <section id="donate">
-  <div class="donate-grid">
-    <div class="donate-visual reveal">
-      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=540&h=440&fit=crop" alt="Women community">
-      <div class="donate-visual-overlay"></div>
-      <div class="donate-visual-text">
-        <p>"One gift. One life changed. One woman who rises."</p>
-      </div>
-    </div>
-    <div class="donate-form reveal">
-      <span class="chip purple">Make a Difference</span>
-      <h2>Your Gift Inspires<br><em>Real Lives.</em></h2>
-      <p class="body-p">Every dollar goes directly toward empowering women with community, resources, and the truth they need to step into who God created them to be. We adore our ladies — feel free to connect with us!</p>
-      <div class="amounts">
-        <span class="amt">$25</span>
-        <span class="amt active">$50</span>
-        <span class="amt">$100</span>
-        <span class="amt">$250</span>
-        <span class="amt">Other</span>
-      </div>
-      <a href="#" class="donate-main-btn">Donate Now ♥</a>
-      <p class="donate-note">You Inspire Now is a faith-based women's nonprofit. All gifts support women's empowerment programs.</p>
+  <div class="donate-inner">
+    <div class="donate-card reveal">
+      <div class="donate-icon">💜</div>
+      <p class="section-label" style="text-align:center;">Make a Difference</p>
+      <h2 class="section-h2" style="color:#35204F;margin-bottom:1rem;">
+        Your Gift <em>Inspires</em> Someone
+      </h2>
+      <p style="font-size:0.97rem;color:rgba(35,29,45,0.55);line-height:1.9;max-width:500px;margin:0 auto;">
+        Every donation funds free community events, resources, and support programs that
+        empower women and families — at no cost to them. 100% of your gift goes to the people who need it most.
+      </p>
+      <a href="#" class="btn-gold" id="donate-btn">Donate Today</a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ══════ FOOTER ══════ -->
 <footer>
   <div class="footer-inner">
-    <img src="assets/yin-logo.png" alt="You Inspire Now" class="footer-logo">
-    <div class="footer-links">
-      <a href="#about" class="footer-link">About</a>
-      <a href="#pillars" class="footer-link">Pillars</a>
-      <a href="#events" class="footer-link">Events</a>
-      <a href="#mission" class="footer-link">Mission</a>
-      <a href="#donate" class="footer-link">Donate</a>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/yin-logo.png" alt="You Inspire Now">
+        <p>
+          A nonprofit community movement dedicated to inspiring women,
+          strengthening families, and building communities where everyone belongs.
+        </p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <div class="footer-links">
+          <a href="#who-we-serve">Who We Serve</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#events">Upcoming Events</a>
+          <a href="events.html">All Events</a>
+          <a href="#mission">Our Mission</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Get Involved</div>
+        <div class="footer-links">
+          <a href="#donate">Donate</a>
+          <a href="#events">Attend an Event</a>
+          <a href="#events">RSVP</a>
+        </div>
+      </div>
     </div>
-    <p class="footer-pillars">Purpose · Health · Family · Leadership</p>
-    <p class="footer-copy">© 2026 You Inspire Now. All rights reserved. · Your story matters, YOU matter.</p>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 You Inspire Now · All rights reserved</p>
+      <p class="footer-copy">Built with love for the community</p>
+    </div>
   </div>
 </footer>
 
 <script>
-const nav=document.getElementById('mainNav');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
+// ── NAVIGATION ──────────────────────────────────────────────
+const nav = document.getElementById('main-nav');
+const burger = document.getElementById('nav-burger');
+const navLinks = document.getElementById('nav-links');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+burger.addEventListener('click', () => navLinks.classList.toggle('open'));
 
-const hOuter=document.getElementById('hscrollOuter');
-const hTrack=document.getElementById('hscrollTrack');
-const hBar=document.getElementById('hscrollProgress');
-const dots=document.querySelectorAll('.si-dot');
-const fills=document.querySelectorAll('.si-line-fill');
-const N=5;
-
-function absTop(el){let t=0;while(el){t+=el.offsetTop;el=el.offsetParent;}return t;}
-
-function updateH(){
-  if(!hOuter||!hTrack)return;
-  const top=absTop(hOuter);
-  const scrolled=window.scrollY-top;
-  const scrollable=hOuter.offsetHeight-window.innerHeight;
-  if(scrollable<=0)return;
-  const p=Math.max(0,Math.min(1,scrolled/scrollable));
-  const maxX=Math.max(0,hTrack.scrollWidth-window.innerWidth+120);
-  hTrack.style.transform=`translateX(-${p*maxX}px)`;
-  if(hBar)hBar.style.width=(p*100)+'%';
-  const raw=p*N;
-  const ai=Math.min(Math.floor(raw),N-1);
-  const frac=raw-Math.floor(raw);
-  dots.forEach((d,i)=>{
-    d.classList.remove('active','done');
-    if(i<ai)d.classList.add('done');
-    else if(i===ai)d.classList.add('active');
+// ── MOUSE TRACKING ON HERO IMAGE ────────────────────────────
+(function(){
+  const frame = document.getElementById('hero-photo-frame');
+  const img   = document.getElementById('hero-img');
+  if(!frame || !img) return;
+  let tx=0, ty=0, cx=0, cy=0;
+  document.addEventListener('mousemove', e => {
+    const r = frame.getBoundingClientRect();
+    tx = ((e.clientX - r.left) / r.width  - 0.5) * 14;
+    ty = ((e.clientY - r.top)  / r.height - 0.5) * 10;
   });
-  fills.forEach((f,i)=>{
-    if(i<ai)f.style.width='100%';
-    else if(i===ai)f.style.width=(frac*100)+'%';
-    else f.style.width='0%';
-  });
+  (function raf(){
+    cx += (tx - cx) * 0.055;
+    cy += (ty - cy) * 0.055;
+    img.style.transform = `scale(1.05) translate(${cx}px,${cy}px)`;
+    requestAnimationFrame(raf);
+  })();
+})();
+
+// ── HORIZONTAL SCROLL ─────────────────────────────────────
+(function(){
+  const outer = document.getElementById('how-outer');
+  const track = document.getElementById('how-track');
+  const dots  = document.getElementById('how-dots');
+  const dotEls  = dots.querySelectorAll('.how-dot');
+  const lineEls = dots.querySelectorAll('.how-dot-line');
+  if(!outer || !track) return;
+
+  function absTop(el){let t=0;while(el){t+=el.offsetTop;el=el.offsetParent;}return t;}
+
+  function updateH(){
+    const top      = absTop(outer);
+    const scrolled = window.scrollY - top;
+    const scrollable = outer.offsetHeight - window.innerHeight;
+    const p = Math.max(0, Math.min(1, scrolled / scrollable));
+    const maxX = Math.max(0, track.scrollWidth - window.innerWidth + 60);
+    track.style.transform = `translateX(-${p * maxX}px)`;
+
+    // dots visibility
+    const inView = scrolled > -window.innerHeight && scrolled < outer.offsetHeight;
+    dots.classList.toggle('visible', inView && p > 0.02 && p < 0.98);
+
+    // active dot
+    const step = Math.round(p * 4); // 0–4
+    dotEls.forEach((d,i)  => d.classList.toggle('active', i === step));
+    lineEls.forEach((l,i) => l.classList.toggle('filled', i < step));
+  }
+
+  window.addEventListener('scroll', updateH, {passive:true});
+  updateH();
+})();
+
+// ── SCROLL REVEAL ────────────────────────────────────────────
+(function(){
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+
+// ── GOOGLE CALENDAR + EVENTS ─────────────────────────────────
+const DAYS  = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MONTHS= ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+
+function getDemoEvents(){
+  return [
+    { id:'d1', title:"Women's Identity Workshop",       location:"Milton, FL",            startDate:new Date('2026-05-10T10:00:00'), description:"Discover who you were created to be. A powerful morning of reflection, community, and purpose." },
+    { id:'d2', title:"Family Empowerment Night",        location:"Pensacola, FL",          startDate:new Date('2026-05-18T18:30:00'), description:"An evening for families — hear stories, share meals, and build the village you deserve." },
+    { id:'d3', title:"Single Moms Support Circle",      location:"Fort Walton Beach, FL",  startDate:new Date('2026-06-07T11:00:00'), description:"You are not alone. A safe space to share, heal, and connect with other incredible moms." },
+    { id:'d4', title:"Purpose & Passion Summit",        location:"Milton, FL",             startDate:new Date('2026-06-21T09:00:00'), description:"A half-day event filled with keynote speakers, workshops, and community building." },
+    { id:'d5', title:"Health & Wholeness Walk",         location:"Navarre, FL",            startDate:new Date('2026-07-12T08:00:00'), description:"Start your healing journey one step at a time. A community wellness walk followed by brunch." },
+    { id:'d6', title:"Back-to-School Family Cookout",   location:"Pensacola, FL",          startDate:new Date('2026-07-26T15:00:00'), description:"Celebrate the new school year together. Food, fun, supplies, and community love." },
+  ];
 }
-window.addEventListener('scroll',updateH,{passive:true});
-window.addEventListener('resize',updateH);
-requestAnimationFrame(updateH);
 
-const ro=new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{
-    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*70);ro.unobserve(e.target);}
-  });
-},{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+function formatGCalEvent(item){
+  const start = item.start.dateTime || item.start.date;
+  return {
+    id: item.id,
+    title: item.summary || 'Untitled Event',
+    location: item.location || '',
+    startDate: new Date(start),
+    description: item.description || '',
+  };
+}
 
-document.querySelectorAll('.amt').forEach(a=>{
-  a.addEventListener('click',()=>{
-    document.querySelectorAll('.amt').forEach(x=>x.classList.remove('active'));
-    a.classList.add('active');
-  });
+async function fetchCalendarEvents(){
+  const cfg = window.YIN_CONFIG || {};
+  if(!cfg.CALENDAR_ID || !cfg.GOOGLE_API_KEY) return getDemoEvents();
+  try {
+    const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(cfg.CALENDAR_ID)}/events?key=${cfg.GOOGLE_API_KEY}&timeMin=${new Date().toISOString()}&singleEvents=true&orderBy=startTime&maxResults=50`;
+    const res  = await fetch(url);
+    if(!res.ok) throw new Error('API error');
+    const data = await res.json();
+    return (data.items || []).map(formatGCalEvent);
+  } catch(e){
+    console.warn('Google Calendar fetch failed, using demo events:', e);
+    return getDemoEvents();
+  }
+}
+
+function formatTime(d){
+  return d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});
+}
+
+function renderEventCard(ev, rsvpLink){
+  const d = ev.startDate;
+  return `
+    <div class="event-card" data-location="${(ev.location||'').toLowerCase()}">
+      <div class="event-date-col">
+        <span class="event-month">${MONTHS[d.getMonth()]}</span>
+        <span class="event-day">${d.getDate()}</span>
+        <span class="event-day-name">${DAYS[d.getDay()]}</span>
+      </div>
+      <div class="event-info-col">
+        <div class="event-name">${ev.title}</div>
+        <div class="event-meta">
+          ${ev.location ? `<span class="event-loc">${ev.location}</span>` : ''}
+          <span class="event-time">${formatTime(d)}</span>
+        </div>
+        ${ev.description ? `<div class="event-desc">${ev.description.replace(/<[^>]*>/g,'')}</div>` : ''}
+      </div>
+      <div class="event-action-col">
+        <a href="${rsvpLink||'#'}" class="event-rsvp" target="_blank" rel="noopener">RSVP →</a>
+      </div>
+    </div>`;
+}
+
+let allEvents = [];
+const container = document.getElementById('events-container');
+
+async function initEvents(){
+  allEvents = await fetchCalendarEvents();
+  allEvents.sort((a,b) => a.startDate - b.startDate);
+  renderEvents('');
+}
+
+function renderEvents(query){
+  const cfg = window.YIN_CONFIG || {};
+  const max = cfg.MAX_HOME_EVENTS || 6;
+  const q   = (query||'').toLowerCase().trim();
+  const filtered = q
+    ? allEvents.filter(e => e.location.toLowerCase().includes(q) || e.title.toLowerCase().includes(q))
+    : allEvents;
+  const sliced = filtered.slice(0, max);
+
+  if(!sliced.length){
+    container.innerHTML = `<div class="events-empty">No events found${q ? ` for "${query}"` : ''}. Check back soon!</div>`;
+    return;
+  }
+  const rsvp = (cfg.RSVP_LINK && cfg.RSVP_LINK !== '#') ? cfg.RSVP_LINK : '#';
+  container.innerHTML = `<div class="events-grid">${sliced.map(e => renderEventCard(e, rsvp)).join('')}</div>`;
+}
+
+initEvents();
+
+// sync search boxes
+function doSearch(q){
+  renderEvents(q);
+  // scroll to events
+  document.getElementById('events').scrollIntoView({behavior:'smooth'});
+}
+
+document.getElementById('hero-search-btn').addEventListener('click', () => {
+  doSearch(document.getElementById('hero-search').value);
+});
+document.getElementById('hero-search').addEventListener('keydown', e => {
+  if(e.key === 'Enter') doSearch(e.target.value);
+});
+document.getElementById('events-search').addEventListener('input', e => {
+  renderEvents(e.target.value);
+});
+// keep boxes in sync
+document.getElementById('hero-search').addEventListener('input', e => {
+  document.getElementById('events-search').value = e.target.value;
 });
 </script>
 </body>
