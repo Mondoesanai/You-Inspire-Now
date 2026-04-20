@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donate — Go Inspire Now</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<script src="config.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:#FAF8FF;color:#231D2D;overflow-x:hidden;}
+:root{--purple-deep:#35204F;--purple-royal:#5B3B8C;--teal:#2EB8B0;--gold:#C9A227;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:0.9rem 2.5rem;
+  background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(53,32,79,0.07);box-shadow:0 2px 20px rgba(53,32,79,0.06);}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo img{height:46px;display:block;}
+.nav-links{display:flex;align-items:center;gap:2rem;}
+.nav-links a{font-size:0.67rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;
+  color:rgba(35,29,45,0.5);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--purple-royal);}
+.nav-cta{padding:0.5rem 1.4rem;background:var(--gold);color:#231D2D!important;font-size:0.67rem;
+  font-weight:900;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border-radius:3px;}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--purple-deep);}
+
+/* HERO */
+.donate-hero{padding:8rem 2.5rem 5rem;
+  background:linear-gradient(145deg,var(--purple-deep) 0%,#4A2B7A 50%,var(--teal) 100%);
+  position:relative;overflow:hidden;text-align:center;}
+.donate-hero-orb{position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,162,39,0.2) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.donate-hero-noise{position:absolute;inset:0;opacity:0.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px;}
+.donate-hero-inner{max-width:650px;margin:0 auto;position:relative;z-index:1;}
+.donate-icon-big{font-size:4rem;display:block;margin-bottom:1.25rem;}
+.donate-eyebrow{font-size:0.58rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(201,162,39,0.85);margin-bottom:0.7rem;}
+.donate-h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.5rem);
+  font-weight:700;line-height:1.1;color:#fff;margin-bottom:1rem;}
+.donate-h1 em{font-style:italic;color:#A8E6E3;}
+.donate-sub{font-size:1rem;color:rgba(255,255,255,0.65);line-height:1.85;}
+
+/* MAIN */
+.donate-main{max-width:900px;margin:0 auto;padding:5rem 2.5rem 7rem;
+  display:grid;grid-template-columns:1.1fr 0.9fr;gap:3rem;align-items:start;}
+
+/* FORM CARD */
+.donate-form-card{background:#fff;border-radius:12px;padding:2.5rem;
+  box-shadow:0 12px 50px rgba(53,32,79,0.09);}
+.form-section-label{font-size:0.6rem;font-weight:900;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:1rem;display:block;}
+.amount-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.65rem;margin-bottom:0.75rem;}
+.amt-btn{padding:0.85rem;border:2px solid rgba(91,59,140,0.15);border-radius:6px;
+  font-size:1rem;font-weight:900;font-family:'Lato',sans-serif;
+  color:var(--purple-royal);background:#fff;cursor:pointer;text-align:center;
+  transition:all 0.18s;}
+.amt-btn:hover{border-color:var(--purple-royal);background:rgba(91,59,140,0.04);}
+.amt-btn.selected{background:var(--purple-royal);color:#fff;border-color:var(--purple-royal);}
+.amt-btn .amt-label{display:block;font-size:0.58rem;font-weight:700;
+  opacity:0.65;letter-spacing:0.05em;text-transform:uppercase;margin-top:0.1rem;}
+.custom-input-wrap{position:relative;margin-top:0.25rem;}
+.custom-input-wrap span{position:absolute;left:1rem;top:50%;transform:translateY(-50%);
+  font-weight:900;color:rgba(35,29,45,0.35);}
+.custom-input{width:100%;padding:0.85rem 1rem 0.85rem 1.75rem;
+  border:2px solid rgba(91,59,140,0.15);border-radius:6px;font-size:1rem;
+  font-family:'Lato',sans-serif;font-weight:900;outline:none;transition:border-color 0.2s;}
+.custom-input:focus{border-color:var(--purple-royal);}
+.form-divider{height:1px;background:rgba(53,32,79,0.07);margin:1.75rem 0;}
+.field-group{margin-bottom:1.1rem;}
+.field-label{font-size:0.68rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+  color:rgba(35,29,45,0.5);margin-bottom:0.4rem;display:block;}
+.field-input{width:100%;padding:0.75rem 1rem;border:1.5px solid rgba(53,32,79,0.15);
+  border-radius:5px;font-size:0.9rem;font-family:'Lato',sans-serif;outline:none;
+  transition:border-color 0.2s,box-shadow 0.2s;}
+.field-input:focus{border-color:var(--purple-royal);box-shadow:0 0 0 3px rgba(91,59,140,0.1);}
+.donate-submit{width:100%;padding:1.1rem;background:var(--purple-royal);color:#fff;
+  font-size:0.82rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;
+  border:none;border-radius:5px;cursor:pointer;font-family:'Lato',sans-serif;
+  margin-top:1.5rem;
+  transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;
+  box-shadow:0 6px 24px rgba(91,59,140,0.28);}
+.donate-submit:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 40px rgba(91,59,140,0.4);}
+.secure-note{font-size:0.7rem;color:rgba(35,29,45,0.38);text-align:center;
+  margin-top:0.85rem;line-height:1.6;}
+
+/* SIDEBAR */
+.donate-sidebar{}
+.impact-card{background:#fff;border-radius:12px;padding:2rem;
+  box-shadow:0 8px 40px rgba(53,32,79,0.07);margin-bottom:1.5rem;}
+.impact-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;
+  color:var(--purple-deep);margin-bottom:1.25rem;}
+.impact-item{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.25rem;}
+.impact-item:last-child{margin-bottom:0;}
+.impact-icon-wrap{flex:0 0 44px;height:44px;border-radius:10px;display:flex;
+  align-items:center;justify-content:center;font-size:1.3rem;}
+.impact-icon-wrap.purple{background:rgba(91,59,140,0.1);}
+.impact-icon-wrap.teal{background:rgba(46,184,176,0.1);}
+.impact-icon-wrap.gold{background:rgba(201,162,39,0.1);}
+.impact-icon-wrap.green{background:rgba(46,184,100,0.1);}
+.impact-item-title{font-weight:900;font-size:0.82rem;color:var(--purple-deep);margin-bottom:0.2rem;}
+.impact-item-text{font-size:0.77rem;color:rgba(35,29,45,0.5);line-height:1.65;}
+
+.love-box-card{background:linear-gradient(140deg,#35204F,#5B3B8C);border-radius:12px;
+  padding:2rem;color:#fff;box-shadow:0 8px 40px rgba(53,32,79,0.2);}
+.love-box-icon{font-size:2.5rem;margin-bottom:0.75rem;display:block;}
+.love-box-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;
+  margin-bottom:0.5rem;}
+.love-box-text{font-size:0.8rem;color:rgba(255,255,255,0.65);line-height:1.75;}
+.love-box-items{margin-top:1rem;display:flex;flex-direction:column;gap:0.4rem;}
+.love-box-item{display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;color:rgba(255,255,255,0.7);}
+.love-box-item::before{content:'💜';font-size:0.7rem;}
+
+/* THANK YOU STATE */
+.thank-you{display:none;text-align:center;padding:3rem 2rem;}
+.thank-you.show{display:block;}
+.thank-you-icon{font-size:4rem;margin-bottom:1rem;display:block;}
+.thank-you-h{font-family:'Playfair Display',serif;font-size:2rem;color:var(--purple-deep);
+  margin-bottom:0.75rem;}
+.thank-you-p{font-size:0.95rem;color:rgba(35,29,45,0.55);line-height:1.85;}
+
+footer{background:#1A0F2E;padding:3rem 2.5rem;}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:1.5rem;}
+.footer-copy{font-size:0.7rem;color:rgba(255,255,255,0.22);}
+
+@media(max-width:760px){
+  .donate-main{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;
+    top:68px;left:0;right:0;background:rgba(255,255,255,0.99);
+    padding:1.5rem 2rem;gap:1rem;z-index:299;box-shadow:0 12px 40px rgba(0,0,0,0.1);}
+  .nav-burger{display:flex;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" style="height:46px;display:block;"></a>
+    <div class="nav-links" id="nav-links">
+      <a href="events.html">Events</a>
+      <a href="index.html#podcast">Podcast</a>
+      <a href="products.html">Shop</a>
+      <a href="#" class="nav-cta">Donate</a>
+    </div>
+    <button class="nav-burger" id="nav-burger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="donate-hero">
+  <div class="donate-hero-noise"></div>
+  <div class="donate-hero-orb"></div>
+  <div class="donate-hero-inner">
+    <span class="donate-icon-big">💜</span>
+    <p class="donate-eyebrow">Make a Difference Today</p>
+    <h1 class="donate-h1">Every Dollar <em>Moves</em> Someone Forward</h1>
+    <p class="donate-sub">Your donation funds Love Boxes, scholarships, free events, and the Voices of Resilience podcast — all for women and families in our community.</p>
+  </div>
+</div>
+
+<div class="donate-main">
+  <!-- FORM -->
+  <div class="donate-form-card">
+    <div id="donate-form-view">
+      <span class="form-section-label">Choose Your Amount</span>
+      <div class="amount-grid">
+        <button class="amt-btn" data-amount="5">$5<span class="amt-label">Starter</span></button>
+        <button class="amt-btn selected" data-amount="10">$10<span class="amt-label">Community</span></button>
+        <button class="amt-btn" data-amount="25">$25<span class="amt-label">Supporter</span></button>
+        <button class="amt-btn" data-amount="50">$50<span class="amt-label">Champion</span></button>
+      </div>
+      <div class="custom-input-wrap">
+        <span>$</span>
+        <input type="number" class="custom-input" id="custom-amount" placeholder="Custom amount" min="1">
+      </div>
+
+      <div class="form-divider"></div>
+      <span class="form-section-label">Your Information</span>
+      <div class="field-group">
+        <label class="field-label">Full Name</label>
+        <input type="text" class="field-input" id="donor-name" placeholder="Your name">
+      </div>
+      <div class="field-group">
+        <label class="field-label">Email Address</label>
+        <input type="email" class="field-input" id="donor-email" placeholder="your@email.com">
+      </div>
+
+      <div class="form-divider"></div>
+      <span class="form-section-label">Where to Give</span>
+      <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1rem;">
+        <label style="display:flex;align-items:center;gap:0.65rem;cursor:pointer;font-size:0.87rem;color:rgba(35,29,45,0.65);">
+          <input type="radio" name="fund" value="general" checked style="accent-color:var(--purple-royal);width:16px;height:16px;">
+          Where it's needed most (General Fund)
+        </label>
+        <label style="display:flex;align-items:center;gap:0.65rem;cursor:pointer;font-size:0.87rem;color:rgba(35,29,45,0.65);">
+          <input type="radio" name="fund" value="lovebox" style="accent-color:var(--purple-royal);width:16px;height:16px;">
+          Love Box program
+        </label>
+        <label style="display:flex;align-items:center;gap:0.65rem;cursor:pointer;font-size:0.87rem;color:rgba(35,29,45,0.65);">
+          <input type="radio" name="fund" value="events" style="accent-color:var(--purple-royal);width:16px;height:16px;">
+          Community Events &amp; Walks
+        </label>
+        <label style="display:flex;align-items:center;gap:0.65rem;cursor:pointer;font-size:0.87rem;color:rgba(35,29,45,0.65);">
+          <input type="radio" name="fund" value="podcast" style="accent-color:var(--purple-royal);width:16px;height:16px;">
+          Voices of Resilience Podcast
+        </label>
+      </div>
+
+      <button class="donate-submit" id="donate-submit">Donate Now — <span id="submit-amount">$10</span></button>
+      <p class="secure-note">🔒 Secure · 100% goes to the community · Thank you for your generosity 💜</p>
+    </div>
+
+    <div class="thank-you" id="thank-you-view">
+      <span class="thank-you-icon">🎉</span>
+      <h2 class="thank-you-h">Thank You!</h2>
+      <p class="thank-you-p">Your donation of <strong id="ty-amount"></strong> has been received.<br>You are making a real difference in someone's life today.<br><br>We will send a confirmation to <strong id="ty-email"></strong>.</p>
+      <br><br>
+      <a href="index.html" style="display:inline-block;padding:0.85rem 2rem;background:var(--purple-royal);
+        color:#fff;text-decoration:none;border-radius:4px;font-size:0.78rem;font-weight:900;
+        letter-spacing:0.1em;text-transform:uppercase;">Back to Home</a>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="donate-sidebar">
+    <div class="impact-card">
+      <div class="impact-title">Where Your Gift Goes</div>
+      <div class="impact-item">
+        <div class="impact-icon-wrap purple">📦</div>
+        <div>
+          <div class="impact-item-title">Love Box</div>
+          <div class="impact-item-text">Boxes packed with essentials, encouragement, and care — sent directly to women and families in need throughout our community.</div>
+        </div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-icon-wrap gold">🎓</div>
+        <div>
+          <div class="impact-item-title">Scholarships</div>
+          <div class="impact-item-text">Funding educational opportunities and resources that open doors for women in our community who are ready to grow.</div>
+        </div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-icon-wrap teal">🚶‍♀️</div>
+        <div>
+          <div class="impact-item-title">Events &amp; Walks</div>
+          <div class="impact-item-text">Keeping every gathering, weekly walk, and 25K event free — so no woman is left out because she cannot afford a ticket.</div>
+        </div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-icon-wrap green">🎙️</div>
+        <div>
+          <div class="impact-item-title">Voices of Resilience</div>
+          <div class="impact-item-text">Recording and sharing real stories from real women — so every voice that needs to be heard, gets heard.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="love-box-card">
+      <span class="love-box-icon">📦</span>
+      <div class="love-box-title">What's in a Love Box?</div>
+      <p class="love-box-text">Every Love Box is hand-packed with items chosen to encourage, comfort, and uplift a woman in need.</p>
+      <div class="love-box-items">
+        <div class="love-box-item">Personal care essentials</div>
+        <div class="love-box-item">Encouraging note &amp; affirmations</div>
+        <div class="love-box-item">Community resources &amp; info</div>
+        <div class="love-box-item">Go Inspire Now merch item</div>
+        <div class="love-box-item">Handwritten card from our team</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" style="height:38px;display:block;"></a>
+    <p class="footer-copy">© 2026 Go Inspire Now · All rights reserved</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('nav-burger').addEventListener('click', () =>
+  document.getElementById('nav-links').classList.toggle('open'));
+
+// pre-fill amount from URL param
+const urlAmt = new URLSearchParams(window.location.search).get('amount');
+let selectedAmt = 10;
+const amtBtns   = document.querySelectorAll('.amt-btn');
+const customAmt = document.getElementById('custom-amount');
+const submitAmt = document.getElementById('submit-amount');
+
+function setAmount(amt){
+  selectedAmt = amt;
+  submitAmt.textContent = '$' + amt;
+}
+function clearSelection(){
+  amtBtns.forEach(b => b.classList.remove('selected'));
+}
+
+if(urlAmt && [5,10,25,50].includes(parseInt(urlAmt))){
+  clearSelection();
+  document.querySelectorAll('.amt-btn').forEach(b => {
+    if(parseInt(b.dataset.amount) === parseInt(urlAmt)) b.classList.add('selected');
+  });
+  setAmount(parseInt(urlAmt));
+} else {
+  setAmount(10);
+}
+
+amtBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    clearSelection();
+    btn.classList.add('selected');
+    customAmt.value = '';
+    setAmount(parseInt(btn.dataset.amount));
+  });
+});
+customAmt.addEventListener('input', () => {
+  clearSelection();
+  setAmount(parseInt(customAmt.value) || 0);
+  submitAmt.textContent = customAmt.value ? '$'+customAmt.value : 'Now';
+});
+
+document.getElementById('donate-submit').addEventListener('click', () => {
+  const name  = document.getElementById('donor-name').value.trim();
+  const email = document.getElementById('donor-email').value.trim();
+  const amt   = customAmt.value ? parseInt(customAmt.value) : selectedAmt;
+  if(!name || !email){ alert('Please enter your name and email to continue.'); return; }
+  if(!amt || amt < 1){ alert('Please select or enter a donation amount.'); return; }
+
+  // Show thank you
+  document.getElementById('donate-form-view').style.display = 'none';
+  document.getElementById('ty-amount').textContent = '$' + amt;
+  document.getElementById('ty-email').textContent  = email;
+  document.getElementById('thank-you-view').classList.add('show');
+
+  // TODO: wire to real payment processor (Stripe, PayPal, etc.)
+  const cfg = window.GIN_CONFIG || {};
+  if(cfg.DONATE_PAYPAL_URL){
+    setTimeout(() => { window.open(cfg.DONATE_PAYPAL_URL + '?amount=' + amt, '_blank'); }, 800);
+  }
+});
+</script>
+</body>
+</html>

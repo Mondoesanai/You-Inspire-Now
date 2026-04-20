@@ -1,20 +1,20 @@
 // ============================================================
-// YOU INSPIRE NOW — Site Configuration
+// GO INSPIRE NOW — Site Configuration
 // ============================================================
-// Fill in your credentials below to enable live Google Calendar.
-// Leave CALENDAR_ID and GOOGLE_API_KEY empty to show demo events.
+// Fill in your credentials below to activate payment + podcast links.
 
-window.YIN_CONFIG = {
-  // Google Calendar: Settings → Integrate calendar → Calendar ID
-  CALENDAR_ID: '',
+window.GIN_CONFIG = {
+  // Podcast — paste your YouTube channel or playlist URL
+  PODCAST_YOUTUBE_URL: '',
 
-  // Google Cloud Console → APIs & Services → Credentials → API Key
-  // Enable "Google Calendar API" for this key. Restrict to your domain.
-  GOOGLE_API_KEY: '',
+  // Weekly Walks — $5 payment links
+  CASHAPP_URL:  '',   // e.g. 'https://cash.app/$GoInspireNow'
+  PAYPAL_URL:   '',   // e.g. 'https://paypal.me/GoInspireNow'
 
-  // GoHighLevel funnel URL for RSVP button
-  RSVP_LINK: '#',
+  // Donations
+  DONATE_CASHAPP_URL: '',
+  DONATE_PAYPAL_URL:  '',
 
-  // Max events shown on homepage events section (events.html shows all)
-  MAX_HOME_EVENTS: 6,
+  // Products / Shopify (leave empty until connected)
+  SHOPIFY_URL: '',
 };

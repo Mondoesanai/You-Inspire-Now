@@ -3,339 +3,492 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>All Events — You Inspire Now</title>
+<title>Events — Go Inspire Now</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 <script src="config.js"></script>
+<script src="events-data.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{font-family:'Lato',sans-serif;background:#fff;color:#231D2D;overflow-x:hidden;}
+:root{--purple-deep:#35204F;--purple-royal:#5B3B8C;--teal:#2EB8B0;--gold:#C9A227;}
 
-/* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:0.9rem 2.5rem;
   background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(91,59,140,0.08);box-shadow:0 2px 20px rgba(91,59,140,0.06);}
-.nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
-.nav-logo img{height:44px;display:block;}
-.nav-links{display:flex;align-items:center;gap:1.75rem;}
-.nav-links a{font-size:0.68rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;
+  border-bottom:1px solid rgba(53,32,79,0.07);box-shadow:0 2px 20px rgba(53,32,79,0.06);}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo img{height:46px;display:block;}
+.nav-links{display:flex;align-items:center;gap:2rem;}
+.nav-links a{font-size:0.67rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;
   color:rgba(35,29,45,0.5);text-decoration:none;transition:color 0.2s;}
-.nav-links a:hover{color:#5B3B8C;}
-.nav-links a.active{color:#5B3B8C;}
-.nav-donate{padding:0.5rem 1.4rem;background:#C9A227;color:#fff!important;font-size:0.68rem;
+.nav-links a:hover,.nav-links a.active{color:var(--purple-royal);}
+.nav-cta{padding:0.5rem 1.4rem;background:var(--gold);color:#231D2D!important;font-size:0.67rem;
   font-weight:900;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;
   border-radius:3px;transition:transform 0.2s,box-shadow 0.2s;}
-.nav-donate:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,162,39,0.4);}
-.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
-.nav-hamburger span{display:block;width:22px;height:2px;background:#35204F;}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,162,39,0.4);}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--purple-deep);}
 
-/* ── PAGE HEADER ── */
+/* PAGE HEADER */
 .page-header{padding:8rem 2.5rem 4rem;
-  background:linear-gradient(140deg,#2C1846 0%,#4A2B7A 40%,#2EB8B0 100%);
+  background:linear-gradient(145deg,var(--purple-deep) 0%,#4A2B7A 45%,var(--teal) 100%);
   position:relative;overflow:hidden;}
+.page-header-orb{position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(46,184,176,0.25) 0%,transparent 70%);
+  top:-100px;right:-80px;pointer-events:none;}
 .page-header-noise{position:absolute;inset:0;opacity:0.025;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size:200px;}
-.page-header-orb{position:absolute;width:500px;height:500px;border-radius:50%;
-  background:radial-gradient(circle,rgba(46,184,176,0.3) 0%,transparent 70%);
-  top:-150px;right:-100px;pointer-events:none;}
-.page-header-inner{max-width:1160px;margin:0 auto;position:relative;z-index:1;}
-.page-header-label{font-size:0.6rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;
-  color:rgba(201,162,39,0.85);margin-bottom:0.75rem;}
-.page-header-h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.8rem);
-  font-weight:700;line-height:1.1;letter-spacing:-0.025em;color:#fff;margin-bottom:1rem;}
-.page-header-h1 em{color:#A8E6E3;font-style:italic;}
-.page-header-sub{font-size:1rem;color:rgba(255,255,255,0.65);max-width:520px;line-height:1.85;}
+.page-header-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.page-eyebrow{font-size:0.58rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(201,162,39,0.85);margin-bottom:0.7rem;}
+.page-h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.6rem);
+  font-weight:700;line-height:1.08;letter-spacing:-0.025em;color:#fff;margin-bottom:1rem;}
+.page-h1 em{font-style:italic;color:#A8E6E3;}
+.page-sub{font-size:1rem;color:rgba(255,255,255,0.62);max-width:520px;line-height:1.85;}
 
-/* ── FILTERS ── */
-.filters-bar{padding:2rem 2.5rem;background:#FAF8FF;
-  border-bottom:1px solid rgba(91,59,140,0.08);}
-.filters-inner{max-width:1160px;margin:0 auto;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;}
-.search-wrap{position:relative;flex:1;min-width:220px;max-width:400px;}
-.search-wrap input{width:100%;padding:0.75rem 0.9rem 0.75rem 2.6rem;
-  border:1.5px solid rgba(91,59,140,0.18);border-radius:5px;font-size:0.85rem;
-  font-family:'Lato',sans-serif;outline:none;background:#fff;color:#231D2D;
-  transition:border-color 0.2s,box-shadow 0.2s;}
-.search-wrap input:focus{border-color:#5B3B8C;box-shadow:0 0 0 3px rgba(91,59,140,0.1);}
-.search-icon{position:absolute;left:0.8rem;top:50%;transform:translateY(-50%);font-size:0.9rem;pointer-events:none;}
-.filter-count{font-size:0.78rem;color:rgba(35,29,45,0.45);font-weight:700;margin-left:auto;}
+/* FILTER BAR */
+.filter-bar{background:#FAF8FF;border-bottom:1px solid rgba(53,32,79,0.07);
+  padding:1.5rem 2.5rem;position:sticky;top:68px;z-index:100;}
+.filter-bar-inner{max-width:1200px;margin:0 auto;display:flex;gap:1rem;
+  align-items:center;flex-wrap:wrap;}
+.filter-tab{padding:0.55rem 1.25rem;border-radius:100px;font-size:0.68rem;
+  font-weight:900;letter-spacing:0.12em;text-transform:uppercase;
+  border:2px solid transparent;cursor:pointer;font-family:'Lato',sans-serif;
+  transition:all 0.2s;background:#fff;color:rgba(35,29,45,0.5);}
+.filter-tab:hover{color:var(--purple-royal);border-color:rgba(91,59,140,0.2);}
+.filter-tab.active-all{background:var(--purple-deep);color:#fff;border-color:var(--purple-deep);}
+.filter-tab.active-gatherings{background:var(--gold);color:#231D2D;border-color:var(--gold);}
+.filter-tab.active-walks{background:var(--teal);color:#fff;border-color:var(--teal);}
+.filter-tab.active-25k{background:var(--purple-royal);color:#fff;border-color:var(--purple-royal);}
+.search-wrap{position:relative;margin-left:auto;}
+.search-wrap input{padding:0.6rem 0.9rem 0.6rem 2.4rem;border:1.5px solid rgba(53,32,79,0.15);
+  border-radius:5px;font-size:0.83rem;font-family:'Lato',sans-serif;outline:none;
+  background:#fff;color:#231D2D;width:240px;transition:border-color 0.2s,box-shadow 0.2s;}
+.search-wrap input:focus{border-color:var(--purple-royal);box-shadow:0 0 0 3px rgba(91,59,140,0.1);}
+.search-icon{position:absolute;left:0.75rem;top:50%;transform:translateY(-50%);font-size:0.85rem;pointer-events:none;}
 
-/* ── EVENTS MAIN ── */
-.events-main{padding:4rem 2.5rem 7rem;min-height:60vh;}
-.events-container{max-width:1160px;margin:0 auto;}
+/* EVENTS MAIN */
+.events-main{padding:4rem 2.5rem 6rem;min-height:60vh;}
+.events-container{max-width:1200px;margin:0 auto;}
 
-/* month group */
-.month-group{margin-bottom:3rem;}
-.month-heading{font-size:0.65rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;
-  color:rgba(91,59,140,0.55);padding-bottom:0.75rem;
-  border-bottom:1px solid rgba(91,59,140,0.1);margin-bottom:1.25rem;}
+/* category section header */
+.cat-section-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.75rem;margin-top:3.5rem;}
+.cat-section-header:first-child{margin-top:0;}
+.cat-pill{display:inline-flex;align-items:center;gap:0.5rem;padding:0.45rem 1.1rem;
+  border-radius:100px;font-size:0.62rem;font-weight:900;letter-spacing:0.18em;text-transform:uppercase;}
+.cat-pill.gatherings{background:rgba(201,162,39,0.15);color:#8B6914;}
+.cat-pill.weekly-walks{background:rgba(46,184,176,0.15);color:#1A7A76;}
+.cat-pill.tk25-walk,.cat-pill[data-cat='25k-walk']{background:rgba(91,59,140,0.12);color:var(--purple-royal);}
+.cat-divider{flex:1;height:1px;background:rgba(53,32,79,0.08);}
 
 /* event card */
-.event-card{display:flex;align-items:stretch;background:#fff;
-  border:1px solid rgba(91,59,140,0.08);border-radius:8px;overflow:hidden;
+.ev-card{display:flex;align-items:stretch;background:#fff;
+  border:1px solid rgba(53,32,79,0.08);border-radius:8px;overflow:hidden;
   margin-bottom:1rem;box-shadow:0 4px 20px rgba(53,32,79,0.05);
-  transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.25s;}
-.event-card:hover{transform:translateY(-4px);box-shadow:0 16px 50px rgba(53,32,79,0.12);}
-.event-date-col{flex:0 0 96px;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;padding:1.5rem 0.75rem;
-  background:linear-gradient(160deg,#35204F,#5B3B8C);min-height:100px;}
-.event-month{font-size:0.58rem;font-weight:900;letter-spacing:0.2em;text-transform:uppercase;
-  color:rgba(201,162,39,0.9);}
-.event-day{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;
+  text-decoration:none;
+  transition:transform 0.25s cubic-bezier(.34,1.56,.64,1),box-shadow 0.25s;}
+.ev-card:hover{transform:translateY(-4px);box-shadow:0 16px 50px rgba(53,32,79,0.12);}
+.ev-date-col{flex:0 0 94px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:1.4rem 0.75rem;min-height:100px;}
+.ev-date-col.gatherings{background:linear-gradient(160deg,#8B6914,#C9A227);}
+.ev-date-col.weekly-walks{background:linear-gradient(160deg,#1A7A76,#2EB8B0);}
+.ev-date-col[data-cat='25k-walk']{background:linear-gradient(160deg,#35204F,#5B3B8C);}
+.ev-mon{font-size:0.56rem;font-weight:900;letter-spacing:0.18em;text-transform:uppercase;}
+.ev-date-col.gatherings .ev-mon{color:rgba(255,255,200,0.85);}
+.ev-date-col.weekly-walks .ev-mon{color:rgba(200,255,250,0.85);}
+.ev-date-col[data-cat='25k-walk'] .ev-mon{color:rgba(220,200,255,0.85);}
+.ev-day{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;
   color:#fff;line-height:1;}
-.event-day-name{font-size:0.55rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+.ev-dname{font-size:0.52rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
   color:rgba(255,255,255,0.45);}
-.event-body{flex:1;padding:1.5rem 1.75rem;}
-.event-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;
-  color:#35204F;margin-bottom:0.4rem;}
-.event-meta{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;margin-bottom:0.65rem;}
-.event-loc{font-size:0.78rem;color:rgba(35,29,45,0.5);font-weight:400;}
-.event-loc::before{content:'📍 ';}
-.event-time{font-size:0.78rem;color:rgba(35,29,45,0.5);}
-.event-time::before{content:'🕐 ';}
-.event-desc{font-size:0.85rem;color:rgba(35,29,45,0.55);line-height:1.75;}
-.event-cta{flex:0 0 auto;padding:1.5rem 1.75rem;display:flex;align-items:center;}
-.event-rsvp{display:inline-block;padding:0.65rem 1.5rem;background:#5B3B8C;color:#fff;
-  font-size:0.68rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;
-  border-radius:4px;text-decoration:none;white-space:nowrap;
-  transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s;}
-.event-rsvp:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 10px 28px rgba(91,59,140,0.4);}
-.event-rsvp:active{transform:scale(0.97);}
+.ev-body{flex:1;padding:1.4rem 1.75rem;}
+.ev-cost-badge{display:inline-block;font-size:0.56rem;font-weight:900;letter-spacing:0.15em;
+  text-transform:uppercase;padding:0.2rem 0.6rem;border-radius:100px;
+  background:rgba(46,184,176,0.12);color:#1A7A76;margin-bottom:0.4rem;}
+.ev-cost-badge.paid{background:rgba(201,162,39,0.15);color:#8B6914;}
+.ev-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;
+  color:var(--purple-deep);margin-bottom:0.35rem;}
+.ev-meta{font-size:0.75rem;color:rgba(35,29,45,0.46);margin-bottom:0.45rem;}
+.ev-desc{font-size:0.82rem;color:rgba(35,29,45,0.5);line-height:1.7;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.ev-cta-col{flex:0 0 auto;padding:1.4rem 1.75rem;display:flex;align-items:center;}
+.ev-view-btn{display:inline-block;padding:0.6rem 1.3rem;background:var(--purple-royal);
+  color:#fff;font-size:0.65rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;
+  border-radius:3px;text-decoration:none;white-space:nowrap;
+  transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;}
+.ev-view-btn:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 8px 22px rgba(91,59,140,0.4);}
+.ev-view-btn.gold{background:var(--gold);color:#231D2D;}
+.ev-view-btn.teal{background:var(--teal);}
 
-/* loading / empty */
-.events-loading{text-align:center;padding:6rem 2rem;}
-.events-spinner{display:inline-block;width:44px;height:44px;border:3px solid rgba(91,59,140,0.15);
-  border-top-color:#5B3B8C;border-radius:50%;animation:spin 0.8s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg);}}
-.events-empty{text-align:center;padding:5rem 2rem;}
-.events-empty-icon{font-size:3.5rem;margin-bottom:1.5rem;}
-.events-empty h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:#35204F;margin-bottom:0.65rem;}
-.events-empty p{font-size:0.9rem;color:rgba(35,29,45,0.5);line-height:1.8;}
+/* empty / count */
+.results-count{font-size:0.72rem;font-weight:700;color:rgba(35,29,45,0.38);
+  letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2rem;}
+.empty-state{text-align:center;padding:5rem 2rem;}
+.empty-icon{font-size:3.5rem;margin-bottom:1.25rem;}
+.empty-h{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--purple-deep);margin-bottom:0.6rem;}
+.empty-p{font-size:0.9rem;color:rgba(35,29,45,0.45);line-height:1.8;}
 
-/* footer */
+/* EVENT DETAIL MODAL / OVERLAY */
+.overlay{position:fixed;inset:0;background:rgba(22,10,40,0.7);z-index:500;
+  display:none;align-items:flex-start;justify-content:center;
+  padding:2rem 1.5rem;overflow-y:auto;backdrop-filter:blur(8px);}
+.overlay.open{display:flex;}
+.modal{background:#fff;border-radius:12px;max-width:720px;width:100%;
+  box-shadow:0 40px 100px rgba(0,0,0,0.4);position:relative;overflow:hidden;
+  margin:auto;}
+.modal-header{padding:2.5rem 2.5rem 1.5rem;position:relative;}
+.modal-cat-bar{height:4px;position:absolute;top:0;left:0;right:0;}
+.modal-cat-bar.gatherings{background:linear-gradient(to right,#8B6914,#C9A227);}
+.modal-cat-bar.weekly-walks{background:linear-gradient(to right,#1A7A76,#2EB8B0);}
+.modal-cat-bar[data-cat='25k-walk']{background:linear-gradient(to right,#35204F,#5B3B8C);}
+.modal-close{position:absolute;top:1.25rem;right:1.5rem;background:none;border:none;
+  font-size:1.5rem;cursor:pointer;color:rgba(35,29,45,0.35);line-height:1;
+  transition:color 0.2s;}
+.modal-close:hover{color:var(--purple-deep);}
+.modal-eyebrow{font-size:0.58rem;font-weight:900;letter-spacing:0.22em;text-transform:uppercase;
+  margin-bottom:0.5rem;}
+.modal-eyebrow.gatherings{color:#8B6914;}
+.modal-eyebrow.weekly-walks{color:#1A7A76;}
+.modal-eyebrow[data-cat='25k-walk']{color:var(--purple-royal);}
+.modal-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.1rem);
+  font-weight:700;color:var(--purple-deep);margin-bottom:1.25rem;line-height:1.2;}
+.modal-meta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;
+  margin-bottom:1.5rem;}
+.modal-meta-item{background:#FAF8FF;border-radius:6px;padding:0.85rem 1rem;}
+.modal-meta-icon{font-size:1.1rem;margin-bottom:0.2rem;display:block;}
+.modal-meta-label{font-size:0.56rem;font-weight:900;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(35,29,45,0.35);margin-bottom:0.15rem;}
+.modal-meta-val{font-size:0.82rem;font-weight:700;color:var(--purple-deep);}
+.modal-body{padding:0 2.5rem 2.5rem;}
+.modal-section{margin-bottom:1.75rem;}
+.modal-section-title{font-size:0.65rem;font-weight:900;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:0.75rem;}
+.modal-desc{font-size:0.92rem;color:rgba(35,29,45,0.62);line-height:1.85;}
+.modal-list{list-style:none;display:flex;flex-direction:column;gap:0.55rem;}
+.modal-list li{display:flex;align-items:flex-start;gap:0.6rem;
+  font-size:0.88rem;color:rgba(35,29,45,0.65);line-height:1.6;}
+.modal-list li::before{content:'✓';font-size:0.7rem;font-weight:900;
+  color:var(--teal);margin-top:0.15rem;flex-shrink:0;}
+.modal-payment{background:linear-gradient(145deg,#EDE4F8,#E6F7F6);border-radius:8px;
+  padding:1.5rem;margin-bottom:1.75rem;}
+.modal-payment-note{font-size:0.85rem;color:var(--purple-deep);font-weight:700;margin-bottom:1rem;}
+.modal-pay-btns{display:flex;gap:0.75rem;flex-wrap:wrap;}
+.modal-pay-btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.5rem;
+  border-radius:4px;font-size:0.72rem;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;}
+.modal-pay-btn.cashapp{background:#00D632;color:#fff;}
+.modal-pay-btn.cashapp:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,214,50,0.4);}
+.modal-pay-btn.paypal{background:#003087;color:#fff;}
+.modal-pay-btn.paypal:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,48,135,0.4);}
+.modal-pay-btn.disabled{background:rgba(35,29,45,0.12);color:rgba(35,29,45,0.4);cursor:not-allowed;}
+
 footer{background:#1A0F2E;padding:3rem 2.5rem;}
-.footer-inner{max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;
   align-items:center;flex-wrap:wrap;gap:1.5rem;}
-.footer-brand img{height:36px;}
-.footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.25);}
+.footer-brand img{height:38px;}
+.footer-copy{font-size:0.7rem;color:rgba(255,255,255,0.22);}
 .footer-links{display:flex;gap:1.5rem;}
-.footer-links a{font-size:0.72rem;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;}
+.footer-links a{font-size:0.7rem;color:rgba(255,255,255,0.32);text-decoration:none;transition:color 0.2s;}
 .footer-links a:hover{color:#fff;}
 
-@media(max-width:700px){
+@media(max-width:660px){
   .nav-links{display:none;}
   .nav-links.open{display:flex;flex-direction:column;position:fixed;
-    top:66px;left:0;right:0;background:rgba(255,255,255,0.99);
-    padding:1.5rem 2rem;box-shadow:0 12px 40px rgba(0,0,0,0.15);gap:1rem;z-index:299;}
-  .nav-hamburger{display:flex;}
-  .event-card{flex-wrap:wrap;}
-  .event-date-col{flex:0 0 100%;flex-direction:row;min-height:auto;padding:0.75rem 1.25rem;gap:0.6rem;}
-  .event-cta{padding:0.75rem 1.25rem 1.25rem;}
-  .footer-inner{flex-direction:column;text-align:center;}
-  .footer-links{flex-wrap:wrap;justify-content:center;}
+    top:68px;left:0;right:0;background:rgba(255,255,255,0.99);
+    padding:1.5rem 2rem;gap:1rem;z-index:299;box-shadow:0 12px 40px rgba(0,0,0,0.1);}
+  .nav-burger{display:flex;}
+  .modal-meta-grid{grid-template-columns:1fr 1fr;}
+  .ev-card{flex-wrap:wrap;}
+  .ev-date-col{flex:0 0 100%;flex-direction:row;min-height:auto;padding:0.75rem 1.25rem;gap:0.5rem;}
+  .ev-cta-col{padding:0.75rem 1.25rem 1.25rem;}
+  .search-wrap input{width:100%;}
+  .filter-bar-inner{gap:0.6rem;}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo"><img src="assets/yin-logo.png" alt="You Inspire Now"></a>
+    <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" style="height:46px;display:block;"></a>
     <div class="nav-links" id="nav-links">
-      <a href="index.html#who-we-serve">Who We Serve</a>
-      <a href="index.html#how-it-works">How It Works</a>
-      <a href="index.html#events">Find Events</a>
-      <a href="#" class="active">All Events</a>
-      <a href="index.html#donate" class="nav-donate">Donate</a>
+      <a href="events.html" class="active">Events</a>
+      <a href="index.html#podcast">Podcast</a>
+      <a href="products.html">Shop</a>
+      <a href="index.html#donate" class="nav-cta">Donate</a>
     </div>
-    <button class="nav-hamburger" id="nav-burger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="nav-burger" id="nav-burger"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
-<!-- PAGE HEADER -->
 <div class="page-header">
   <div class="page-header-noise"></div>
   <div class="page-header-orb"></div>
   <div class="page-header-inner">
-    <p class="page-header-label">You Inspire Now</p>
-    <h1 class="page-header-h1">All Upcoming <em>Events</em></h1>
-    <p class="page-header-sub">
-      Every event is free to attend. Find one in your community, RSVP, and show up ready to be inspired.
-    </p>
+    <p class="page-eyebrow">Go Inspire Now</p>
+    <h1 class="page-h1">All <em>Events</em></h1>
+    <p class="page-sub">Gatherings, Weekly Walks, and 25K events — find yours, RSVP, and show up ready to be inspired.</p>
   </div>
 </div>
 
-<!-- FILTERS -->
-<div class="filters-bar">
-  <div class="filters-inner">
+<div class="filter-bar">
+  <div class="filter-bar-inner">
+    <button class="filter-tab active-all" data-filter="all">All Events</button>
+    <button class="filter-tab" data-filter="gatherings">🥂 Gatherings</button>
+    <button class="filter-tab" data-filter="weekly-walks">🚶‍♀️ Weekly Walks</button>
+    <button class="filter-tab" data-filter="25k-walk">🏆 25K Walk</button>
     <div class="search-wrap">
       <span class="search-icon">🔍</span>
-      <input type="text" id="search-input" placeholder="Search by city, title, or zip…" autocomplete="off">
+      <input type="text" id="search-input" placeholder="Search events…" autocomplete="off">
     </div>
-    <div class="filter-count" id="filter-count"></div>
   </div>
 </div>
 
-<!-- EVENTS -->
 <div class="events-main">
-  <div class="events-container" id="events-container">
-    <div class="events-loading"><div class="events-spinner"></div></div>
+  <div class="events-container">
+    <div class="results-count" id="results-count"></div>
+    <div id="events-list"></div>
   </div>
 </div>
 
-<!-- FOOTER -->
+<!-- EVENT DETAIL OVERLAY -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-cat-bar" id="modal-cat-bar"></div>
+      <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+      <p class="modal-eyebrow" id="modal-eyebrow"></p>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <div class="modal-meta-grid" id="modal-meta"></div>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
 <footer>
   <div class="footer-inner">
-    <a href="index.html"><img src="assets/yin-logo.png" alt="You Inspire Now" style="height:40px;display:block;"></a>
+    <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" style="height:38px;display:block;"></a>
     <div class="footer-links">
       <a href="index.html">Home</a>
-      <a href="index.html#who-we-serve">Who We Serve</a>
+      <a href="products.html">Shop</a>
       <a href="index.html#donate">Donate</a>
     </div>
-    <p class="footer-copy">© 2026 You Inspire Now</p>
+    <p class="footer-copy">© 2026 Go Inspire Now</p>
   </div>
 </footer>
 
 <script>
-const DAYS   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
-const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+document.getElementById('nav-burger').addEventListener('click', () =>
+  document.getElementById('nav-links').classList.toggle('open'));
 
-// nav burger
-document.getElementById('nav-burger').addEventListener('click', () => {
-  document.getElementById('nav-links').classList.toggle('open');
-});
+const DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MONTHS_SHORT = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+const MONTHS_LONG  = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const CAT_LABEL = {'gatherings':'Gatherings','weekly-walks':'Weekly Walk','25k-walk':'25K Walk'};
+const CAT_EMOJI = {'gatherings':'🥂','weekly-walks':'🚶‍♀️','25k-walk':'🏆'};
 
-function getDemoEvents(){
-  return [
-    { id:'d1', title:"Women's Identity Workshop",       location:"Milton, FL",            startDate:new Date('2026-05-10T10:00:00'), description:"Discover who you were created to be. A powerful morning of reflection, community, and purpose." },
-    { id:'d2', title:"Family Empowerment Night",        location:"Pensacola, FL",          startDate:new Date('2026-05-18T18:30:00'), description:"An evening for families — hear stories, share meals, and build the village you deserve." },
-    { id:'d3', title:"Single Moms Support Circle",      location:"Fort Walton Beach, FL",  startDate:new Date('2026-06-07T11:00:00'), description:"You are not alone. A safe space to share, heal, and connect with other incredible moms." },
-    { id:'d4', title:"Purpose & Passion Summit",        location:"Milton, FL",             startDate:new Date('2026-06-21T09:00:00'), description:"A half-day event filled with keynote speakers, workshops, and community building." },
-    { id:'d5', title:"Health & Wholeness Walk",         location:"Navarre, FL",            startDate:new Date('2026-07-12T08:00:00'), description:"Start your healing journey one step at a time. A community wellness walk followed by brunch." },
-    { id:'d6', title:"Back-to-School Family Cookout",   location:"Pensacola, FL",          startDate:new Date('2026-07-26T15:00:00'), description:"Celebrate the new school year together. Food, fun, supplies, and community love." },
-    { id:'d7', title:"Leadership for Women Workshop",   location:"Milton, FL",             startDate:new Date('2026-08-08T10:00:00'), description:"Step into your authority. A hands-on workshop for women who are ready to lead." },
-    { id:'d8', title:"Fall Community Celebration",      location:"Fort Walton Beach, FL",  startDate:new Date('2026-09-13T14:00:00'), description:"A community celebration of growth, transformation, and gratitude. All welcome." },
-  ];
-}
+const events = (window.GIN_EVENTS || []).map(e => ({
+  ...e, dateObj: new Date(e.date + 'T08:00:00')
+})).sort((a,b) => a.dateObj - b.dateObj);
 
-function formatGCalEvent(item){
-  const start = item.start.dateTime || item.start.date;
-  return {
-    id: item.id,
-    title: item.summary || 'Untitled Event',
-    location: item.location || '',
-    startDate: new Date(start),
-    description: item.description || '',
-  };
-}
+let activeFilter = 'all';
+let searchQuery  = '';
 
-async function fetchCalendarEvents(){
-  const cfg = window.YIN_CONFIG || {};
-  if(!cfg.CALENDAR_ID || !cfg.GOOGLE_API_KEY) return getDemoEvents();
-  try {
-    const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(cfg.CALENDAR_ID)}/events?key=${cfg.GOOGLE_API_KEY}&timeMin=${new Date().toISOString()}&singleEvents=true&orderBy=startTime&maxResults=100`;
-    const res = await fetch(url);
-    if(!res.ok) throw new Error('API error');
-    const data = await res.json();
-    return (data.items || []).map(formatGCalEvent);
-  } catch(e){
-    console.warn('Calendar fetch failed, using demo:', e);
-    return getDemoEvents();
-  }
-}
+// pre-fill search from URL
+const urlQ = new URLSearchParams(window.location.search).get('q') || '';
+if(urlQ){ document.getElementById('search-input').value = urlQ; searchQuery = urlQ.toLowerCase(); }
 
-function formatTime(d){
-  return d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});
-}
-
-function renderEventCard(ev, rsvpLink){
-  const d = ev.startDate;
-  return `
-    <div class="event-card" data-search="${(ev.title+' '+(ev.location||'')).toLowerCase()}">
-      <div class="event-date-col">
-        <span class="event-month">${MONTHS[d.getMonth()]}</span>
-        <span class="event-day">${d.getDate()}</span>
-        <span class="event-day-name">${DAYS[d.getDay()]}</span>
-      </div>
-      <div class="event-body">
-        <div class="event-title">${ev.title}</div>
-        <div class="event-meta">
-          ${ev.location ? `<span class="event-loc">${ev.location}</span>` : ''}
-          <span class="event-time">${formatTime(d)}</span>
-        </div>
-        ${ev.description ? `<div class="event-desc">${ev.description.replace(/<[^>]*>/g,'')}</div>` : ''}
-      </div>
-      <div class="event-cta">
-        <a href="${rsvpLink||'#'}" class="event-rsvp" target="_blank" rel="noopener">RSVP →</a>
-      </div>
-    </div>`;
-}
-
-function groupByMonth(events){
-  const groups = {};
-  events.forEach(ev => {
-    const key = `${ev.startDate.getFullYear()}-${ev.startDate.getMonth()}`;
-    if(!groups[key]) groups[key] = {label:`${MONTH_NAMES[ev.startDate.getMonth()]} ${ev.startDate.getFullYear()}`, events:[]};
-    groups[key].events.push(ev);
+// pre-select filter from hash
+const hash = window.location.hash.replace('#','');
+if(['gatherings','weekly-walks','25k-walk'].includes(hash)){
+  activeFilter = hash;
+  document.querySelectorAll('.filter-tab').forEach(t => {
+    t.classList.remove('active-all','active-gatherings','active-walks','active-25k');
+    if(t.dataset.filter === hash) t.classList.add('active-'+({gatherings:'gatherings','weekly-walks':'walks','25k-walk':'25k'}[hash]));
   });
-  return Object.values(groups);
 }
 
-let allEvents = [];
-const container = document.getElementById('events-container');
-const countEl   = document.getElementById('filter-count');
+function renderEvents(){
+  const now = new Date();
+  let filtered = events;
+  if(activeFilter !== 'all') filtered = filtered.filter(e => e.category === activeFilter);
+  if(searchQuery) filtered = filtered.filter(e =>
+    (e.title+' '+e.city+' '+(e.description||'')).toLowerCase().includes(searchQuery));
 
-function renderEvents(query){
-  const q = (query||'').toLowerCase().trim();
-  const cfg = window.YIN_CONFIG || {};
-  const rsvp = (cfg.RSVP_LINK && cfg.RSVP_LINK !== '#') ? cfg.RSVP_LINK : '#';
-
-  const filtered = q
-    ? allEvents.filter(e => (e.title+' '+(e.location||'')).toLowerCase().includes(q))
-    : allEvents;
-
-  countEl.textContent = filtered.length
-    ? `${filtered.length} event${filtered.length !== 1 ? 's' : ''}`
-    : '';
+  const count = document.getElementById('results-count');
+  count.textContent = filtered.length + ' event' + (filtered.length!==1?'s':'') + (activeFilter!=='all'?' in '+CAT_LABEL[activeFilter]:'');
 
   if(!filtered.length){
-    container.innerHTML = `
-      <div class="events-empty">
-        <div class="events-empty-icon">📅</div>
-        <h3>No Events Found</h3>
-        <p>${q ? `We couldn't find events matching "${query}". Try a different search.` : 'No upcoming events right now. Check back soon!'}</p>
+    document.getElementById('events-list').innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">📅</div>
+        <h3 class="empty-h">No events found</h3>
+        <p class="empty-p">${searchQuery ? `No results for "${searchQuery}". Try a different search.` : 'No events in this category yet — check back soon!'}</p>
       </div>`;
     return;
   }
 
-  const groups = groupByMonth(filtered);
-  container.innerHTML = groups.map(g => `
-    <div class="month-group">
-      <div class="month-heading">${g.label}</div>
-      ${g.events.map(e => renderEventCard(e, rsvp)).join('')}
-    </div>`).join('');
+  // group by category if showing all, else flat list
+  let html = '';
+  if(activeFilter === 'all'){
+    const groups = {'gatherings':[],'weekly-walks':[],'25k-walk':[]};
+    filtered.forEach(e => { if(groups[e.category]) groups[e.category].push(e); });
+    Object.entries(groups).forEach(([cat, evs]) => {
+      if(!evs.length) return;
+      html += `<div id="${cat}">
+        <div class="cat-section-header">
+          <span class="cat-pill ${cat}" data-cat="${cat}">${CAT_EMOJI[cat]} ${CAT_LABEL[cat]}</span>
+          <div class="cat-divider"></div>
+        </div>
+        ${evs.map(e => eventCard(e)).join('')}
+      </div>`;
+    });
+  } else {
+    html = filtered.map(e => eventCard(e)).join('');
+  }
+  document.getElementById('events-list').innerHTML = html;
+
+  // attach click handlers
+  document.querySelectorAll('[data-ev-id]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      const ev = events.find(x => x.id === el.dataset.evId);
+      if(ev) openModal(ev);
+    });
+  });
 }
 
-async function init(){
-  allEvents = await fetchCalendarEvents();
-  allEvents.sort((a,b) => a.startDate - b.startDate);
-  renderEvents('');
+function eventCard(ev){
+  const d = ev.dateObj;
+  const btnClass = ev.category==='gatherings'?'gold':ev.category==='weekly-walks'?'teal':'';
+  return `<a href="#" class="ev-card" data-ev-id="${ev.id}" id="${ev.id}">
+    <div class="ev-date-col ${ev.category}" data-cat="${ev.category}">
+      <span class="ev-mon">${MONTHS_SHORT[d.getMonth()]}</span>
+      <span class="ev-day">${d.getDate()}</span>
+      <span class="ev-dname">${DAYS[d.getDay()].slice(0,3)}</span>
+    </div>
+    <div class="ev-body">
+      ${ev.cost>0 ? `<span class="ev-cost-badge paid">$${ev.cost} to attend</span>` : `<span class="ev-cost-badge">Free</span>`}
+      <div class="ev-title">${ev.title}</div>
+      <div class="ev-meta">📍 ${ev.city} &nbsp;·&nbsp; 🕐 ${ev.time}${ev.endTime?' – '+ev.endTime:''}</div>
+      <div class="ev-desc">${ev.shortDesc}</div>
+    </div>
+    <div class="ev-cta-col">
+      <span class="ev-view-btn ${btnClass}">View Details →</span>
+    </div>
+  </a>`;
 }
 
-document.getElementById('search-input').addEventListener('input', e => renderEvents(e.target.value));
+// ── MODAL ────────────────────────────────────────────────────
+const overlay   = document.getElementById('overlay');
+const modalClose = document.getElementById('modal-close');
 
-// pre-fill from URL param
-const urlQ = new URLSearchParams(window.location.search).get('q');
-if(urlQ) document.getElementById('search-input').value = urlQ;
+function openModal(ev){
+  const d = ev.dateObj;
+  const cfg = window.GIN_CONFIG || {};
 
-init().then(() => {
-  if(urlQ) renderEvents(urlQ);
+  // header
+  document.getElementById('modal-cat-bar').className = 'modal-cat-bar ' + ev.category;
+  document.getElementById('modal-cat-bar').dataset.cat = ev.category;
+  const eyebrow = document.getElementById('modal-eyebrow');
+  eyebrow.className = 'modal-eyebrow ' + ev.category;
+  eyebrow.dataset.cat = ev.category;
+  eyebrow.textContent = CAT_EMOJI[ev.category] + ' ' + CAT_LABEL[ev.category];
+  document.getElementById('modal-title').textContent = ev.title;
+
+  // meta grid
+  document.getElementById('modal-meta').innerHTML = `
+    <div class="modal-meta-item"><span class="modal-meta-icon">📅</span><div class="modal-meta-label">Date</div><div class="modal-meta-val">${DAYS[d.getDay()]}, ${MONTHS_LONG[d.getMonth()]} ${d.getDate()}</div></div>
+    <div class="modal-meta-item"><span class="modal-meta-icon">🕐</span><div class="modal-meta-label">Time</div><div class="modal-meta-val">${ev.time}${ev.endTime?' – '+ev.endTime:''}</div></div>
+    <div class="modal-meta-item"><span class="modal-meta-icon">📍</span><div class="modal-meta-label">Location</div><div class="modal-meta-val">${ev.location}</div></div>`;
+
+  // body
+  let bodyHtml = `<div class="modal-section">
+    <div class="modal-section-title">About This Event</div>
+    <p class="modal-desc">${ev.description}</p>
+  </div>`;
+
+  if(ev.whatToExpect && ev.whatToExpect.length){
+    bodyHtml += `<div class="modal-section">
+      <div class="modal-section-title">What to Expect</div>
+      <ul class="modal-list">${ev.whatToExpect.map(i=>`<li>${i}</li>`).join('')}</ul>
+    </div>`;
+  }
+
+  if(ev.howToPrep && ev.howToPrep.length){
+    bodyHtml += `<div class="modal-section">
+      <div class="modal-section-title">How to Prepare</div>
+      <ul class="modal-list">${ev.howToPrep.map(i=>`<li>${i}</li>`).join('')}</ul>
+    </div>`;
+  }
+
+  if(ev.cost > 0){
+    const caLink = cfg.CASHAPP_URL || '';
+    const ppLink = cfg.PAYPAL_URL  || '';
+    bodyHtml += `<div class="modal-payment">
+      <div class="modal-payment-note">💳 ${ev.paymentNote || 'Pay $'+ev.cost+' to reserve your spot.'}</div>
+      <div class="modal-pay-btns">
+        <a href="${caLink||'#'}" class="modal-pay-btn cashapp${!caLink?' disabled':''}" ${caLink?'target="_blank" rel="noopener"':''} ${!caLink?'onclick="alert(\'Cash App link coming soon!\');return false;"':''}>
+          💚 Pay via Cash App
+        </a>
+        <a href="${ppLink||'#'}" class="modal-pay-btn paypal${!ppLink?' disabled':''}" ${ppLink?'target="_blank" rel="noopener"':''} ${!ppLink?'onclick="alert(\'PayPal link coming soon!\');return false;"':''}>
+          🔵 Pay via PayPal
+        </a>
+      </div>
+    </div>`;
+  } else {
+    bodyHtml += `<div class="modal-payment" style="background:linear-gradient(145deg,#E6F7F6,#EDE4F8);">
+      <div class="modal-payment-note">✅ This event is <strong>free to attend</strong>. Show up ready to be inspired!</div>
+    </div>`;
+  }
+
+  document.getElementById('modal-body').innerHTML = bodyHtml;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  window.history.replaceState(null,'','#'+ev.id);
+}
+
+function closeModal(){
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+  window.history.replaceState(null,'','events.html');
+}
+
+modalClose.addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+// ── FILTER TABS ───────────────────────────────────────────────
+document.querySelectorAll('.filter-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    activeFilter = tab.dataset.filter;
+    document.querySelectorAll('.filter-tab').forEach(t => {
+      t.classList.remove('active-all','active-gatherings','active-walks','active-25k');
+    });
+    const classMap = {all:'all',gatherings:'gatherings','weekly-walks':'walks','25k-walk':'25k'};
+    tab.classList.add('active-' + classMap[activeFilter]);
+    renderEvents();
+  });
 });
+
+document.getElementById('search-input').addEventListener('input', e => {
+  searchQuery = e.target.value.toLowerCase();
+  renderEvents();
+});
+
+// open modal from URL hash
+function checkHashForModal(){
+  const h = window.location.hash.replace('#','');
+  if(h && !['gatherings','weekly-walks','25k-walk'].includes(h)){
+    const ev = events.find(x => x.id === h);
+    if(ev) setTimeout(() => openModal(ev), 300);
+  }
+}
+
+renderEvents();
+checkHashForModal();
 </script>
 </body>
 </html>
