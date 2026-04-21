@@ -215,16 +215,16 @@ nav.scrolled{box-shadow:0 2px 30px rgba(53,32,79,0.1);}
   transition:transform 0.5s ease;}
 .who-card:hover .who-card-img img{transform:scale(1.06);}
 .who-card-img-overlay{position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(42,18,69,0.82) 0%,rgba(42,18,69,0.05) 55%);}
+  background:linear-gradient(to top,rgba(20,8,40,0.96) 0%,rgba(20,8,40,0.55) 45%,rgba(20,8,40,0.1) 100%);}
 .who-card-body{position:absolute;bottom:0;left:0;right:0;padding:1.75rem;}
 .who-tag{display:inline-block;font-size:0.54rem;font-weight:900;letter-spacing:0.2em;
   text-transform:uppercase;padding:0.25rem 0.75rem;border-radius:100px;margin-bottom:0.5rem;}
-.who-tag.gold{background:rgba(201,162,39,0.92);color:#231D2D;}
-.who-tag.teal{background:rgba(46,184,176,0.92);color:#fff;}
-.who-tag.purple{background:rgba(107,74,168,0.92);color:#EDE4F8;}
+.who-tag.gold{background:rgba(201,162,39,0.95);color:#231D2D;}
+.who-tag.teal{background:rgba(46,184,176,0.95);color:#fff;}
+.who-tag.purple{background:rgba(107,74,168,0.95);color:#EDE4F8;}
 .who-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;
-  color:#fff;line-height:1.2;margin-bottom:0.45rem;}
-.who-text{font-size:0.78rem;color:rgba(255,255,255,0.68);line-height:1.7;}
+  color:#fff;line-height:1.2;margin-bottom:0.45rem;text-shadow:0 2px 8px rgba(0,0,0,0.5);}
+.who-text{font-size:0.78rem;color:rgba(255,255,255,0.88);line-height:1.7;text-shadow:0 1px 4px rgba(0,0,0,0.4);}
 .who-link{display:inline-flex;align-items:center;gap:0.35rem;margin-top:0.85rem;
   font-size:0.62rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;
   color:var(--gold);text-decoration:none;transition:gap 0.2s;}
@@ -371,26 +371,52 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
 .footer-copy{font-size:0.68rem;color:rgba(255,255,255,0.2);}
 
 /* ══ RESPONSIVE ══ */
-@media(max-width:960px){
-  .hero-grid{grid-template-columns:1fr;gap:3rem;}
-  .hero-photo-wrap{height:400px;}
+@media(max-width:1024px){
+  .hero-grid{gap:3rem;}
+  .cat-grid{grid-template-columns:repeat(3,1fr);}
+  .podcast-inner{gap:3rem;}
+  .donate-impacts{grid-template-columns:repeat(2,1fr);}
+  .footer-top{grid-template-columns:1fr 1fr 1fr;gap:2.5rem;}
+}
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .hero-photo-wrap{height:380px;}
   .hero-right{order:-1;}
+  .hero-search-bar{max-width:100%;}
   .cat-grid{grid-template-columns:1fr;}
   .who-grid{grid-template-columns:1fr;}
-  .podcast-inner{grid-template-columns:1fr;}
-  .donate-info-top{grid-template-columns:1fr;}
+  .podcast-inner{grid-template-columns:1fr;gap:2.5rem;}
+  .donate-info-top{grid-template-columns:1fr;gap:2rem;}
   .donate-impacts{grid-template-columns:repeat(2,1fr);}
-  .footer-top{grid-template-columns:1fr 1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;gap:2rem;}
+  .journey-panel{flex:0 0 85vw;}
 }
-@media(max-width:660px){
+@media(max-width:600px){
+  nav{padding:0.75rem 1.25rem;}
   .nav-links{display:none;}
   .nav-links.open{display:flex;flex-direction:column;position:fixed;
-    top:66px;left:0;right:0;background:rgba(255,255,255,0.99);
-    padding:1.5rem 2rem;box-shadow:0 12px 40px rgba(0,0,0,0.12);gap:1rem;z-index:299;}
+    top:72px;left:0;right:0;background:rgba(255,255,255,0.99);
+    padding:1.5rem 1.5rem;box-shadow:0 12px 40px rgba(0,0,0,0.12);gap:1.1rem;z-index:299;}
+  .nav-links a{font-size:0.78rem;}
   .nav-burger{display:flex;}
+  #hero{padding:5.5rem 1.25rem 3rem;}
+  .hero-grid{gap:2rem;}
+  .hero-photo-wrap{height:300px;}
+  .hero-h1{font-size:2.2rem;}
+  .hero-search-bar{margin-top:1.5rem;}
+  .sec{padding:4rem 1.25rem;}
+  .cat-grid{gap:1.25rem;}
+  .who-grid{gap:1.5rem;}
+  .who-card-img{height:260px;}
+  .podcast-inner{gap:2rem;}
+  .podcast-art{padding:2rem 1.5rem;}
   .donate-impacts{grid-template-columns:1fr;}
-  .footer-top{grid-template-columns:1fr;}
+  .donate-info-top{gap:1.5rem;}
+  .footer-top{grid-template-columns:1fr;gap:2rem;}
+  .footer-bottom{flex-direction:column;text-align:center;gap:0.5rem;}
   .journey-panel{flex:0 0 90vw;}
+  .journey-intro{padding:0 1.5rem;}
+  .journey-card{padding:2rem 1.5rem;}
 }
 </style>
 </head>
@@ -399,7 +425,7 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
 <!-- ══ NAV ══ -->
 <nav id="main-nav">
   <div class="nav-inner">
-    <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" style="height:44px;display:block;"></a>
+    <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" style="height:62px;display:block;"></a>
     <div class="nav-links" id="nav-links">
       <a href="index.html">Home</a>
       <a href="events.html">Events</a>

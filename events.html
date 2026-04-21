@@ -198,22 +198,30 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:0.9rem 2.5rem;
 .modal-pay-btn.paypal{background:#003087;color:#fff;}
 .modal-pay-btn.paypal:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,48,135,0.4);}
 .modal-pay-btn.disabled{background:rgba(35,29,45,0.1);color:rgba(35,29,45,0.38);cursor:not-allowed;}
-/* big RSVP CTA at bottom */
-.modal-rsvp-bar{padding:1.5rem 2.5rem;border-top:1px solid rgba(53,32,79,0.08);
-  background:#FAFAFE;display:flex;align-items:center;justify-content:space-between;
-  gap:1rem;flex-wrap:wrap;}
-.modal-rsvp-hint{font-size:0.78rem;color:rgba(35,29,45,0.45);line-height:1.5;}
-.modal-rsvp-hint strong{display:block;font-size:0.85rem;color:var(--purple-deep);margin-bottom:0.1rem;}
-.modal-rsvp-btn{display:inline-flex;align-items:center;gap:0.6rem;padding:0.9rem 2rem;
-  border-radius:5px;font-size:0.72rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;
-  text-decoration:none;border:none;cursor:pointer;flex-shrink:0;
+/* RSVP bar at bottom of modal */
+.modal-rsvp-bar{padding:1.25rem 2.5rem 1.5rem;border-top:1px solid rgba(53,32,79,0.08);
+  background:#FAFAFE;}
+.modal-rsvp-hint{font-size:0.75rem;color:rgba(35,29,45,0.42);line-height:1.5;margin-bottom:1rem;}
+.modal-rsvp-hint strong{display:block;font-size:0.82rem;color:var(--purple-deep);margin-bottom:0.15rem;}
+/* two-button row for paid events */
+.modal-rsvp-btns{display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;}
+.modal-rsvp-btn{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;
+  padding:0.85rem 1rem;border-radius:5px;font-size:0.68rem;font-weight:900;
+  letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:none;
+  cursor:pointer;text-align:center;line-height:1.3;
   transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;}
-.modal-rsvp-btn.free{background:var(--teal);color:#fff;
-  box-shadow:0 6px 20px rgba(46,184,176,0.35);}
-.modal-rsvp-btn.free:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 12px 32px rgba(46,184,176,0.5);}
-.modal-rsvp-btn.paid{background:var(--gold);color:#231D2D;
+.modal-rsvp-btn .btn-sub{display:block;font-size:0.58rem;font-weight:400;
+  opacity:0.72;letter-spacing:0.04em;text-transform:none;margin-top:0.15rem;}
+.modal-rsvp-btn.pay-btn{background:var(--gold);color:#231D2D;
   box-shadow:0 6px 20px rgba(201,162,39,0.35);}
-.modal-rsvp-btn.paid:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 12px 32px rgba(201,162,39,0.5);}
+.modal-rsvp-btn.pay-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 12px 30px rgba(201,162,39,0.5);}
+.modal-rsvp-btn.rsvp-btn{background:var(--purple-royal);color:#fff;
+  box-shadow:0 6px 20px rgba(91,59,140,0.3);}
+.modal-rsvp-btn.rsvp-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 12px 30px rgba(91,59,140,0.45);}
+/* single free button */
+.modal-rsvp-btn.free-btn{background:var(--teal);color:#fff;width:100%;
+  box-shadow:0 6px 20px rgba(46,184,176,0.35);}
+.modal-rsvp-btn.free-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 12px 30px rgba(46,184,176,0.5);}
 .modal-payment{background:linear-gradient(145deg,#EDE4F8,#E6F7F6);border-radius:8px;
   padding:1.5rem;margin-bottom:1.75rem;}
 .modal-payment-note{font-size:0.85rem;color:var(--purple-deep);font-weight:700;margin-bottom:1rem;}
@@ -227,18 +235,38 @@ footer{background:#1A0F2E;padding:3rem 2.5rem;}
 .footer-links a{font-size:0.7rem;color:rgba(255,255,255,0.32);text-decoration:none;transition:color 0.2s;}
 .footer-links a:hover{color:#fff;}
 
-@media(max-width:660px){
+@media(max-width:860px){
+  .modal{max-width:94vw;}
+  .modal-rsvp-btns{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  nav{padding:0.75rem 1.25rem;}
   .nav-links{display:none;}
   .nav-links.open{display:flex;flex-direction:column;position:fixed;
-    top:68px;left:0;right:0;background:rgba(255,255,255,0.99);
-    padding:1.5rem 2rem;gap:1rem;z-index:299;box-shadow:0 12px 40px rgba(0,0,0,0.1);}
+    top:72px;left:0;right:0;background:rgba(255,255,255,0.99);
+    padding:1.5rem 1.5rem;gap:1.1rem;z-index:299;box-shadow:0 12px 40px rgba(0,0,0,0.1);}
+  .nav-links a{font-size:0.78rem;}
   .nav-burger{display:flex;}
-  .modal-meta-grid{grid-template-columns:1fr 1fr;}
-  .ev-card{flex-wrap:wrap;}
-  .ev-date-col{flex:0 0 100%;flex-direction:row;min-height:auto;padding:0.75rem 1.25rem;gap:0.5rem;}
-  .ev-cta-col{padding:0.75rem 1.25rem 1.25rem;}
+  .page-header{padding:6rem 1.25rem 3rem;}
+  .filter-bar{padding:1rem 1.25rem;}
+  .filter-bar-inner{gap:0.5rem;}
+  .filter-tab{padding:0.45rem 0.85rem;font-size:0.6rem;}
+  .search-wrap{margin-left:0;width:100%;}
   .search-wrap input{width:100%;}
-  .filter-bar-inner{gap:0.6rem;}
+  .events-main{padding:2.5rem 1.25rem 4rem;}
+  .ev-card{flex-wrap:wrap;}
+  .ev-date-col{flex:0 0 100%;flex-direction:row;min-height:auto;padding:0.75rem 1.25rem;gap:0.75rem;
+    border-radius:0;}
+  .ev-body{padding:1rem 1.25rem;}
+  .ev-cta-col{padding:0.75rem 1.25rem 1.25rem;width:100%;}
+  .ev-view-btn{display:block;text-align:center;width:100%;}
+  .modal-header{padding:2rem 1.25rem 1.25rem;}
+  .modal-body{padding:0 1.25rem 1.5rem;}
+  .modal-rsvp-bar{padding:1.1rem 1.25rem 1.25rem;}
+  .modal-meta-grid{grid-template-columns:1fr 1fr;}
+  .modal-rsvp-btns{grid-template-columns:1fr;}
+  .modal-pay-btns{flex-direction:column;}
+  .modal-pay-btn{justify-content:center;}
 }
 </style>
 </head>
@@ -440,8 +468,9 @@ function openModal(ev){
     <div class="modal-meta-item"><span class="modal-meta-icon">📍</span><div class="modal-meta-label">Location</div><div class="modal-meta-val">${ev.location}</div></div>`;
 
   // ── YOUR NEXT STEPS (per category) ──
-  const caLink = cfg.CASHAPP_URL || '';
-  const ppLink = cfg.PAYPAL_URL  || '';
+  const caLink  = cfg.CASHAPP_URL || '';
+  const ppLink  = cfg.PAYPAL_URL  || '';
+  const ghlLink = cfg.GHL_RSVP_URL || '';
 
   let stepsHtml = '';
   if(ev.category === 'weekly-walks'){
@@ -450,12 +479,12 @@ function openModal(ev){
         <div class="modal-step-num s1">1</div>
         <div class="modal-step-body">
           <div class="modal-step-title">Pay $${ev.cost} to Reserve Your Spot</div>
-          <p class="modal-step-text">Spots are limited — pay via Cash App or PayPal to lock in your place. Your payment confirms your RSVP.</p>
+          <p class="modal-step-text">Spots are limited — use Cash App or PayPal to secure your place. Once paid, come back and complete step 2.</p>
           <div class="modal-pay-btns">
-            <a href="${caLink||'#'}" class="modal-pay-btn cashapp${!caLink?' disabled':''}" ${caLink?'target="_blank" rel="noopener"':'onclick="alert(\'Cash App link coming soon — check back!\');return false;"'}>
+            <a href="${caLink||'#'}" class="modal-pay-btn cashapp${!caLink?' disabled':''}" ${caLink?'target="_blank" rel="noopener"':'onclick="alert(\'Cash App link coming soon!\');return false;"'}>
               💚 Pay via Cash App
             </a>
-            <a href="${ppLink||'#'}" class="modal-pay-btn paypal${!ppLink?' disabled':''}" ${ppLink?'target="_blank" rel="noopener"':'onclick="alert(\'PayPal link coming soon — check back!\');return false;"'}>
+            <a href="${ppLink||'#'}" class="modal-pay-btn paypal${!ppLink?' disabled':''}" ${ppLink?'target="_blank" rel="noopener"':'onclick="alert(\'PayPal link coming soon!\');return false;"'}>
               🔵 Pay via PayPal
             </a>
           </div>
@@ -464,15 +493,15 @@ function openModal(ev){
       <div class="modal-step">
         <div class="modal-step-num s2">2</div>
         <div class="modal-step-body">
-          <div class="modal-step-title">Save the Date &amp; Location</div>
-          <p class="modal-step-text">We meet at <strong>${ev.location}</strong> in ${ev.city}. Walk starts at <strong>${ev.time}</strong> — arrive 10–15 minutes early to check in.</p>
+          <div class="modal-step-title">Complete Your RSVP</div>
+          <p class="modal-step-text">Already paid? Hit the button below to officially register — enter your name and email so we have you on the list and can send event reminders.</p>
         </div>
       </div>
       <div class="modal-step">
         <div class="modal-step-num s3">3</div>
         <div class="modal-step-body">
           <div class="modal-step-title">Show Up Ready to Walk</div>
-          <p class="modal-step-text">Wear comfortable shoes, bring water, and come with an open heart. After the walk we gather in a community circle — share, listen, and connect.</p>
+          <p class="modal-step-text">We meet at <strong>${ev.location}</strong> in ${ev.city} at <strong>${ev.time}</strong>. Wear comfy shoes, bring water, and come with an open heart.</p>
         </div>
       </div>`;
   } else if(ev.category === 'gatherings'){
@@ -549,20 +578,41 @@ function openModal(ev){
     </div>`;
   }
 
-  // ── RSVP BAR (sticky bottom) ──
+  // ── RSVP BAR ──
   let rsvpBarHtml = '';
   if(ev.cost > 0){
+    // Two buttons: Pay first, then RSVP after paying
+    const payHref  = caLink || ppLink || '#';
+    const payClick = (caLink||ppLink) ? '' : `onclick="alert('Payment link coming soon — check back shortly!');return false;"`;
+    const ghlHref  = ghlLink || '#';
+    const ghlClick = ghlLink ? '' : `onclick="alert('RSVP form coming soon — once you pay, we will add you to the list!');return false;"`;
     rsvpBarHtml = `
-      <div class="modal-rsvp-hint"><strong>Ready to join?</strong>Pay $${ev.cost} above to lock in your spot.</div>
-      <a href="${caLink||'#'}" class="modal-rsvp-btn paid" ${caLink?'target="_blank" rel="noopener"':'onclick="alert(\'Payment link coming soon!\');return false;"'}>
-        💳 Reserve My Spot — $${ev.cost}
-      </a>`;
+      <div class="modal-rsvp-hint">
+        <strong>Two quick steps to join this walk:</strong>
+        Pay $${ev.cost} first, then complete your RSVP so we have you on the list.
+      </div>
+      <div class="modal-rsvp-btns">
+        <a href="${payHref}" class="modal-rsvp-btn pay-btn" target="_blank" rel="noopener" ${payClick}>
+          💳 Pay $${ev.cost} to Reserve
+          <span class="btn-sub">Step 1 — Cash App or PayPal</span>
+        </a>
+        <a href="${ghlHref}" class="modal-rsvp-btn rsvp-btn" target="_blank" rel="noopener" ${ghlClick}>
+          ✅ I Already Paid — RSVP
+          <span class="btn-sub">Step 2 — Enter your info</span>
+        </a>
+      </div>`;
   } else {
+    // Free event — single RSVP button
+    const ghlHref  = ghlLink || '#';
+    const ghlClick = ghlLink ? '' : `onclick="alert('RSVP link coming soon!');return false;"`;
     rsvpBarHtml = `
-      <div class="modal-rsvp-hint"><strong>It's free — don't miss it!</strong>${DAYS[d.getDay()]}, ${MONTHS_LONG[d.getMonth()]} ${d.getDate()} · ${ev.time}</div>
-      <button class="modal-rsvp-btn free" onclick="alert('RSVP link coming soon — we\\'ll have you on our list!');return false;">
-        ✅ I'm Attending!
-      </button>`;
+      <div class="modal-rsvp-hint">
+        <strong>It's free — save your spot!</strong>
+        ${DAYS[d.getDay()]}, ${MONTHS_LONG[d.getMonth()]} ${d.getDate()} · ${ev.time}
+      </div>
+      <a href="${ghlHref}" class="modal-rsvp-btn free-btn" target="_blank" rel="noopener" ${ghlClick}>
+        ✅ RSVP — Save My Spot
+      </a>`;
   }
 
   document.getElementById('modal-body').innerHTML = bodyHtml;
