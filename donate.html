@@ -17,7 +17,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:0.9rem 2.5rem;
   background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);
   border-bottom:1px solid rgba(53,32,79,0.07);box-shadow:0 2px 20px rgba(53,32,79,0.06);}
 .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
-.nav-logo img{height:46px;display:block;}
+.nav-logo img{height:62px;display:block;}
 .nav-links{display:flex;align-items:center;gap:2rem;}
 .nav-links a{font-size:0.67rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;
   color:rgba(35,29,45,0.5);text-decoration:none;transition:color 0.2s;}
@@ -88,6 +88,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:0.9rem 2.5rem;
 .donate-submit:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 40px rgba(91,59,140,0.4);}
 .secure-note{font-size:0.7rem;color:rgba(35,29,45,0.38);text-align:center;
   margin-top:0.85rem;line-height:1.6;}
+.donate-pay-btn{display:flex;align-items:center;gap:0.75rem;padding:0.95rem 1.25rem;
+  border-radius:6px;text-decoration:none;font-family:'Lato',sans-serif;
+  transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s,opacity 0.2s;}
+.donate-pay-btn:hover{transform:translateY(-2px) scale(1.02);}
+.pay-btn-icon{font-size:1.2rem;flex-shrink:0;}
+.pay-btn-label{flex:1;font-size:0.82rem;font-weight:900;letter-spacing:0.04em;}
+.pay-btn-amt{font-weight:700;opacity:0.75;}
+.pay-btn-arrow{font-size:1rem;opacity:0.5;}
+.cashapp-btn{background:#00D632;color:#fff;box-shadow:0 6px 20px rgba(0,214,50,0.3);}
+.cashapp-btn:hover{box-shadow:0 12px 32px rgba(0,214,50,0.45);}
+.paypal-btn{background:#003087;color:#fff;box-shadow:0 6px 20px rgba(0,48,135,0.3);}
+.paypal-btn:hover{box-shadow:0 12px 32px rgba(0,48,135,0.45);}
+.donate-pay-btn.not-configured{background:rgba(35,29,45,0.08);color:rgba(35,29,45,0.4);
+  box-shadow:none;cursor:not-allowed;}
+.donate-pay-btn.not-configured:hover{transform:none;}
 
 /* SIDEBAR */
 .donate-sidebar{}
@@ -143,7 +158,7 @@ footer{background:#1A0F2E;padding:3rem 2.5rem;}
 
 <nav>
   <div class="nav-inner">
-    <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" style="height:46px;display:block;"></a>
+    <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" style="height:62px;display:block;"></a>
     <div class="nav-links" id="nav-links">
       <a href="events.html">Events</a>
       <a href="index.html#podcast">Podcast</a>
@@ -213,18 +228,22 @@ footer{background:#1A0F2E;padding:3rem 2.5rem;}
         </label>
       </div>
 
-      <button class="donate-submit" id="donate-submit">Donate Now — <span id="submit-amount">$10</span></button>
-      <p class="secure-note">🔒 Secure · 100% goes to the community · Thank you for your generosity 💜</p>
-    </div>
-
-    <div class="thank-you" id="thank-you-view">
-      <span class="thank-you-icon">🎉</span>
-      <h2 class="thank-you-h">Thank You!</h2>
-      <p class="thank-you-p">Your donation of <strong id="ty-amount"></strong> has been received.<br>You are making a real difference in someone's life today.<br><br>We will send a confirmation to <strong id="ty-email"></strong>.</p>
-      <br><br>
-      <a href="index.html" style="display:inline-block;padding:0.85rem 2rem;background:var(--purple-royal);
-        color:#fff;text-decoration:none;border-radius:4px;font-size:0.78rem;font-weight:900;
-        letter-spacing:0.1em;text-transform:uppercase;">Back to Home</a>
+      <div class="form-divider"></div>
+      <span class="form-section-label">Choose How to Pay</span>
+      <p style="font-size:0.8rem;color:rgba(35,29,45,0.48);margin-bottom:1rem;line-height:1.6;">Tap below to donate <strong id="submit-amount" style="color:var(--purple-royal);">$10</strong> — you'll be taken directly to Cash App or PayPal to complete your gift.</p>
+      <div style="display:flex;flex-direction:column;gap:0.65rem;">
+        <a id="donate-cashapp-btn" href="#" target="_blank" rel="noopener" class="donate-pay-btn cashapp-btn">
+          <span class="pay-btn-icon">💚</span>
+          <span class="pay-btn-label">Give via Cash App<span class="pay-btn-amt" id="cashapp-amt-label"> · $10</span></span>
+          <span class="pay-btn-arrow">→</span>
+        </a>
+        <a id="donate-paypal-btn" href="#" target="_blank" rel="noopener" class="donate-pay-btn paypal-btn">
+          <span class="pay-btn-icon">🔵</span>
+          <span class="pay-btn-label">Give via PayPal<span class="pay-btn-amt" id="paypal-amt-label"> · $10</span></span>
+          <span class="pay-btn-arrow">→</span>
+        </a>
+      </div>
+      <p class="secure-note">🔒 Payment completed securely on Cash App or PayPal · 100% goes to the community 💜</p>
     </div>
   </div>
 
@@ -288,29 +307,69 @@ footer{background:#1A0F2E;padding:3rem 2.5rem;}
 document.getElementById('nav-burger').addEventListener('click', () =>
   document.getElementById('nav-links').classList.toggle('open'));
 
-// pre-fill amount from URL param
-const urlAmt = new URLSearchParams(window.location.search).get('amount');
-let selectedAmt = 10;
+const cfg       = window.GIN_CONFIG || {};
 const amtBtns   = document.querySelectorAll('.amt-btn');
 const customAmt = document.getElementById('custom-amount');
 const submitAmt = document.getElementById('submit-amount');
+const caBtn     = document.getElementById('donate-cashapp-btn');
+const ppBtn     = document.getElementById('donate-paypal-btn');
+const caLabel   = document.getElementById('cashapp-amt-label');
+const ppLabel   = document.getElementById('paypal-amt-label');
 
-function setAmount(amt){
+let selectedAmt = 10;
+
+function buildCashAppUrl(amt){
+  // CashApp format: https://cash.app/$handle/AMOUNT
+  const base = (cfg.DONATE_CASHAPP_URL || '').replace(/\/+$/, '');
+  return base ? base + '/' + amt : null;
+}
+function buildPayPalUrl(amt){
+  // PayPal.me format: https://paypal.me/username/AMOUNT
+  const base = (cfg.DONATE_PAYPAL_URL || '').replace(/\/+$/, '');
+  return base ? base + '/' + amt : null;
+}
+
+function updateButtons(amt){
   selectedAmt = amt;
-  submitAmt.textContent = '$' + amt;
-}
-function clearSelection(){
-  amtBtns.forEach(b => b.classList.remove('selected'));
+  const display = amt > 0 ? '$' + amt : '';
+  submitAmt.textContent = display || '$—';
+  caLabel.textContent = amt > 0 ? ' · $' + amt : '';
+  ppLabel.textContent = amt > 0 ? ' · $' + amt : '';
+
+  const caUrl = buildCashAppUrl(amt);
+  const ppUrl = buildPayPalUrl(amt);
+
+  if(caUrl){
+    caBtn.href = caUrl;
+    caBtn.classList.remove('not-configured');
+    caBtn.onclick = null;
+  } else {
+    caBtn.href = '#';
+    caBtn.classList.add('not-configured');
+    caBtn.onclick = (e) => { e.preventDefault(); alert('Cash App link coming soon — check back shortly!'); };
+  }
+
+  if(ppUrl){
+    ppBtn.href = ppUrl;
+    ppBtn.classList.remove('not-configured');
+    ppBtn.onclick = null;
+  } else {
+    ppBtn.href = '#';
+    ppBtn.classList.add('not-configured');
+    ppBtn.onclick = (e) => { e.preventDefault(); alert('PayPal link coming soon — check back shortly!'); };
+  }
 }
 
-if(urlAmt && [5,10,25,50].includes(parseInt(urlAmt))){
+function clearSelection(){ amtBtns.forEach(b => b.classList.remove('selected')); }
+
+// Pre-fill from URL param
+const urlAmt = parseInt(new URLSearchParams(window.location.search).get('amount'));
+if(urlAmt && urlAmt > 0){
   clearSelection();
-  document.querySelectorAll('.amt-btn').forEach(b => {
-    if(parseInt(b.dataset.amount) === parseInt(urlAmt)) b.classList.add('selected');
-  });
-  setAmount(parseInt(urlAmt));
+  amtBtns.forEach(b => { if(parseInt(b.dataset.amount) === urlAmt) b.classList.add('selected'); });
+  updateButtons(urlAmt);
 } else {
-  setAmount(10);
+  updateButtons(10);
 }
 
 amtBtns.forEach(btn => {
@@ -318,33 +377,14 @@ amtBtns.forEach(btn => {
     clearSelection();
     btn.classList.add('selected');
     customAmt.value = '';
-    setAmount(parseInt(btn.dataset.amount));
+    updateButtons(parseInt(btn.dataset.amount));
   });
 });
+
 customAmt.addEventListener('input', () => {
   clearSelection();
-  setAmount(parseInt(customAmt.value) || 0);
-  submitAmt.textContent = customAmt.value ? '$'+customAmt.value : 'Now';
-});
-
-document.getElementById('donate-submit').addEventListener('click', () => {
-  const name  = document.getElementById('donor-name').value.trim();
-  const email = document.getElementById('donor-email').value.trim();
-  const amt   = customAmt.value ? parseInt(customAmt.value) : selectedAmt;
-  if(!name || !email){ alert('Please enter your name and email to continue.'); return; }
-  if(!amt || amt < 1){ alert('Please select or enter a donation amount.'); return; }
-
-  // Show thank you
-  document.getElementById('donate-form-view').style.display = 'none';
-  document.getElementById('ty-amount').textContent = '$' + amt;
-  document.getElementById('ty-email').textContent  = email;
-  document.getElementById('thank-you-view').classList.add('show');
-
-  // TODO: wire to real payment processor (Stripe, PayPal, etc.)
-  const cfg = window.GIN_CONFIG || {};
-  if(cfg.DONATE_PAYPAL_URL){
-    setTimeout(() => { window.open(cfg.DONATE_PAYPAL_URL + '?amount=' + amt, '_blank'); }, 800);
-  }
+  const val = parseInt(customAmt.value) || 0;
+  updateButtons(val);
 });
 </script>
 </body>
