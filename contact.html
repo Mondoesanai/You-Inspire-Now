@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Go Inspire Now</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<script src="config.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:#FAF8FF;color:#231D2D;overflow-x:hidden;}
+:root{
+  --purple-deep:#35204F;--purple-royal:#5B3B8C;
+  --teal:#2EB8B0;--gold:#C9A227;
+  --rose:#C9788A;--rose-dark:#7A3A52;--rose-light:#F2D6DD;
+}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:0.9rem 2.5rem;
+  background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(53,32,79,0.07);box-shadow:0 2px 20px rgba(53,32,79,0.06);}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo img{height:62px;display:block;}
+.nav-links{display:flex;align-items:center;gap:2rem;}
+.nav-links a{font-size:0.67rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;
+  color:rgba(35,29,45,0.5);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--purple-royal);}
+.nav-cta{padding:0.5rem 1.4rem;background:var(--gold);color:#231D2D!important;font-size:0.67rem;
+  font-weight:900;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border-radius:3px;}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--purple-deep);}
+
+/* HERO */
+.contact-hero{min-height:45vh;display:flex;align-items:center;padding:8rem 2.5rem 5rem;
+  position:relative;overflow:hidden;}
+.contact-hero-bg{position:absolute;inset:0;
+  background:linear-gradient(145deg,#2A1245 0%,#4A2B7A 50%,#1F7A76 100%);}
+.contact-hero-noise{position:absolute;inset:0;opacity:0.04;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px;}
+.contact-hero-orb{position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,120,138,0.35) 0%,transparent 70%);
+  top:-100px;right:-100px;pointer-events:none;}
+.contact-hero-orb2{position:absolute;width:350px;height:350px;border-radius:50%;
+  background:radial-gradient(circle,rgba(46,184,176,0.3) 0%,transparent 70%);
+  bottom:-80px;left:-60px;pointer-events:none;}
+.contact-hero-inner{max-width:700px;position:relative;z-index:2;}
+.contact-hero-label{display:inline-block;font-size:0.57rem;font-weight:900;letter-spacing:0.28em;
+  text-transform:uppercase;color:rgba(201,162,39,0.92);border:1px solid rgba(201,162,39,0.3);
+  padding:0.35rem 1rem;border-radius:100px;margin-bottom:1.4rem;}
+.contact-hero-h{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,3.8rem);
+  font-weight:700;line-height:1.06;letter-spacing:-0.025em;color:#fff;margin-bottom:1rem;}
+.contact-hero-h em{color:#A8E6E3;font-style:italic;display:block;}
+.contact-hero-sub{font-size:1rem;font-weight:300;color:rgba(255,255,255,0.65);line-height:1.85;}
+
+/* CONTACT SECTION */
+.contact-section{padding:5rem 2.5rem 7rem;}
+.contact-inner{max-width:900px;margin:0 auto;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:3.5rem;}
+
+.contact-card{background:#fff;border-radius:14px;padding:3rem 2.5rem;
+  box-shadow:0 8px 40px rgba(53,32,79,0.08);
+  border-top:4px solid transparent;position:relative;overflow:hidden;
+  transition:transform 0.3s cubic-bezier(.34,1.56,.64,1),box-shadow 0.3s;}
+.contact-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(53,32,79,0.14);}
+.contact-card::before{content:'';position:absolute;bottom:-30px;right:-30px;
+  width:120px;height:120px;border-radius:50%;background:rgba(53,32,79,0.03);}
+.contact-card.phone-card{border-top-color:var(--rose);}
+.contact-card.email-card{border-top-color:var(--teal);}
+
+.contact-card-icon{font-size:2.5rem;margin-bottom:1.25rem;display:block;}
+.contact-card-label{font-size:0.57rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(35,29,45,0.38);margin-bottom:0.5rem;}
+.contact-card-type{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;
+  color:var(--purple-deep);margin-bottom:1rem;line-height:1.2;}
+.contact-card-value{font-size:1.65rem;font-weight:700;color:var(--purple-deep);
+  letter-spacing:-0.01em;margin-bottom:0.5rem;word-break:break-all;}
+.phone-card .contact-card-value{color:var(--rose-dark);}
+.email-card .contact-card-value{color:#166A66;font-size:1.25rem;}
+.contact-card-note{font-size:0.8rem;color:rgba(35,29,45,0.42);line-height:1.75;}
+
+/* AVAILABILITY */
+.contact-avail{background:linear-gradient(145deg,#2A1245,#5B3B8C);border-radius:14px;
+  padding:3rem 2.5rem;margin-top:2.5rem;position:relative;overflow:hidden;}
+.contact-avail::before{content:'';position:absolute;top:-40px;right:-40px;
+  width:200px;height:200px;border-radius:50%;background:rgba(201,162,39,0.12);}
+.contact-avail-inner{position:relative;z-index:1;}
+.contact-avail-label{font-size:0.57rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(201,162,39,0.85);margin-bottom:0.6rem;display:block;}
+.contact-avail-h{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;
+  color:#fff;margin-bottom:0.75rem;line-height:1.2;}
+.contact-avail-h em{font-style:italic;color:#A8E6E3;}
+.contact-avail-text{font-size:0.9rem;color:rgba(255,255,255,0.65);line-height:1.85;}
+
+/* FOOTER */
+footer{background:#1A0F2E;padding:3rem 2.5rem 2rem;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-copy{font-size:0.68rem;color:rgba(255,255,255,0.2);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  .contact-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  nav{padding:0.75rem 1.25rem;}
+  .nav-links{display:none;}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;
+    top:72px;left:0;right:0;background:rgba(255,255,255,0.99);
+    padding:1.5rem;box-shadow:0 12px 40px rgba(0,0,0,0.12);gap:1.1rem;z-index:299;}
+  .nav-burger{display:flex;}
+  .contact-hero{padding:7rem 1.25rem 3.5rem;}
+  .contact-section{padding:3.5rem 1.25rem 5rem;}
+  .contact-card{padding:2rem 1.5rem;}
+  .contact-card-value{font-size:1.35rem;}
+  .email-card .contact-card-value{font-size:1rem;}
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" style="height:62px;display:block;"></a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="index.html#podcast">Podcast</a>
+      <a href="products.html">Shop</a>
+      <a href="contact.html" style="color:var(--purple-royal);">Contact</a>
+      <a href="donate.html" class="nav-cta">Donate</a>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="contact-hero">
+  <div class="contact-hero-bg"></div>
+  <div class="contact-hero-noise"></div>
+  <div class="contact-hero-orb"></div>
+  <div class="contact-hero-orb2"></div>
+  <div class="contact-hero-inner">
+    <span class="contact-hero-label">✦ Get in Touch</span>
+    <h1 class="contact-hero-h">Reach Out.<em>We'd Love to Hear from You.</em></h1>
+    <p class="contact-hero-sub">Whether you have a question about an event, need help getting started, or just want to connect — we're here for you.</p>
+  </div>
+</div>
+
+<!-- CONTACT INFO -->
+<section class="contact-section">
+  <div class="contact-inner">
+    <div class="contact-grid">
+      <!-- Phone -->
+      <div class="contact-card phone-card">
+        <span class="contact-card-icon">📞</span>
+        <div class="contact-card-label">Call or Text</div>
+        <div class="contact-card-type">Phone Number</div>
+        <div class="contact-card-value">817-983-1120</div>
+        <p class="contact-card-note">Call or text us anytime — we do our best to respond within 24 hours.</p>
+      </div>
+      <!-- Email -->
+      <div class="contact-card email-card">
+        <span class="contact-card-icon">✉️</span>
+        <div class="contact-card-label">Send a Message</div>
+        <div class="contact-card-type">Email Address</div>
+        <div class="contact-card-value">goinspireflow@gmail.com</div>
+        <p class="contact-card-note">Email us for event questions, partnership inquiries, or just to say hello.</p>
+      </div>
+    </div>
+
+    <!-- Availability -->
+    <div class="contact-avail">
+      <div class="contact-avail-inner">
+        <span class="contact-avail-label">Hours &amp; Response</span>
+        <h2 class="contact-avail-h">We're a Community,<em>Not a Call Center.</em></h2>
+        <p class="contact-avail-text">We typically respond within 24 hours. For urgent event questions, texting is the fastest way to reach us. For everything else, email works great — and we read every single one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Go Inspire Now · All rights reserved</p>
+      <p class="footer-copy">Built with love for the community</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('main-nav');
+document.getElementById('nav-burger').addEventListener('click', () =>
+  document.getElementById('nav-links').classList.toggle('open'));
+</script>
+</body>
+</html>

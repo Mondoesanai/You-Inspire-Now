@@ -16,7 +16,73 @@ body{font-family:'Lato',sans-serif;background:#fff;color:#231D2D;overflow-x:hidd
   --purple-deep:#35204F;--purple-royal:#5B3B8C;
   --teal:#2EB8B0;--gold:#C9A227;
   --teal-dark:#1A7A76;--gold-dark:#8B6914;
+  --rose:#C9788A;--rose-dark:#7A3A52;--rose-light:#F2D6DD;
 }
+
+/* ══ 25K POPUP ══ */
+.popup-overlay{position:fixed;inset:0;background:rgba(22,8,40,0.82);z-index:900;
+  display:flex;align-items:center;justify-content:center;padding:1.5rem;
+  backdrop-filter:blur(10px);animation:fadeIn 0.35s ease;}
+.popup-overlay.hidden{display:none;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.popup-card{background:#fff;border-radius:16px;max-width:500px;width:100%;
+  overflow:hidden;position:relative;box-shadow:0 40px 100px rgba(0,0,0,0.5);}
+.popup-top{background:linear-gradient(145deg,#2A1245,#6B4AA8);padding:2.5rem 2rem 2rem;
+  text-align:center;position:relative;}
+.popup-top-orb{position:absolute;width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,162,39,0.25) 0%,transparent 70%);
+  top:-60px;right:-40px;pointer-events:none;}
+.popup-close{position:absolute;top:1rem;right:1.25rem;background:rgba(255,255,255,0.15);
+  border:none;color:#fff;font-size:1rem;width:30px;height:30px;border-radius:50%;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background 0.2s;line-height:1;}
+.popup-close:hover{background:rgba(255,255,255,0.3);}
+.popup-badge{display:inline-block;font-size:0.58rem;font-weight:900;letter-spacing:0.22em;
+  text-transform:uppercase;background:var(--gold);color:#231D2D;
+  padding:0.3rem 0.85rem;border-radius:100px;margin-bottom:1rem;}
+.popup-h{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;
+  color:#fff;line-height:1.1;margin-bottom:0.5rem;}
+.popup-h em{font-style:italic;color:#A8E6E3;display:block;font-size:1.5rem;}
+.popup-date{font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(255,255,255,0.55);}
+.popup-body{padding:1.75rem 2rem 2rem;}
+.popup-desc{font-size:0.9rem;color:rgba(35,29,45,0.6);line-height:1.8;margin-bottom:1.5rem;}
+.popup-cta{display:block;text-align:center;padding:0.95rem 2rem;
+  background:var(--purple-royal);color:#fff;font-size:0.72rem;font-weight:900;
+  letter-spacing:0.12em;text-transform:uppercase;border-radius:5px;text-decoration:none;
+  transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;
+  box-shadow:0 6px 20px rgba(91,59,140,0.3);}
+.popup-cta:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 12px 32px rgba(91,59,140,0.45);}
+.popup-note{font-size:0.68rem;color:rgba(35,29,45,0.38);text-align:center;margin-top:0.85rem;}
+
+/* ══ HERO QUICK CTASS ══ */
+.hero-values{display:flex;align-items:center;gap:0.6rem;margin-bottom:1.1rem;flex-wrap:wrap;}
+.hero-val{font-size:0.68rem;font-weight:900;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:0.5rem;}
+.hero-val::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;
+  background:var(--rose);}
+.hero-val.first::before{display:none;}
+.hero-quick-ctAs{display:flex;flex-wrap:wrap;gap:0.65rem;margin-top:1.75rem;}
+.hero-quick-btn{display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.65rem 1.1rem;border-radius:100px;font-size:0.68rem;font-weight:900;
+  letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;
+  transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s,background 0.2s;}
+.hero-quick-btn.gatherings-btn{background:rgba(201,162,39,0.18);color:var(--gold);
+  border:1.5px solid rgba(201,162,39,0.4);}
+.hero-quick-btn.gatherings-btn:hover{background:var(--gold);color:#231D2D;
+  box-shadow:0 8px 24px rgba(201,162,39,0.4);transform:translateY(-2px);}
+.hero-quick-btn.walks-btn{background:rgba(46,184,176,0.18);color:#A8E6E3;
+  border:1.5px solid rgba(46,184,176,0.4);}
+.hero-quick-btn.walks-btn:hover{background:var(--teal);color:#fff;
+  box-shadow:0 8px 24px rgba(46,184,176,0.4);transform:translateY(-2px);}
+.hero-quick-btn.tk25-btn{background:rgba(201,120,138,0.18);color:var(--rose-light);
+  border:1.5px solid rgba(201,120,138,0.4);}
+.hero-quick-btn.tk25-btn:hover{background:var(--rose);color:#fff;
+  box-shadow:0 8px 24px rgba(201,120,138,0.4);transform:translateY(-2px);}
+.hero-quick-btn.retreats-btn{background:rgba(107,74,168,0.18);color:rgba(200,180,255,0.9);
+  border:1.5px solid rgba(107,74,168,0.4);}
+.hero-quick-btn.retreats-btn:hover{background:var(--purple-royal);color:#fff;
+  box-shadow:0 8px 24px rgba(107,74,168,0.4);transform:translateY(-2px);}
 
 /* ══ NAV ══ */
 nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:0.85rem 2.5rem;
@@ -139,7 +205,7 @@ nav.scrolled{box-shadow:0 2px 30px rgba(53,32,79,0.1);}
 
 /* ══ CATEGORIES ══ */
 #categories{background:linear-gradient(180deg,#FAF8FF 0%,#F0EBF9 100%);}
-.cat-grid{margin-top:3.5rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem;}
+.cat-grid{margin-top:3.5rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
 .cat-card{border-radius:10px;overflow:hidden;
   box-shadow:0 8px 40px rgba(53,32,79,0.1);
   transition:transform 0.3s cubic-bezier(.34,1.56,.64,1),box-shadow 0.3s;
@@ -172,6 +238,10 @@ nav.scrolled{box-shadow:0 2px 30px rgba(53,32,79,0.1);}
 .cat-25k .cat-card-cta{background:rgba(0,0,0,0.2);}
 .cat-25k .cat-card-cta:hover{background:rgba(0,0,0,0.32);}
 .cat-25k .cat-badge{color:#EDE4F8;}
+.cat-retreats .cat-card-top{background:linear-gradient(145deg,var(--rose-dark),var(--rose));}
+.cat-retreats .cat-card-cta{background:rgba(0,0,0,0.2);}
+.cat-retreats .cat-card-cta:hover{background:rgba(0,0,0,0.32);}
+.cat-retreats .cat-badge{color:#F9E8EC;}
 
 /* ══ UPCOMING ══ */
 #upcoming{background:#fff;}
@@ -203,33 +273,54 @@ nav.scrolled{box-shadow:0 2px 30px rgba(53,32,79,0.1);}
   font-size:1rem;color:rgba(53,32,79,0.25);transition:color 0.2s,transform 0.2s;}
 .ev-row:hover .ev-arrow{color:var(--purple-royal);transform:translateX(4px);}
 
-/* ══ WHO WE SERVE ══ */
-#who{background:linear-gradient(180deg,#FAF8FF 0%,#fff 100%);}
-.who-grid{margin-top:3.5rem;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
-.who-card{border-radius:10px;overflow:hidden;position:relative;
-  box-shadow:0 8px 40px rgba(53,32,79,0.1);
-  transition:transform 0.3s cubic-bezier(.34,1.56,.64,1),box-shadow 0.3s;}
-.who-card:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(53,32,79,0.18);}
-.who-card-img{height:340px;position:relative;overflow:hidden;}
-.who-card-img img{width:100%;height:100%;object-fit:cover;display:block;
-  transition:transform 0.5s ease;}
-.who-card:hover .who-card-img img{transform:scale(1.06);}
-.who-card-img-overlay{position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(20,8,40,0.96) 0%,rgba(20,8,40,0.55) 45%,rgba(20,8,40,0.1) 100%);}
-.who-card-body{position:absolute;bottom:0;left:0;right:0;padding:1.75rem;}
-.who-tag{display:inline-block;font-size:0.54rem;font-weight:900;letter-spacing:0.2em;
-  text-transform:uppercase;padding:0.25rem 0.75rem;border-radius:100px;margin-bottom:0.5rem;}
-.who-tag.gold{background:rgba(201,162,39,0.95);color:#231D2D;}
-.who-tag.teal{background:rgba(46,184,176,0.95);color:#fff;}
-.who-tag.purple{background:rgba(107,74,168,0.95);color:#EDE4F8;}
-.who-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;
-  color:#fff;line-height:1.2;margin-bottom:0.45rem;text-shadow:0 2px 8px rgba(0,0,0,0.5);}
-.who-text{font-size:0.78rem;color:rgba(255,255,255,0.88);line-height:1.7;text-shadow:0 1px 4px rgba(0,0,0,0.4);}
-.who-link{display:inline-flex;align-items:center;gap:0.35rem;margin-top:0.85rem;
+/* ══ FOUR PILLARS ══ */
+#pillars{background:linear-gradient(180deg,#FAF8FF 0%,#fff 100%);}
+.pillars-header{margin-bottom:3.5rem;}
+.pillars-values{display:flex;align-items:center;gap:1rem;margin-top:1rem;flex-wrap:wrap;}
+.pillar-val-word{font-size:0.65rem;font-weight:900;letter-spacing:0.25em;text-transform:uppercase;
+  padding:0.3rem 0.85rem;border-radius:100px;}
+.pillar-val-word.love{background:rgba(201,120,138,0.15);color:var(--rose-dark);}
+.pillar-val-word.seen{background:rgba(46,184,176,0.12);color:var(--teal-dark);}
+.pillar-val-word.value{background:rgba(201,162,39,0.15);color:var(--gold-dark);}
+.pillars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
+.pillar-card{border-radius:12px;overflow:hidden;position:relative;
+  box-shadow:0 8px 40px rgba(53,32,79,0.1);cursor:default;
+  transition:transform 0.35s cubic-bezier(.34,1.56,.64,1),box-shadow 0.35s;}
+.pillar-card:hover{transform:translateY(-10px);box-shadow:0 28px 65px rgba(53,32,79,0.2);}
+.pillar-card-img{height:380px;position:relative;overflow:hidden;}
+.pillar-card-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;
+  transition:transform 0.6s ease;}
+.pillar-card:hover .pillar-card-img img{transform:scale(1.07);}
+.pillar-img-overlay{position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,4,22,0.97) 0%,rgba(10,4,22,0.6) 45%,rgba(10,4,22,0.08) 100%);}
+/* colored top accent bar per pillar */
+.pillar-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;z-index:5;}
+.pillar-move::before{background:linear-gradient(to right,#1A7A76,#2EB8B0);}
+.pillar-connect::before{background:linear-gradient(to right,var(--rose-dark),var(--rose));}
+.pillar-grow::before{background:linear-gradient(to right,#7A5A12,#C9A227);}
+.pillar-give::before{background:linear-gradient(to right,#35204F,#5B3B8C);}
+.pillar-card-body{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;}
+.pillar-num{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:700;
+  line-height:1;color:rgba(255,255,255,0.1);display:block;margin-bottom:0.1rem;
+  letter-spacing:-0.03em;}
+.pillar-accent{display:inline-block;font-size:0.54rem;font-weight:900;letter-spacing:0.2em;
+  text-transform:uppercase;padding:0.22rem 0.65rem;border-radius:100px;margin-bottom:0.55rem;}
+.pillar-move .pillar-accent{background:rgba(46,184,176,0.9);color:#fff;}
+.pillar-connect .pillar-accent{background:rgba(201,120,138,0.9);color:#fff;}
+.pillar-grow .pillar-accent{background:rgba(201,162,39,0.92);color:#231D2D;}
+.pillar-give .pillar-accent{background:rgba(107,74,168,0.9);color:#EDE4F8;}
+.pillar-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;
+  color:#fff;line-height:1.15;margin-bottom:0.45rem;text-shadow:0 2px 8px rgba(0,0,0,0.5);}
+.pillar-text{font-size:0.78rem;color:rgba(255,255,255,0.85);line-height:1.7;
+  text-shadow:0 1px 4px rgba(0,0,0,0.4);}
+.pillar-link{display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.9rem;
   font-size:0.62rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;
-  color:var(--gold);text-decoration:none;transition:gap 0.2s;}
-.who-link:hover{gap:0.6rem;}
-.who-link::after{content:'→';}
+  color:rgba(255,255,255,0.65);text-decoration:none;transition:color 0.2s,gap 0.2s;}
+.pillar-card:hover .pillar-link{color:#fff;gap:0.65rem;}
+.pillar-link::after{content:'→';}
+
+/* rose journey card */
+.journey-card.rose-card{background:linear-gradient(145deg,var(--rose-dark),var(--rose));}
 
 /* ══ JOURNEY HORIZONTAL SCROLL ══ */
 #journey-outer{position:relative;}
@@ -373,7 +464,8 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
 /* ══ RESPONSIVE ══ */
 @media(max-width:1024px){
   .hero-grid{gap:3rem;}
-  .cat-grid{grid-template-columns:repeat(3,1fr);}
+  .cat-grid{grid-template-columns:repeat(2,1fr);}
+  .pillars-grid{grid-template-columns:repeat(2,1fr);}
   .podcast-inner{gap:3rem;}
   .donate-impacts{grid-template-columns:repeat(2,1fr);}
   .footer-top{grid-template-columns:1fr 1fr 1fr;gap:2.5rem;}
@@ -382,9 +474,8 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
   .hero-grid{grid-template-columns:1fr;gap:2.5rem;}
   .hero-photo-wrap{height:380px;}
   .hero-right{order:-1;}
-  .hero-search-bar{max-width:100%;}
-  .cat-grid{grid-template-columns:1fr;}
-  .who-grid{grid-template-columns:1fr;}
+  .cat-grid{grid-template-columns:repeat(2,1fr);}
+  .pillars-grid{grid-template-columns:repeat(2,1fr);}
   .podcast-inner{grid-template-columns:1fr;gap:2.5rem;}
   .donate-info-top{grid-template-columns:1fr;gap:2rem;}
   .donate-impacts{grid-template-columns:repeat(2,1fr);}
@@ -405,9 +496,9 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
   .hero-h1{font-size:2.2rem;}
   .hero-search-bar{margin-top:1.5rem;}
   .sec{padding:4rem 1.25rem;}
-  .cat-grid{gap:1.25rem;}
-  .who-grid{gap:1.5rem;}
-  .who-card-img{height:260px;}
+  .cat-grid{grid-template-columns:1fr;gap:1.25rem;}
+  .pillars-grid{grid-template-columns:1fr;}
+  .pillar-card-img{height:300px;}
   .podcast-inner{gap:2rem;}
   .podcast-art{padding:2rem 1.5rem;}
   .donate-impacts{grid-template-columns:1fr;}
@@ -422,6 +513,24 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
 </head>
 <body>
 
+<!-- ══ 25K POPUP ══ -->
+<div class="popup-overlay" id="popup-overlay">
+  <div class="popup-card">
+    <div class="popup-top">
+      <div class="popup-top-orb"></div>
+      <button class="popup-close" id="popup-close" aria-label="Close">✕</button>
+      <span class="popup-badge">✦ Big Event Coming</span>
+      <h2 class="popup-h">The 25K Walk<em>is Here.</em></h2>
+      <div class="popup-date">Registration is Free · All Women Welcome</div>
+    </div>
+    <div class="popup-body">
+      <p class="popup-desc">Join hundreds of women for 25 kilometers of movement, community, and triumph. Aid stations, a finish-line celebration, and memories that will last a lifetime. This is the one you've been waiting for.</p>
+      <a href="events.html#25k-walk" class="popup-cta" id="popup-cta">See More Info →</a>
+      <p class="popup-note">Registration is 100% free — just show up ready.</p>
+    </div>
+  </div>
+</div>
+
 <!-- ══ NAV ══ -->
 <nav id="main-nav">
   <div class="nav-inner">
@@ -431,6 +540,7 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
       <a href="events.html">Events</a>
       <a href="#podcast">Podcast</a>
       <a href="products.html">Shop</a>
+      <a href="contact.html">Contact</a>
       <a href="donate.html" class="nav-cta">Donate</a>
     </div>
     <button class="nav-burger" id="nav-burger" aria-label="Menu">
@@ -454,10 +564,18 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
       <div class="hero-eyebrow"><span class="hero-dot"></span>Community Events Near You</div>
       <h1 class="hero-h1">Walk. Gather.<em>Go Inspire.</em></h1>
       <p class="hero-sub">Go Inspire Now is a women's movement — weekly walks, community gatherings, and epic 25K events designed to move your body, strengthen your community, and ignite your spirit.</p>
-      <!-- search bar — prominent in content column -->
-      <div class="hero-search-bar">
-        <input type="text" id="hero-search" placeholder="Find an event — city, name, or zip…" autocomplete="off">
-        <button id="hero-search-btn">Search</button>
+      <!-- values -->
+      <div class="hero-values" style="margin-top:1.5rem;">
+        <span class="hero-val first">Love</span>
+        <span class="hero-val">Seen</span>
+        <span class="hero-val">Value</span>
+      </div>
+      <!-- quick-CTA buttons -->
+      <div class="hero-quick-ctAs">
+        <a href="events.html#gatherings" class="hero-quick-btn gatherings-btn">🥂 Gatherings</a>
+        <a href="events.html#weekly-walks" class="hero-quick-btn walks-btn">🚶‍♀️ Weekly Walks</a>
+        <a href="events.html#25k-walk" class="hero-quick-btn tk25-btn">🏆 25K Walk</a>
+        <a href="events.html#retreats" class="hero-quick-btn retreats-btn">🌿 Retreats</a>
       </div>
     </div>
 
@@ -466,7 +584,7 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
       <div class="hero-photo-wrap">
         <div class="hero-photo-dots"></div>
         <div class="hero-photo-frame" id="hero-frame">
-          <img src="assets/leelee-hero.png" alt="Leelee Davis — Go Inspire Now founder" id="hero-img">
+          <img src="assets/leelee-hero.png" alt="Leelee Davis — Go Inspire Now founder" id="hero-img" style="filter:brightness(1.35) contrast(0.92) saturate(1.08);">
           <div class="hero-photo-overlay"></div>
         </div>
         <div class="hero-photo-label">
@@ -484,14 +602,14 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
   <div class="sec-inner">
     <div class="reveal">
       <span class="label">Our Events</span>
-      <h2 class="h2">Three Ways to <em>Get Moving</em></h2>
-      <p class="body-p" style="max-width:500px;">Whether you want to brunch, walk, or conquer 25 kilometers — there's a Go Inspire Now event for exactly where you are right now.</p>
+      <h2 class="h2">Four Ways to <em>Get Moving</em></h2>
+      <p class="body-p" style="max-width:500px;">Whether you want to brunch, walk, conquer 25 kilometers, or retreat and restore — there's a Go Inspire Now experience for exactly where you are right now.</p>
     </div>
     <div class="cat-grid">
       <a href="events.html#gatherings" class="cat-card cat-gatherings reveal">
         <div class="cat-card-top">
           <span class="cat-card-icon">🥂</span>
-          <span class="cat-badge">Free to Attend</span>
+          <span class="cat-badge">Open to All</span>
           <div class="cat-card-title">Gatherings</div>
           <p class="cat-card-desc">Brunches, meetups, and community celebrations — spaces where women come together to connect, share, and be celebrated.</p>
           <div class="cat-card-count" id="count-gatherings">— events this year</div>
@@ -503,7 +621,7 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
           <span class="cat-card-icon">🚶‍♀️</span>
           <span class="cat-badge">$5 Per Walk</span>
           <div class="cat-card-title">Weekly Walks</div>
-          <p class="cat-card-desc">Every Saturday morning we lace up and walk together — 5K routes across local parks and trails. $5 reserves your spot.</p>
+          <p class="cat-card-desc">Every Saturday morning we lace up and walk together — 6 to 10 mile routes across local parks and trails. $5 reserves your spot.</p>
           <div class="cat-card-count" id="count-walks">— walks this year</div>
         </div>
         <div class="cat-card-cta">View Weekly Walks <span>→</span></div>
@@ -511,12 +629,22 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
       <a href="events.html#25k-walk" class="cat-card cat-25k reveal" style="transition-delay:0.2s">
         <div class="cat-card-top">
           <span class="cat-card-icon">🏆</span>
-          <span class="cat-badge">Free to Enter</span>
+          <span class="cat-badge">Open to All</span>
           <div class="cat-card-title">25K Walk</div>
           <p class="cat-card-desc">Our big-event walk — 15.5 miles of movement, community, and triumph. Aid stations, a finish-line celebration, and memories that last.</p>
           <div class="cat-card-count" id="count-25k">— events this year</div>
         </div>
         <div class="cat-card-cta">View 25K Events <span>→</span></div>
+      </a>
+      <a href="events.html#retreats" class="cat-card cat-retreats reveal" style="transition-delay:0.3s">
+        <div class="cat-card-top">
+          <span class="cat-card-icon">🌿</span>
+          <span class="cat-badge">Coming Soon</span>
+          <div class="cat-card-title">Retreats</div>
+          <p class="cat-card-desc">Weekend escapes built for rest, reflection, and renewal — deep community, meaningful conversations, and space to restore your spirit.</p>
+          <div class="cat-card-count">More info coming soon</div>
+        </div>
+        <div class="cat-card-cta">Learn More <span>→</span></div>
       </a>
     </div>
   </div>
@@ -536,49 +664,70 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
   </div>
 </section>
 
-<!-- ══ WHO WE SERVE ══ -->
-<section id="who" class="sec">
+<!-- ══ FOUR PILLARS ══ -->
+<section id="pillars" class="sec">
   <div class="sec-inner">
-    <div class="reveal" style="max-width:540px;">
-      <span class="label">Who We Serve</span>
-      <h2 class="h2">Built for <em>You</em>, Right Now</h2>
-      <p class="body-p">Go Inspire Now was built for women at every chapter — because every season deserves a community that sees you, supports you, and moves forward with you.</p>
+    <div class="pillars-header reveal">
+      <span class="label">What We Stand For</span>
+      <h2 class="h2">The Four <em>Pillars</em></h2>
+      <p class="body-p" style="max-width:500px;">Go Inspire Now is built on four foundations — every event, every walk, every gathering flows from these values.</p>
+      <div class="pillars-values">
+        <span class="pillar-val-word love">Love</span>
+        <span class="pillar-val-word seen">Seen</span>
+        <span class="pillar-val-word value">Value</span>
+      </div>
     </div>
-    <div class="who-grid">
-      <div class="who-card reveal">
-        <div class="who-card-img">
-          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&h=340&fit=crop&auto=format" alt="Women in Transition">
-          <div class="who-card-img-overlay"></div>
+    <div class="pillars-grid">
+      <div class="pillar-card pillar-move reveal">
+        <div class="pillar-card-img">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=500&fit=crop&auto=format&q=80" alt="Women Walking Together">
+          <div class="pillar-img-overlay"></div>
         </div>
-        <div class="who-card-body">
-          <span class="who-tag purple">Healing &amp; Growth</span>
-          <div class="who-title">Women in Transition</div>
-          <p class="who-text">Starting over — or starting fresh. Whatever the season, our community walks with you through every change and every challenge.</p>
-          <a href="events.html" class="who-link">Find an Event</a>
-        </div>
-      </div>
-      <div class="who-card reveal" style="transition-delay:0.1s">
-        <div class="who-card-img">
-          <img src="https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=600&h=340&fit=crop&auto=format" alt="Moms and Families">
-          <div class="who-card-img-overlay"></div>
-        </div>
-        <div class="who-card-body">
-          <span class="who-tag teal">Family &amp; Community</span>
-          <div class="who-title">Single Moms &amp; Families</div>
-          <p class="who-text">Find your village. Our gatherings and walks are designed to strengthen families and build the community every mom deserves.</p>
-          <a href="events.html" class="who-link">Find an Event</a>
+        <div class="pillar-card-body">
+          <span class="pillar-num">01</span>
+          <span class="pillar-accent">Move</span>
+          <div class="pillar-title">Move Your Body</div>
+          <p class="pillar-text">Every step is an act of self-love. We walk together — weekly, intentionally, and with joy.</p>
+          <a href="events.html#weekly-walks" class="pillar-link">Join a Walk</a>
         </div>
       </div>
-      <div class="who-card reveal" style="transition-delay:0.2s">
-        <div class="who-card-img">
-          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&h=340&fit=crop&auto=format" alt="Women Seeking Purpose">
-          <div class="who-card-img-overlay"></div>
+      <div class="pillar-card pillar-connect reveal" style="transition-delay:0.1s">
+        <div class="pillar-card-img">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=500&fit=crop&auto=format&q=80" alt="Women Connecting">
+          <div class="pillar-img-overlay"></div>
         </div>
-        <div class="who-card-body">
-          <span class="who-tag gold">Purpose &amp; Identity</span>
-          <div class="who-title">Women Seeking Purpose</div>
-          <p class="who-text">Rediscover who you were created to be. Our events are spaces of reflection, empowerment, and community that reconnect you to your calling.</p>
-          <a href="events.html" class="who-link">Find an Event</a>
+        <div class="pillar-card-body">
+          <span class="pillar-num">02</span>
+          <span class="pillar-accent">Connect</span>
+          <div class="pillar-title">Build Community</div>
+          <p class="pillar-text">Brunches, gatherings, and circles where women are seen, celebrated, and never alone.</p>
+          <a href="events.html#gatherings" class="pillar-link">See Gatherings</a>
+        </div>
+      </div>
+      <div class="pillar-card pillar-grow reveal" style="transition-delay:0.2s">
+        <div class="pillar-card-img">
+          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=500&fit=crop&auto=format&q=80" alt="Women Growing">
+          <div class="pillar-img-overlay"></div>
+        </div>
+        <div class="pillar-card-body">
+          <span class="pillar-num">03</span>
+          <span class="pillar-accent">Grow</span>
+          <div class="pillar-title">Push Your Limits</div>
+          <p class="pillar-text">From your first walk to conquering 25 kilometers — we challenge you to discover what you're made of.</p>
+          <a href="events.html#25k-walk" class="pillar-link">25K Walk</a>
+        </div>
+      </div>
+      <div class="pillar-card pillar-give reveal" style="transition-delay:0.3s">
+        <div class="pillar-card-img">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=500&fit=crop&auto=format&q=80" alt="Women Giving Back">
+          <div class="pillar-img-overlay"></div>
+        </div>
+        <div class="pillar-card-body">
+          <span class="pillar-num">04</span>
+          <span class="pillar-accent">Give</span>
+          <div class="pillar-title">Lift Others Up</div>
+          <p class="pillar-text">Love Boxes, scholarships, and acts of service — we give back because we know what it means to receive.</p>
+          <a href="donate.html" class="pillar-link">Give Back</a>
         </div>
       </div>
     </div>
@@ -624,7 +773,7 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
 
       <!-- 3 -->
       <div class="journey-panel">
-        <div class="journey-card purple-card">
+        <div class="journey-card rose-card">
           <div class="journey-num">03</div>
           <span class="journey-icon">👟</span>
           <div class="journey-step-title">Show Up Ready</div>
@@ -751,7 +900,7 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="assets/gin-logo.png" alt="Go Inspire Now">
+        <img src="assets/gin-logo.png" alt="Go Inspire Now" style="filter:brightness(0) invert(1);opacity:0.9;">
         <p>A women's movement dedicated to walking together, gathering in community, and inspiring every life we touch.</p>
       </div>
       <div class="footer-col">
@@ -767,7 +916,7 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
         <h4>Community</h4>
         <div class="footer-links">
           <a href="#podcast">Podcast</a>
-          <a href="#who">Who We Serve</a>
+          <a href="#pillars">Our Pillars</a>
           <a href="donate.html">Donate</a>
         </div>
       </div>
@@ -885,14 +1034,16 @@ document.getElementById('count-25k').textContent        = cats['25k-walk']+' eve
   }).join('');
 })();
 
-// HERO SEARCH
-document.getElementById('hero-search-btn').addEventListener('click',()=>{
-  const q=document.getElementById('hero-search').value.trim();
-  window.location.href=q?'events.html?q='+encodeURIComponent(q):'events.html';
-});
-document.getElementById('hero-search').addEventListener('keydown',e=>{
-  if(e.key==='Enter') document.getElementById('hero-search-btn').click();
-});
+// POPUP
+(function(){
+  if(sessionStorage.getItem('gin-popup-seen')) return;
+  const overlay = document.getElementById('popup-overlay');
+  const closeBtn = document.getElementById('popup-close');
+  function closePopup(){ overlay.classList.add('hidden'); }
+  closeBtn.addEventListener('click', closePopup);
+  overlay.addEventListener('click', function(e){ if(e.target===overlay) closePopup(); });
+  sessionStorage.setItem('gin-popup-seen','1');
+})();
 
 // PODCAST BTN
 const cfg=window.GIN_CONFIG||{};
