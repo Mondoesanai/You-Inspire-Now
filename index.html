@@ -44,12 +44,18 @@ nav.scrolled{box-shadow:0 2px 30px rgba(53,32,79,0.1);}
 .hero-noise{position:absolute;inset:0;opacity:0.04;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size:200px;}
-.hero-orb1{position:absolute;width:600px;height:600px;border-radius:50%;
-  background:radial-gradient(circle,rgba(46,184,176,0.32) 0%,transparent 70%);
-  top:-120px;right:-80px;pointer-events:none;animation:float 8s ease-in-out infinite;}
-.hero-orb2{position:absolute;width:350px;height:350px;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,162,39,0.22) 0%,transparent 70%);
-  bottom:80px;left:80px;pointer-events:none;animation:float 10s ease-in-out infinite reverse;}
+.hero-orb1{position:absolute;width:650px;height:650px;border-radius:50%;
+  background:radial-gradient(circle,rgba(46,184,176,0.45) 0%,transparent 70%);
+  top:-150px;right:-120px;pointer-events:none;animation:float 8s ease-in-out infinite;}
+.hero-orb2{position:absolute;width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,162,39,0.3) 0%,transparent 70%);
+  bottom:60px;left:60px;pointer-events:none;animation:float 10s ease-in-out infinite reverse;}
+.hero-orb3{position:absolute;width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(107,74,168,0.5) 0%,transparent 70%);
+  top:40%;left:-80px;pointer-events:none;animation:float 12s ease-in-out infinite;}
+.hero-orb4{position:absolute;width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(46,184,176,0.35) 0%,transparent 70%);
+  bottom:10%;right:45%;pointer-events:none;animation:float 9s ease-in-out infinite reverse;}
 @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}}
 .hero-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;
   gap:4.5rem;align-items:center;position:relative;z-index:2;width:100%;}
@@ -67,13 +73,13 @@ nav.scrolled{box-shadow:0 2px 30px rgba(53,32,79,0.1);}
 .hero-sub{font-size:0.97rem;font-weight:300;color:rgba(255,255,255,0.66);line-height:1.85;
   max-width:450px;}
 
-/* hero right — photo + search stacked */
-.hero-right{display:flex;flex-direction:column;gap:0;}
+/* hero right — photo only */
+.hero-right{display:flex;flex-direction:column;}
 .hero-photo-wrap{position:relative;height:520px;}
 .hero-photo-dots{position:absolute;top:-1.75rem;right:-1.75rem;width:100px;height:100px;
   background-image:radial-gradient(circle,rgba(201,162,39,0.5) 1.5px,transparent 1.5px);
   background-size:13px 13px;z-index:0;}
-.hero-photo-frame{position:absolute;inset:0;border-radius:6px 6px 0 0;overflow:hidden;
+.hero-photo-frame{position:absolute;inset:0;border-radius:10px;overflow:hidden;
   box-shadow:0 32px 80px rgba(0,0,0,0.5);z-index:1;}
 .hero-photo-frame img{width:100%;height:100%;object-fit:cover;object-position:top center;
   display:block;transition:transform 0.08s linear;}
@@ -91,19 +97,21 @@ nav.scrolled{box-shadow:0 2px 30px rgba(53,32,79,0.1);}
   border-radius:100px;box-shadow:0 8px 24px rgba(201,162,39,0.5);
   animation:float 6s ease-in-out infinite;}
 
-/* search bar — glued under photo */
-.hero-search-attached{background:rgba(255,255,255,0.97);border-radius:0 0 6px 6px;
-  padding:1.1rem 1.25rem;display:flex;align-items:center;gap:0;
-  box-shadow:0 16px 50px rgba(0,0,0,0.35);position:relative;z-index:1;}
-.hero-search-icon{font-size:1.1rem;margin-right:0.75rem;flex-shrink:0;}
-.hero-search-attached input{flex:1;font-size:0.88rem;font-family:'Lato',sans-serif;
+/* search bar — in hero left column */
+.hero-search-bar{margin-top:2rem;background:rgba(255,255,255,0.97);border-radius:8px;
+  padding:0.85rem 0.85rem 0.85rem 1.25rem;display:flex;align-items:center;gap:0;
+  box-shadow:0 20px 60px rgba(0,0,0,0.45),0 0 0 1px rgba(255,255,255,0.12);
+  position:relative;z-index:1;max-width:480px;}
+.hero-search-bar::before{content:'🔍';font-size:1rem;margin-right:0.75rem;flex-shrink:0;}
+.hero-search-bar input{flex:1;font-size:0.92rem;font-family:'Lato',sans-serif;
   border:none;outline:none;background:transparent;color:#231D2D;min-width:0;}
-.hero-search-attached input::placeholder{color:rgba(35,29,45,0.35);}
-.hero-search-attached button{padding:0.65rem 1.25rem;background:var(--purple-royal);color:#fff;
+.hero-search-bar input::placeholder{color:rgba(35,29,45,0.38);}
+.hero-search-bar button{padding:0.7rem 1.5rem;background:var(--purple-royal);color:#fff;
   font-size:0.65rem;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;
-  border:none;border-radius:4px;cursor:pointer;font-family:'Lato',sans-serif;flex-shrink:0;
-  transition:background 0.2s,transform 0.15s;}
-.hero-search-attached button:hover{background:var(--purple-deep);transform:scale(1.03);}
+  border:none;border-radius:5px;cursor:pointer;font-family:'Lato',sans-serif;flex-shrink:0;
+  transition:background 0.2s,transform 0.15s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;
+  box-shadow:0 4px 16px rgba(91,59,140,0.4);}
+.hero-search-bar button:hover{background:var(--purple-deep);transform:scale(1.05);box-shadow:0 8px 24px rgba(91,59,140,0.5);}
 
 /* ══ SHARED ══ */
 .sec{padding:6.5rem 2.5rem;}
@@ -260,15 +268,18 @@ nav.scrolled{box-shadow:0 2px 30px rgba(53,32,79,0.1);}
   color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s,gap 0.2s;}
 .journey-step-link:hover{color:#fff;gap:0.65rem;}
 .journey-step-link::after{content:'→';}
-/* progress dots */
-.journey-dots{position:fixed;bottom:2.25rem;left:50%;transform:translateX(-50%);
-  display:flex;align-items:center;gap:0;z-index:100;opacity:0;transition:opacity 0.3s;}
+/* progress dots — pill container for visibility on any bg */
+.journey-dots{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:0;z-index:100;opacity:0;transition:opacity 0.3s;
+  background:rgba(35,29,45,0.75);backdrop-filter:blur(12px);
+  padding:0.55rem 1.1rem;border-radius:100px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.3);}
 .journey-dots.vis{opacity:1;}
-.journey-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.25);
+.journey-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.3);
   transition:background 0.25s,transform 0.2s;}
 .journey-dot.on{background:#fff;transform:scale(1.35);}
-.journey-dot-line{width:22px;height:2px;background:rgba(255,255,255,0.15);transition:background 0.35s;}
-.journey-dot-line.filled{background:rgba(255,255,255,0.6);}
+.journey-dot-line{width:20px;height:2px;background:rgba(255,255,255,0.2);transition:background 0.35s;}
+.journey-dot-line.filled{background:rgba(255,255,255,0.65);}
 
 /* ══ PODCAST ══ */
 #podcast{background:linear-gradient(150deg,var(--purple-deep) 0%,#3A1F60 55%,#1A5A56 100%);
@@ -408,6 +419,8 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
   <div class="hero-noise"></div>
   <div class="hero-orb1"></div>
   <div class="hero-orb2"></div>
+  <div class="hero-orb3"></div>
+  <div class="hero-orb4"></div>
 
   <div class="hero-grid">
     <!-- LEFT -->
@@ -415,9 +428,14 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
       <div class="hero-eyebrow"><span class="hero-dot"></span>Community Events Near You</div>
       <h1 class="hero-h1">Walk. Gather.<em>Go Inspire.</em></h1>
       <p class="hero-sub">Go Inspire Now is a women's movement — weekly walks, community gatherings, and epic 25K events designed to move your body, strengthen your community, and ignite your spirit.</p>
+      <!-- search bar — prominent in content column -->
+      <div class="hero-search-bar">
+        <input type="text" id="hero-search" placeholder="Find an event — city, name, or zip…" autocomplete="off">
+        <button id="hero-search-btn">Search</button>
+      </div>
     </div>
 
-    <!-- RIGHT: photo + search attached below -->
+    <!-- RIGHT: photo only -->
     <div class="hero-right">
       <div class="hero-photo-wrap">
         <div class="hero-photo-dots"></div>
@@ -430,12 +448,6 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
           <strong>Leelee Davis</strong>
         </div>
         <div class="hero-photo-badge">✦ Go Inspire Now</div>
-      </div>
-      <!-- search glued under photo -->
-      <div class="hero-search-attached">
-        <span class="hero-search-icon">🔍</span>
-        <input type="text" id="hero-search" placeholder="Find an event — city, name, or zip…" autocomplete="off">
-        <button id="hero-search-btn">Search</button>
       </div>
     </div>
   </div>
@@ -548,7 +560,7 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
 </section>
 
 <!-- ══ JOURNEY HORIZONTAL SCROLL ══ -->
-<div id="journey-outer" style="height:600vh;">
+<div id="journey-outer" style="height:500vh;">
   <div class="journey-sticky" id="journey-sticky">
     <div class="journey-track" id="journey-track">
 
@@ -606,32 +618,24 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
         </div>
       </div>
 
-      <!-- 5 -->
-      <div class="journey-panel">
-        <div class="journey-card dark-card">
+      <!-- 5 — NEXT STEPS finale -->
+      <div class="journey-panel" style="flex:0 0 500px;">
+        <div class="journey-card" style="background:linear-gradient(145deg,#1F4A48,#2EB8B0);position:relative;">
           <div class="journey-num">05</div>
-          <span class="journey-icon">🛍️</span>
-          <div class="journey-step-title">Shop the Movement</div>
-          <p class="journey-step-text">Rep Go Inspire Now with the Starter Kit, walk-day gear, merch, and more. Every purchase supports the community you're already part of.</p>
-          <a href="products.html" class="journey-step-link">Visit the Shop</a>
-        </div>
-      </div>
-
-      <!-- 6 -->
-      <div class="journey-panel">
-        <div class="journey-card gold-card">
-          <div class="journey-num">06</div>
-          <span class="journey-icon">💜</span>
-          <div class="journey-step-title">Give Back</div>
-          <p class="journey-step-text">Donate to fund Love Boxes, scholarships, free events, and the Voices of Resilience podcast — so no woman gets left behind.</p>
-          <a href="donate.html" class="journey-step-link">Make a Donation</a>
+          <span class="journey-icon">✨</span>
+          <div class="journey-step-title">Take the<br>Next Step</div>
+          <p class="journey-step-text" style="margin-bottom:1.5rem;">You're part of the movement now. Keep going — shop the gear, support the community, or come back for more events.</p>
+          <div style="display:flex;flex-direction:column;gap:0.65rem;">
+            <a href="products.html" class="journey-step-link" style="color:#fff;background:rgba(255,255,255,0.15);border-radius:5px;padding:0.6rem 1rem;font-size:0.7rem;display:inline-flex;align-items:center;justify-content:space-between;width:100%;text-decoration:none;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;transition:background 0.2s;">🛍️ &nbsp;Shop the Movement <span>→</span></a>
+            <a href="donate.html" class="journey-step-link" style="color:#231D2D;background:var(--gold);border-radius:5px;padding:0.6rem 1rem;font-size:0.7rem;display:inline-flex;align-items:center;justify-content:space-between;width:100%;text-decoration:none;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;transition:background 0.2s;">💜 &nbsp;Give Back <span>→</span></a>
+          </div>
         </div>
       </div>
 
     </div>
   </div>
 </div>
-<!-- dots -->
+<!-- dots — 6 panels: intro + 4 steps + finale -->
 <div class="journey-dots" id="journey-dots">
   <div class="journey-dot on"></div>
   <div class="journey-dot-line"></div><div class="journey-dot"></div>
