@@ -514,7 +514,7 @@ footer{background:#1A0F2E;padding:4rem 2.5rem 2rem;}
 <body>
 
 <!-- ══ 25K POPUP ══ -->
-<div class="popup-overlay" id="popup-overlay">
+<div class="popup-overlay hidden" id="popup-overlay">
   <div class="popup-card">
     <div class="popup-top">
       <div class="popup-top-orb"></div>
@@ -1034,10 +1034,13 @@ document.getElementById('count-25k').textContent        = cats['25k-walk']+' eve
   }).join('');
 })();
 
-// POPUP
+// POPUP — starts hidden, JS shows it on first visit only
 (function(){
-  if(sessionStorage.getItem('gin-popup-seen')) return;
   const overlay = document.getElementById('popup-overlay');
+  if(!overlay) return;
+  if(sessionStorage.getItem('gin-popup-seen')) return;
+  // First visit — reveal popup and wire up close button
+  overlay.classList.remove('hidden');
   const closeBtn = document.getElementById('popup-close');
   function closePopup(){ overlay.classList.add('hidden'); }
   closeBtn.addEventListener('click', closePopup);
