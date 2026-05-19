@@ -1,0 +1,446 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events â€” Go Inspire Now</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:#fff;color:#2D0A5E;overflow-x:hidden;}
+:root{--dp:#2D0A5E;--vi:#7C3AED;--vi2:#A855F7;--cy:#06B6D4;--pk:#EC4899;--pk2:#F472B6;--go:#FBBF24;--lv:#FAF5FF;}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.018;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;height:72px;
+  background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);
+  box-shadow:0 1px 0 rgba(45,10,94,0.08),0 4px 24px rgba(45,10,94,0.04);display:flex;align-items:center;padding:0 2.5rem;}
+.nav-in{max-width:1200px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo img{height:50px;display:block;}
+.nav-links{display:flex;align-items:center;gap:2rem;}
+.nav-a{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(45,10,94,0.55);text-decoration:none;transition:color 0.2s;position:relative;padding-bottom:2px;}
+.nav-a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--vi);transition:width 0.22s;}
+.nav-a:hover{color:var(--dp);}.nav-a:hover::after,.nav-a.active::after{width:100%;}
+.nav-a.active{color:var(--dp);}
+.nav-cta{display:inline-block;padding:0.55rem 1.55rem;background:linear-gradient(135deg,var(--go),#F59E0B);color:var(--dp);
+  font-size:0.7rem;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;border-radius:100px;text-decoration:none;
+  box-shadow:0 4px 16px rgba(251,191,36,0.4);transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;}
+.nav-cta:hover{transform:scale(1.06);box-shadow:0 8px 28px rgba(251,191,36,0.55);}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--dp);border-radius:2px;}
+
+/* PAGE HERO */
+.page-hero{min-height:55vh;position:relative;display:flex;align-items:center;padding:9rem 2.5rem 5rem;overflow:hidden;}
+.ph-bg{position:absolute;inset:0;z-index:0;}
+.ph-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;}
+.ph-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,rgba(45,10,94,0.88) 0%,rgba(45,10,94,0.65) 60%,rgba(6,182,212,0.2) 100%);}
+.ph-in{max-width:1200px;margin:0 auto;position:relative;z-index:1;width:100%;}
+.ph-ey{font-size:0.62rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(251,191,36,0.9);display:flex;align-items:center;gap:0.6rem;margin-bottom:1.2rem;}
+.ph-ey::before{content:'';width:24px;height:1.5px;background:var(--go);}
+.ph-h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:700;
+  line-height:1.1;letter-spacing:-0.025em;color:#fff;margin-bottom:1rem;}
+.ph-h1 em{color:#FDE68A;font-style:italic;}
+.ph-sub{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.68);line-height:1.85;max-width:520px;}
+
+/* SHARED */
+.sec-in{max-width:1200px;margin:0 auto;}
+.sec-ey{font-size:0.65rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--vi);display:flex;align-items:center;gap:0.8rem;margin-bottom:0.75rem;}
+.sec-ey::before{content:'';width:24px;height:1.5px;background:var(--vi);}
+.sec-h{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);
+  font-weight:700;letter-spacing:-0.025em;color:var(--dp);margin-bottom:0.8rem;line-height:1.1;}
+.sec-h em{font-style:italic;color:var(--pk);}
+.sec-sub{font-size:0.97rem;color:rgba(45,10,94,0.5);line-height:1.88;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* EVENTS GRID */
+.events-main{padding:6rem 2.5rem;background:#fff;}
+.ev-grid-full{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem;margin-top:3.5rem;}
+.ev-card{border-radius:20px;overflow:hidden;background:#fff;
+  box-shadow:0 4px 24px rgba(45,10,94,0.08);
+  transition:transform 0.3s cubic-bezier(.34,1.56,.64,1),box-shadow 0.3s;}
+.ev-card:hover{transform:translateY(-8px);box-shadow:0 24px 64px rgba(45,10,94,0.15);}
+.ev-img{height:210px;overflow:hidden;position:relative;}
+.ev-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
+.ev-card:hover .ev-img img{transform:scale(1.06);}
+.ev-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(45,10,94,0.45) 100%);}
+.ev-date-tag{position:absolute;top:1rem;left:1rem;z-index:1;background:var(--go);
+  border-radius:8px;padding:0.35rem 0.8rem;font-size:0.62rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;color:var(--dp);}
+.ev-body{padding:1.75rem;}
+.ev-type{font-size:0.6rem;font-weight:900;letter-spacing:0.2em;text-transform:uppercase;color:var(--vi);margin-bottom:0.45rem;display:block;}
+.ev-title{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;
+  color:var(--dp);line-height:1.25;margin-bottom:0.65rem;}
+.ev-desc{font-size:0.84rem;color:rgba(45,10,94,0.5);line-height:1.72;margin-bottom:1.25rem;}
+.ev-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem;}
+.ev-meta-item{display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:700;color:rgba(45,10,94,0.45);}
+.ev-foot{display:flex;justify-content:space-between;align-items:center;padding-top:1.25rem;border-top:1px solid rgba(45,10,94,0.08);}
+.ev-price{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--dp);}
+.ev-price span{font-family:'Lato',sans-serif;font-size:0.65rem;font-weight:700;color:rgba(45,10,94,0.38);text-transform:uppercase;letter-spacing:0.08em;}
+.btn-rsvp{display:inline-block;padding:0.55rem 1.3rem;background:var(--dp);color:#fff;
+  font-size:0.65rem;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;
+  border-radius:100px;text-decoration:none;transition:background 0.2s,transform 0.2s;}
+.btn-rsvp:hover{background:var(--vi);transform:scale(1.04);}
+.btn-rsvp.sold{background:rgba(45,10,94,0.15);color:rgba(45,10,94,0.4);cursor:not-allowed;}
+
+/* WHAT TO EXPECT */
+.expect{background:var(--lv);padding:6.5rem 2.5rem;}
+.expect-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3.5rem;}
+.exp-block{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(45,10,94,0.07);}
+.exp-top{padding:2.2rem;position:relative;overflow:hidden;}
+.exp-top-vi{background:linear-gradient(135deg,#4C1D95,#BE185D);}
+.exp-top-cy{background:linear-gradient(135deg,#0C4A6E,#7C3AED);}
+.exp-top::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;
+  border-radius:50%;background:rgba(255,255,255,0.08);}
+.exp-name{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:0.3rem;position:relative;z-index:1;}
+.exp-sub{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);position:relative;z-index:1;}
+.exp-body{padding:2.2rem;}
+.exp-item{display:flex;gap:1rem;margin-bottom:1.5rem;}
+.exp-item:last-child{margin-bottom:0;}
+.exp-ico{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.exp-ico-vi{background:linear-gradient(135deg,rgba(236,72,153,0.15),rgba(168,85,247,0.15));}
+.exp-ico-cy{background:linear-gradient(135deg,rgba(6,182,212,0.15),rgba(124,58,237,0.15));}
+.exp-txt h4{font-size:0.82rem;font-weight:900;color:var(--dp);margin-bottom:0.25rem;}
+.exp-txt p{font-size:0.84rem;color:rgba(45,10,94,0.5);line-height:1.7;}
+
+/* WHO SECTION */
+.who-sec{background:#fff;padding:6.5rem 2.5rem;}
+.who-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3.5rem;}
+.who-card{border-radius:18px;padding:2rem;text-align:center;border:1.5px solid transparent;
+  transition:transform 0.25s cubic-bezier(.34,1.56,.64,1),box-shadow 0.25s;}
+.who-card:hover{transform:translateY(-5px);}
+.wc1{background:linear-gradient(145deg,#FAF5FF,#F3E8FF);border-color:rgba(168,85,247,0.18);}
+.wc1:hover{box-shadow:0 20px 56px rgba(124,58,237,0.12);}
+.wc2{background:linear-gradient(145deg,#FFF0F6,#FCE7F3);border-color:rgba(236,72,153,0.18);}
+.wc2:hover{box-shadow:0 20px 56px rgba(236,72,153,0.12);}
+.wc3{background:linear-gradient(145deg,#F0FDFF,#ECFEFF);border-color:rgba(6,182,212,0.18);}
+.wc3:hover{box-shadow:0 20px 56px rgba(6,182,212,0.12);}
+.wc4{background:linear-gradient(145deg,#FFFBEB,#FEF3C7);border-color:rgba(251,191,36,0.22);}
+.wc4:hover{box-shadow:0 20px 56px rgba(251,191,36,0.12);}
+.who-ico{font-size:2.4rem;display:block;margin-bottom:0.85rem;}
+.who-h{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--dp);margin-bottom:0.4rem;}
+.who-p{font-size:0.82rem;color:rgba(45,10,94,0.5);line-height:1.72;}
+
+/* CTA BAND */
+.cta-band{background:linear-gradient(135deg,var(--pk) 0%,var(--vi) 50%,var(--cy) 100%);
+  padding:5.5rem 2.5rem;text-align:center;position:relative;overflow:hidden;}
+.cta-band::before{content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E');opacity:0.04;}
+.cta-in{max-width:640px;margin:0 auto;position:relative;z-index:1;}
+.cta-h{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;letter-spacing:-0.025em;line-height:1.1;margin-bottom:1rem;}
+.cta-p{font-size:1rem;color:rgba(255,255,255,0.72);line-height:1.85;margin-bottom:2rem;}
+.btn-white{display:inline-block;padding:1.1rem 2.8rem;background:#fff;color:var(--dp);
+  font-weight:900;font-size:0.74rem;letter-spacing:0.12em;text-transform:uppercase;
+  border-radius:100px;text-decoration:none;box-shadow:0 8px 32px rgba(0,0,0,0.18);
+  transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;}
+.btn-white:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 16px 48px rgba(0,0,0,0.25);}
+
+/* FOOTER */
+footer{background:var(--dp);padding:5rem 2.5rem 2.5rem;}
+.ft-in{max-width:1200px;margin:0 auto;}
+.ft-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:3.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.08);}
+.ft-brand img{height:54px;display:block;filter:brightness(0) invert(1);opacity:0.85;margin-bottom:1rem;}
+.ft-brand p{font-size:0.86rem;color:rgba(255,255,255,0.38);line-height:1.9;max-width:240px;}
+.ft-socials{display:flex;gap:0.75rem;margin-top:1.5rem;}
+.ft-soc{width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.2);
+  display:flex;align-items:center;justify-content:center;font-size:0.85rem;text-decoration:none;
+  color:rgba(255,255,255,0.45);transition:border-color 0.2s,color 0.2s,transform 0.2s;}
+.ft-soc:hover{border-color:var(--go);color:var(--go);transform:scale(1.1);}
+.ft-col h4{font-size:0.6rem;font-weight:900;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.32);margin-bottom:1.2rem;}
+.ft-links{display:flex;flex-direction:column;gap:0.65rem;}
+.ft-links a{font-size:0.86rem;color:rgba(255,255,255,0.48);text-decoration:none;transition:color 0.2s;}
+.ft-links a:hover{color:#fff;}
+.ft-bot{padding-top:2rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;}
+.ft-copy,.ft-tax{font-size:0.75rem;color:rgba(255,255,255,0.22);}
+
+@media(max-width:1024px){
+  .ev-grid-full{grid-template-columns:1fr 1fr;}
+  .expect-grid{grid-template-columns:1fr;}
+  .who-grid{grid-template-columns:1fr 1fr;}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:2rem;}
+}
+@media(max-width:700px){
+  .page-hero{padding:7rem 1.5rem 4rem;}
+  .events-main,.expect,.who-sec,.cta-band{padding:4.5rem 1.5rem;}
+  .ev-grid-full,.who-grid{grid-template-columns:1fr;}
+  .ft-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;inset:0;
+    background:rgba(45,10,94,0.97);align-items:center;justify-content:center;gap:1.8rem;z-index:400;}
+  .nav-links.open .nav-a{font-size:1.1rem;color:rgba(255,255,255,0.7);}
+  .nav-burger{display:flex;}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" style="height:50px;display:block;"></a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html" class="nav-a">Home</a>
+      <a href="events.html" class="nav-a active">Events</a>
+      <a href="podcast.html" class="nav-a">Podcast</a>
+      <a href="donate.html" class="nav-a">Donate</a>
+      <a href="contact.html" class="nav-a">Contact</a>
+      <a href="donate.html" class="nav-cta">Donate Now</a>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="ph-bg">
+    <img src="images/women-2.jpg" alt="Events">
+  </div>
+  <div class="ph-in">
+    <div class="ph-ey">Experience Something Powerful</div>
+    <h1 class="ph-h1">Our <em>Events</em></h1>
+    <p class="ph-sub">From intimate retreats to large-scale conferences â€” every gathering is designed to meet you where you are and move you forward.</p>
+  </div>
+</section>
+
+<!-- EVENTS GRID -->
+<section class="events-main">
+  <div class="sec-in">
+    <div class="reveal" style="max-width:640px;margin-bottom:0;">
+      <div class="sec-ey">Upcoming Events</div>
+      <h2 class="sec-h">Register for <em>What's Next</em></h2>
+      <p class="sec-sub">Secure your spot at one of our life-changing events. Spaces are limited â€” don't miss out.</p>
+    </div>
+    <div class="ev-grid-full">
+
+      <div class="ev-card reveal">
+        <div class="ev-img">
+          <img src="images/women-1.jpg" alt="Marriage in Focus">
+          <div class="ev-date-tag">June 2025</div>
+        </div>
+        <div class="ev-body">
+          <span class="ev-type">Couples Retreat</span>
+          <div class="ev-title">Marriage in Focus</div>
+          <p class="ev-desc">A powerful weekend retreat designed to strengthen, heal, and reignite the bond between husband and wife. Expect worship, teaching, and transformational conversations.</p>
+          <div class="ev-meta">
+            <div class="ev-meta-item">ðŸ“… June 20â€“22, 2025</div>
+            <div class="ev-meta-item">ðŸ“ Location TBD</div>
+          </div>
+          <div class="ev-foot">
+            <div class="ev-price">$249 <span>per couple</span></div>
+            <a href="contact.html" class="btn-rsvp">RSVP Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ev-card reveal" style="transition-delay:.08s">
+        <div class="ev-img">
+          <img src="images/women-2.jpg" alt="Mountain Adventure">
+          <div class="ev-date-tag">July 2025</div>
+        </div>
+        <div class="ev-body">
+          <span class="ev-type">Women's Retreat</span>
+          <div class="ev-title">Mountain Adventure</div>
+          <p class="ev-desc">An unforgettable experience in nature where women find clarity, restoration, and deep community. Hiking, reflection, worship, and sisterhood.</p>
+          <div class="ev-meta">
+            <div class="ev-meta-item">ðŸ“… July 11â€“13, 2025</div>
+            <div class="ev-meta-item">ðŸ“ Mountain Region</div>
+          </div>
+          <div class="ev-foot">
+            <div class="ev-price">$199 <span>per person</span></div>
+            <a href="contact.html" class="btn-rsvp">RSVP Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ev-card reveal" style="transition-delay:.16s">
+        <div class="ev-img">
+          <img src="images/women-3.jpg" alt="Annual Conference">
+          <div class="ev-date-tag">Sept 2025</div>
+        </div>
+        <div class="ev-body">
+          <span class="ev-type">Annual Conference</span>
+          <div class="ev-title">You Inspire Now Conference</div>
+          <p class="ev-desc">Our flagship annual gathering â€” a full day of powerful worship, teaching, connection, and breakthroughs. Hundreds of women, one mission.</p>
+          <div class="ev-meta">
+            <div class="ev-meta-item">ðŸ“… September 6, 2025</div>
+            <div class="ev-meta-item">ðŸ“ Main Venue</div>
+          </div>
+          <div class="ev-foot">
+            <div class="ev-price">$75 <span>per person</span></div>
+            <a href="contact.html" class="btn-rsvp">Buy Tickets</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ev-card reveal" style="transition-delay:.24s">
+        <div class="ev-img">
+          <img src="images/women-4.jpg" alt="Identity Workshop">
+          <div class="ev-date-tag">Oct 2025</div>
+        </div>
+        <div class="ev-body">
+          <span class="ev-type">Workshop</span>
+          <div class="ev-title">Identity Workshop</div>
+          <p class="ev-desc">A transformational half-day workshop diving deep into who you really are â€” uncovering your God-given identity and stepping into your true worth.</p>
+          <div class="ev-meta">
+            <div class="ev-meta-item">ðŸ“… October 18, 2025</div>
+            <div class="ev-meta-item">ðŸ“ Online &amp; In-Person</div>
+          </div>
+          <div class="ev-foot">
+            <div class="ev-price">Free <span>registration</span></div>
+            <a href="contact.html" class="btn-rsvp">Register</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ev-card reveal" style="transition-delay:.32s">
+        <div class="ev-img">
+          <img src="images/founder-2.jpg" alt="Purpose Workshop">
+          <div class="ev-date-tag">Nov 2025</div>
+        </div>
+        <div class="ev-body">
+          <span class="ev-type">Workshop</span>
+          <div class="ev-title">Purpose &amp; Calling Workshop</div>
+          <p class="ev-desc">Stop drifting. This workshop walks women through discovering their calling and creating an action plan to move toward the life they were created for.</p>
+          <div class="ev-meta">
+            <div class="ev-meta-item">ðŸ“… November 8, 2025</div>
+            <div class="ev-meta-item">ðŸ“ Online</div>
+          </div>
+          <div class="ev-foot">
+            <div class="ev-price">$49 <span>per person</span></div>
+            <a href="contact.html" class="btn-rsvp">Register</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ev-card reveal" style="transition-delay:.4s">
+        <div class="ev-img">
+          <img src="images/brand-1.jpg" alt="Holiday Gala">
+          <div class="ev-date-tag">Dec 2025</div>
+        </div>
+        <div class="ev-body">
+          <span class="ev-type">Community Gathering</span>
+          <div class="ev-title">Annual Holiday Gala</div>
+          <p class="ev-desc">Celebrate the year with the GIN community. An evening of gratitude, connection, testimony, and celebration of how far we've come together.</p>
+          <div class="ev-meta">
+            <div class="ev-meta-item">ðŸ“… December 13, 2025</div>
+            <div class="ev-meta-item">ðŸ“ Venue TBD</div>
+          </div>
+          <div class="ev-foot">
+            <div class="ev-price">$35 <span>per person</span></div>
+            <a href="contact.html" class="btn-rsvp">Buy Tickets</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section class="expect">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center;max-width:580px;margin:0 auto;">
+      <div class="sec-ey" style="justify-content:center;">What to Expect</div>
+      <h2 class="sec-h" style="text-align:center;">Every Event is <em>Intentional</em></h2>
+    </div>
+    <div class="expect-grid">
+      <div class="exp-block reveal">
+        <div class="exp-top exp-top-vi">
+          <div class="exp-name">Retreats &amp; Conferences</div>
+          <div class="exp-sub">Multi-day immersive experiences</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-item">
+            <div class="exp-ico exp-ico-vi">ðŸ™</div>
+            <div class="exp-txt"><h4>Worship &amp; Teaching</h4><p>Powerful messages and worship sessions that speak directly to where you are in your journey.</p></div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-ico exp-ico-vi">ðŸ‘¯â€â™€ï¸</div>
+            <div class="exp-txt"><h4>Deep Community</h4><p>Genuine connection with women who understand your season, your struggles, and your potential.</p></div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-ico exp-ico-vi">âœ¨</div>
+            <div class="exp-txt"><h4>Breakthrough Moments</h4><p>Spaces created for healing, clarity, and the kind of transformation that sticks long after you go home.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="exp-block reveal" style="transition-delay:.12s">
+        <div class="exp-top exp-top-cy">
+          <div class="exp-name">Workshops &amp; Gatherings</div>
+          <div class="exp-sub">Focused half-day experiences</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-item">
+            <div class="exp-ico exp-ico-cy">ðŸ“–</div>
+            <div class="exp-txt"><h4>Practical Teaching</h4><p>Actionable tools and frameworks you can apply immediately â€” no fluff, just truth you can use.</p></div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-ico exp-ico-cy">ðŸ’¬</div>
+            <div class="exp-txt"><h4>Group Discussion</h4><p>Small group time for real conversation, prayer, and accountability with women walking similar paths.</p></div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-ico exp-ico-cy">ðŸŽ¯</div>
+            <div class="exp-txt"><h4>Clear Next Steps</h4><p>You leave with a plan â€” not just inspiration. Every workshop ends with clarity on what to do next.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IS THIS FOR -->
+<section class="who-sec">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto;">
+      <div class="sec-ey" style="justify-content:center;">Who Should Come</div>
+      <h2 class="sec-h" style="text-align:center;">These Events Were <em>Built for You</em></h2>
+    </div>
+    <div class="who-grid">
+      <div class="who-card wc1 reveal"><span class="who-ico">ðŸŒ¿</span><div class="who-h">Women Feeling Stuck</div><p class="who-p">Overwhelmed or disconnected from your true identity â€” searching for clarity, direction, and community.</p></div>
+      <div class="who-card wc2 reveal" style="transition-delay:.08s"><span class="who-ico">ðŸ‘©â€ðŸ‘§</span><div class="who-h">Mothers in the Trenches</div><p class="who-p">Seeking support, hope, practical resources, and renewed strength for the beautiful but demanding journey of motherhood.</p></div>
+      <div class="who-card wc3 reveal" style="transition-delay:.16s"><span class="who-ico">ðŸ’œ</span><div class="who-h">Women Healing</div><p class="who-p">From shame, abandonment, or confusion â€” finding truth, freedom, and the courage to move forward.</p></div>
+      <div class="who-card wc4 reveal" style="transition-delay:.24s"><span class="who-ico">ðŸ™</span><div class="who-h">Women of Faith</div><p class="who-p">Growing in faith, personal health, family, and leadership â€” leaning deeper into the calling on your life.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="cta-in reveal">
+    <h2 class="cta-h">Don't Miss What God Has for You</h2>
+    <p class="cta-p">Register for your next event today. Space is limited â€” secure your seat and step into something that will change your life.</p>
+    <a href="contact.html" class="btn-white">Register Now</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-in">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="assets/gin-logo.png" alt="Go Inspire Now">
+        <p>A faith-based nonprofit empowering women through community, mentorship, and transformational experiences.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc">f</a><a href="#" class="ft-soc">in</a>
+          <a href="#" class="ft-soc">tt</a><a href="#" class="ft-soc">â–¶</a>
+        </div>
+      </div>
+      <div class="ft-col"><h4>Quick Links</h4><div class="ft-links"><a href="index.html">Home</a><a href="events.html">Events</a><a href="podcast.html">Podcast</a><a href="donate.html">Donate</a><a href="contact.html">Contact</a></div></div>
+      <div class="ft-col"><h4>Our Programs</h4><div class="ft-links"><a href="#">Identity &amp; Healing</a><a href="#">Community Events</a><a href="#">Purpose &amp; Calling</a><a href="#">Resilience Building</a><a href="#">Wholeness &amp; Wellness</a></div></div>
+      <div class="ft-col"><h4>Contact</h4><div class="ft-links"><a href="mailto:info@goinspirenow.org">info@goinspirenow.org</a><a href="contact.html">Send a Message</a><a href="#">Partner With Us</a><a href="donate.html">Support Our Mission</a></div></div>
+    </div>
+    <div class="ft-bot"><div class="ft-copy">Â© 2025 Go Inspire Now. All Rights Reserved.</div><div class="ft-tax">501(c)(3) Nonprofit Organization</div></div>
+  </div>
+</footer>
+<script>
+const burger=document.getElementById('nav-burger'),navLinks=document.getElementById('nav-links');
+burger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
+

@@ -1,0 +1,380 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact â€” Go Inspire Now</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:#fff;color:#2D0A5E;overflow-x:hidden;}
+:root{--dp:#2D0A5E;--vi:#7C3AED;--vi2:#A855F7;--cy:#06B6D4;--pk:#EC4899;--go:#FBBF24;--lv:#FAF5FF;}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.018;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;height:72px;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(45,10,94,0.08),0 4px 24px rgba(45,10,94,0.04);display:flex;align-items:center;padding:0 2.5rem;}
+.nav-in{max-width:1200px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo img{height:50px;display:block;}
+.nav-links{display:flex;align-items:center;gap:2rem;}
+.nav-a{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(45,10,94,0.55);text-decoration:none;transition:color 0.2s;position:relative;padding-bottom:2px;}
+.nav-a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--vi);transition:width 0.22s;}
+.nav-a:hover{color:var(--dp);}.nav-a:hover::after,.nav-a.active::after{width:100%;}
+.nav-a.active{color:var(--dp);}
+.nav-cta{display:inline-block;padding:0.55rem 1.55rem;background:linear-gradient(135deg,var(--go),#F59E0B);color:var(--dp);font-size:0.7rem;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;border-radius:100px;text-decoration:none;box-shadow:0 4px 16px rgba(251,191,36,0.4);transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;}
+.nav-cta:hover{transform:scale(1.06);}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--dp);border-radius:2px;}
+
+/* PAGE HERO */
+.page-hero{min-height:52vh;position:relative;display:flex;align-items:center;padding:9rem 2.5rem 5rem;overflow:hidden;}
+.ph-bg{position:absolute;inset:0;z-index:0;}
+.ph-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;}
+.ph-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,rgba(45,10,94,0.9) 0%,rgba(45,10,94,0.65) 55%,rgba(6,182,212,0.2) 100%);}
+.ph-in{max-width:1200px;margin:0 auto;position:relative;z-index:1;width:100%;}
+.ph-ey{font-size:0.62rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;color:rgba(251,191,36,0.9);display:flex;align-items:center;gap:0.6rem;margin-bottom:1.2rem;}
+.ph-ey::before{content:'';width:24px;height:1.5px;background:var(--go);}
+.ph-h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:700;line-height:1.1;letter-spacing:-0.025em;color:#fff;margin-bottom:1rem;}
+.ph-h1 em{color:#FDE68A;font-style:italic;}
+.ph-sub{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.68);line-height:1.85;max-width:520px;}
+
+/* SHARED */
+.sec-in{max-width:1200px;margin:0 auto;}
+.sec-ey{font-size:0.65rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;color:var(--vi);display:flex;align-items:center;gap:0.8rem;margin-bottom:0.75rem;}
+.sec-ey::before{content:'';width:24px;height:1.5px;background:var(--vi);}
+.sec-h{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:700;letter-spacing:-0.025em;color:var(--dp);margin-bottom:0.8rem;line-height:1.1;}
+.sec-h em{font-style:italic;color:var(--pk);}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* CONTACT MAIN */
+.contact-main{padding:6.5rem 2.5rem;background:#fff;}
+.contact-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;}
+
+/* FORM */
+.form-wrap{background:var(--lv);border-radius:24px;padding:3rem;}
+.form-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--dp);margin-bottom:0.4rem;}
+.form-sub{font-size:0.88rem;color:rgba(45,10,94,0.5);line-height:1.7;margin-bottom:2rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.form-group{margin-bottom:1rem;}
+.form-group label{display:block;font-size:0.7rem;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;color:rgba(45,10,94,0.5);margin-bottom:0.45rem;}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:0.85rem 1.1rem;border:1.5px solid rgba(45,10,94,0.12);border-radius:12px;
+  font-family:'Lato',sans-serif;font-size:0.9rem;color:var(--dp);background:#fff;
+  transition:border-color 0.2s,box-shadow 0.2s;outline:none;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+  border-color:var(--vi);box-shadow:0 0 0 3px rgba(124,58,237,0.1);}
+.form-group textarea{resize:vertical;min-height:130px;line-height:1.6;}
+.form-group select{cursor:pointer;}
+.btn-submit{width:100%;padding:1.1rem 2rem;background:linear-gradient(135deg,var(--pk),var(--vi));
+  color:#fff;font-weight:900;font-size:0.74rem;letter-spacing:0.12em;text-transform:uppercase;
+  border-radius:100px;border:none;cursor:pointer;box-shadow:0 8px 32px rgba(236,72,153,0.35);
+  transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;}
+.btn-submit:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 48px rgba(236,72,153,0.5);}
+
+/* INFO CARDS */
+.info-cards{display:flex;flex-direction:column;gap:1.5rem;}
+.info-card{background:#fff;border-radius:18px;padding:2rem;border:1.5px solid rgba(45,10,94,0.08);
+  display:flex;gap:1.25rem;align-items:flex-start;
+  transition:transform 0.25s cubic-bezier(.34,1.56,.64,1),box-shadow 0.25s,border-color 0.2s;}
+.info-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(45,10,94,0.1);border-color:var(--vi2);}
+.info-ico{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
+.info-txt h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--dp);margin-bottom:0.3rem;}
+.info-txt p{font-size:0.85rem;color:rgba(45,10,94,0.5);line-height:1.72;margin-bottom:0.5rem;}
+.info-txt a{font-size:0.82rem;font-weight:700;color:var(--vi);text-decoration:none;transition:color 0.2s;}
+.info-txt a:hover{color:var(--pk);}
+
+.social-connect{background:linear-gradient(135deg,var(--dp),#4C1D95);border-radius:18px;padding:2rem;}
+.social-connect h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:0.4rem;}
+.social-connect p{font-size:0.85rem;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:1.5rem;}
+.social-btns{display:flex;flex-wrap:wrap;gap:0.75rem;}
+.social-btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.55rem 1.2rem;
+  background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);
+  color:#fff;text-decoration:none;border-radius:100px;font-size:0.7rem;font-weight:700;
+  transition:background 0.2s,border-color 0.2s,transform 0.2s;}
+.social-btn:hover{background:rgba(255,255,255,0.22);border-color:rgba(255,255,255,0.45);transform:translateY(-2px);}
+
+/* FAQ */
+.faq{background:var(--lv);padding:6.5rem 2.5rem;}
+.faq-in{max-width:900px;margin:0 auto;}
+.faq-list{margin-top:3.5rem;}
+.faq-item{border-bottom:1px solid rgba(45,10,94,0.1);overflow:hidden;}
+.faq-q{width:100%;padding:1.5rem 0;background:none;border:none;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;text-align:left;}
+.faq-q-txt{font-size:1rem;font-weight:900;color:var(--dp);line-height:1.3;}
+.faq-icon{width:28px;height:28px;border-radius:50%;border:1.5px solid rgba(45,10,94,0.2);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-size:1rem;color:var(--vi);transition:transform 0.2s,background 0.2s,border-color 0.2s;}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--vi);border-color:var(--vi);color:#fff;}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.35s ease;}
+.faq-a-inner{padding-bottom:1.5rem;font-size:0.92rem;color:rgba(45,10,94,0.55);line-height:1.85;}
+.faq-item.open .faq-a{max-height:200px;}
+
+/* CTA BAND */
+.cta-band{background:linear-gradient(135deg,var(--pk) 0%,var(--vi) 50%,var(--cy) 100%);padding:5.5rem 2.5rem;text-align:center;position:relative;overflow:hidden;}
+.cta-band::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E');opacity:0.04;}
+.cta-in{max-width:640px;margin:0 auto;position:relative;z-index:1;}
+.cta-h{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;letter-spacing:-0.025em;line-height:1.1;margin-bottom:1rem;}
+.cta-p{font-size:1rem;color:rgba(255,255,255,0.72);line-height:1.85;margin-bottom:2rem;}
+.btn-white{display:inline-block;padding:1.1rem 2.8rem;background:#fff;color:var(--dp);font-weight:900;font-size:0.74rem;letter-spacing:0.12em;text-transform:uppercase;border-radius:100px;text-decoration:none;box-shadow:0 8px 32px rgba(0,0,0,0.18);transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;}
+.btn-white:hover{transform:translateY(-3px) scale(1.04);}
+
+/* FOOTER */
+footer{background:var(--dp);padding:5rem 2.5rem 2.5rem;}
+.ft-in{max-width:1200px;margin:0 auto;}
+.ft-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:3.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.08);}
+.ft-brand img{height:54px;display:block;filter:brightness(0) invert(1);opacity:0.85;margin-bottom:1rem;}
+.ft-brand p{font-size:0.86rem;color:rgba(255,255,255,0.38);line-height:1.9;max-width:240px;}
+.ft-socials{display:flex;gap:0.75rem;margin-top:1.5rem;}
+.ft-soc{width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:0.85rem;text-decoration:none;color:rgba(255,255,255,0.45);transition:border-color 0.2s,color 0.2s,transform 0.2s;}
+.ft-soc:hover{border-color:var(--go);color:var(--go);transform:scale(1.1);}
+.ft-col h4{font-size:0.6rem;font-weight:900;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.32);margin-bottom:1.2rem;}
+.ft-links{display:flex;flex-direction:column;gap:0.65rem;}
+.ft-links a{font-size:0.86rem;color:rgba(255,255,255,0.48);text-decoration:none;transition:color 0.2s;}
+.ft-links a:hover{color:#fff;}
+.ft-bot{padding-top:2rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;}
+.ft-copy,.ft-tax{font-size:0.75rem;color:rgba(255,255,255,0.22);}
+
+@media(max-width:1024px){
+  .contact-in{grid-template-columns:1fr;}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:2rem;}
+}
+@media(max-width:700px){
+  .page-hero,.contact-main,.faq,.cta-band{padding:4.5rem 1.5rem;}
+  .form-row{grid-template-columns:1fr;}
+  .ft-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;inset:0;background:rgba(45,10,94,0.97);align-items:center;justify-content:center;gap:1.8rem;z-index:400;}
+  .nav-links.open .nav-a{font-size:1.1rem;color:rgba(255,255,255,0.7);}
+  .nav-burger{display:flex;}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<nav id="nav">
+  <div class="nav-in">
+    <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" style="height:50px;display:block;"></a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html" class="nav-a">Home</a>
+      <a href="events.html" class="nav-a">Events</a>
+      <a href="podcast.html" class="nav-a">Podcast</a>
+      <a href="donate.html" class="nav-a">Donate</a>
+      <a href="contact.html" class="nav-a active">Contact</a>
+      <a href="donate.html" class="nav-cta">Donate Now</a>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="ph-bg"><img src="images/women-4.jpg" alt="Contact"></div>
+  <div class="ph-in">
+    <div class="ph-ey">We'd Love to Hear from You</div>
+    <h1 class="ph-h1">Let's <em>Connect</em></h1>
+    <p class="ph-sub">Whether you have a question, want to volunteer, or are ready to partner with the mission â€” we want to hear from you. Reach out and let's talk.</p>
+  </div>
+</section>
+
+<!-- CONTACT MAIN -->
+<section class="contact-main">
+  <div class="contact-in sec-in">
+
+    <!-- FORM -->
+    <div class="form-wrap reveal">
+      <div class="form-title">Send Us a Message</div>
+      <div class="form-sub">Fill out the form below and our team will get back to you within 24â€“48 hours.</div>
+      <form onsubmit="return false;">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Jane">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Smith">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="jane@example.com">
+        </div>
+        <div class="form-group">
+          <label>Phone Number (Optional)</label>
+          <input type="tel" placeholder="(555) 000-0000">
+        </div>
+        <div class="form-group">
+          <label>How Can We Help?</label>
+          <select>
+            <option value="">Select a topic...</option>
+            <option>Event Registration / RSVP</option>
+            <option>Volunteer Inquiry</option>
+            <option>Donation / Partnership</option>
+            <option>Speaking Request</option>
+            <option>Prayer Request</option>
+            <option>General Question</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell us what's on your heart..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message â™¥</button>
+      </form>
+    </div>
+
+    <!-- INFO CARDS -->
+    <div class="info-cards reveal" style="transition-delay:.15s">
+      <div>
+        <div class="sec-ey">Get in Touch</div>
+        <h2 class="sec-h">We're <em>Here for You</em></h2>
+        <p style="font-size:0.95rem;color:rgba(45,10,94,0.5);line-height:1.85;margin-bottom:2rem;">We're a real community with real people â€” and we'd love to connect with you personally. Don't hesitate to reach out.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-ico" style="background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(168,85,247,0.1));">âœ‰ï¸</div>
+        <div class="info-txt">
+          <h3>Email Us</h3>
+          <p>For general inquiries, event questions, or partnership opportunities.</p>
+          <a href="mailto:info@goinspirenow.org">info@goinspirenow.org</a>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-ico" style="background:linear-gradient(135deg,rgba(6,182,212,0.15),rgba(14,165,233,0.1));">ðŸŽ¤</div>
+        <div class="info-txt">
+          <h3>Podcast &amp; Media</h3>
+          <p>Want to be a guest on The GIN Podcast or have a media inquiry?</p>
+          <a href="mailto:podcast@goinspirenow.org">podcast@goinspirenow.org</a>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-ico" style="background:linear-gradient(135deg,rgba(251,191,36,0.2),rgba(245,158,11,0.1));">ðŸ’›</div>
+        <div class="info-txt">
+          <h3>Donations &amp; Giving</h3>
+          <p>Questions about your donation, tax receipts, or recurring giving?</p>
+          <a href="mailto:give@goinspirenow.org">give@goinspirenow.org</a>
+        </div>
+      </div>
+
+      <div class="social-connect">
+        <h3>Follow the Movement</h3>
+        <p>Stay connected, get inspired daily, and join the community on social media.</p>
+        <div class="social-btns">
+          <a href="#" class="social-btn">f Facebook</a>
+          <a href="#" class="social-btn">ðŸ“· Instagram</a>
+          <a href="#" class="social-btn">â™ª TikTok</a>
+          <a href="#" class="social-btn">â–¶ YouTube</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-in">
+    <div class="reveal" style="text-align:center;max-width:580px;margin:0 auto;">
+      <div class="sec-ey" style="justify-content:center;">Common Questions</div>
+      <h2 class="sec-h" style="text-align:center;">Frequently Asked <em>Questions</em></h2>
+    </div>
+    <div class="faq-list reveal" style="transition-delay:.1s">
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-txt">How do I register for an event?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">You can register for any event directly through the Events page or by contacting us through this form. For most events, you'll receive a confirmation email with all the details you need to prepare for the experience.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-txt">Is Go Inspire Now a 501(c)(3) nonprofit?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Yes! Go Inspire Now is a registered 501(c)(3) nonprofit organization. All donations are tax-deductible to the extent permitted by law. You will receive a donation receipt via email for any contribution made.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-txt">How can I volunteer with Go Inspire Now?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">We love our volunteers! Fill out the contact form above and select "Volunteer Inquiry" â€” our team will reach out with current opportunities. We have volunteer roles at events, behind the scenes, and in our digital community.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-txt">Do you offer event scholarships?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">We believe no woman should be kept from a transformational experience because of finances. We do offer limited scholarship opportunities for events. Reach out through our contact form and let us know your situation â€” we'll do our best to make it work.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-txt">Can I invite Go Inspire Now to speak at my event?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Absolutely! We welcome speaking opportunities at conferences, churches, community events, and more. Please reach out via the contact form selecting "Speaking Request" and include details about your event â€” date, location, topic, and audience size.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-txt">Where can I listen to The GIN Podcast?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">The GIN Podcast is available on all major podcast platforms including Apple Podcasts, Spotify, YouTube, iHeart Radio, and Amazon Music. Head to our Podcast page to find all the links and start listening today.</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="cta-in reveal">
+    <h2 class="cta-h">Ready to Be Part of the Mission?</h2>
+    <p class="cta-p">Whether you give, volunteer, attend, or listen â€” you have a place in the Go Inspire Now family. Welcome home.</p>
+    <a href="donate.html" class="btn-white">Give Today</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-in">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="assets/gin-logo.png" alt="Go Inspire Now">
+        <p>A faith-based nonprofit empowering women through community, mentorship, and transformational experiences.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc">f</a><a href="#" class="ft-soc">in</a>
+          <a href="#" class="ft-soc">tt</a><a href="#" class="ft-soc">â–¶</a>
+        </div>
+      </div>
+      <div class="ft-col"><h4>Quick Links</h4><div class="ft-links"><a href="index.html">Home</a><a href="events.html">Events</a><a href="podcast.html">Podcast</a><a href="donate.html">Donate</a><a href="contact.html">Contact</a></div></div>
+      <div class="ft-col"><h4>Our Programs</h4><div class="ft-links"><a href="#">Identity &amp; Healing</a><a href="#">Community Events</a><a href="#">Purpose &amp; Calling</a><a href="#">Resilience Building</a><a href="#">Wholeness &amp; Wellness</a></div></div>
+      <div class="ft-col"><h4>Contact</h4><div class="ft-links"><a href="mailto:info@goinspirenow.org">info@goinspirenow.org</a><a href="contact.html">Send a Message</a><a href="#">Partner With Us</a><a href="donate.html">Support Our Mission</a></div></div>
+    </div>
+    <div class="ft-bot"><div class="ft-copy">Â© 2025 Go Inspire Now. All Rights Reserved.</div><div class="ft-tax">501(c)(3) Nonprofit Organization</div></div>
+  </div>
+</footer>
+<script>
+const burger=document.getElementById('nav-burger'),navLinks=document.getElementById('nav-links');
+burger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.parentElement;
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen)item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
+

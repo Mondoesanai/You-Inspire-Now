@@ -1,0 +1,361 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Podcast â€” Go Inspire Now</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:#fff;color:#2D0A5E;overflow-x:hidden;}
+:root{--dp:#2D0A5E;--vi:#7C3AED;--vi2:#A855F7;--cy:#06B6D4;--pk:#EC4899;--go:#FBBF24;--lv:#FAF5FF;}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.018;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;height:72px;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(45,10,94,0.08),0 4px 24px rgba(45,10,94,0.04);display:flex;align-items:center;padding:0 2.5rem;}
+.nav-in{max-width:1200px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo img{height:50px;display:block;}
+.nav-links{display:flex;align-items:center;gap:2rem;}
+.nav-a{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(45,10,94,0.55);text-decoration:none;transition:color 0.2s;position:relative;padding-bottom:2px;}
+.nav-a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--vi);transition:width 0.22s;}
+.nav-a:hover{color:var(--dp);}.nav-a:hover::after,.nav-a.active::after{width:100%;}
+.nav-a.active{color:var(--dp);}
+.nav-cta{display:inline-block;padding:0.55rem 1.55rem;background:linear-gradient(135deg,var(--go),#F59E0B);color:var(--dp);font-size:0.7rem;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;border-radius:100px;text-decoration:none;box-shadow:0 4px 16px rgba(251,191,36,0.4);transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;}
+.nav-cta:hover{transform:scale(1.06);}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--dp);border-radius:2px;}
+
+/* PAGE HERO */
+.page-hero{min-height:55vh;position:relative;display:flex;align-items:center;padding:9rem 2.5rem 5rem;overflow:hidden;}
+.ph-bg{position:absolute;inset:0;z-index:0;}
+.ph-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;}
+.ph-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,rgba(45,10,94,0.9) 0%,rgba(45,10,94,0.65) 55%,rgba(6,182,212,0.2) 100%);}
+.ph-in{max-width:1200px;margin:0 auto;position:relative;z-index:1;width:100%;}
+.ph-ey{font-size:0.62rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;color:rgba(251,191,36,0.9);display:flex;align-items:center;gap:0.6rem;margin-bottom:1.2rem;}
+.ph-ey::before{content:'';width:24px;height:1.5px;background:var(--go);}
+.ph-h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:700;line-height:1.1;letter-spacing:-0.025em;color:#fff;margin-bottom:1rem;}
+.ph-h1 em{color:#FDE68A;font-style:italic;}
+.ph-sub{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.68);line-height:1.85;max-width:520px;}
+
+/* SHARED */
+.sec-in{max-width:1200px;margin:0 auto;}
+.sec-ey{font-size:0.65rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;color:var(--vi);display:flex;align-items:center;gap:0.8rem;margin-bottom:0.75rem;}
+.sec-ey::before{content:'';width:24px;height:1.5px;background:var(--vi);}
+.sec-h{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:700;letter-spacing:-0.025em;color:var(--dp);margin-bottom:0.8rem;line-height:1.1;}
+.sec-h em{font-style:italic;color:var(--pk);}
+.sec-sub{font-size:0.97rem;color:rgba(45,10,94,0.5);line-height:1.88;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* FEATURED EPISODE */
+.featured{background:var(--lv);padding:6rem 2.5rem;}
+.feat-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.feat-art{border-radius:24px;overflow:hidden;position:relative;box-shadow:0 40px 100px rgba(45,10,94,0.14);}
+.feat-art img{width:100%;height:420px;object-fit:cover;display:block;}
+.feat-art::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(45,10,94,0.5) 100%);}
+.feat-badge{position:absolute;top:1.5rem;left:1.5rem;z-index:1;
+  background:linear-gradient(135deg,var(--go),#F59E0B);border-radius:8px;
+  padding:0.35rem 0.85rem;font-size:0.6rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:var(--dp);}
+.feat-ep{font-size:0.62rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;color:var(--vi);margin-bottom:0.6rem;display:block;}
+.feat-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--dp);line-height:1.15;letter-spacing:-0.02em;margin-bottom:1rem;}
+.feat-title em{font-style:italic;color:var(--pk);}
+.feat-desc{font-size:0.97rem;color:rgba(45,10,94,0.55);line-height:1.88;margin-bottom:1.75rem;}
+.feat-meta{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem;padding:1rem;background:#fff;border-radius:12px;border:1.5px solid rgba(45,10,94,0.07);}
+.feat-meta-item{font-size:0.72rem;font-weight:700;color:rgba(45,10,94,0.45);}
+.feat-meta-item strong{color:var(--dp);display:block;font-size:0.85rem;margin-top:0.15rem;}
+.play-btn{display:inline-flex;align-items:center;gap:0.8rem;padding:1.1rem 2.5rem;
+  background:linear-gradient(135deg,var(--pk),var(--vi));color:#fff;
+  font-weight:900;font-size:0.74rem;letter-spacing:0.12em;text-transform:uppercase;
+  border-radius:100px;text-decoration:none;box-shadow:0 8px 32px rgba(236,72,153,0.4);
+  transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;}
+.play-btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 16px 48px rgba(236,72,153,0.55);}
+.play-icon{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.25);
+  display:flex;align-items:center;justify-content:center;font-size:0.75rem;}
+
+/* EPISODES GRID */
+.episodes{background:#fff;padding:6.5rem 2.5rem;}
+.ep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem;margin-top:3.5rem;}
+.ep-card{border-radius:18px;overflow:hidden;background:#fff;
+  box-shadow:0 4px 24px rgba(45,10,94,0.07);border:1.5px solid rgba(45,10,94,0.06);
+  transition:transform 0.25s cubic-bezier(.34,1.56,.64,1),box-shadow 0.25s;}
+.ep-card:hover{transform:translateY(-6px);box-shadow:0 20px 56px rgba(45,10,94,0.12);border-color:var(--vi2);}
+.ep-thumb{height:180px;overflow:hidden;position:relative;}
+.ep-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
+.ep-card:hover .ep-thumb img{transform:scale(1.06);}
+.ep-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(45,10,94,0.5) 100%);}
+.ep-num{position:absolute;top:1rem;left:1rem;z-index:1;background:var(--vi);
+  border-radius:8px;padding:0.28rem 0.7rem;font-size:0.58rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:#fff;}
+.ep-play{position:absolute;bottom:1rem;right:1rem;z-index:1;width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;
+  font-size:0.85rem;cursor:pointer;transition:transform 0.2s;color:var(--dp);}
+.ep-card:hover .ep-play{transform:scale(1.1);}
+.ep-body{padding:1.5rem;}
+.ep-cat{font-size:0.6rem;font-weight:900;letter-spacing:0.2em;text-transform:uppercase;color:var(--vi);margin-bottom:0.4rem;display:block;}
+.ep-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--dp);line-height:1.3;margin-bottom:0.55rem;}
+.ep-desc{font-size:0.82rem;color:rgba(45,10,94,0.5);line-height:1.7;margin-bottom:1rem;}
+.ep-foot{display:flex;justify-content:space-between;align-items:center;padding-top:1rem;border-top:1px solid rgba(45,10,94,0.07);}
+.ep-dur{font-size:0.7rem;font-weight:700;color:rgba(45,10,94,0.38);}
+.btn-listen{font-size:0.62rem;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--vi);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;transition:gap 0.2s;}
+.btn-listen:hover{gap:0.75rem;}
+.btn-listen::after{content:'â†’';}
+
+/* SUBSCRIBE */
+.subscribe{background:linear-gradient(148deg,var(--dp) 0%,#4C1D95 50%,#0C4A6E 100%);padding:6.5rem 2.5rem;position:relative;overflow:hidden;}
+.subscribe::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E');opacity:0.04;}
+.sub-in{max-width:1200px;margin:0 auto;position:relative;z-index:1;text-align:center;}
+.sub-h{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:0.8rem;line-height:1.1;}
+.sub-h em{color:#FDE68A;font-style:italic;}
+.sub-p{font-size:1rem;color:rgba(255,255,255,0.65);line-height:1.85;max-width:520px;margin:0 auto 3rem;}
+.platform-grid{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;}
+.platform-btn{display:inline-flex;align-items:center;gap:0.75rem;padding:0.9rem 2rem;
+  background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.2);
+  color:#fff;text-decoration:none;border-radius:14px;font-size:0.8rem;font-weight:700;
+  transition:background 0.2s,border-color 0.2s,transform 0.2s;}
+.platform-btn:hover{background:rgba(255,255,255,0.18);border-color:rgba(255,255,255,0.45);transform:translateY(-2px);}
+.platform-ico{font-size:1.4rem;}
+
+/* CTA BAND */
+.cta-band{background:linear-gradient(135deg,var(--pk) 0%,var(--vi) 50%,var(--cy) 100%);padding:5.5rem 2.5rem;text-align:center;position:relative;overflow:hidden;}
+.cta-band::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E');opacity:0.04;}
+.cta-in{max-width:640px;margin:0 auto;position:relative;z-index:1;}
+.cta-h{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;letter-spacing:-0.025em;line-height:1.1;margin-bottom:1rem;}
+.cta-p{font-size:1rem;color:rgba(255,255,255,0.72);line-height:1.85;margin-bottom:2rem;}
+.btn-white{display:inline-block;padding:1.1rem 2.8rem;background:#fff;color:var(--dp);font-weight:900;font-size:0.74rem;letter-spacing:0.12em;text-transform:uppercase;border-radius:100px;text-decoration:none;box-shadow:0 8px 32px rgba(0,0,0,0.18);transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;}
+.btn-white:hover{transform:translateY(-3px) scale(1.04);}
+
+/* FOOTER */
+footer{background:var(--dp);padding:5rem 2.5rem 2.5rem;}
+.ft-in{max-width:1200px;margin:0 auto;}
+.ft-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:3.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.08);}
+.ft-brand img{height:54px;display:block;filter:brightness(0) invert(1);opacity:0.85;margin-bottom:1rem;}
+.ft-brand p{font-size:0.86rem;color:rgba(255,255,255,0.38);line-height:1.9;max-width:240px;}
+.ft-socials{display:flex;gap:0.75rem;margin-top:1.5rem;}
+.ft-soc{width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:0.85rem;text-decoration:none;color:rgba(255,255,255,0.45);transition:border-color 0.2s,color 0.2s,transform 0.2s;}
+.ft-soc:hover{border-color:var(--go);color:var(--go);transform:scale(1.1);}
+.ft-col h4{font-size:0.6rem;font-weight:900;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.32);margin-bottom:1.2rem;}
+.ft-links{display:flex;flex-direction:column;gap:0.65rem;}
+.ft-links a{font-size:0.86rem;color:rgba(255,255,255,0.48);text-decoration:none;transition:color 0.2s;}
+.ft-links a:hover{color:#fff;}
+.ft-bot{padding-top:2rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;}
+.ft-copy,.ft-tax{font-size:0.75rem;color:rgba(255,255,255,0.22);}
+
+@media(max-width:1024px){
+  .feat-in{grid-template-columns:1fr;}
+  .ep-grid{grid-template-columns:1fr 1fr;}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:2rem;}
+}
+@media(max-width:700px){
+  .page-hero,.featured,.episodes,.subscribe,.cta-band{padding:4.5rem 1.5rem;}
+  .ep-grid{grid-template-columns:1fr;}
+  .ft-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;inset:0;background:rgba(45,10,94,0.97);align-items:center;justify-content:center;gap:1.8rem;z-index:400;}
+  .nav-links.open .nav-a{font-size:1.1rem;color:rgba(255,255,255,0.7);}
+  .nav-burger{display:flex;}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" style="height:50px;display:block;"></a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html" class="nav-a">Home</a>
+      <a href="events.html" class="nav-a">Events</a>
+      <a href="podcast.html" class="nav-a active">Podcast</a>
+      <a href="donate.html" class="nav-a">Donate</a>
+      <a href="contact.html" class="nav-a">Contact</a>
+      <a href="donate.html" class="nav-cta">Donate Now</a>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="ph-bg"><img src="images/brand-1.jpg" alt="Podcast"></div>
+  <div class="ph-in">
+    <div class="ph-ey">The GIN Podcast</div>
+    <h1 class="ph-h1">Real Talk.<br><em>Real Breakthroughs.</em></h1>
+    <p class="ph-sub">Raw, honest conversations about faith, identity, healing, purpose, and becoming the woman you were created to be â€” wherever you are in your journey.</p>
+  </div>
+</section>
+
+<!-- FEATURED EPISODE -->
+<section class="featured">
+  <div class="feat-in">
+    <div class="feat-art reveal">
+      <img src="images/founder-1.jpg" alt="Featured Episode">
+      <div class="feat-badge">Latest Episode</div>
+    </div>
+    <div class="reveal" style="transition-delay:.12s">
+      <span class="feat-ep">Episode 104</span>
+      <h2 class="feat-title">You Are Not Your <em>Past</em> â€” Walking in Your True Identity</h2>
+      <p class="feat-desc">In this powerful episode, we dive deep into what it means to truly know who you are â€” not what your past says, not what others have labeled you, but who God says you are. This conversation will challenge you, free you, and send you forward.</p>
+      <div class="feat-meta">
+        <div class="feat-meta-item">Duration<strong>48 min</strong></div>
+        <div class="feat-meta-item">Episode<strong>#104</strong></div>
+        <div class="feat-meta-item">Released<strong>May 2025</strong></div>
+      </div>
+      <a href="#" class="play-btn">
+        <span class="play-icon">â–¶</span>
+        Listen Now
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EPISODES GRID -->
+<section class="episodes">
+  <div class="sec-in">
+    <div class="reveal" style="max-width:640px;">
+      <div class="sec-ey">All Episodes</div>
+      <h2 class="sec-h">Recent <em>Episodes</em></h2>
+      <p class="sec-sub">Every episode is a conversation worth having â€” find the one that speaks to where you are right now.</p>
+    </div>
+    <div class="ep-grid">
+
+      <div class="ep-card reveal">
+        <div class="ep-thumb">
+          <img src="images/founder-2.jpg" alt="Episode">
+          <div class="ep-num">Ep. 103</div>
+          <div class="ep-play">â–¶</div>
+        </div>
+        <div class="ep-body">
+          <span class="ep-cat">Identity</span>
+          <div class="ep-title">Breaking Free from the Performance Trap</div>
+          <p class="ep-desc">Stop doing to earn your worth. This episode is for every woman exhausted from trying to prove herself.</p>
+          <div class="ep-foot"><span class="ep-dur">â± 42 min</span><a href="#" class="btn-listen">Listen</a></div>
+        </div>
+      </div>
+
+      <div class="ep-card reveal" style="transition-delay:.08s">
+        <div class="ep-thumb">
+          <img src="images/women-1.jpg" alt="Episode">
+          <div class="ep-num">Ep. 102</div>
+          <div class="ep-play">â–¶</div>
+        </div>
+        <div class="ep-body">
+          <span class="ep-cat">Relationships</span>
+          <div class="ep-title">Healthy Love: What It Really Looks Like</div>
+          <p class="ep-desc">A real talk on boundaries, healing, and what healthy relationships look like when you know your worth.</p>
+          <div class="ep-foot"><span class="ep-dur">â± 55 min</span><a href="#" class="btn-listen">Listen</a></div>
+        </div>
+      </div>
+
+      <div class="ep-card reveal" style="transition-delay:.16s">
+        <div class="ep-thumb">
+          <img src="images/women-2.jpg" alt="Episode">
+          <div class="ep-num">Ep. 101</div>
+          <div class="ep-play">â–¶</div>
+        </div>
+        <div class="ep-body">
+          <span class="ep-cat">Purpose</span>
+          <div class="ep-title">How to Find Your Calling When You Feel Lost</div>
+          <p class="ep-desc">You were not made to drift. This episode helps you cut through the fog and find your direction again.</p>
+          <div class="ep-foot"><span class="ep-dur">â± 38 min</span><a href="#" class="btn-listen">Listen</a></div>
+        </div>
+      </div>
+
+      <div class="ep-card reveal" style="transition-delay:.24s">
+        <div class="ep-thumb">
+          <img src="images/women-3.jpg" alt="Episode">
+          <div class="ep-num">Ep. 100</div>
+          <div class="ep-play">â–¶</div>
+        </div>
+        <div class="ep-body">
+          <span class="ep-cat">Milestone</span>
+          <div class="ep-title">100 Episodes â€” Reflecting on the Journey</div>
+          <p class="ep-desc">Our 100th episode celebration â€” looking back at what God has done and looking forward to what's ahead.</p>
+          <div class="ep-foot"><span class="ep-dur">â± 62 min</span><a href="#" class="btn-listen">Listen</a></div>
+        </div>
+      </div>
+
+      <div class="ep-card reveal" style="transition-delay:.32s">
+        <div class="ep-thumb">
+          <img src="images/women-4.jpg" alt="Episode">
+          <div class="ep-num">Ep. 99</div>
+          <div class="ep-play">â–¶</div>
+        </div>
+        <div class="ep-body">
+          <span class="ep-cat">Healing</span>
+          <div class="ep-title">Healing Is Not Linear â€” Give Yourself Grace</div>
+          <p class="ep-desc">The road to healing looks different for everyone. This episode gives you permission to be where you are.</p>
+          <div class="ep-foot"><span class="ep-dur">â± 46 min</span><a href="#" class="btn-listen">Listen</a></div>
+        </div>
+      </div>
+
+      <div class="ep-card reveal" style="transition-delay:.4s">
+        <div class="ep-thumb">
+          <img src="images/brand-2.jpg" alt="Episode">
+          <div class="ep-num">Ep. 98</div>
+          <div class="ep-play">â–¶</div>
+        </div>
+        <div class="ep-body">
+          <span class="ep-cat">Faith</span>
+          <div class="ep-title">When God Doesn't Answer the Way You Expected</div>
+          <p class="ep-desc">An honest conversation about trust, surrender, and what happens when your plans don't match God's.</p>
+          <div class="ep-foot"><span class="ep-dur">â± 51 min</span><a href="#" class="btn-listen">Listen</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SUBSCRIBE -->
+<section class="subscribe">
+  <div class="sub-in reveal">
+    <div class="sec-ey" style="justify-content:center;color:rgba(251,191,36,0.8);">Never Miss an Episode</div>
+    <h2 class="sub-h">Subscribe on Your <em>Favorite Platform</em></h2>
+    <p class="sub-p">New episodes drop every week. Subscribe to get notified the moment a new conversation is live â€” wherever you listen to podcasts.</p>
+    <div class="platform-grid">
+      <a href="#" class="platform-btn"><span class="platform-ico">ðŸŽ™ï¸</span>Apple Podcasts</a>
+      <a href="#" class="platform-btn"><span class="platform-ico">ðŸŽµ</span>Spotify</a>
+      <a href="#" class="platform-btn"><span class="platform-ico">â–¶ï¸</span>YouTube</a>
+      <a href="#" class="platform-btn"><span class="platform-ico">ðŸ“»</span>iHeart Radio</a>
+      <a href="#" class="platform-btn"><span class="platform-ico">ðŸŽ§</span>Amazon Music</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="cta-in reveal">
+    <h2 class="cta-h">Ready to Take the Next Step?</h2>
+    <p class="cta-p">The podcast will meet you in your ear â€” but come experience the community in person. Join us at our next event.</p>
+    <a href="events.html" class="btn-white">See Upcoming Events</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-in">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="assets/gin-logo.png" alt="Go Inspire Now">
+        <p>A faith-based nonprofit empowering women through community, mentorship, and transformational experiences.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc">f</a><a href="#" class="ft-soc">in</a>
+          <a href="#" class="ft-soc">tt</a><a href="#" class="ft-soc">â–¶</a>
+        </div>
+      </div>
+      <div class="ft-col"><h4>Quick Links</h4><div class="ft-links"><a href="index.html">Home</a><a href="events.html">Events</a><a href="podcast.html">Podcast</a><a href="donate.html">Donate</a><a href="contact.html">Contact</a></div></div>
+      <div class="ft-col"><h4>Our Programs</h4><div class="ft-links"><a href="#">Identity &amp; Healing</a><a href="#">Community Events</a><a href="#">Purpose &amp; Calling</a><a href="#">Resilience Building</a><a href="#">Wholeness &amp; Wellness</a></div></div>
+      <div class="ft-col"><h4>Contact</h4><div class="ft-links"><a href="mailto:info@goinspirenow.org">info@goinspirenow.org</a><a href="contact.html">Send a Message</a><a href="#">Partner With Us</a><a href="donate.html">Support Our Mission</a></div></div>
+    </div>
+    <div class="ft-bot"><div class="ft-copy">Â© 2025 Go Inspire Now. All Rights Reserved.</div><div class="ft-tax">501(c)(3) Nonprofit Organization</div></div>
+  </div>
+</footer>
+<script>
+const burger=document.getElementById('nav-burger'),navLinks=document.getElementById('nav-links');
+burger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
+
