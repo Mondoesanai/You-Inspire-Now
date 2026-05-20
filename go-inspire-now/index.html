@@ -5,462 +5,541 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Go Inspire Now &mdash; Inspiring Women. Building Hope. Changing Lives.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'Lato',sans-serif;background:#fff;color:#1a0a33;overflow-x:hidden;}
-:root{
-  --dp:#2D0A5E;--vi:#7C3AED;--vi2:#A855F7;--cy:#06B6D4;
-  --pk:#EC4899;--pk2:#F472B6;--go:#FBBF24;--lv:#FAF5FF;
-  --soft:#F8F4FF;--border:rgba(45,10,94,0.1);
-}
+body{font-family:'Inter',sans-serif;background:#07000F;color:#F0EAFF;overflow-x:hidden;}
 img{max-width:100%;display:block;}
 a{text-decoration:none;}
 
-/* --- REVEAL --- */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.7s cubic-bezier(.4,0,.2,1),transform 0.7s cubic-bezier(.4,0,.2,1);}
-.reveal.in{opacity:1;transform:none;}
-.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity 0.7s cubic-bezier(.4,0,.2,1),transform 0.7s cubic-bezier(.4,0,.2,1);}
-.reveal-l.in{opacity:1;transform:none;}
-.reveal-r{opacity:0;transform:translateX(28px);transition:opacity 0.7s cubic-bezier(.4,0,.2,1),transform 0.7s cubic-bezier(.4,0,.2,1);}
-.reveal-r.in{opacity:1;transform:none;}
+:root{
+  --bg:#07000F; --bg2:#0D0020; --bg3:#120030;
+  --glass:rgba(255,255,255,0.04); --glass2:rgba(255,255,255,0.07);
+  --border:rgba(255,255,255,0.08); --border2:rgba(255,255,255,0.15);
+  --text:#F0EAFF; --muted:rgba(240,234,255,0.52); --faint:rgba(240,234,255,0.22);
+  --pk:#F0247A; --pk2:#FF5BAC; --vi:#7B2FFF; --vi2:#AC5EFF;
+  --cy:#00C4DF; --go:#FFC425; --go2:#FFB100;
+}
 
-/* --- FLOATING ORBS --- */
-.orb{position:absolute;border-radius:50%;pointer-events:none;z-index:0;}
-@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(20px,-18px) scale(1.06);}66%{transform:translate(-15px,12px) scale(0.95);}}
-@keyframes orbFloat2{0%,100%{transform:translate(0,0);}40%{transform:translate(-24px,16px);}75%{transform:translate(18px,-12px);}}
+/* ── NOISE GRAIN ── */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 
-/* ================================================
-   NAV
-================================================ */
-#nav{position:fixed;top:0;left:0;right:0;z-index:500;height:68px;
-  background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;padding:0 2rem;transition:box-shadow 0.3s;}
-#nav.scrolled{box-shadow:0 4px 24px rgba(45,10,94,0.08);}
-.nav-in{max-width:1200px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
-.nav-logo img{height:44px;}
-.nav-links{display:flex;align-items:center;gap:1.8rem;}
-.nav-a{font-size:0.8rem;font-weight:700;letter-spacing:0.04em;color:rgba(45,10,94,0.55);
-  transition:color 0.2s;position:relative;padding-bottom:2px;}
-.nav-a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1.5px;
-  background:var(--vi);transform:scaleX(0);transition:transform 0.25s cubic-bezier(.4,0,.2,1);}
-.nav-a:hover{color:var(--dp);}
-.nav-a:hover::after,.nav-a.active::after{transform:scaleX(1);}
-.nav-a.active{color:var(--dp);}
-.nav-cta{display:inline-flex;align-items:center;padding:0.5rem 1.4rem;
-  background:linear-gradient(135deg,var(--go),#F59E0B);color:var(--dp);
-  font-size:0.72rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;
-  border-radius:100px;box-shadow:0 3px 12px rgba(251,191,36,0.35);
-  transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;}
-.nav-cta:hover{transform:scale(1.06);box-shadow:0 6px 24px rgba(251,191,36,0.5);}
-.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
-.nav-burger span{display:block;width:22px;height:2px;background:var(--dp);border-radius:2px;transition:transform 0.25s,opacity 0.25s;}
-
-/* ================================================
-   HERO — SPLIT LAYOUT
-================================================ */
-#hero{padding-top:68px;display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 68px);}
-.hero-text{display:flex;flex-direction:column;justify-content:center;
-  padding:5rem 3rem 5rem 4rem;max-width:600px;margin-left:auto;position:relative;overflow:hidden;}
-.hero-orb-pk{width:350px;height:350px;top:-80px;left:-80px;
-  background:radial-gradient(ellipse,rgba(236,72,153,0.15) 0%,transparent 70%);
-  animation:orbFloat 14s ease-in-out infinite;}
-.hero-orb-cy{width:250px;height:250px;bottom:20px;right:-40px;
-  background:radial-gradient(ellipse,rgba(6,182,212,0.12) 0%,transparent 70%);
-  animation:orbFloat2 18s ease-in-out infinite;}
-.hero-eye{display:inline-block;font-size:0.62rem;font-weight:900;letter-spacing:0.26em;
-  text-transform:uppercase;color:var(--vi);margin-bottom:1.4rem;position:relative;z-index:1;}
-.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,3.8vw,3.4rem);
-  font-weight:600;line-height:1.12;letter-spacing:-0.02em;color:var(--dp);
-  margin-bottom:1.2rem;position:relative;z-index:1;}
-.hero-h1 em{color:var(--pk);font-style:italic;}
-.hero-desc{font-size:1rem;color:rgba(45,10,94,0.58);line-height:1.85;
-  margin-bottom:2.2rem;max-width:460px;position:relative;z-index:1;}
-.search-wrap{display:flex;align-items:center;background:#fff;border:1.5px solid var(--border);
-  border-radius:12px;overflow:hidden;box-shadow:0 2px 16px rgba(45,10,94,0.07);
-  position:relative;z-index:1;transition:border-color 0.2s,box-shadow 0.2s;}
-.search-wrap:focus-within{border-color:var(--vi);box-shadow:0 4px 24px rgba(124,58,237,0.15);}
-.search-wrap input{flex:1;border:none;outline:none;padding:1rem 1.2rem;
-  font-size:0.9rem;color:var(--dp);font-family:'Lato',sans-serif;background:transparent;}
-.search-wrap input::placeholder{color:rgba(45,10,94,0.35);}
-.search-btn{padding:0.85rem 1.4rem;background:var(--vi);color:#fff;border:none;cursor:pointer;
-  font-size:0.72rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;
-  font-family:'Lato',sans-serif;transition:background 0.2s;}
-.search-btn:hover{background:var(--vi2);}
-.hero-img{position:relative;overflow:hidden;}
-.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%;
-  animation:heroSlowZoom 20s ease-in-out infinite alternate;}
-@keyframes heroSlowZoom{from{transform:scale(1);}to{transform:scale(1.06);}}
-.hero-img::after{content:'';position:absolute;left:0;top:0;bottom:0;width:40px;
-  background:linear-gradient(90deg,#fff,transparent);}
-
-/* ================================================
-   IMPACT STRIP
-================================================ */
-.impact-strip{background:var(--soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  padding:4rem 2rem;}
-.impact-strip-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
-.is-text .tag{font-size:0.62rem;font-weight:900;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--vi);display:flex;align-items:center;gap:0.5rem;margin-bottom:0.9rem;}
-.is-text .tag::before{content:'';width:18px;height:1.5px;background:var(--vi);}
-.is-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.5vw,2rem);
-  font-weight:600;color:var(--dp);line-height:1.25;margin-bottom:1rem;letter-spacing:-0.015em;}
-.is-text p{font-size:0.92rem;color:rgba(45,10,94,0.55);line-height:1.85;max-width:420px;margin-bottom:1.4rem;}
-.is-text .impact-note{font-size:0.82rem;color:rgba(45,10,94,0.4);font-style:italic;}
-.donate-widget{background:#fff;border-radius:18px;padding:2rem;
-  box-shadow:0 4px 32px rgba(45,10,94,0.09);border:1px solid var(--border);}
-.dw-label{font-size:0.62rem;font-weight:900;letter-spacing:0.2em;text-transform:uppercase;
-  color:rgba(45,10,94,0.4);margin-bottom:1rem;}
-.dw-amounts{display:flex;gap:0.6rem;margin-bottom:1.2rem;flex-wrap:wrap;}
-.dw-amt{padding:0.5rem 1.1rem;border-radius:8px;border:1.5px solid var(--border);
-  font-size:0.9rem;font-weight:700;color:var(--dp);cursor:pointer;background:#fff;
-  transition:border-color 0.2s,background 0.2s,color 0.2s;}
-.dw-amt:hover,.dw-amt.active{border-color:var(--vi);background:var(--vi);color:#fff;}
-.dw-custom{width:100%;padding:0.65rem 1rem;border:1.5px solid var(--border);border-radius:8px;
-  font-size:0.9rem;font-family:'Lato',sans-serif;color:var(--dp);outline:none;margin-bottom:1.2rem;
-  transition:border-color 0.2s;}
-.dw-custom:focus{border-color:var(--vi);}
-.dw-btn{display:block;width:100%;padding:0.95rem;text-align:center;
-  background:linear-gradient(135deg,var(--go),#F59E0B);color:var(--dp);
-  font-size:0.78rem;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;
-  border-radius:10px;border:none;cursor:pointer;font-family:'Lato',sans-serif;
-  box-shadow:0 6px 20px rgba(251,191,36,0.35);
-  transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;}
-.dw-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(251,191,36,0.5);}
-
-/* ================================================
-   BIG STATEMENT
-================================================ */
-.statement{padding:7rem 2rem;background:#fff;}
-.statement-in{max-width:1100px;margin:0 auto;}
-.statement-h{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.8vw,3.2rem);
-  font-weight:600;line-height:1.15;letter-spacing:-0.02em;color:var(--dp);
-  max-width:740px;margin-bottom:3.5rem;}
-.statement-h em{color:var(--pk);font-style:italic;}
-.statement-cols{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
-.statement-col p{font-size:0.98rem;color:rgba(45,10,94,0.55);line-height:1.88;margin-bottom:1.4rem;}
-.btn-ghost{display:inline-flex;align-items:center;gap:0.5rem;
-  font-size:0.78rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;
-  color:var(--vi);border:1.5px solid rgba(124,58,237,0.3);
-  padding:0.65rem 1.4rem;border-radius:100px;
-  transition:background 0.2s,color 0.2s,border-color 0.2s;}
-.btn-ghost:hover{background:var(--vi);color:#fff;border-color:var(--vi);}
-.btn-ghost::after{content:'\2192';}
-
-/* ================================================
-   SUPPORT PROGRAMS (TABBED)
-================================================ */
-.programs{padding:6rem 2rem;background:var(--soft);}
-.programs-in{max-width:1100px;margin:0 auto;}
-.prog-eyebrow{font-size:0.62rem;font-weight:900;letter-spacing:0.26em;text-transform:uppercase;
-  color:var(--vi);text-align:center;margin-bottom:2.5rem;
-  display:flex;align-items:center;justify-content:center;gap:0.8rem;}
-.prog-eyebrow::before,.prog-eyebrow::after{content:'';flex:1;max-width:80px;height:1px;background:rgba(124,58,237,0.25);}
-.prog-tabs{display:flex;justify-content:center;gap:0;border:1.5px solid var(--border);
-  border-radius:12px;overflow:hidden;max-width:600px;margin:0 auto 4rem;background:#fff;}
-.prog-tab{flex:1;padding:0.85rem 1.2rem;text-align:center;cursor:pointer;
-  font-size:0.75rem;font-weight:700;letter-spacing:0.04em;color:rgba(45,10,94,0.45);
-  background:#fff;border:none;font-family:'Lato',sans-serif;
-  transition:background 0.2s,color 0.2s;position:relative;}
-.prog-tab+.prog-tab{border-left:1.5px solid var(--border);}
-.prog-tab.active,.prog-tab:hover{background:var(--vi);color:#fff;}
-.prog-panel{display:none;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
-.prog-panel.active{display:grid;animation:tabFade 0.4s ease;}
-@keyframes tabFade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
-.prog-panel-left .prog-q{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.5vw,2rem);
-  font-weight:600;color:var(--dp);line-height:1.22;margin-bottom:1.2rem;letter-spacing:-0.015em;}
-.prog-panel-left .prog-q em{color:var(--pk);font-style:italic;}
-.prog-panel-left p{font-size:0.93rem;color:rgba(45,10,94,0.55);line-height:1.85;margin-bottom:1.8rem;}
-.btn-solid{display:inline-flex;align-items:center;gap:0.4rem;
-  padding:0.85rem 2rem;background:var(--dp);color:#fff;
-  font-size:0.74rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;
-  border-radius:100px;
-  transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),background 0.2s;}
-.btn-solid:hover{transform:translateY(-2px) scale(1.03);background:var(--vi);}
-.prog-photos{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
-.prog-photo{border-radius:12px;overflow:hidden;aspect-ratio:1;}
-.prog-photo img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;}
-.prog-photo:hover img{transform:scale(1.06);}
-.prog-photo:first-child{grid-column:span 2;aspect-ratio:2.2/1;}
-
-/* ================================================
-   HOW IT WORKS
-================================================ */
-.how{padding:8rem 2rem;background:#fff;position:relative;overflow:hidden;}
-.how::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:600px;height:600px;border-radius:50%;
-  background:radial-gradient(ellipse,rgba(124,58,237,0.04) 0%,transparent 70%);pointer-events:none;}
-.how-in{max-width:1100px;margin:0 auto;}
-.how-eyebrow{font-size:0.62rem;font-weight:900;letter-spacing:0.26em;text-transform:uppercase;
-  color:var(--vi);text-align:center;margin-bottom:1rem;
-  display:flex;align-items:center;justify-content:center;gap:0.8rem;}
-.how-eyebrow::before,.how-eyebrow::after{content:'';flex:1;max-width:80px;height:1px;background:rgba(124,58,237,0.2);}
-.how-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);
-  font-weight:600;color:var(--dp);text-align:center;margin-bottom:5rem;letter-spacing:-0.02em;}
-.how-steps{display:flex;flex-direction:column;gap:0;max-width:650px;margin:0 auto;position:relative;}
-.how-steps::before{content:'';position:absolute;left:36px;top:36px;bottom:36px;width:1px;
-  background:linear-gradient(180deg,var(--vi) 0%,var(--pk) 50%,var(--cy) 100%);}
-.how-step{display:flex;align-items:flex-start;gap:2.2rem;padding:1.5rem 0;position:relative;}
-.how-num{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;
-  justify-content:center;flex-shrink:0;position:relative;z-index:1;
-  font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:#fff;
-  box-shadow:0 8px 32px rgba(124,58,237,0.3);}
-.how-step:nth-child(1) .how-num{background:linear-gradient(135deg,var(--vi),var(--vi2));}
-.how-step:nth-child(2) .how-num{background:linear-gradient(135deg,var(--pk),var(--pk2));}
-.how-step:nth-child(3) .how-num{background:linear-gradient(135deg,var(--cy),#0EA5E9);}
-.how-step:nth-child(4) .how-num{background:linear-gradient(135deg,var(--go),#F59E0B);}
-.how-content{padding-top:0.5rem;}
-.how-content h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;
-  color:var(--dp);margin-bottom:0.5rem;line-height:1.2;}
-.how-content p{font-size:0.9rem;color:rgba(45,10,94,0.52);line-height:1.82;}
-
-/* ================================================
-   FIND YOUR COMMUNITY
-================================================ */
-.find{padding:7rem 2rem;background:var(--soft);position:relative;overflow:hidden;}
-.find-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1.5rem;align-items:center;position:relative;}
-.find-circle{border-radius:50%;overflow:hidden;aspect-ratio:1;
-  box-shadow:0 8px 32px rgba(45,10,94,0.12);
-  transition:transform 0.4s cubic-bezier(.34,1.56,.64,1),box-shadow 0.4s;}
-.find-circle:hover{transform:scale(1.06);box-shadow:0 16px 48px rgba(45,10,94,0.18);}
-.find-circle img{width:100%;height:100%;object-fit:cover;}
-.find-circle.sm{width:90px;height:90px;justify-self:center;}
-.find-circle.md{width:130px;height:130px;justify-self:center;}
-.find-circle.lg{width:170px;height:170px;justify-self:center;}
-.find-card{background:linear-gradient(145deg,var(--dp),#4C1D95);border-radius:24px;
-  padding:2.8rem 2.2rem;text-align:center;position:relative;z-index:2;
-  box-shadow:0 24px 64px rgba(45,10,94,0.3);}
-.find-card-eye{font-size:0.6rem;font-weight:900;letter-spacing:0.22em;text-transform:uppercase;
-  color:rgba(255,255,255,0.45);margin-bottom:0.8rem;display:block;}
-.find-card h2{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;
-  color:#fff;margin-bottom:0.8rem;line-height:1.2;letter-spacing:-0.01em;}
-.find-card p{font-size:0.88rem;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:1.8rem;}
-.btn-gold-solid{display:inline-flex;align-items:center;
-  padding:0.85rem 2rem;background:linear-gradient(135deg,var(--go),#F59E0B);color:var(--dp);
-  font-size:0.74rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;
-  border-radius:100px;box-shadow:0 6px 20px rgba(251,191,36,0.4);
-  transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;}
-.btn-gold-solid:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 12px 32px rgba(251,191,36,0.55);}
-.find-side-l,.find-side-r{display:flex;flex-direction:column;gap:1.8rem;align-items:center;}
-
-/* ================================================
-   MOVEMENT CTA — SPLIT
-================================================ */
-.movement{display:grid;grid-template-columns:1fr 1fr;}
-.mov-left{padding:6rem 3.5rem 6rem 4rem;background:linear-gradient(145deg,var(--pk),var(--vi));
-  position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;}
-.mov-orb{position:absolute;width:300px;height:300px;border-radius:50%;
-  top:-60px;right:-60px;
-  background:radial-gradient(ellipse,rgba(255,255,255,0.18) 0%,transparent 70%);
-  animation:orbFloat 12s ease-in-out infinite;}
-.mov-left-eye{font-size:0.6rem;font-weight:900;letter-spacing:0.24em;text-transform:uppercase;
-  color:rgba(255,255,255,0.6);margin-bottom:1rem;position:relative;z-index:1;}
-.mov-left h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);
-  font-weight:700;color:#fff;line-height:1.18;letter-spacing:-0.02em;
-  margin-bottom:1.2rem;max-width:380px;position:relative;z-index:1;}
-.mov-left h2 em{font-style:italic;color:#FDE68A;}
-.mov-left p{font-size:0.95rem;color:rgba(255,255,255,0.72);line-height:1.82;
-  max-width:380px;margin-bottom:2rem;position:relative;z-index:1;}
-.btn-white{display:inline-flex;align-items:center;gap:0.4rem;
-  padding:0.9rem 2.2rem;background:#fff;color:var(--dp);
-  font-size:0.74rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;
-  border-radius:100px;position:relative;z-index:1;
-  box-shadow:0 8px 28px rgba(0,0,0,0.15);
-  transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;}
-.btn-white:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 14px 40px rgba(0,0,0,0.22);}
-.mov-right{padding:6rem 4rem 6rem 3.5rem;background:var(--soft);
-  display:flex;flex-direction:column;justify-content:center;}
-.mov-right h3{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;
-  color:var(--dp);margin-bottom:1rem;line-height:1.3;}
-.mov-right p{font-size:0.93rem;color:rgba(45,10,94,0.55);line-height:1.85;margin-bottom:1.2rem;}
-.mov-right p+p{margin-bottom:1.8rem;}
-.btn-text{font-size:0.78rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;
-  color:var(--vi);display:inline-flex;align-items:center;gap:0.4rem;
-  transition:gap 0.2s,color 0.2s;}
-.btn-text:hover{gap:0.85rem;color:var(--pk);}
-.btn-text::after{content:'\2192';}
-
-/* ================================================
-   VISION + STATS
-================================================ */
-.vision{padding:7rem 2rem;background:#fff;}
-.vision-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;
-  gap:6rem;align-items:center;}
-.vision-text .tag{font-size:0.62rem;font-weight:900;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--vi);display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;}
-.vision-text .tag::before{content:'';width:18px;height:1.5px;background:var(--vi);}
-.vision-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,2.8vw,2.4rem);
-  font-weight:600;color:var(--dp);line-height:1.22;letter-spacing:-0.018em;margin-bottom:1.4rem;}
-.vision-text h2 em{color:var(--pk);font-style:italic;}
-.vision-text p{font-size:0.95rem;color:rgba(45,10,94,0.55);line-height:1.85;margin-bottom:2rem;}
-.vision-stats{display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:2.5rem;
-  padding-top:2rem;border-top:1px solid var(--border);}
-.vstat-n{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;
-  color:var(--vi);line-height:1;letter-spacing:-0.02em;}
-.vstat-l{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
-  color:rgba(45,10,94,0.4);margin-top:0.3rem;}
-.vision-img-wrap{border-radius:24px;overflow:hidden;
-  box-shadow:0 24px 72px rgba(45,10,94,0.14);position:relative;}
-.vision-img-wrap img{width:100%;height:480px;object-fit:cover;object-position:center 15%;
-  transition:transform 0.6s ease;}
-.vision-img-wrap:hover img{transform:scale(1.04);}
-.vision-badge{position:absolute;bottom:1.5rem;right:1.5rem;
-  background:linear-gradient(135deg,var(--go),#F59E0B);border-radius:14px;padding:1rem 1.4rem;
-  box-shadow:0 8px 24px rgba(251,191,36,0.4);}
-.vision-badge-n{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;
-  color:var(--dp);line-height:1;}
-.vision-badge-l{font-size:0.55rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;
-  color:rgba(45,10,94,0.6);margin-top:0.2rem;}
-
-/* ================================================
-   IMPACT PULL QUOTE
-================================================ */
-.impact-quote{padding:7rem 2rem;background:var(--soft);position:relative;overflow:hidden;}
-.iq-orb-pk{position:absolute;width:400px;height:400px;border-radius:50%;
-  top:-100px;right:-80px;
-  background:radial-gradient(ellipse,rgba(236,72,153,0.1) 0%,transparent 70%);
-  animation:orbFloat2 16s ease-in-out infinite;}
-.iq-orb-vi{position:absolute;width:300px;height:300px;border-radius:50%;
-  bottom:-60px;left:-60px;
-  background:radial-gradient(ellipse,rgba(124,58,237,0.1) 0%,transparent 70%);
-  animation:orbFloat 20s ease-in-out infinite;}
-.impact-quote-in{max-width:860px;margin:0 auto;text-align:center;position:relative;z-index:1;}
-.iq-mark{font-family:'Playfair Display',serif;font-size:5rem;line-height:0.5;
-  color:var(--pk);display:block;margin-bottom:1.5rem;opacity:0.6;}
-.iq-text{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.8vw,2.2rem);
-  font-weight:400;line-height:1.45;color:var(--dp);font-style:italic;margin-bottom:2.5rem;}
-.iq-text strong{font-style:normal;font-weight:700;color:var(--vi);}
-.btn-pk{display:inline-flex;align-items:center;
-  padding:0.95rem 2.4rem;
-  background:linear-gradient(135deg,var(--pk),var(--vi));color:#fff;
-  font-size:0.76rem;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;
-  border-radius:100px;box-shadow:0 8px 28px rgba(236,72,153,0.35);
-  transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;}
-.btn-pk:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 14px 40px rgba(236,72,153,0.55);}
-
-/* ================================================
-   GET INVOLVED (FORM SECTION)
-================================================ */
-.get-involved{padding:7rem 2rem;background:#fff;}
-.gi-in{max-width:1100px;margin:0 auto;}
-.gi-head{text-align:center;max-width:620px;margin:0 auto 4rem;}
-.gi-head h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);
-  font-weight:600;color:var(--dp);letter-spacing:-0.02em;line-height:1.18;margin-bottom:0.8rem;}
-.gi-head h2 em{color:var(--pk);font-style:italic;}
-.gi-head p{font-size:0.95rem;color:rgba(45,10,94,0.5);line-height:1.82;}
-.gi-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;}
-.gi-card{border-radius:18px;padding:2.2rem 1.6rem;text-align:center;
-  border:1.5px solid transparent;position:relative;overflow:hidden;
-  transition:transform 0.3s cubic-bezier(.34,1.56,.64,1),box-shadow 0.3s;}
-.gi-card:hover{transform:translateY(-6px);}
-.gi-card-1{background:linear-gradient(145deg,#FAF5FF,#F3E8FF);border-color:rgba(168,85,247,0.15);}
-.gi-card-1:hover{box-shadow:0 20px 56px rgba(124,58,237,0.12);border-color:rgba(124,58,237,0.25);}
-.gi-card-2{background:linear-gradient(145deg,#FFF7F0,#FEF3C7);border-color:rgba(251,191,36,0.15);}
-.gi-card-2:hover{box-shadow:0 20px 56px rgba(251,191,36,0.14);border-color:rgba(251,191,36,0.3);}
-.gi-card-3{background:linear-gradient(145deg,#FFF0F6,#FCE7F3);border-color:rgba(236,72,153,0.12);}
-.gi-card-3:hover{box-shadow:0 20px 56px rgba(236,72,153,0.12);border-color:rgba(236,72,153,0.25);}
-.gi-card-4{background:linear-gradient(145deg,#F0FDFF,#ECFEFF);border-color:rgba(6,182,212,0.12);}
-.gi-card-4:hover{box-shadow:0 20px 56px rgba(6,182,212,0.1);border-color:rgba(6,182,212,0.25);}
-.gi-ico{font-size:2.6rem;display:block;margin-bottom:0.9rem;}
-.gi-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;
-  color:var(--dp);margin-bottom:0.5rem;}
-.gi-card p{font-size:0.83rem;color:rgba(45,10,94,0.5);line-height:1.7;margin-bottom:1.3rem;}
-.gi-btn{display:inline-flex;padding:0.55rem 1.3rem;font-size:0.68rem;font-weight:900;
-  letter-spacing:0.08em;text-transform:uppercase;border-radius:100px;
-  transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),opacity 0.2s;}
-.gi-btn:hover{transform:scale(1.06);}
-.gb-vi{background:var(--vi);color:#fff;}
-.gb-go{background:var(--go);color:var(--dp);}
-.gb-pk{background:var(--pk);color:#fff;}
-.gb-cy{background:var(--cy);color:#fff;}
-
-/* ================================================
-   FOOTER
-================================================ */
-footer{background:var(--dp);padding:5rem 2rem 2.5rem;position:relative;overflow:hidden;}
-footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--pk),var(--vi),var(--cy));}
-.ft-orb{position:absolute;width:500px;height:500px;border-radius:50%;
-  top:-150px;right:-100px;
-  background:radial-gradient(ellipse,rgba(124,58,237,0.12) 0%,transparent 65%);
-  pointer-events:none;}
-.ft-in{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
-.ft-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;
-  padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.08);}
-.ft-brand img{height:50px;filter:brightness(0) invert(1);opacity:0.85;margin-bottom:1rem;}
-.ft-brand p{font-size:0.85rem;color:rgba(255,255,255,0.36);line-height:1.88;max-width:230px;}
-.ft-socials{display:flex;gap:0.65rem;margin-top:1.5rem;}
-.ft-soc{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,0.18);
-  display:flex;align-items:center;justify-content:center;font-size:0.78rem;
-  color:rgba(255,255,255,0.4);transition:border-color 0.2s,color 0.2s,transform 0.2s;}
-.ft-soc:hover{border-color:var(--go);color:var(--go);transform:scale(1.12);}
-.ft-col h4{font-size:0.58rem;font-weight:900;letter-spacing:0.22em;text-transform:uppercase;
-  color:rgba(255,255,255,0.28);margin-bottom:1.2rem;}
-.ft-links{display:flex;flex-direction:column;gap:0.6rem;}
-.ft-links a{font-size:0.84rem;color:rgba(255,255,255,0.42);
-  transition:color 0.2s,transform 0.2s;display:inline-block;}
-.ft-links a:hover{color:#fff;transform:translateX(3px);}
-.ft-bot{padding-top:2rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;}
-.ft-copy,.ft-tax{font-size:0.72rem;color:rgba(255,255,255,0.18);}
-
-/* ================================================
-   FLOATING PARTICLES
-================================================ */
+/* ── PARTICLES ── */
 #particles{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
 .pt{position:absolute;border-radius:50%;animation:ptRise linear infinite;opacity:0;}
-@keyframes ptRise{0%{transform:translateY(0);opacity:0;}8%{opacity:0.6;}85%{opacity:0.2;}100%{transform:translateY(-100vh);opacity:0;}}
+@keyframes ptRise{0%{transform:translateY(0) scale(1);opacity:0;}8%{opacity:.7;}85%{opacity:.2;}100%{transform:translateY(-100vh) scale(.4);opacity:0;}}
 
-/* ================================================
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1);}
+.rv.in{opacity:1;transform:none;}
+.rvl{opacity:0;transform:translateX(-30px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1);}
+.rvl.in{opacity:1;transform:none;}
+.rvr{opacity:0;transform:translateX(30px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1);}
+.rvr.in{opacity:1;transform:none;}
+
+/* ── ORBS ── */
+.orb{position:absolute;border-radius:50%;pointer-events:none;}
+@keyframes oA{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(28px,-22px) scale(1.07);}66%{transform:translate(-18px,16px) scale(.94);}}
+@keyframes oB{0%,100%{transform:translate(0,0);}40%{transform:translate(-32px,24px);}75%{transform:translate(22px,-16px);}}
+@keyframes glowPulse{0%,100%{opacity:.7;}50%{opacity:1;}}
+
+/* ─────────────────────────────────────────────
+   NAV
+───────────────────────────────────────────── */
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;height:66px;
+  background:rgba(7,0,15,.92);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 2rem;
+  transition:background .3s,box-shadow .3s;}
+#nav.scrolled{background:rgba(7,0,15,.98);box-shadow:0 4px 32px rgba(0,0,0,.4);}
+.nav-in{max-width:1200px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo img{height:42px;}
+.nav-links{display:flex;align-items:center;gap:2rem;}
+.nav-a{font-size:.78rem;font-weight:500;letter-spacing:.04em;color:var(--muted);
+  transition:color .2s;position:relative;padding-bottom:2px;}
+.nav-a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1.5px;
+  background:linear-gradient(90deg,var(--pk),var(--vi));
+  transform:scaleX(0);transform-origin:left;transition:transform .25s cubic-bezier(.4,0,.2,1);}
+.nav-a:hover,.nav-a.active{color:var(--text);}
+.nav-a:hover::after,.nav-a.active::after{transform:scaleX(1);}
+.nav-cta{display:inline-flex;align-items:center;padding:.5rem 1.4rem;border-radius:100px;
+  background:linear-gradient(135deg,var(--go),var(--go2));color:#07000F;
+  font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  box-shadow:0 0 18px rgba(255,196,37,.35);
+  transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;}
+.nav-cta:hover{transform:scale(1.07);box-shadow:0 0 32px rgba(255,196,37,.55);}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:transform .25s,opacity .25s;}
+
+/* ─────────────────────────────────────────────
+   HERO — SPLIT (matches Embrace Grace)
+───────────────────────────────────────────── */
+#hero{padding-top:66px;display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 66px);
+  position:relative;overflow:hidden;}
+/* Background orbs in hero */
+.h-orb1{width:500px;height:500px;top:-80px;left:-120px;
+  background:radial-gradient(ellipse,rgba(123,47,255,.3) 0%,transparent 68%);
+  animation:oA 16s ease-in-out infinite;}
+.h-orb2{width:360px;height:360px;bottom:-60px;left:30%;
+  background:radial-gradient(ellipse,rgba(240,36,122,.22) 0%,transparent 65%);
+  animation:oB 20s ease-in-out infinite;}
+.hero-left{display:flex;flex-direction:column;justify-content:center;
+  padding:5rem 3.5rem 5rem 4rem;position:relative;z-index:2;max-width:620px;margin-left:auto;}
+.hero-eye{font-size:.6rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--go);display:inline-flex;align-items:center;gap:.6rem;margin-bottom:1.6rem;}
+.hero-eye-dot{width:5px;height:5px;border-radius:50%;background:var(--go);
+  animation:glowPulse 2s ease-in-out infinite;}
+.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,3.8vw,3.5rem);
+  font-weight:600;line-height:1.1;letter-spacing:-.025em;color:var(--text);margin-bottom:1.2rem;}
+.hero-h1 em{font-style:italic;
+  background:linear-gradient(135deg,var(--pk),var(--vi2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-desc{font-size:1rem;color:var(--muted);line-height:1.88;max-width:460px;margin-bottom:2.2rem;}
+.search-bar{display:flex;align-items:center;background:var(--glass2);
+  border:1.5px solid var(--border2);border-radius:12px;overflow:hidden;
+  box-shadow:0 0 0 0 rgba(123,47,255,0);
+  transition:border-color .2s,box-shadow .2s;}
+.search-bar:focus-within{border-color:var(--vi);box-shadow:0 0 0 3px rgba(123,47,255,.18);}
+.search-bar input{flex:1;background:transparent;border:none;outline:none;
+  padding:.95rem 1.2rem;font-size:.9rem;color:var(--text);font-family:'Inter',sans-serif;}
+.search-bar input::placeholder{color:var(--faint);}
+.search-bar button{padding:.85rem 1.5rem;background:var(--vi);color:#fff;border:none;cursor:pointer;
+  font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  font-family:'Inter',sans-serif;transition:background .2s;}
+.search-bar button:hover{background:var(--vi2);}
+.hero-right{position:relative;overflow:hidden;}
+.hero-right img{width:100%;height:100%;object-fit:cover;object-position:center 18%;
+  animation:slowZoom 22s ease-in-out infinite alternate;}
+@keyframes slowZoom{from{transform:scale(1);}to{transform:scale(1.07);}}
+.hero-right::before{content:'';position:absolute;left:0;top:0;bottom:0;width:60px;z-index:1;
+  background:linear-gradient(90deg,var(--bg),transparent);}
+.hero-right::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(123,47,255,.18) 0%,transparent 50%,rgba(240,36,122,.12) 100%);}
+
+/* ─────────────────────────────────────────────
+   IMPACT STRIP (matches Embrace Grace donation section)
+───────────────────────────────────────────── */
+.impact-strip{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:4rem 2rem;}
+.impact-strip-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;}
+.is-label{font-size:.6rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--vi2);display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;}
+.is-label::before{content:'';width:20px;height:1px;background:var(--vi2);}
+.is-h{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.2vw,1.9rem);
+  font-weight:600;line-height:1.28;color:var(--text);margin-bottom:1rem;letter-spacing:-.015em;}
+.is-h em{font-style:italic;color:var(--pk2);}
+.is-p{font-size:.92rem;color:var(--muted);line-height:1.88;margin-bottom:.8rem;}
+.is-note{font-size:.82rem;color:var(--faint);font-style:italic;}
+/* Donation widget */
+.dw{background:var(--glass);border:1px solid var(--border2);border-radius:20px;
+  padding:2rem;backdrop-filter:blur(12px);}
+.dw-lbl{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:1rem;}
+.dw-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+.dw-amt{padding:.5rem 1.1rem;border-radius:8px;border:1px solid var(--border2);
+  background:transparent;font-size:.88rem;font-weight:600;color:var(--muted);cursor:pointer;
+  font-family:'Inter',sans-serif;transition:all .2s;}
+.dw-amt:hover,.dw-amt.on{background:var(--vi);border-color:var(--vi);color:#fff;
+  box-shadow:0 0 16px rgba(123,47,255,.4);}
+.dw-input{width:100%;padding:.7rem 1rem;background:var(--glass2);border:1px solid var(--border);
+  border-radius:8px;font-size:.88rem;color:var(--text);font-family:'Inter',sans-serif;
+  outline:none;margin-bottom:1rem;transition:border-color .2s;}
+.dw-input:focus{border-color:var(--vi);}
+.dw-btn{display:block;width:100%;padding:.95rem;text-align:center;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--go),var(--go2));color:#07000F;
+  font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  border-radius:10px;font-family:'Inter',sans-serif;
+  box-shadow:0 0 24px rgba(255,196,37,.35);
+  transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;}
+.dw-btn:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(255,196,37,.55);}
+
+/* ─────────────────────────────────────────────
+   BIG STATEMENT
+───────────────────────────────────────────── */
+.statement{padding:7rem 2rem;background:var(--bg);}
+.statement-in{max-width:1200px;margin:0 auto;}
+.stmt-h{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3.4rem);
+  font-weight:600;line-height:1.12;letter-spacing:-.025em;color:var(--text);
+  max-width:780px;margin-bottom:3.5rem;}
+.stmt-h em{font-style:italic;color:var(--pk);}
+.stmt-cols{display:grid;grid-template-columns:1fr 1fr;gap:4rem;}
+.stmt-col p{font-size:.97rem;color:var(--muted);line-height:1.9;margin-bottom:1.4rem;}
+/* BUTTONS */
+.btn-ghost{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.6rem;
+  border:1.5px solid var(--border2);border-radius:100px;font-size:.76rem;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--text);background:var(--glass);
+  backdrop-filter:blur(8px);transition:border-color .2s,background .2s,box-shadow .2s;}
+.btn-ghost:hover{border-color:var(--vi);background:rgba(123,47,255,.15);
+  box-shadow:0 0 20px rgba(123,47,255,.25);}
+.btn-ghost::after{content:'\2192';transition:transform .2s;}
+.btn-ghost:hover::after{transform:translateX(4px);}
+.btn-solid-vi{display:inline-flex;align-items:center;gap:.4rem;padding:.9rem 2.2rem;
+  border-radius:100px;background:linear-gradient(135deg,var(--vi),var(--vi2));color:#fff;
+  font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  box-shadow:0 0 24px rgba(123,47,255,.4);
+  transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;}
+.btn-solid-vi:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 40px rgba(123,47,255,.6);}
+.btn-solid-pk{display:inline-flex;align-items:center;padding:.9rem 2.2rem;
+  border-radius:100px;background:linear-gradient(135deg,var(--pk),var(--pk2));color:#fff;
+  font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  box-shadow:0 0 24px rgba(240,36,122,.4);
+  transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;}
+.btn-solid-pk:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 40px rgba(240,36,122,.6);}
+.btn-solid-go{display:inline-flex;align-items:center;padding:.9rem 2.2rem;
+  border-radius:100px;background:linear-gradient(135deg,var(--go),var(--go2));color:#07000F;
+  font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  box-shadow:0 0 24px rgba(255,196,37,.4);
+  transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;}
+.btn-solid-go:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 40px rgba(255,196,37,.6);}
+.btn-text{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--vi2);
+  transition:gap .2s,color .2s;}
+.btn-text::after{content:'\2192';}
+.btn-text:hover{gap:.9rem;color:var(--pk);}
+
+/* ─────────────────────────────────────────────
+   SUPPORT PROGRAMS — TABBED
+───────────────────────────────────────────── */
+.programs{padding:6rem 2rem;background:var(--bg2);position:relative;overflow:hidden;}
+.prog-bg-orb{width:600px;height:600px;top:-100px;right:-150px;
+  background:radial-gradient(ellipse,rgba(123,47,255,.12) 0%,transparent 65%);
+  animation:oA 20s ease-in-out infinite;}
+.sec-eye{font-size:.6rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--vi2);display:flex;align-items:center;justify-content:center;gap:.8rem;
+  margin-bottom:2.5rem;}
+.sec-eye::before,.sec-eye::after{content:'';flex:1;max-width:60px;height:1px;background:rgba(172,94,255,.25);}
+.prog-tabs{display:flex;justify-content:center;margin:0 auto 3.5rem;
+  max-width:560px;background:var(--glass);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.prog-tab{flex:1;padding:.85rem 1rem;text-align:center;font-size:.76rem;font-weight:600;
+  letter-spacing:.04em;color:var(--muted);background:transparent;border:none;cursor:pointer;
+  font-family:'Inter',sans-serif;transition:background .25s,color .25s;}
+.prog-tab+.prog-tab{border-left:1px solid var(--border);}
+.prog-tab.on,.prog-tab:hover{background:linear-gradient(135deg,var(--vi),var(--vi2));color:#fff;}
+.prog-panel{display:none;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center;
+  position:relative;z-index:1;}
+.prog-panel.on{display:grid;animation:tabIn .4s ease;}
+@keyframes tabIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+.pp-q{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.5vw,2.1rem);
+  font-weight:600;color:var(--text);line-height:1.2;margin-bottom:1.1rem;letter-spacing:-.015em;}
+.pp-q em{font-style:italic;color:var(--pk2);}
+.pp-desc{font-size:.93rem;color:var(--muted);line-height:1.88;margin-bottom:1.8rem;}
+.prog-imgs{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+.prog-img{border-radius:12px;overflow:hidden;position:relative;}
+.prog-img img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .5s ease;}
+.prog-img:hover img{transform:scale(1.06);}
+.prog-img:first-child{grid-column:span 2;aspect-ratio:2.5/1;}
+.prog-img:not(:first-child){aspect-ratio:1;}
+.prog-img::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 40%,rgba(7,0,15,.5));pointer-events:none;}
+
+/* ─────────────────────────────────────────────
+   HOW IT WORKS
+───────────────────────────────────────────── */
+.how{padding:8rem 2rem;background:var(--bg);position:relative;overflow:hidden;}
+.how-orb{width:700px;height:700px;top:50%;left:50%;transform:translate(-50%,-50%);
+  background:radial-gradient(ellipse,rgba(123,47,255,.06) 0%,transparent 65%);pointer-events:none;}
+.how-in{max-width:720px;margin:0 auto;position:relative;z-index:1;}
+.how-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.2vw,2.8rem);
+  font-weight:600;color:var(--text);text-align:center;margin-bottom:5rem;letter-spacing:-.02em;}
+.how-title em{font-style:italic;color:var(--pk);}
+/* large editorial number steps like Embrace Grace */
+.how-steps{display:flex;flex-direction:column;gap:0;}
+.how-step{display:grid;grid-template-columns:96px 1fr;gap:2.5rem;align-items:start;
+  padding:2.5rem 0;border-bottom:1px solid var(--border);}
+.how-step:last-child{border-bottom:none;}
+.how-num-wrap{display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+.how-num{font-family:'Playfair Display',serif;font-size:3.8rem;font-weight:700;line-height:1;
+  letter-spacing:-.04em;background:linear-gradient(135deg,var(--vi2),var(--pk));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.how-num-line{width:1px;height:100%;min-height:40px;
+  background:linear-gradient(180deg,var(--border2),transparent);}
+.how-content{padding-top:.5rem;}
+.how-h{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;
+  color:var(--text);margin-bottom:.6rem;line-height:1.25;}
+.how-p{font-size:.9rem;color:var(--muted);line-height:1.85;}
+
+/* ─────────────────────────────────────────────
+   VOICES OF RESILIENCE
+───────────────────────────────────────────── */
+.voices{padding:7rem 2rem;background:var(--bg2);position:relative;overflow:hidden;}
+.voices-orb-pk{width:500px;height:500px;top:-80px;right:-80px;
+  background:radial-gradient(ellipse,rgba(240,36,122,.15) 0%,transparent 65%);
+  animation:oB 18s ease-in-out infinite;}
+.voices-orb-cy{width:350px;height:350px;bottom:-60px;left:-60px;
+  background:radial-gradient(ellipse,rgba(0,196,223,.1) 0%,transparent 65%);
+  animation:oA 22s ease-in-out infinite;}
+.voices-in{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.voices-head{text-align:center;max-width:580px;margin:0 auto 4rem;}
+.voices-h{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.2vw,2.8rem);
+  font-weight:600;color:var(--text);letter-spacing:-.025em;line-height:1.12;margin-bottom:.8rem;}
+.voices-h em{font-style:italic;color:var(--pk);}
+.voices-sub{font-size:.96rem;color:var(--muted);line-height:1.82;}
+.voices-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem;}
+.voice-card{background:var(--glass);border:1px solid var(--border);border-radius:20px;
+  padding:2.2rem;backdrop-filter:blur(16px);position:relative;overflow:hidden;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1),border-color .3s,box-shadow .3s;}
+.voice-card::before{content:'';position:absolute;inset:0;border-radius:20px;opacity:0;
+  background:linear-gradient(135deg,rgba(240,36,122,.06),rgba(123,47,255,.06));
+  transition:opacity .3s;}
+.voice-card:hover{transform:translateY(-6px);border-color:rgba(240,36,122,.3);
+  box-shadow:0 20px 60px rgba(240,36,122,.1);}
+.voice-card:hover::before{opacity:1;}
+/* Animated top border glow */
+.voice-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--pk),var(--vi),var(--cy));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .5s cubic-bezier(.4,0,.2,1);}
+.voice-card:hover::after{transform:scaleX(1);}
+.vq-mark{font-family:'Playfair Display',serif;font-size:4rem;line-height:.6;
+  color:var(--pk);display:block;margin-bottom:1.2rem;opacity:.8;}
+.vq-text{font-size:.93rem;color:rgba(240,234,255,.75);line-height:1.88;font-style:italic;
+  margin-bottom:1.8rem;position:relative;z-index:1;}
+.vq-who{display:flex;align-items:center;gap:.9rem;position:relative;z-index:1;}
+.vq-photo{width:46px;height:46px;border-radius:50%;object-fit:cover;flex-shrink:0;
+  border:2px solid var(--border2);}
+.vq-name{font-size:.82rem;font-weight:700;color:var(--text);letter-spacing:.02em;}
+.vq-role{font-size:.72rem;color:var(--faint);margin-top:.1rem;}
+/* Marquee scrolling bar above voices */
+.voices-bar{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:.75rem 0;margin-bottom:3.5rem;background:rgba(255,255,255,.02);}
+.voices-bar-track{display:flex;gap:3.5rem;animation:marquee 28s linear infinite;width:max-content;}
+.voices-bar-track:hover{animation-play-state:paused;}
+.vb-item{display:flex;align-items:center;gap:.7rem;font-size:.72rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--faint);white-space:nowrap;}
+.vb-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ─────────────────────────────────────────────
+   FIND YOUR COMMUNITY (scattered like Embrace Grace)
+───────────────────────────────────────────── */
+.find{padding:7rem 2rem;background:var(--bg);position:relative;overflow:hidden;}
+.find-bg-orb{width:800px;height:800px;top:50%;left:50%;transform:translate(-50%,-50%);
+  background:radial-gradient(ellipse,rgba(0,196,223,.07) 0%,transparent 60%);pointer-events:none;}
+.find-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;
+  gap:2rem;align-items:center;position:relative;z-index:1;}
+.find-side{display:flex;flex-direction:column;gap:2rem;align-items:center;}
+.find-circle{border-radius:50%;overflow:hidden;flex-shrink:0;
+  border:2px solid var(--border2);
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s,border-color .4s;}
+.find-circle:hover{transform:scale(1.06);border-color:var(--pk);
+  box-shadow:0 0 32px rgba(240,36,122,.3);}
+.find-circle img{width:100%;height:100%;object-fit:cover;}
+.fc-lg{width:160px;height:160px;}
+.fc-md{width:110px;height:110px;}
+.fc-sm{width:80px;height:80px;}
+.find-card{background:linear-gradient(145deg,var(--vi),#4C0FBF);border-radius:24px;
+  padding:2.8rem 2rem;text-align:center;min-width:260px;
+  box-shadow:0 0 60px rgba(123,47,255,.35),0 24px 64px rgba(0,0,0,.4);
+  border:1px solid rgba(172,94,255,.3);}
+.fc-eye{font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(255,255,255,.45);margin-bottom:.8rem;display:block;}
+.fc-h{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;
+  color:#fff;margin-bottom:.8rem;line-height:1.2;letter-spacing:-.01em;}
+.fc-p{font-size:.86rem;color:rgba(255,255,255,.58);line-height:1.72;margin-bottom:1.8rem;}
+
+/* ─────────────────────────────────────────────
+   MOVEMENT CTA — SPLIT (like Embrace Grace pink/light split)
+───────────────────────────────────────────── */
+.movement{display:grid;grid-template-columns:1fr 1fr;}
+.mov-l{padding:6.5rem 3.5rem 6.5rem 4rem;position:relative;overflow:hidden;
+  background:linear-gradient(145deg,#2D0050,#550020);
+  display:flex;flex-direction:column;justify-content:center;}
+.mov-l-orb{width:400px;height:400px;top:-80px;right:-80px;
+  background:radial-gradient(ellipse,rgba(255,255,255,.14) 0%,transparent 65%);
+  animation:oA 12s ease-in-out infinite;}
+/* Animated paint splash in movement left */
+.mov-splash{position:absolute;width:200px;height:200px;bottom:-40px;left:-40px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(255,91,172,.25) 0%,transparent 65%);
+  animation:oB 10s ease-in-out infinite;}
+.mov-l-eye{font-size:.6rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(255,255,255,.45);margin-bottom:1rem;position:relative;z-index:1;}
+.mov-l-h{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.7rem);
+  font-weight:700;color:#fff;line-height:1.16;letter-spacing:-.02em;
+  margin-bottom:1.2rem;max-width:380px;position:relative;z-index:1;}
+.mov-l-h em{font-style:italic;color:#FDE68A;}
+.mov-l-p{font-size:.94rem;color:rgba(255,255,255,.68);line-height:1.85;
+  max-width:380px;margin-bottom:2rem;position:relative;z-index:1;}
+.btn-white{display:inline-flex;align-items:center;gap:.4rem;padding:.9rem 2.2rem;
+  border-radius:100px;background:#fff;color:#07000F;
+  font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  position:relative;z-index:1;box-shadow:0 8px 32px rgba(0,0,0,.25);
+  transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;}
+.btn-white:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 16px 48px rgba(0,0,0,.35);}
+.mov-r{padding:6.5rem 4rem 6.5rem 3.5rem;background:var(--bg2);
+  display:flex;flex-direction:column;justify-content:center;}
+.mov-r h3{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:600;
+  color:var(--text);margin-bottom:1rem;line-height:1.3;}
+.mov-r p{font-size:.93rem;color:var(--muted);line-height:1.88;margin-bottom:1.2rem;}
+
+/* ─────────────────────────────────────────────
+   VISION + STATS
+───────────────────────────────────────────── */
+.vision{padding:7rem 2rem;background:var(--bg);position:relative;overflow:hidden;}
+.vision-orb{width:600px;height:600px;top:-100px;right:-120px;
+  background:radial-gradient(ellipse,rgba(240,36,122,.1) 0%,transparent 65%);
+  animation:oB 20s ease-in-out infinite;}
+.vision-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;
+  gap:6rem;align-items:center;position:relative;z-index:1;}
+.vision-label{font-size:.6rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--vi2);display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;}
+.vision-label::before{content:'';width:18px;height:1px;background:var(--vi2);}
+.vision-h{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.6vw,2.4rem);
+  font-weight:600;color:var(--text);line-height:1.22;letter-spacing:-.018em;margin-bottom:1.3rem;}
+.vision-h em{font-style:italic;color:var(--pk2);}
+.vision-p{font-size:.94rem;color:var(--muted);line-height:1.88;margin-bottom:2rem;}
+.vision-stats{display:flex;gap:2.5rem;flex-wrap:wrap;padding-top:2rem;
+  border-top:1px solid var(--border);}
+.vstat{position:relative;}
+.vstat-n{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;line-height:1;
+  letter-spacing:-.02em;background:linear-gradient(135deg,var(--vi2),var(--pk));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.vstat-l{font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--faint);margin-top:.3rem;}
+.vision-img{border-radius:24px;overflow:hidden;position:relative;
+  box-shadow:0 0 60px rgba(123,47,255,.2),0 32px 80px rgba(0,0,0,.4);}
+.vision-img img{width:100%;height:480px;object-fit:cover;object-position:center 15%;
+  transition:transform .6s ease;}
+.vision-img:hover img{transform:scale(1.04);}
+.vision-img::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(7,0,15,.6));}
+.vision-badge{position:absolute;bottom:1.5rem;right:1.5rem;z-index:2;
+  background:linear-gradient(135deg,var(--go),var(--go2));
+  border-radius:14px;padding:1rem 1.4rem;
+  box-shadow:0 0 24px rgba(255,196,37,.4);}
+.vision-badge-n{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#07000F;line-height:1;}
+.vision-badge-l{font-size:.54rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(7,0,15,.6);margin-top:.2rem;}
+
+/* ─────────────────────────────────────────────
+   IMPACT PULL QUOTE
+───────────────────────────────────────────── */
+.pullquote{padding:7rem 2rem;background:var(--bg2);position:relative;overflow:hidden;}
+.pq-orb-pk{width:500px;height:500px;top:-100px;left:50%;transform:translateX(-50%);
+  background:radial-gradient(ellipse,rgba(240,36,122,.14) 0%,transparent 65%);
+  animation:oA 16s ease-in-out infinite;}
+.pq-in{max-width:860px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+.pq-mark{font-family:'Playfair Display',serif;font-size:5rem;line-height:.5;
+  display:block;margin-bottom:1.5rem;color:var(--pk);opacity:.7;}
+.pq-text{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.8vw,2.3rem);
+  font-weight:400;font-style:italic;line-height:1.48;color:var(--text);margin-bottom:2.5rem;}
+.pq-text strong{font-style:normal;font-weight:700;
+  background:linear-gradient(135deg,var(--vi2),var(--pk));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+/* ─────────────────────────────────────────────
+   GET INVOLVED
+───────────────────────────────────────────── */
+.involved{padding:7rem 2rem;background:var(--bg);}
+.inv-head{text-align:center;max-width:600px;margin:0 auto 3.5rem;}
+.inv-h{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.7rem);
+  font-weight:600;color:var(--text);letter-spacing:-.02em;line-height:1.16;margin-bottom:.8rem;}
+.inv-h em{font-style:italic;color:var(--pk);}
+.inv-sub{font-size:.95rem;color:var(--muted);line-height:1.82;}
+.inv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;max-width:1200px;margin:0 auto;}
+.inv-card{border-radius:18px;padding:2.2rem 1.6rem;text-align:center;
+  background:var(--glass);border:1px solid var(--border);backdrop-filter:blur(12px);
+  position:relative;overflow:hidden;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1),border-color .3s,box-shadow .3s;}
+.inv-card::before{content:'';position:absolute;inset:0;opacity:0;border-radius:18px;
+  transition:opacity .3s;}
+.inv-card:hover{transform:translateY(-7px);}
+.inv-c1::before{background:linear-gradient(135deg,rgba(123,47,255,.1),transparent);}
+.inv-c1:hover{border-color:rgba(123,47,255,.4);box-shadow:0 20px 56px rgba(123,47,255,.15);}
+.inv-c1:hover::before{opacity:1;}
+.inv-c2::before{background:linear-gradient(135deg,rgba(255,196,37,.1),transparent);}
+.inv-c2:hover{border-color:rgba(255,196,37,.35);box-shadow:0 20px 56px rgba(255,196,37,.12);}
+.inv-c2:hover::before{opacity:1;}
+.inv-c3::before{background:linear-gradient(135deg,rgba(240,36,122,.1),transparent);}
+.inv-c3:hover{border-color:rgba(240,36,122,.35);box-shadow:0 20px 56px rgba(240,36,122,.14);}
+.inv-c3:hover::before{opacity:1;}
+.inv-c4::before{background:linear-gradient(135deg,rgba(0,196,223,.1),transparent);}
+.inv-c4:hover{border-color:rgba(0,196,223,.35);box-shadow:0 20px 56px rgba(0,196,223,.12);}
+.inv-c4:hover::before{opacity:1;}
+.inv-ico{font-size:2.5rem;display:block;margin-bottom:.9rem;}
+.inv-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;
+  color:var(--text);margin-bottom:.5rem;}
+.inv-card p{font-size:.83rem;color:var(--muted);line-height:1.72;margin-bottom:1.3rem;}
+
+/* ─────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────── */
+footer{background:#04000A;padding:5rem 2rem 2.5rem;position:relative;overflow:hidden;}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--pk),var(--vi),var(--cy));}
+.ft-orb{width:500px;height:500px;top:-120px;right:-80px;
+  background:radial-gradient(ellipse,rgba(123,47,255,.1) 0%,transparent 65%);pointer-events:none;}
+.ft-in{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.ft-top{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:3rem;
+  padding-bottom:3rem;border-bottom:1px solid var(--border);}
+.ft-brand img{height:48px;filter:brightness(0) invert(1);opacity:.82;margin-bottom:1rem;}
+.ft-brand p{font-size:.84rem;color:rgba(240,234,255,.32);line-height:1.88;max-width:230px;}
+.ft-socials{display:flex;gap:.6rem;margin-top:1.5rem;}
+.ft-soc{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:.78rem;
+  color:rgba(240,234,255,.35);transition:border-color .2s,color .2s,transform .2s,box-shadow .2s;}
+.ft-soc:hover{border-color:var(--go);color:var(--go);transform:scale(1.12);
+  box-shadow:0 0 12px rgba(255,196,37,.3);}
+.ft-col h4{font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(240,234,255,.25);margin-bottom:1.2rem;}
+.ft-links{display:flex;flex-direction:column;gap:.6rem;}
+.ft-links a{font-size:.84rem;color:rgba(240,234,255,.38);
+  transition:color .2s,transform .2s;display:inline-block;}
+.ft-links a:hover{color:var(--text);transform:translateX(3px);}
+.ft-bot{padding-top:2rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;}
+.ft-copy,.ft-tax{font-size:.72rem;color:rgba(240,234,255,.15);}
+
+/* ─────────────────────────────────────────────
    RESPONSIVE
-================================================ */
+───────────────────────────────────────────── */
 @media(max-width:1024px){
   #hero{grid-template-columns:1fr;min-height:auto;}
-  .hero-text{padding:5rem 2rem 3rem;max-width:100%;}
-  .hero-img{height:400px;}
-  .hero-img::after{display:none;}
-  .impact-strip-in{grid-template-columns:1fr;gap:3rem;}
-  .statement-cols{grid-template-columns:1fr;gap:2rem;}
+  .hero-left{padding:4.5rem 2rem 3rem;max-width:100%;margin:0;}
+  .hero-right{height:380px;}
+  .hero-right::before{display:none;}
+  .impact-strip-in{grid-template-columns:1fr;gap:2.5rem;}
+  .stmt-cols{grid-template-columns:1fr;gap:2rem;}
   .prog-panel{grid-template-columns:1fr;}
-  .prog-panel.active{grid-template-columns:1fr;}
+  .prog-panel.on{grid-template-columns:1fr;}
   .movement{grid-template-columns:1fr;}
   .vision-in{grid-template-columns:1fr;}
-  .vision-img-wrap img{height:320px;}
-  .gi-cards{grid-template-columns:1fr 1fr;}
+  .vision-img img{height:320px;}
+  .inv-grid{grid-template-columns:1fr 1fr;}
   .ft-top{grid-template-columns:1fr 1fr;gap:2rem;}
-  .find-in{grid-template-columns:1fr;max-width:400px;}
-  .find-side-l,.find-side-r{flex-direction:row;flex-wrap:wrap;justify-content:center;}
+  .voices-grid{grid-template-columns:1fr 1fr;}
+  .find-in{grid-template-columns:1fr;max-width:320px;}
+  .find-in .find-side{flex-direction:row;flex-wrap:wrap;justify-content:center;}
 }
 @media(max-width:700px){
   .nav-links{display:none;}
   .nav-links.open{display:flex;flex-direction:column;position:fixed;inset:0;
-    background:rgba(45,10,94,0.97);backdrop-filter:blur(20px);
+    background:rgba(7,0,15,.97);backdrop-filter:blur(24px);
     align-items:center;justify-content:center;gap:2rem;z-index:400;}
-  .nav-links.open .nav-a{font-size:1.1rem;color:rgba(255,255,255,0.65);}
-  .nav-links.open .nav-a:hover{color:#fff;}
-  .nav-links.open .nav-cta{padding:0.75rem 2rem;font-size:0.88rem;}
+  .nav-links.open .nav-a{font-size:1.1rem;color:var(--muted);}
+  .nav-links.open .nav-a:hover,.nav-links.open .nav-a.active{color:var(--text);}
+  .nav-links.open .nav-cta{font-size:.9rem;padding:.75rem 2rem;}
   .nav-burger{display:flex;}
-  .how-steps::before{left:28px;}
-  .how-num{width:56px;height:56px;font-size:1.2rem;}
-  .gi-cards{grid-template-columns:1fr 1fr;}
+  .hero-h1{font-size:2.4rem;}
+  .how-step{grid-template-columns:64px 1fr;gap:1.5rem;}
+  .how-num{font-size:2.8rem;}
+  .voices-grid{grid-template-columns:1fr;}
+  .inv-grid{grid-template-columns:1fr 1fr;}
   .ft-top{grid-template-columns:1fr;}
   .vision-stats{gap:1.5rem;}
-  .hero-text{padding:4rem 1.5rem 2.5rem;}
-  .statement,.vision,.how,.get-involved,.impact-quote,.find{padding:4.5rem 1.5rem;}
-  .programs,.impact-strip{padding:4rem 1.5rem;}
-  .movement .mov-left,.movement .mov-right{padding:4rem 1.5rem;}
+  .programs,.impact-strip,.statement,.how,.voices,.find,.vision,.pullquote,.involved{padding:4.5rem 1.2rem;}
+  .movement .mov-l,.movement .mov-r{padding:4rem 1.5rem;}
 }
 </style>
 </head>
 <body>
+<div class="grain"></div>
 <div id="particles"></div>
 
-<!-- ============ NAV ============ -->
+<!-- ═══ NAV ═══ -->
 <nav id="nav">
   <div class="nav-in">
-    <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" style="height:44px;"></a>
+    <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" style="height:42px;"></a>
     <div class="nav-links" id="nav-links">
       <a href="index.html" class="nav-a active">Home</a>
       <a href="events.html" class="nav-a">Events</a>
@@ -469,63 +548,65 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
       <a href="contact.html" class="nav-a">Contact</a>
       <a href="donate.html" class="nav-cta">Donate</a>
     </div>
-    <button class="nav-burger" id="nav-burger" aria-label="Menu">
+    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
-<!-- ============ HERO — SPLIT ============ -->
+<!-- ═══ HERO — SPLIT ═══ -->
 <section id="hero">
-  <div class="hero-text">
-    <div class="orb hero-orb-pk"></div>
-    <div class="orb hero-orb-cy"></div>
-    <span class="hero-eye reveal">Faith &middot; Community &middot; Purpose</span>
-    <h1 class="hero-h1 reveal" style="transition-delay:.08s">We help women impacted by<br>life&rsquo;s hardest moments <em>rise in faith,<br>purpose &amp; community.</em></h1>
-    <p class="hero-desc reveal" style="transition-delay:.16s">Go Inspire Now supports and connects women through local community, faith-based resources, and transformational experiences &mdash; so that no woman has to face her hardest season alone.</p>
-    <div class="search-wrap reveal" style="transition-delay:.24s" role="search">
-      <input type="text" placeholder="Find an event, program, or podcast near you&hellip;" id="search-input" aria-label="Search events and programs">
-      <button class="search-btn" onclick="window.location='events.html'">Search</button>
+  <div class="orb h-orb1"></div>
+  <div class="orb h-orb2"></div>
+  <div class="hero-left">
+    <span class="hero-eye rv"><span class="hero-eye-dot"></span>Faith &middot; Community &middot; Purpose</span>
+    <h1 class="hero-h1 rv" style="transition-delay:.08s">We help women impacted by life&rsquo;s hardest moments <em>rise in faith, purpose &amp; community.</em></h1>
+    <p class="hero-desc rv" style="transition-delay:.16s">Go Inspire Now supports and connects women through faith-based community, life-changing programs, and transformational experiences &mdash; so that no woman has to face her hardest season alone.</p>
+    <div class="search-bar rv" style="transition-delay:.24s">
+      <input type="text" id="srch" placeholder="Find an event, program, or community&hellip;" aria-label="Search">
+      <button onclick="window.location='events.html'">Search</button>
     </div>
   </div>
-  <div class="hero-img">
-    <img src="images/hero.jpg" alt="Women inspired by Go Inspire Now">
+  <div class="hero-right">
+    <img src="images/hero.jpg" alt="Go Inspire Now — women rising">
   </div>
 </section>
 
-<!-- ============ IMPACT STRIP ============ -->
+<!-- ═══ IMPACT STRIP ═══ -->
 <div class="impact-strip">
   <div class="impact-strip-in">
-    <div class="is-text reveal-l">
-      <div class="tag">Our Impact</div>
-      <h2>Facing life&rsquo;s hardest moments alone can feel overwhelming and isolating for so many women. <em style="color:var(--pk);font-style:italic;">Together, we can change that.</em></h2>
-      <p>Whether she&rsquo;s navigating grief, searching for identity, or stepping into purpose for the first time &mdash; Go Inspire Now meets her right where she is and walks with her forward.</p>
-      <p class="impact-note">$25 a month can help one woman find the community and support she&rsquo;s been searching for.</p>
+    <div class="rvl">
+      <div class="is-label">Our Impact</div>
+      <h2 class="is-h">Facing life&rsquo;s hardest moments alone can feel overwhelming and isolating for so many women. <em>Together, we can change that.</em></h2>
+      <p class="is-p">Whether she&rsquo;s navigating grief, searching for identity, or stepping into purpose for the first time &mdash; Go Inspire Now meets her right where she is and walks with her forward.</p>
+      <p class="is-note">$25 a month can help one woman find the community and support she&rsquo;s been searching for.</p>
     </div>
-    <div class="donate-widget reveal-r">
-      <div class="dw-label">Give Monthly</div>
-      <div class="dw-amounts">
-        <button class="dw-amt" onclick="selectAmt(this,'25')">$25</button>
-        <button class="dw-amt active" onclick="selectAmt(this,'50')">$50</button>
-        <button class="dw-amt" onclick="selectAmt(this,'100')">$100</button>
-        <button class="dw-amt" onclick="selectAmt(this,'other')">Other</button>
+    <div class="rvr" style="transition-delay:.1s">
+      <div class="dw">
+        <div class="dw-lbl">Give Monthly</div>
+        <div class="dw-row">
+          <button class="dw-amt" onclick="pickAmt(this,'25')">$25</button>
+          <button class="dw-amt on" onclick="pickAmt(this,'50')">$50</button>
+          <button class="dw-amt" onclick="pickAmt(this,'100')">$100</button>
+          <button class="dw-amt" onclick="pickAmt(this,'')">Other</button>
+        </div>
+        <input class="dw-input" id="dw-val" type="text" placeholder="Or enter a custom amount&hellip;">
+        <button class="dw-btn" onclick="window.location='donate.html'">Donate &mdash; Change a Life</button>
       </div>
-      <input class="dw-custom" type="text" placeholder="Or enter a custom amount&hellip;" id="dw-custom">
-      <button class="dw-btn" onclick="window.location='donate.html'">Donate &mdash; Change a Life</button>
     </div>
   </div>
 </div>
 
-<!-- ============ BIG STATEMENT ============ -->
+<!-- ═══ BIG STATEMENT ═══ -->
 <section class="statement">
   <div class="statement-in">
-    <h2 class="statement-h reveal">Every year, thousands of women face their hardest seasons <em>without a faith community</em> behind them.</h2>
-    <div class="statement-cols">
-      <div class="reveal-l" style="transition-delay:.1s">
-        <p>Fear, isolation, and uncertainty can make the journey feel impossible. At Go Inspire Now, we equip the body of Christ to support these women &mdash; offering love, guidance, and real community so that no woman has to walk through her hardest season alone.</p>
+    <h2 class="stmt-h rv">Every year, thousands of women face their hardest seasons <em>without a faith community</em> behind them.</h2>
+    <div class="stmt-cols">
+      <div class="rvl" style="transition-delay:.08s">
+        <p>Fear, isolation, and uncertainty can make the journey feel impossible. At Go Inspire Now, we equip faith communities to show up for these women &mdash; providing love, guidance, and real community so that no woman has to walk through her hardest season alone.</p>
         <a href="events.html" class="btn-ghost">Learn More</a>
       </div>
-      <div class="reveal-r" style="transition-delay:.1s">
+      <div class="rvr" style="transition-delay:.08s">
         <p>There are thousands of women in your city who are hurting, searching, and ready to rise &mdash; but they need someone to walk alongside them. Through our programs, events, and podcast, they can find the community they need to step boldly into the life they were made for.</p>
         <p>Working together, we have every resource needed to help her be brave, healed, and full of purpose.</p>
       </div>
@@ -533,221 +614,271 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
   </div>
 </section>
 
-<!-- ============ PROGRAMS TABS ============ -->
+<!-- ═══ PROGRAMS TABS ═══ -->
 <section class="programs">
-  <div class="programs-in">
-    <div class="prog-eyebrow reveal">Support Programs</div>
-    <div class="reveal" style="transition-delay:.06s">
-      <div class="prog-tabs" role="tablist">
-        <button class="prog-tab active" role="tab" aria-selected="true" onclick="switchTab(this,'tab1')">Healing &amp; Identity</button>
-        <button class="prog-tab" role="tab" aria-selected="false" onclick="switchTab(this,'tab2')">Purpose &amp; Calling</button>
-        <button class="prog-tab" role="tab" aria-selected="false" onclick="switchTab(this,'tab3')">Community</button>
+  <div class="orb prog-bg-orb"></div>
+  <div style="max-width:1200px;margin:0 auto;position:relative;z-index:1;">
+    <div class="sec-eye rv">Support Programs</div>
+    <div class="rv" style="transition-delay:.06s">
+      <div class="prog-tabs">
+        <button class="prog-tab on" onclick="switchTab(this,'p1')">Healing &amp; Identity</button>
+        <button class="prog-tab" onclick="switchTab(this,'p2')">Purpose &amp; Calling</button>
+        <button class="prog-tab" onclick="switchTab(this,'p3')">Community</button>
       </div>
     </div>
-
-    <div class="prog-panel active" id="tab1">
+    <div class="prog-panel on" id="p1">
       <div class="prog-panel-left">
-        <div class="prog-q">Has your identity been shaken by a <em>painful season?</em></div>
-        <p>Join a Go Inspire Now Healing &amp; Identity group, where you&rsquo;ll find teachings that will empower you to discover who you truly are. You&rsquo;ll find a community that understands and knows that they can have their healing and their identity fully restored. Working together, we provide all the resources to help her be brave, free, and fully herself &mdash; a 6-week group experience that will change your life.</p>
-        <a href="events.html" class="btn-solid">Find a Group</a>
+        <div class="pp-q">Has your identity been shaken by a <em>painful season?</em></div>
+        <p class="pp-desc">Join a Go Inspire Now Healing &amp; Identity group where you&rsquo;ll find teachings that will empower you to discover who you truly are. You&rsquo;ll find a community that understands &mdash; and knows that healing and restored identity are fully possible. Working together, we have all the resources to help her be brave, free, and fully herself. A 6-week group experience that will change your life.</p>
+        <a href="events.html" class="btn-solid-vi">Find a Group</a>
       </div>
-      <div class="prog-photos">
-        <div class="prog-photo"><img src="images/women-1.jpg" alt="Women in community"></div>
-        <div class="prog-photo"><img src="images/founder-2.jpg" alt="Healing workshop"></div>
-        <div class="prog-photo"><img src="images/brand-1.jpg" alt="Identity program"></div>
+      <div class="prog-imgs">
+        <div class="prog-img"><img src="images/women-1.jpg" alt="Healing group"></div>
+        <div class="prog-img"><img src="images/founder-2.jpg" alt="Workshop"></div>
+        <div class="prog-img"><img src="images/brand-1.jpg" alt="Program"></div>
       </div>
     </div>
-
-    <div class="prog-panel" id="tab2">
+    <div class="prog-panel" id="p2">
       <div class="prog-panel-left">
-        <div class="prog-q">Ready to walk boldly into your <em>God-given purpose?</em></div>
-        <p>Our Purpose &amp; Calling programs are designed to help you move from confusion to clarity. You&rsquo;ll discover your unique assignment, develop the courage to pursue it, and build the community needed to sustain it. Stop waiting for perfect conditions &mdash; your calling is calling. One brave step at a time.</p>
-        <a href="events.html" class="btn-solid">Find a Program</a>
+        <div class="pp-q">Ready to walk boldly into your <em>God-given purpose?</em></div>
+        <p class="pp-desc">Our Purpose &amp; Calling programs guide women from confusion to clarity &mdash; uncovering their unique assignment, building the courage to pursue it, and creating the community needed to sustain it. Stop waiting for perfect conditions. Your calling is calling. One brave step at a time.</p>
+        <a href="events.html" class="btn-solid-vi">Find a Program</a>
       </div>
-      <div class="prog-photos">
-        <div class="prog-photo"><img src="images/women-2.jpg" alt="Purpose program"></div>
-        <div class="prog-photo"><img src="images/founder-1.jpg" alt="Calling workshop"></div>
-        <div class="prog-photo"><img src="images/brand-2.jpg" alt="Women inspired"></div>
+      <div class="prog-imgs">
+        <div class="prog-img"><img src="images/women-2.jpg" alt="Purpose program"></div>
+        <div class="prog-img"><img src="images/founder-1.jpg" alt="Calling workshop"></div>
+        <div class="prog-img"><img src="images/brand-2.jpg" alt="Purpose"></div>
       </div>
     </div>
-
-    <div class="prog-panel" id="tab3">
+    <div class="prog-panel" id="p3">
       <div class="prog-panel-left">
-        <div class="prog-q">Looking for a community where you <em>truly belong?</em></div>
-        <p>We create spaces where women feel genuinely seen, deeply connected, and consistently encouraged &mdash; not just in good seasons, but in the hard ones too. From retreats to conferences to weekly gatherings, there&rsquo;s always a place for you in the Go Inspire Now family.</p>
-        <a href="events.html" class="btn-solid">Find Your Community</a>
+        <div class="pp-q">Looking for a community where you <em>truly belong?</em></div>
+        <p class="pp-desc">We create spaces where women feel genuinely seen, deeply connected, and consistently encouraged &mdash; not just in good seasons, but in the hard ones too. From retreats to conferences to weekly gatherings, there is always a place for you in the Go Inspire Now family.</p>
+        <a href="events.html" class="btn-solid-vi">Find Your Community</a>
       </div>
-      <div class="prog-photos">
-        <div class="prog-photo"><img src="images/women-3.jpg" alt="Community event"></div>
-        <div class="prog-photo"><img src="images/women-4.jpg" alt="Women gathering"></div>
-        <div class="prog-photo"><img src="images/founder-3.jpg" alt="Community leader"></div>
+      <div class="prog-imgs">
+        <div class="prog-img"><img src="images/women-3.jpg" alt="Community"></div>
+        <div class="prog-img"><img src="images/women-4.jpg" alt="Gathering"></div>
+        <div class="prog-img"><img src="images/founder-3.jpg" alt="Leader"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ HOW IT WORKS ============ -->
+<!-- ═══ HOW IT WORKS ═══ -->
 <section class="how">
+  <div class="orb how-orb"></div>
   <div class="how-in">
-    <div class="how-eyebrow reveal">How It Works</div>
-    <h2 class="how-title reveal" style="transition-delay:.06s">From where she is<br>to where she&rsquo;s meant to be.</h2>
+    <div class="sec-eye rv" style="justify-content:center;">How It Works</div>
+    <h2 class="how-title rv" style="transition-delay:.06s">From where she is<br>to where she&rsquo;s <em>meant to be.</em></h2>
     <div class="how-steps">
-      <div class="how-step reveal" style="transition-delay:.08s">
-        <div class="how-num">01</div>
+      <div class="how-step rv" style="transition-delay:.08s">
+        <div class="how-num-wrap"><div class="how-num">01</div></div>
         <div class="how-content">
-          <h3>A woman recognizes she needs more than she&rsquo;s been carrying alone.</h3>
-          <p>Life gets heavy. Whether it&rsquo;s grief, identity loss, relationship struggles, or simply searching for purpose &mdash; she reaches a point where she knows she needs community, guidance, and hope.</p>
+          <div class="how-h">A woman recognizes she needs more than she&rsquo;s been carrying alone.</div>
+          <p class="how-p">Life gets heavy. Whether it&rsquo;s grief, identity loss, relationship struggles, or simply searching for purpose &mdash; she reaches a point where she knows she needs community, guidance, and hope. That moment of recognition is where everything begins.</p>
         </div>
       </div>
-      <div class="how-step reveal" style="transition-delay:.14s">
-        <div class="how-num">02</div>
+      <div class="how-step rv" style="transition-delay:.14s">
+        <div class="how-num-wrap"><div class="how-num">02</div></div>
         <div class="how-content">
-          <h3>She connects with Go Inspire Now and finds a safe landing place.</h3>
-          <p>Through our website, podcast, events, or a referral from a friend &mdash; she discovers Go Inspire Now and takes her first brave step toward a community that was made for her.</p>
+          <div class="how-h">She connects with Go Inspire Now and finds a safe landing place.</div>
+          <p class="how-p">Through our website, podcast, events, or a referral from a friend &mdash; she discovers Go Inspire Now and takes her first brave step toward a community built specifically for her journey.</p>
         </div>
       </div>
-      <div class="how-step reveal" style="transition-delay:.2s">
-        <div class="how-num">03</div>
+      <div class="how-step rv" style="transition-delay:.20s">
+        <div class="how-num-wrap"><div class="how-num">03</div></div>
         <div class="how-content">
-          <h3>She joins a program, attends an event, and begins her healing journey.</h3>
-          <p>Surrounded by women who understand, she starts doing the work &mdash; healing her identity, discovering her calling, and building relationships that will sustain her for life.</p>
+          <div class="how-h">She joins a program, attends an event, and begins her healing journey.</div>
+          <p class="how-p">Surrounded by women who understand, she starts doing the work &mdash; healing her identity, discovering her calling, and building relationships that will sustain her for life.</p>
         </div>
       </div>
-      <div class="how-step reveal" style="transition-delay:.26s">
-        <div class="how-num">04</div>
+      <div class="how-step rv" style="transition-delay:.26s">
+        <div class="how-num-wrap"><div class="how-num">04</div></div>
         <div class="how-content">
-          <h3>She walks fully into purpose and becomes an inspiration to others.</h3>
-          <p>The woman who once came broken and searching now becomes a beacon. She gives back, lifts others, and keeps the cycle of inspiration and transformation going &mdash; because that&rsquo;s what Go Inspire Now does.</p>
+          <div class="how-h">She walks fully into purpose and becomes an inspiration to others.</div>
+          <p class="how-p">The woman who came broken and searching becomes a beacon. She gives back, lifts others, and keeps the cycle of inspiration and transformation alive &mdash; because that&rsquo;s what Go Inspire Now does.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ FIND YOUR COMMUNITY ============ -->
+<!-- ═══ VOICES OF RESILIENCE ═══ -->
+<section class="voices">
+  <div class="orb voices-orb-pk"></div>
+  <div class="orb voices-orb-cy"></div>
+  <div class="voices-in">
+    <div class="voices-bar">
+      <div class="voices-bar-track" aria-hidden="true">
+        <span class="vb-item"><span class="vb-dot" style="background:var(--pk)"></span>Faith &middot; Community &middot; Purpose</span>
+        <span class="vb-item"><span class="vb-dot" style="background:var(--vi2)"></span>Healing &middot; Identity &middot; Freedom</span>
+        <span class="vb-item"><span class="vb-dot" style="background:var(--cy)"></span>Resilience &middot; Restoration &middot; Rise</span>
+        <span class="vb-item"><span class="vb-dot" style="background:var(--go)"></span>Women Inspiring Women</span>
+        <span class="vb-item"><span class="vb-dot" style="background:var(--pk)"></span>Faith &middot; Community &middot; Purpose</span>
+        <span class="vb-item"><span class="vb-dot" style="background:var(--vi2)"></span>Healing &middot; Identity &middot; Freedom</span>
+        <span class="vb-item"><span class="vb-dot" style="background:var(--cy)"></span>Resilience &middot; Restoration &middot; Rise</span>
+        <span class="vb-item"><span class="vb-dot" style="background:var(--go)"></span>Women Inspiring Women</span>
+      </div>
+    </div>
+    <div class="voices-head rv">
+      <div class="sec-eye" style="justify-content:center;margin-bottom:1rem;">Voices of Resilience</div>
+      <h2 class="voices-h">Real women. <em>Real stories.</em><br>Real transformation.</h2>
+      <p class="voices-sub">These are the women who showed up, did the work, and never looked back. Their voices are proof that healing is possible and purpose is real.</p>
+    </div>
+    <div class="voices-grid">
+      <div class="voice-card rv" style="transition-delay:.06s">
+        <span class="vq-mark">&ldquo;</span>
+        <p class="vq-text">I joined Go Inspire Now when I felt completely lost &mdash; no direction, no community, and no idea who I was apart from my pain. Through the Healing &amp; Identity program, I found my voice, my worth, and my why. I am not the same woman I was a year ago. I never will be again.</p>
+        <div class="vq-who">
+          <img class="vq-photo" src="images/women-1.jpg" alt="Community Member">
+          <div>
+            <div class="vq-name">Jasmine T.</div>
+            <div class="vq-role">Healing &amp; Identity Program Graduate</div>
+          </div>
+        </div>
+      </div>
+      <div class="voice-card rv" style="transition-delay:.12s">
+        <span class="vq-mark">&ldquo;</span>
+        <p class="vq-text">The Mountain Adventure retreat was the turning point in my life. I arrived broken and exhausted. I left with clarity I had never felt before &mdash; about who I am, what I&rsquo;m called to, and who I want to become. Go Inspire Now didn&rsquo;t just inspire me. It transformed me.</p>
+        <div class="vq-who">
+          <img class="vq-photo" src="images/founder-2.jpg" alt="Retreat Attendee">
+          <div>
+            <div class="vq-name">Mariana S.</div>
+            <div class="vq-role">Retreat Attendee &amp; Volunteer</div>
+          </div>
+        </div>
+      </div>
+      <div class="voice-card rv" style="transition-delay:.18s">
+        <span class="vq-mark">&ldquo;</span>
+        <p class="vq-text">I started listening to The GIN Podcast alone in my car during the hardest season of my life. Those conversations made me feel seen before I ever walked through the door. When I finally attended an event, I knew I had found my people. This community is genuinely life-changing.</p>
+        <div class="vq-who">
+          <img class="vq-photo" src="images/women-3.jpg" alt="Podcast Listener">
+          <div>
+            <div class="vq-name">Destiny R.</div>
+            <div class="vq-role">Podcast Listener turned Community Leader</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FIND YOUR COMMUNITY (scattered like Embrace Grace) ═══ -->
 <section class="find">
+  <div class="orb find-bg-orb"></div>
   <div class="find-in">
-    <div class="find-side-l">
-      <div class="find-circle lg reveal-l" style="transition-delay:.05s"><img src="images/women-1.jpg" alt="Women community"></div>
-      <div class="find-circle md reveal-l" style="transition-delay:.12s"><img src="images/founder-2.jpg" alt="Founder"></div>
-      <div class="find-circle sm reveal-l" style="transition-delay:.18s"><img src="images/brand-1.jpg" alt="Program"></div>
+    <div class="find-side rvl">
+      <div class="find-circle fc-lg"><img src="images/women-2.jpg" alt="Women"></div>
+      <div class="find-circle fc-md"><img src="images/founder-2.jpg" alt="Founder"></div>
+      <div class="find-circle fc-sm"><img src="images/brand-1.jpg" alt="Program"></div>
     </div>
-    <div class="find-card reveal">
-      <span class="find-card-eye">Go Inspire Now</span>
-      <h2>Find Your Community</h2>
-      <p>Discover a Go Inspire Now group, event, or program near you. You were never meant to do this alone.</p>
-      <a href="events.html" class="btn-gold-solid">Search Events &amp; Programs</a>
+    <div class="find-card rv">
+      <span class="fc-eye">Go Inspire Now</span>
+      <h2 class="fc-h">Find Your Community</h2>
+      <p class="fc-p">Discover a Go Inspire Now group, event, or program. You were never meant to do this alone.</p>
+      <a href="events.html" class="btn-solid-go">Search Events &amp; Programs</a>
     </div>
-    <div class="find-side-r">
-      <div class="find-circle sm reveal-r" style="transition-delay:.05s"><img src="images/women-4.jpg" alt="Women"></div>
-      <div class="find-circle md reveal-r" style="transition-delay:.12s"><img src="images/brand-2.jpg" alt="Program"></div>
-      <div class="find-circle lg reveal-r" style="transition-delay:.18s"><img src="images/women-3.jpg" alt="Community"></div>
+    <div class="find-side rvr">
+      <div class="find-circle fc-sm"><img src="images/women-4.jpg" alt="Women"></div>
+      <div class="find-circle fc-md"><img src="images/brand-2.jpg" alt="Program"></div>
+      <div class="find-circle fc-lg"><img src="images/women-3.jpg" alt="Community"></div>
     </div>
   </div>
 </section>
 
-<!-- ============ MOVEMENT CTA ============ -->
+<!-- ═══ MOVEMENT CTA — SPLIT ═══ -->
 <div class="movement">
-  <div class="mov-left">
-    <div class="mov-orb"></div>
-    <div class="mov-left-eye reveal">The Movement</div>
-    <h2 class="reveal" style="transition-delay:.06s">The Inspire movement <em>needs you.</em></h2>
-    <p class="reveal" style="transition-delay:.12s">Every woman who rises in purpose has someone who believed in her enough to invest. Your time, your gifts, and your generosity are the fuel that keeps this mission alive and growing across communities.</p>
-    <a href="donate.html" class="btn-white reveal" style="transition-delay:.18s">Get Involved</a>
+  <div class="mov-l">
+    <div class="orb mov-l-orb"></div>
+    <div class="orb mov-splash"></div>
+    <div class="mov-l-eye rv">The Movement</div>
+    <h2 class="mov-l-h rv" style="transition-delay:.06s">The Inspire movement <em>needs you.</em></h2>
+    <p class="mov-l-p rv" style="transition-delay:.12s">Every woman who rises in purpose has someone who believed in her enough to invest. Your time, your gifts, and your generosity are the fuel that keeps this mission alive and growing in communities everywhere.</p>
+    <a href="donate.html" class="btn-white rv" style="transition-delay:.18s">Get Involved</a>
   </div>
-  <div class="mov-right">
-    <h3 class="reveal">More than a nonprofit &mdash; a movement.</h3>
-    <p class="reveal" style="transition-delay:.06s">Go Inspire Now exists at the intersection of faith, community, and transformation. We believe that when women are healed, empowered, and walking in purpose &mdash; families are stronger, communities are healthier, and the world reflects more of what it was always meant to be.</p>
-    <p class="reveal" style="transition-delay:.12s">When you partner with us &mdash; through volunteering, donating, or simply spreading the word &mdash; you become part of every story of breakthrough that happens through this ministry.</p>
-    <a href="contact.html" class="btn-text reveal" style="transition-delay:.18s">Partner With Us</a>
+  <div class="mov-r">
+    <h3 class="rv">More than a nonprofit &mdash; a movement.</h3>
+    <p class="rv" style="transition-delay:.06s">Go Inspire Now exists at the intersection of faith, community, and transformation. When women are healed, empowered, and walking in purpose &mdash; families are stronger, communities are healthier, and the world reflects more of what it was always meant to be.</p>
+    <p class="rv" style="transition-delay:.12s">When you partner with us through volunteering, donating, or simply spreading the word &mdash; you become part of every story of breakthrough that happens through this ministry.</p>
+    <a href="contact.html" class="btn-text rv" style="transition-delay:.18s">Partner With Us</a>
   </div>
 </div>
 
-<!-- ============ VISION + STATS ============ -->
+<!-- ═══ VISION + STATS ═══ -->
 <section class="vision">
+  <div class="orb vision-orb"></div>
   <div class="vision-in">
-    <div>
-      <div class="vision-text reveal-l">
-        <div class="tag">Our Vision</div>
-        <h2>Our vision is for every woman to walk in <em>purpose, wholeness, and unshakeable faith</em> &mdash; and we&rsquo;re building the community to make that happen.</h2>
-        <p>We have a long way to go but together, we can get there. Go Inspire Now is committed to building a world where no woman ever has to face her hardest moment without a faith community, a mentor, and a mission behind her.</p>
-        <a href="donate.html" class="btn-solid">Support the Vision</a>
-      </div>
-      <div class="vision-stats reveal" style="transition-delay:.1s">
-        <div>
-          <div class="vstat-n" data-count="1200" data-suffix="+">0</div>
-          <div class="vstat-l">Women Impacted</div>
-        </div>
-        <div>
-          <div class="vstat-n" data-count="50" data-suffix="+">0</div>
-          <div class="vstat-l">Events Hosted</div>
-        </div>
-        <div>
-          <div class="vstat-n" data-count="100" data-suffix="+">0</div>
-          <div class="vstat-l">Podcast Episodes</div>
-        </div>
+    <div class="rvl">
+      <div class="vision-label">Our Vision</div>
+      <h2 class="vision-h">Our vision is for every woman to walk in <em>purpose, wholeness, and unshakeable faith</em> &mdash; and we&rsquo;re building the community to make that happen.</h2>
+      <p class="vision-p">We have a long way to go but together, we can get there. Go Inspire Now is committed to building a world where no woman has to face her hardest moment without a faith community, a mentor, and a mission behind her.</p>
+      <a href="donate.html" class="btn-solid-vi">Support the Vision</a>
+      <div class="vision-stats rv" style="transition-delay:.12s;margin-top:2rem;">
+        <div class="vstat"><div class="vstat-n" data-count="1200" data-sfx="+">0</div><div class="vstat-l">Women Impacted</div></div>
+        <div class="vstat"><div class="vstat-n" data-count="50" data-sfx="+">0</div><div class="vstat-l">Events Hosted</div></div>
+        <div class="vstat"><div class="vstat-n" data-count="100" data-sfx="+">0</div><div class="vstat-l">Podcast Episodes</div></div>
       </div>
     </div>
-    <div class="vision-img-wrap reveal-r">
-      <img src="images/founder-1.jpg" alt="Go Inspire Now Founder">
-      <div class="vision-badge">
-        <div class="vision-badge-n">5+ Years</div>
-        <div class="vision-badge-l">Serving &amp; Inspiring</div>
+    <div class="rvr" style="transition-delay:.1s">
+      <div class="vision-img">
+        <img src="images/founder-1.jpg" alt="Go Inspire Now Founder">
+        <div class="vision-badge">
+          <div class="vision-badge-n">5+ Years</div>
+          <div class="vision-badge-l">Serving &amp; Inspiring</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ IMPACT PULL QUOTE ============ -->
-<section class="impact-quote">
-  <div class="iq-orb-pk orb"></div>
-  <div class="iq-orb-vi orb"></div>
-  <div class="impact-quote-in reveal">
-    <span class="iq-mark">&ldquo;</span>
-    <p class="iq-text">Over <strong>1,200 women</strong> have experienced Go Inspire Now events, programs, and community &mdash; and each one walked away knowing they were seen, valued, and created for a purpose far greater than their pain. <strong>You can be the reason the next woman finds her way.</strong></p>
-    <a href="donate.html" class="btn-pk">Become a Sponsor</a>
+<!-- ═══ PULL QUOTE ═══ -->
+<section class="pullquote">
+  <div class="orb pq-orb-pk"></div>
+  <div class="pq-in rv">
+    <span class="pq-mark">&ldquo;</span>
+    <p class="pq-text">Over <strong>1,200 women</strong> have experienced Go Inspire Now events, programs, and community &mdash; and each one walked away knowing she was seen, valued, and created for a purpose far greater than her pain. <strong>You can be the reason the next woman finds her way.</strong></p>
+    <a href="donate.html" class="btn-solid-pk">Become a Sponsor</a>
   </div>
 </section>
 
-<!-- ============ GET INVOLVED ============ -->
-<section class="get-involved">
-  <div class="gi-in">
-    <div class="gi-head reveal">
-      <h2>You can <em>change lives</em> with love!</h2>
-      <p>Want to join us in seeing women rise? There are many ways to get involved in the Go Inspire Now mission.</p>
+<!-- ═══ GET INVOLVED ═══ -->
+<section class="involved">
+  <div class="inv-head rv">
+    <h2 class="inv-h">You can <em>change lives</em> with love!</h2>
+    <p class="inv-sub">Want to join us in seeing women rise? There are many ways to be a part of the Go Inspire Now mission.</p>
+  </div>
+  <div class="inv-grid">
+    <div class="inv-card inv-c1 rv">
+      <span class="inv-ico">&#x1F64B;&#x200D;&#x2640;&#xFE0F;</span>
+      <h3>Volunteer</h3>
+      <p>Give your time and talents to help women find community, healing, and purpose.</p>
+      <a href="contact.html" class="btn-solid-vi" style="font-size:.7rem;padding:.65rem 1.4rem;">Join the Team</a>
     </div>
-    <div class="gi-cards">
-      <div class="gi-card gi-card-1 reveal">
-        <span class="gi-ico">&#x1F64B;&#x200D;&#x2640;&#xFE0F;</span>
-        <h3>Volunteer</h3>
-        <p>Give your time and talents to help women find community, healing, and purpose through our events and programs.</p>
-        <a href="contact.html" class="gi-btn gb-vi">Join the Team</a>
-      </div>
-      <div class="gi-card gi-card-2 reveal" style="transition-delay:.08s">
-        <span class="gi-ico">&#x1F49B;</span>
-        <h3>Donate</h3>
-        <p>Your generosity directly funds life-changing programs, events, and resources for women who need them most.</p>
-        <a href="donate.html" class="gi-btn gb-go">Give Now</a>
-      </div>
-      <div class="gi-card gi-card-3 reveal" style="transition-delay:.16s">
-        <span class="gi-ico">&#x1F399;&#xFE0F;</span>
-        <h3>Listen &amp; Share</h3>
-        <p>Tune into The GIN Podcast and share episodes that could be the thing that changes someone&rsquo;s whole trajectory.</p>
-        <a href="podcast.html" class="gi-btn gb-pk">Listen Now</a>
-      </div>
-      <div class="gi-card gi-card-4 reveal" style="transition-delay:.24s">
-        <span class="gi-ico">&#x1F4C5;</span>
-        <h3>Attend an Event</h3>
-        <p>Show up. Be present. Experience the transformation firsthand at one of our retreats, workshops, or conferences.</p>
-        <a href="events.html" class="gi-btn gb-cy">See Events</a>
-      </div>
+    <div class="inv-card inv-c2 rv" style="transition-delay:.08s">
+      <span class="inv-ico">&#x1F49B;</span>
+      <h3>Donate</h3>
+      <p>Your generosity directly funds life-changing programs, events, and resources.</p>
+      <a href="donate.html" class="btn-solid-go" style="font-size:.7rem;padding:.65rem 1.4rem;">Give Now</a>
+    </div>
+    <div class="inv-card inv-c3 rv" style="transition-delay:.16s">
+      <span class="inv-ico">&#x1F399;&#xFE0F;</span>
+      <h3>Listen &amp; Share</h3>
+      <p>Tune into The GIN Podcast and share episodes that could change someone&rsquo;s trajectory.</p>
+      <a href="podcast.html" class="btn-solid-pk" style="font-size:.7rem;padding:.65rem 1.4rem;">Listen Now</a>
+    </div>
+    <div class="inv-card inv-c4 rv" style="transition-delay:.24s">
+      <span class="inv-ico">&#x1F4C5;</span>
+      <h3>Attend an Event</h3>
+      <p>Show up. Be present. Experience transformation firsthand at one of our gatherings.</p>
+      <a href="events.html" style="display:inline-flex;padding:.65rem 1.4rem;border-radius:100px;background:var(--cy);color:#07000F;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 0 20px rgba(0,196,223,.35);transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;" onmouseover="this.style.transform='scale(1.06)';this.style.boxShadow='0 0 36px rgba(0,196,223,.55)'" onmouseout="this.style.transform='';this.style.boxShadow='0 0 20px rgba(0,196,223,.35)'">See Events</a>
     </div>
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
+<!-- ═══ FOOTER ═══ -->
 <footer>
-  <div class="ft-orb"></div>
+  <div class="orb ft-orb"></div>
   <div class="ft-in">
     <div class="ft-top">
       <div class="ft-brand">
@@ -799,71 +930,57 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
 
 <script>
 /* NAV */
-const burger = document.getElementById('nav-burger');
-const navLinks = document.getElementById('nav-links');
-burger.addEventListener('click', () => navLinks.classList.toggle('open'));
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
-}, {passive:true});
+const burger=document.getElementById('nav-burger'),nl=document.getElementById('nav-links');
+burger.addEventListener('click',()=>nl.classList.toggle('open'));
+nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nl.classList.remove('open')));
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>40),{passive:true});
 
 /* REVEAL */
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }});
-}, {threshold:0.07, rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => obs.observe(el));
+const ro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');ro.unobserve(x.target);}});},{threshold:.07,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>ro.observe(el));
 
 /* TABS */
-function switchTab(btn, id) {
-  document.querySelectorAll('.prog-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.prog-panel').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById(id).classList.add('active');
+function switchTab(btn,id){
+  document.querySelectorAll('.prog-tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.prog-panel').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById(id).classList.add('on');
 }
 
 /* DONATE WIDGET */
-function selectAmt(btn, val) {
-  document.querySelectorAll('.dw-amt').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('dw-custom').value = val === 'other' ? '' : '$' + val;
+function pickAmt(btn,v){
+  document.querySelectorAll('.dw-amt').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('dw-val').value=v?'$'+v:'';
 }
 
 /* COUNTERS */
-function countUp(el) {
-  const target = parseInt(el.dataset.count);
-  const suffix = el.dataset.suffix || '';
-  const dur = 1800;
-  const start = performance.now();
-  const ease = t => 1 - Math.pow(1 - t, 3);
-  (function step(now) {
-    const p = Math.min((now - start) / dur, 1);
-    el.textContent = Math.floor(ease(p) * target).toLocaleString() + (p >= 1 ? suffix : '');
-    if(p < 1) requestAnimationFrame(step);
-  })(start);
+function countUp(el){
+  const t=parseInt(el.dataset.count),sfx=el.dataset.sfx||'',dur=1800,s=performance.now();
+  const ease=t=>1-Math.pow(1-t,3);
+  (function step(n){
+    const p=Math.min((n-s)/dur,1);
+    el.textContent=Math.floor(ease(p)*t).toLocaleString()+(p>=1?sfx:'');
+    if(p<1)requestAnimationFrame(step);
+  })(s);
 }
-const cObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting){ countUp(e.target); cObs.unobserve(e.target); }});
-}, {threshold:0.5});
-document.querySelectorAll('[data-count]').forEach(el => cObs.observe(el));
+const co=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){countUp(x.target);co.unobserve(x.target);}});},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>co.observe(el));
 
 /* SEARCH */
-document.getElementById('search-input').addEventListener('keydown', e => {
-  if(e.key === 'Enter') window.location = 'events.html';
-});
+document.getElementById('srch').addEventListener('keydown',e=>{if(e.key==='Enter')window.location='events.html';});
 
 /* PARTICLES */
-const pc = document.getElementById('particles');
-const ptColors = ['rgba(236,72,153,0.5)','rgba(6,182,212,0.45)','rgba(124,58,237,0.5)','rgba(251,191,36,0.4)'];
-function mkPt() {
-  const d = document.createElement('div');
-  d.className = 'pt';
-  const s = Math.random()*5+2;
-  d.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:-5%;background:${ptColors[Math.floor(Math.random()*4)]};animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*6}s;`;
-  pc.appendChild(d);
-  setTimeout(()=>d.remove(), 24000);
+const pc=document.getElementById('particles');
+const cols=['rgba(240,36,122,.55)','rgba(0,196,223,.5)','rgba(123,47,255,.55)','rgba(255,196,37,.45)'];
+function mkPt(){
+  const d=document.createElement('div');d.className='pt';
+  const s=Math.random()*5+2;
+  d.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:-2%;background:${cols[Math.floor(Math.random()*4)]};animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*5}s;filter:blur(${s>5?.5:0}px);`;
+  pc.appendChild(d);setTimeout(()=>d.remove(),22000);
 }
-setInterval(mkPt, 700);
-for(let i=0;i<10;i++) setTimeout(mkPt, i*150);
+setInterval(mkPt,650);
+for(let i=0;i<12;i++)setTimeout(mkPt,i*180);
 </script>
 </body>
 </html>
