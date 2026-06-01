@@ -332,6 +332,32 @@ footer{background:#0E0020;border-top:1px solid rgba(255,255,255,.06);}
 .footer-col a:hover{color:#fff;}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding:1.5rem 3rem;text-align:center;font-size:.65rem;color:rgba(255,255,255,.22);}
 
+/* ── SHOE CURSOR ── */
+@media(hover:hover){
+  *{cursor:none!important;}
+}
+#gin-cursor{
+  position:fixed;left:0;top:0;pointer-events:none;z-index:10001;
+  opacity:0;transition:opacity .25s ease;
+}
+#gin-shoe{
+  display:block;font-size:40px;line-height:1;user-select:none;
+  transform:rotate(-15deg);
+  transition:font-size .2s cubic-bezier(.34,1.56,.64,1),transform .22s cubic-bezier(.34,1.56,.64,1),filter .2s ease;
+  filter:drop-shadow(0 3px 14px rgba(240,36,122,.55));
+}
+#gin-cursor.hov #gin-shoe{
+  font-size:56px;
+  transform:rotate(-26deg) scale(1.1);
+  filter:drop-shadow(0 5px 20px rgba(240,36,122,.75));
+}
+#gin-cursor.click #gin-shoe{
+  font-size:34px;
+  transform:rotate(-38deg) scale(.85);
+  transition:font-size .07s ease,transform .07s ease;
+}
+@media(hover:none){#gin-cursor{display:none!important;}}
+
 /* ── SCROLL REVEAL ── */
 .rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.25,1,.5,1),transform .8s cubic-bezier(.25,1,.5,1);}
 .rv.in{opacity:1;transform:none;}
@@ -396,6 +422,7 @@ footer{background:#0E0020;border-top:1px solid rgba(255,255,255,.06);}
 </head>
 <body>
 
+<div id="gin-cursor" aria-hidden="true"><span id="gin-shoe">👟</span></div>
 <div class="grain"></div>
 
 <!-- NAV -->
@@ -777,6 +804,57 @@ document.querySelectorAll('.impact-num[data-target]').forEach(el => {
   }, { threshold: 0.4 });
   co.observe(el);
 });
+
+// ── SHOE CURSOR ──
+(function() {
+  // Only activate on pointer devices (not touch-only)
+  if (!window.matchMedia('(hover: hover)').matches) return;
+
+  var c = document.getElementById('gin-cursor');
+  var shoe = document.getElementById('gin-shoe');
+  if (!c || !shoe) return;
+
+  var cx = -200, cy = -200, ticking = false, visible = false;
+
+  function render() {
+    c.style.transform = 'translate(' + (cx - 4) + 'px,' + (cy - 38) + 'px)';
+    ticking = false;
+  }
+
+  // Throttle position updates to one per animation frame
+  document.addEventListener('mousemove', function(e) {
+    cx = e.clientX;
+    cy = e.clientY;
+    if (!ticking) { ticking = true; requestAnimationFrame(render); }
+    if (!visible) { visible = true; c.style.opacity = '1'; }
+  }, { passive: true });
+
+  // Hide when pointer leaves the window
+  document.addEventListener('mouseleave', function() {
+    cx = -200; cy = -200;
+    requestAnimationFrame(render);
+  });
+
+  // Hover grow: match every interactive element on the page
+  var hoverTargets = 'a,button,[role="button"],label,select,input,textarea,.prog-card,.pillar-card,.pod-ep,.moving-social a,.nav-give';
+  document.querySelectorAll(hoverTargets).forEach(function(el) {
+    el.addEventListener('mouseenter', function() {
+      c.classList.add('hov');
+      c.classList.remove('click');
+    });
+    el.addEventListener('mouseleave', function() {
+      c.classList.remove('hov');
+    });
+  });
+
+  // Click squish — adds .click class, removes after 180ms so it springs back
+  document.addEventListener('mousedown', function() {
+    c.classList.add('click');
+  });
+  document.addEventListener('mouseup', function() {
+    c.classList.remove('click');
+  });
+})();
 </script>
 </body>
 </html>
