@@ -3,200 +3,333 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact — Go Inspire Now</title>
+<title>Contact &mdash; Go Inspire Now</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-<script src="config.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'Lato',sans-serif;background:#FAF8FF;color:#231D2D;overflow-x:hidden;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+body{font-family:'Inter',sans-serif;background:#fff;color:#1C1025;overflow-x:hidden;max-width:100%;}
+img{display:block;max-width:100%;height:auto;}
+a{text-decoration:none;color:inherit;}
+
 :root{
-  --purple-deep:#35204F;--purple-royal:#5B3B8C;
-  --teal:#2EB8B0;--gold:#C9A227;
-  --rose:#C9788A;--rose-dark:#7A3A52;--rose-light:#F2D6DD;
+  --pk:#F0247A;--pk-lt:#FFE0EF;--vi:#7B2FFF;--vi-lt:#EDE6FF;
+  --cy:#00C4DF;--go:#FFC425;--hero-bg:#D2EAE4;--cream:#F7F2EE;
+  --blush:#FFF0F5;--lav:#EAE3FF;--lav-mid:#C4B5F0;
+  --dark:#1C1025;--mid:#4A3070;--muted:#8A7AAA;--border:#E0D8F0;
+  --serif:'Playfair Display',serif;--sans:'Inter',sans-serif;
 }
 
-nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:0.9rem 2.5rem;
-  background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(53,32,79,0.07);box-shadow:0 2px 20px rgba(53,32,79,0.06);}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
-.nav-logo img{height:62px;display:block;}
+nav{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid var(--border);padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{height:44px;width:auto;}
 .nav-links{display:flex;align-items:center;gap:2rem;}
-.nav-links a{font-size:0.67rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;
-  color:rgba(35,29,45,0.5);text-decoration:none;transition:color 0.2s;}
-.nav-links a:hover{color:var(--purple-royal);}
-.nav-cta{padding:0.5rem 1.4rem;background:var(--gold);color:#231D2D!important;font-size:0.67rem;
-  font-weight:900;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border-radius:3px;}
-.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
-.nav-burger span{display:block;width:22px;height:2px;background:var(--purple-deep);}
+.nav-links a{font-size:.78rem;font-weight:600;letter-spacing:.04em;color:var(--mid);transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--pk);}
+.nav-give{background:var(--pk);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:.55rem 1.5rem;border-radius:100px;transition:background .2s,transform .15s;display:flex;align-items:center;gap:.35rem;}
+.nav-give:hover{background:#CC1060;transform:scale(1.04);}
 
-/* HERO */
-.contact-hero{min-height:45vh;display:flex;align-items:center;padding:8rem 2.5rem 5rem;
-  position:relative;overflow:hidden;}
-.contact-hero-bg{position:absolute;inset:0;
-  background:linear-gradient(145deg,#2A1245 0%,#4A2B7A 50%,#1F7A76 100%);}
-.contact-hero-noise{position:absolute;inset:0;opacity:0.04;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:200px;}
-.contact-hero-orb{position:absolute;width:500px;height:500px;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,120,138,0.35) 0%,transparent 70%);
-  top:-100px;right:-100px;pointer-events:none;}
-.contact-hero-orb2{position:absolute;width:350px;height:350px;border-radius:50%;
-  background:radial-gradient(circle,rgba(46,184,176,0.3) 0%,transparent 70%);
-  bottom:-80px;left:-60px;pointer-events:none;}
-.contact-hero-inner{max-width:700px;position:relative;z-index:2;}
-.contact-hero-label{display:inline-block;font-size:0.57rem;font-weight:900;letter-spacing:0.28em;
-  text-transform:uppercase;color:rgba(201,162,39,0.92);border:1px solid rgba(201,162,39,0.3);
-  padding:0.35rem 1rem;border-radius:100px;margin-bottom:1.4rem;}
-.contact-hero-h{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,3.8rem);
-  font-weight:700;line-height:1.06;letter-spacing:-0.025em;color:#fff;margin-bottom:1rem;}
-.contact-hero-h em{color:#A8E6E3;font-style:italic;display:block;}
-.contact-hero-sub{font-size:1rem;font-weight:300;color:rgba(255,255,255,0.65);line-height:1.85;}
+.page-hero{background:var(--lav);padding:5.5rem 2rem 4.5rem;text-align:center;}
+.page-hero-inner{max-width:640px;margin:0 auto;}
+.page-hero h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:600;color:var(--dark);margin-bottom:1rem;line-height:1.2;}
+.page-hero p{font-size:1rem;color:var(--mid);line-height:1.65;max-width:500px;margin:0 auto;}
 
-/* CONTACT SECTION */
-.contact-section{padding:5rem 2.5rem 7rem;}
-.contact-inner{max-width:900px;margin:0 auto;}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:3.5rem;}
+.contact-main{background:#fff;padding:5rem 2rem;}
+.contact-main-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:5rem;align-items:start;}
 
-.contact-card{background:#fff;border-radius:14px;padding:3rem 2.5rem;
-  box-shadow:0 8px 40px rgba(53,32,79,0.08);
-  border-top:4px solid transparent;position:relative;overflow:hidden;
-  transition:transform 0.3s cubic-bezier(.34,1.56,.64,1),box-shadow 0.3s;}
-.contact-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(53,32,79,0.14);}
-.contact-card::before{content:'';position:absolute;bottom:-30px;right:-30px;
-  width:120px;height:120px;border-radius:50%;background:rgba(53,32,79,0.03);}
-.contact-card.phone-card{border-top-color:var(--rose);}
-.contact-card.email-card{border-top-color:var(--teal);}
+.contact-form-wrap h2{font-family:var(--serif);font-size:clamp(1.45rem,2.4vw,2rem);font-weight:600;color:var(--dark);margin-bottom:.6rem;}
+.contact-form-wrap p{font-size:.88rem;line-height:1.65;color:var(--mid);margin-bottom:2.2rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.form-group{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1rem;}
+.form-group label{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dark);}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:.7rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-family:var(--sans);font-size:.88rem;color:var(--dark);background:#fff;outline:none;transition:border-color .2s,box-shadow .2s;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--vi);box-shadow:0 0 0 3px rgba(123,47,255,.08);}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted);}
+.form-group textarea{resize:vertical;min-height:130px;line-height:1.6;}
+.form-group select{cursor:pointer;}
+.form-submit{width:100%;padding:.9rem;background:var(--pk);color:#fff;border:none;border-radius:12px;cursor:pointer;font-family:var(--sans);font-size:.88rem;font-weight:700;letter-spacing:.04em;transition:background .2s,transform .15s;}
+.form-submit:hover{background:#CC1060;transform:translateY(-1px);}
+.form-note{font-size:.72rem;color:var(--muted);margin-top:.75rem;text-align:center;}
 
-.contact-card-icon{font-size:2.5rem;margin-bottom:1.25rem;display:block;}
-.contact-card-label{font-size:0.57rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;
-  color:rgba(35,29,45,0.38);margin-bottom:0.5rem;}
-.contact-card-type{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;
-  color:var(--purple-deep);margin-bottom:1rem;line-height:1.2;}
-.contact-card-value{font-size:1.65rem;font-weight:700;color:var(--purple-deep);
-  letter-spacing:-0.01em;margin-bottom:0.5rem;word-break:break-all;}
-.phone-card .contact-card-value{color:var(--rose-dark);}
-.email-card .contact-card-value{color:#166A66;font-size:1.25rem;}
-.contact-card-note{font-size:0.8rem;color:rgba(35,29,45,0.42);line-height:1.75;}
+.contact-info-wrap{background:var(--cream);border-radius:20px;padding:2.2rem;}
+.contact-info-wrap h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--dark);margin-bottom:1.5rem;}
+.contact-info-item{display:flex;align-items:flex-start;gap:.9rem;padding:1rem 0;border-bottom:1px solid var(--border);}
+.contact-info-item:first-of-type{border-top:1px solid var(--border);}
+.contact-info-icon{width:38px;height:38px;border-radius:10px;background:var(--pk-lt);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
+.contact-info-detail strong{display:block;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem;}
+.contact-info-detail span,.contact-info-detail a{font-size:.88rem;color:var(--dark);line-height:1.45;}
+.contact-info-detail a:hover{color:var(--pk);}
+.contact-social-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:1.5rem;margin-bottom:.75rem;display:block;}
+.contact-social-links{display:flex;gap:.6rem;}
+.contact-social-links a{width:38px;height:38px;border-radius:10px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--mid);transition:all .2s;background:#fff;}
+.contact-social-links a:hover{background:var(--pk);color:#fff;border-color:var(--pk);}
 
-/* AVAILABILITY */
-.contact-avail{background:linear-gradient(145deg,#2A1245,#5B3B8C);border-radius:14px;
-  padding:3rem 2.5rem;margin-top:2.5rem;position:relative;overflow:hidden;}
-.contact-avail::before{content:'';position:absolute;top:-40px;right:-40px;
-  width:200px;height:200px;border-radius:50%;background:rgba(201,162,39,0.12);}
-.contact-avail-inner{position:relative;z-index:1;}
-.contact-avail-label{font-size:0.57rem;font-weight:900;letter-spacing:0.28em;text-transform:uppercase;
-  color:rgba(201,162,39,0.85);margin-bottom:0.6rem;display:block;}
-.contact-avail-h{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;
-  color:#fff;margin-bottom:0.75rem;line-height:1.2;}
-.contact-avail-h em{font-style:italic;color:#A8E6E3;}
-.contact-avail-text{font-size:0.9rem;color:rgba(255,255,255,0.65);line-height:1.85;}
+.faq{background:var(--cream);padding:5rem 2rem;}
+.faq-inner{max-width:860px;margin:0 auto;}
+.section-heading{font-family:var(--serif);font-size:clamp(1.55rem,2.4vw,2.1rem);font-weight:600;color:var(--dark);text-align:center;margin-bottom:2.5rem;}
+.faq-list{display:flex;flex-direction:column;gap:.75rem;}
+.faq-item{background:#fff;border:1.5px solid var(--border);border-radius:14px;overflow:hidden;}
+.faq-question{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;cursor:pointer;font-size:.9rem;font-weight:600;color:var(--dark);transition:color .2s;width:100%;background:none;border:none;text-align:left;}
+.faq-question:hover{color:var(--pk);}
+.faq-icon{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--muted);flex-shrink:0;transition:all .2s;}
+.faq-item.open .faq-icon{background:var(--pk);color:#fff;border-color:var(--pk);transform:rotate(45deg);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.25,1,.5,1);}
+.faq-answer p{padding:0 1.5rem 1.2rem;font-size:.86rem;line-height:1.65;color:var(--mid);}
 
-/* FOOTER */
-footer{background:#1A0F2E;padding:3rem 2.5rem 2rem;}
-.footer-inner{max-width:1200px;margin:0 auto;}
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-.footer-copy{font-size:0.68rem;color:rgba(255,255,255,0.2);}
+.start-group{background:var(--hero-bg);padding:5rem 2rem;}
+.start-group-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 480px;gap:5rem;align-items:center;}
+.start-group-text h2{font-family:var(--serif);font-size:clamp(1.55rem,2.5vw,2.4rem);font-weight:600;color:var(--dark);line-height:1.3;margin-bottom:1.1rem;}
+.start-group-text p{font-size:.9rem;line-height:1.7;color:var(--mid);margin-bottom:1.7rem;}
+.btn-pk{display:inline-flex;align-items:center;gap:.5rem;justify-content:center;padding:.75rem 2rem;background:var(--pk);color:#fff;border-radius:100px;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:background .2s,transform .15s;border:none;cursor:pointer;}
+.btn-pk:hover{background:#CC1060;transform:scale(1.04);}
+.start-group-photo{border-radius:20px;overflow:hidden;aspect-ratio:4/3;}
+.start-group-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
 
-/* RESPONSIVE */
-@media(max-width:860px){
-  .contact-grid{grid-template-columns:1fr;}
+footer{background:var(--lav-mid);}
+.footer-main{max-width:1200px;margin:0 auto;padding:4rem 2rem 3rem;}
+.footer-top{display:grid;grid-template-columns:260px 1fr;gap:5rem;padding-bottom:3rem;border-bottom:1px solid rgba(28,16,37,.12);margin-bottom:2.5rem;}
+.footer-brand-logo{height:50px;width:auto;margin-bottom:1.1rem;}
+.footer-brand p{font-size:.79rem;color:var(--dark);opacity:.7;margin-bottom:1.3rem;line-height:1.55;}
+.footer-newsletter{display:flex;gap:.5rem;}
+.footer-newsletter input{flex:1;padding:.58rem .95rem;border:1.5px solid rgba(28,16,37,.18);border-radius:8px;font-family:var(--sans);font-size:.79rem;color:var(--dark);background:rgba(255,255,255,.6);outline:none;}
+.footer-newsletter input::placeholder{color:rgba(28,16,37,.4);}
+.footer-newsletter button{padding:.58rem 1.15rem;background:var(--dark);color:#fff;border:none;border-radius:8px;cursor:pointer;font-family:var(--sans);font-size:.73rem;font-weight:700;letter-spacing:.06em;transition:background .2s;}
+.footer-newsletter button:hover{background:#3A1060;}
+.footer-social{display:flex;gap:.7rem;margin-top:1.1rem;}
+.footer-social a{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(28,16,37,.2);display:flex;align-items:center;justify-content:center;font-size:.82rem;color:var(--dark);transition:all .2s;}
+.footer-social a:hover{background:var(--dark);color:#fff;}
+.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;}
+.footer-col h4{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dark);margin-bottom:1rem;}
+.footer-col ul{list-style:none;}
+.footer-col li{margin-bottom:.48rem;}
+.footer-col a{font-size:.79rem;color:rgba(28,16,37,.68);transition:color .2s;}
+.footer-col a:hover{color:var(--dark);}
+.footer-bottom{background:rgba(0,0,0,.1);padding:1.2rem 2rem;text-align:center;font-size:.69rem;color:rgba(28,16,37,.52);line-height:1.65;}
+
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.25,1,.5,1),transform .7s cubic-bezier(.25,1,.5,1);}
+.rv.in{opacity:1;transform:none;}
+
+@media(max-width:960px){
+  .contact-main-inner{grid-template-columns:1fr;gap:3rem;}
+  .form-row{grid-template-columns:1fr;}
+  .start-group-inner{grid-template-columns:1fr;gap:2.5rem;}
+  .start-group-photo{aspect-ratio:16/9;}
+  .footer-top{grid-template-columns:1fr;gap:2rem;}
+  .footer-cols{grid-template-columns:1fr 1fr;}
 }
-@media(max-width:600px){
-  nav{padding:0.75rem 1.25rem;}
+@media(max-width:680px){
+  nav{padding:0 1.2rem;}
   .nav-links{display:none;}
-  .nav-links.open{display:flex;flex-direction:column;position:fixed;
-    top:72px;left:0;right:0;background:rgba(255,255,255,0.99);
-    padding:1.5rem;box-shadow:0 12px 40px rgba(0,0,0,0.12);gap:1.1rem;z-index:299;}
-  .nav-burger{display:flex;}
-  .contact-hero{padding:7rem 1.25rem 3.5rem;}
-  .contact-section{padding:3.5rem 1.25rem 5rem;}
-  .contact-card{padding:2rem 1.5rem;}
-  .contact-card-value{font-size:1.35rem;}
-  .email-card .contact-card-value{font-size:1rem;}
 }
+
+/* ── GRAIN TEXTURE ── */
+.gin-grain{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;opacity:0.038;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* ── SHOE CURSOR ── */
+body{cursor:none;}
+a,button,label,select,input,textarea{cursor:none!important;}
+@media(hover:none){body,a,button,label,select,input,textarea{cursor:auto!important;}}
+#gin-cursor{
+  position:fixed;left:-100px;top:-100px;
+  pointer-events:none;z-index:10000;
+  font-size:42px;line-height:1;user-select:none;
+  transform:rotate(-15deg);
+  transition:font-size .15s ease,transform .15s ease;
+  filter:drop-shadow(0 2px 10px rgba(240,36,122,.5));}
+#gin-cursor.hov{font-size:54px;transform:rotate(-22deg);}
+@media(hover:none){#gin-cursor{display:none;}}
 </style>
 </head>
 <body>
+<div id="gin-cursor">👟</div>
+<div class="gin-grain"></div>
 
-<nav id="main-nav">
-  <div class="nav-inner">
-    <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" style="height:62px;display:block;"></a>
-    <div class="nav-links" id="nav-links">
-      <a href="index.html">Home</a>
-      <a href="events.html">Events</a>
-      <a href="index.html#podcast">Podcast</a>
-      <a href="products.html">Shop</a>
-      <a href="contact.html" style="color:var(--purple-royal);">Contact</a>
-      <a href="donate.html" class="nav-cta">Donate</a>
-    </div>
-    <button class="nav-burger" id="nav-burger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+<nav>
+  <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" class="nav-logo"></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="podcast.html">Podcast</a>
+    <a href="contact.html" class="active">Contact</a>
   </div>
+  <a href="donate.html" class="nav-give">&#9829; Give</a>
 </nav>
 
-<!-- HERO -->
-<div class="contact-hero">
-  <div class="contact-hero-bg"></div>
-  <div class="contact-hero-noise"></div>
-  <div class="contact-hero-orb"></div>
-  <div class="contact-hero-orb2"></div>
-  <div class="contact-hero-inner">
-    <span class="contact-hero-label">✦ Get in Touch</span>
-    <h1 class="contact-hero-h">Reach Out.<em>We'd Love to Hear from You.</em></h1>
-    <p class="contact-hero-sub">Whether you have a question about an event, need help getting started, or just want to connect — we're here for you.</p>
+<section class="page-hero">
+  <div class="page-hero-inner rv">
+    <h1>Get In Touch</h1>
+    <p>We&rsquo;d love to hear from you. Whether you want to find a community group, partner with us, or just say hello &mdash; we are here.</p>
   </div>
-</div>
+</section>
 
-<!-- CONTACT INFO -->
-<section class="contact-section">
-  <div class="contact-inner">
-    <div class="contact-grid">
-      <!-- Phone -->
-      <div class="contact-card phone-card">
-        <span class="contact-card-icon">📞</span>
-        <div class="contact-card-label">Call or Text</div>
-        <div class="contact-card-type">Phone Number</div>
-        <div class="contact-card-value">817-983-1120</div>
-        <p class="contact-card-note">Call or text us anytime — we do our best to respond within 24 hours.</p>
+<section class="contact-main">
+  <div class="contact-main-inner">
+
+    <div class="contact-form-wrap rv">
+      <h2>Send Us a Message</h2>
+      <p>Fill out the form below and our team will get back to you within 1&ndash;2 business days.</p>
+      <form onsubmit="return false;">
+        <div class="form-row">
+          <div class="form-group"><label for="first-name">First Name</label><input type="text" id="first-name" placeholder="Your first name"></div>
+          <div class="form-group"><label for="last-name">Last Name</label><input type="text" id="last-name" placeholder="Your last name"></div>
+        </div>
+        <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" placeholder="you@email.com"></div>
+        <div class="form-group">
+          <label for="topic">What can we help you with?</label>
+          <select id="topic">
+            <option value="">Select a topic&hellip;</option>
+            <option>Find a Community Group</option>
+            <option>Start a Group in My City</option>
+            <option>Event Information</option>
+            <option>Donation &amp; Giving</option>
+            <option>Podcast &amp; Media</option>
+            <option>Partner With GIN</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+        <div class="form-group"><label for="message">Message</label><textarea id="message" placeholder="Tell us how we can help you&hellip;"></textarea></div>
+        <button type="submit" class="form-submit">Send Message</button>
+        <p class="form-note">&#128274; Your information is safe with us. We never share or sell your data.</p>
+      </form>
+    </div>
+
+    <div class="contact-info-wrap rv">
+      <h3>Contact Information</h3>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">&#9993;</div>
+        <div class="contact-info-detail"><strong>Email</strong><a href="mailto:hello@goinspire.now">hello@goinspire.now</a></div>
       </div>
-      <!-- Email -->
-      <div class="contact-card email-card">
-        <span class="contact-card-icon">✉️</span>
-        <div class="contact-card-label">Send a Message</div>
-        <div class="contact-card-type">Email Address</div>
-        <div class="contact-card-value">goinspireflow@gmail.com</div>
-        <p class="contact-card-note">Email us for event questions, partnership inquiries, or just to say hello.</p>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">&#127967;</div>
+        <div class="contact-info-detail"><strong>Headquartered In</strong><span>Atlanta, Georgia</span></div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">&#128205;</div>
+        <div class="contact-info-detail"><strong>Communities in</strong><span>10+ cities across the U.S. and growing</span></div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">&#9200;</div>
+        <div class="contact-info-detail"><strong>Response Time</strong><span>1&ndash;2 business days</span></div>
+      </div>
+      <span class="contact-social-label">Follow Us</span>
+      <div class="contact-social-links">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">&#9632;</a>
+        <a href="#" aria-label="YouTube">&#9654;</a>
+        <a href="#" aria-label="TikTok">&#9835;</a>
       </div>
     </div>
 
-    <!-- Availability -->
-    <div class="contact-avail">
-      <div class="contact-avail-inner">
-        <span class="contact-avail-label">Hours &amp; Response</span>
-        <h2 class="contact-avail-h">We're a Community,<em>Not a Call Center.</em></h2>
-        <p class="contact-avail-text">We typically respond within 24 hours. For urgent event questions, texting is the fastest way to reach us. For everything else, email works great — and we read every single one.</p>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="faq-inner">
+    <h2 class="section-heading rv">Frequently Asked Questions</h2>
+    <div class="faq-list rv">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)"><span>How do I find a Go Inspire Now community group near me?</span><div class="faq-icon">+</div></button>
+        <div class="faq-answer"><p>Use the search bar on our homepage to find groups by city, or send us a message here and we will connect you directly with a group leader in your area. We are growing rapidly &mdash; if there&rsquo;s no group near you yet, ask about starting one!</p></div>
       </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)"><span>What does it take to start a GIN group in my city?</span><div class="faq-icon">+</div></button>
+        <div class="faq-answer"><p>All you need is a heart for women in your community and a desire to lead. We provide all the training, materials, and coaching you need. Fill out the form and select &ldquo;Start a Group in My City&rdquo; &mdash; our team will reach out within 48 hours.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)"><span>Is Go Inspire Now a registered nonprofit?</span><div class="faq-icon">+</div></button>
+        <div class="faq-answer"><p>Yes. Go Inspire Now is a registered 501(c)(3) nonprofit organization. All donations are tax-deductible to the extent permitted by law. You will receive a donation receipt for every gift you make.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)"><span>How can I get involved as a volunteer?</span><div class="faq-icon">+</div></button>
+        <div class="faq-answer"><p>We love volunteers! Send us a message letting us know your city and how you&rsquo;d like to serve. Opportunities include group facilitation, event support, social media help, and more. We will match you with a role that fits your gifts.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)"><span>How can I partner with GIN as an organization or business?</span><div class="faq-icon">+</div></button>
+        <div class="faq-answer"><p>We welcome partnerships with businesses, churches, nonprofits, and community organizations. Fill out the contact form, select &ldquo;Partner With GIN&rdquo;, and our partnerships team will be in touch to discuss how we can collaborate.</p></div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2026 Go Inspire Now · All rights reserved</p>
-      <p class="footer-copy">Built with love for the community</p>
+<section class="start-group">
+  <div class="start-group-inner">
+    <div class="rv">
+      <h2>Ready to Start a Group in Your City?</h2>
+      <p>You don&rsquo;t have to wait for someone else to bring hope to your community. With our full support system behind you &mdash; training, materials, and coaching &mdash; you can launch a GIN group that changes women&rsquo;s lives right where you live.</p>
+      <a href="#" class="btn-pk">Apply to Lead a Group &#8594;</a>
+    </div>
+    <div class="start-group-photo rv">
+      <img src="images/founder-3.jpg" alt="Start a GIN Group">
     </div>
   </div>
+</section>
+
+<footer>
+  <div class="footer-main">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/gin-logo.png" alt="Go Inspire Now" class="footer-brand-logo">
+        <p>Join our email newsletter for stories of hope, event updates, and ways to get involved.</p>
+        <div class="footer-newsletter">
+          <input type="email" placeholder="Email Address">
+          <button>Subscribe</button>
+        </div>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">&#9632;</a>
+          <a href="#" aria-label="YouTube">&#9654;</a>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col"><h4>About Us</h4><ul><li><a href="#">Our Story</a></li><li><a href="#">Our Mission</a></li><li><a href="#">Leadership</a></li><li><a href="podcast.html">The Podcast</a></li></ul></div>
+        <div class="footer-col"><h4>Programs</h4><ul><li><a href="#">Women in Crisis</a></li><li><a href="#">Single Moms</a></li><li><a href="#">Family Support</a></li><li><a href="events.html">Events</a></li></ul></div>
+        <div class="footer-col"><h4>Get Involved</h4><ul><li><a href="donate.html">Give</a></li><li><a href="#">Volunteer</a></li><li><a href="#">Start a Group</a></li><li><a href="#">Partner With Us</a></li></ul></div>
+        <div class="footer-col"><h4>Connect</h4><ul><li><a href="contact.html">Contact Us</a></li><li><a href="#">Privacy Policy</a></li><li><a href="podcast.html">Podcast</a></li><li><a href="#">Social Media</a></li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy;2026 All Rights Reserved &nbsp;|&nbsp; Go Inspire Now, a nonprofit organization dedicated to empowering women through community, hope, and purpose. &nbsp;|&nbsp; <a href="contact.html" style="text-decoration:underline;color:inherit;">Contact Us</a></div>
 </footer>
 
 <script>
-const nav = document.getElementById('main-nav');
-document.getElementById('nav-burger').addEventListener('click', () =>
-  document.getElementById('nav-links').classList.toggle('open'));
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => {
+    i.classList.remove('open');
+    i.querySelector('.faq-answer').style.maxHeight = null;
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    const answer = item.querySelector('.faq-answer');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
+const ro = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.rv').forEach(el => ro.observe(el));
+
+// Shoe cursor
+(function(){
+  var c = document.getElementById('gin-cursor');
+  if(!c) return;
+  document.addEventListener('mousemove',function(e){
+    c.style.left = (e.clientX - 6) + 'px';
+    c.style.top  = (e.clientY - 32) + 'px';
+  });
+  document.querySelectorAll('a,button').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ c.classList.add('hov'); });
+    el.addEventListener('mouseleave',function(){ c.classList.remove('hov'); });
+  });
+})();
 </script>
 </body>
 </html>
