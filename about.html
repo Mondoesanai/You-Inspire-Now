@@ -3,271 +3,358 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — You Inspire Now</title>
+<title>About LeeLee — Go Inspire Now</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'Lato',sans-serif;background:#04040A;color:rgba(255,255,255,0.85);overflow-x:hidden;}
-.nav-link{position:relative;font-size:0.82rem;letter-spacing:0.1em;font-weight:700;color:rgba(255,255,255,0.75);text-transform:uppercase;transition:color 0.3s;text-decoration:none;}
-.nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:#2EB8B0;transition:width 0.3s;}
-.nav-link:hover{color:#2EB8B0;}.nav-link:hover::after{width:100%;}
-.nav-link.active{color:#fff;}.nav-link.active::after{width:100%;background:#C9A227;}
-.scrolled-nav{background:rgba(4,4,12,0.96)!important;backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.06);box-shadow:0 4px 40px rgba(0,0,0,0.5);}
-.section-tag{font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:#2EB8B0;font-weight:700;margin-bottom:0.75rem;display:block;}
-.section-tag.gold{color:#C9A227;}
-.section-h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);color:#fff;font-weight:700;letter-spacing:-0.025em;line-height:1.15;margin-bottom:1.25rem;}
-.btn-primary{display:inline-block;padding:1rem 2.5rem;background:linear-gradient(135deg,#2EB8B0,#0D9488);color:#fff;font-weight:700;font-size:0.88rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;transition:transform 0.25s,box-shadow 0.25s;box-shadow:0 8px 32px rgba(46,184,176,0.35);}
-.btn-primary:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 16px 48px rgba(46,184,176,0.5);}
-.btn-ghost{display:inline-block;padding:1rem 2.5rem;background:transparent;color:rgba(255,255,255,0.8);font-weight:700;font-size:0.88rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;border:1px solid rgba(255,255,255,0.2);text-decoration:none;transition:background 0.2s,border-color 0.2s,transform 0.2s;}
-.btn-ghost:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.4);transform:translateY(-2px);}
-.reveal-up{opacity:0;transform:translateY(40px);}
-.reveal-left{opacity:0;transform:translateX(-50px);}
-.reveal-right{opacity:0;transform:translateX(50px);}
-.reveal-scale{opacity:0;transform:scale(0.9);}
-.revealed{opacity:1!important;transform:none!important;transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.34,1.56,0.64,1)!important;}
-.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+body{font-family:'Inter',sans-serif;background:#fff;color:#1C1025;overflow-x:hidden;max-width:100%;}
+img{display:block;max-width:100%;height:auto;}
+a{text-decoration:none;color:inherit;}
+
+:root{
+  --pk:#F0247A;--pk-lt:#FFE0EF;--vi:#7B2FFF;--vi-lt:#EDE6FF;
+  --cy:#00C4DF;--go:#FFC425;--cream:#F7F2EE;
+  --blush:#FFF0F5;--lav:#EAE3FF;--lav-mid:#C4B5F0;
+  --dark:#1C1025;--mid:#4A3070;--muted:#8A7AAA;--border:#E0D8F0;
+  --serif:'Playfair Display',serif;--sans:'Inter',sans-serif;
+}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid var(--border);padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{height:44px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:2rem;}
+.nav-links a{font-size:.78rem;font-weight:600;letter-spacing:.04em;color:var(--mid);transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--pk);}
+.nav-give{background:var(--pk);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:.55rem 1.5rem;border-radius:100px;transition:background .2s,transform .15s;display:flex;align-items:center;gap:.35rem;}
+.nav-give:hover{background:#CC1060;transform:scale(1.04);}
+
+/* ── HAMBURGER ── */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;padding:.5rem .4rem;cursor:pointer;z-index:1100;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:transform .3s ease,opacity .3s ease;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* ── MOBILE MENU ── */
+.mobile-menu{position:fixed;inset:0;z-index:1050;background:rgba(14,0,32,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.8rem;opacity:0;pointer-events:none;transition:opacity .35s ease;}
+.mobile-menu.open{opacity:1;pointer-events:all;}
+.mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:rgba(255,255,255,.82);letter-spacing:.03em;line-height:1;transition:color .2s;}
+.mobile-menu a:hover{color:#fff;}
+.mobile-menu .m-give{margin-top:.5rem;background:var(--pk);color:#fff;font-family:'Inter',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 2.8rem;border-radius:100px;box-shadow:0 4px 24px rgba(240,36,122,.45);transition:background .2s;}
+.mobile-menu .m-give:hover{background:#CC1060;}
+.mobile-menu-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;cursor:pointer;font-size:1.6rem;color:rgba(255,255,255,.5);transition:color .2s;padding:.5rem;}
+.mobile-menu-close:hover{color:#fff;}
+
+/* ── PAGE HERO ── */
+.page-hero{position:relative;padding:7rem 2rem 6rem;text-align:center;overflow:hidden;}
+.page-hero-bg{position:absolute;inset:0;}
+.page-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 20%;}
+.page-hero-bg::after{content:'';position:absolute;inset:0;background:rgba(8,0,20,.58);}
+.page-hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.page-hero-pre{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:1.2rem;display:block;}
+.page-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,7vw,7rem);color:#fff;letter-spacing:.02em;line-height:.9;margin-bottom:1.2rem;}
+.page-hero h1 .pk{color:#F0247A;}
+.page-hero p{font-family:var(--serif);font-style:italic;font-size:clamp(1rem,1.8vw,1.25rem);color:rgba(255,255,255,.75);line-height:1.65;max-width:520px;margin:0 auto;}
+
+/* ── MEET LEELEE ── */
+.meet-leelee{padding:7rem 2rem;background:#fff;}
+.meet-leelee-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:420px 1fr;gap:7rem;align-items:start;}
+.leelee-photo{border-radius:24px;overflow:hidden;position:relative;}
+.leelee-photo img{width:100%;display:block;object-fit:cover;object-position:center top;}
+.leelee-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(123,47,255,.15) 0%,transparent 50%);pointer-events:none;}
+.leelee-text .pre{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pk);margin-bottom:.8rem;}
+.leelee-text .name{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,5vw,5.5rem);color:var(--dark);line-height:.9;margin-bottom:.5rem;}
+.leelee-text .role{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--muted);margin-bottom:2rem;}
+.leelee-divider{width:40px;height:3px;background:var(--pk);margin-bottom:2rem;}
+.leelee-quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,2vw,1.45rem);line-height:1.7;color:var(--dark);margin-bottom:2rem;padding-left:1.5rem;border-left:3px solid var(--pk);}
+.leelee-text p{font-size:.9rem;line-height:1.78;color:var(--mid);margin-bottom:1.2rem;}
+
+/* ── GIN STORY ── */
+.gin-story{padding:7rem 2rem;background:var(--blush);}
+.gin-story-inner{max-width:780px;margin:0 auto;text-align:center;}
+.gin-story-inner .pre{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pk);margin-bottom:1rem;}
+.gin-story-inner h2{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.6rem);font-weight:600;color:var(--dark);margin-bottom:2.5rem;line-height:1.3;}
+.gin-story-inner p{font-size:.95rem;line-height:1.85;color:var(--mid);margin-bottom:1.5rem;text-align:left;}
+.highlight{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--dark);text-align:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.5rem 0;margin:2rem 0;}
+
+/* ── VALUES ── */
+.values{padding:7rem 2rem;background:var(--cream);}
+.values-inner{max-width:1100px;margin:0 auto;}
+.values-header{text-align:center;margin-bottom:4rem;}
+.values-header .pre{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pk);margin-bottom:.8rem;}
+.values-header h2{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.6rem);font-weight:600;color:var(--dark);}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.value-card{background:#fff;border-radius:20px;padding:2.5rem 2rem;border:1.5px solid var(--border);text-align:center;}
+.value-word{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:.9;margin-bottom:.75rem;display:block;}
+.value-card:nth-child(1) .value-word{color:var(--pk);}
+.value-card:nth-child(2) .value-word{color:var(--cy);}
+.value-card:nth-child(3) .value-word{color:var(--go);}
+.value-card p{font-size:.88rem;line-height:1.7;color:var(--mid);}
+
+/* ── CTA ── */
+.about-cta{padding:6rem 2rem;background:var(--lav);text-align:center;}
+.about-cta-inner{max-width:620px;margin:0 auto;}
+.about-cta h2{font-family:var(--serif);font-size:clamp(1.65rem,3vw,2.5rem);font-weight:600;font-style:italic;color:var(--dark);margin-bottom:1.2rem;line-height:1.3;}
+.about-cta p{font-size:.92rem;line-height:1.75;color:var(--mid);margin-bottom:2.5rem;}
+.about-cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-pk{display:inline-flex;align-items:center;justify-content:center;padding:.78rem 2.1rem;background:var(--pk);color:#fff;border-radius:100px;font-size:.77rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:background .2s,transform .15s;}
+.btn-pk:hover{background:#CC1060;transform:translateY(-2px);}
+.btn-outline{display:inline-flex;align-items:center;justify-content:center;padding:.78rem 2.1rem;border:1.5px solid var(--pk);color:var(--pk);border-radius:100px;font-size:.77rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:all .2s;}
+.btn-outline:hover{background:var(--pk);color:#fff;transform:translateY(-2px);}
+
+/* ── FOOTER ── */
+footer{background:var(--lav-mid);}
+.footer-main{max-width:1200px;margin:0 auto;padding:4rem 2rem 3rem;}
+.footer-top{display:grid;grid-template-columns:260px 1fr;gap:5rem;padding-bottom:3rem;border-bottom:1px solid rgba(28,16,37,.12);margin-bottom:2.5rem;}
+.footer-brand-logo{height:50px;width:auto;margin-bottom:1.1rem;}
+.footer-brand p{font-size:.79rem;color:var(--dark);opacity:.7;margin-bottom:1.3rem;line-height:1.55;}
+.footer-newsletter{display:flex;gap:.5rem;}
+.footer-newsletter input{flex:1;padding:.58rem .95rem;border:1.5px solid rgba(28,16,37,.18);border-radius:8px;font-family:var(--sans);font-size:.79rem;color:var(--dark);background:rgba(255,255,255,.6);outline:none;}
+.footer-newsletter input::placeholder{color:rgba(28,16,37,.4);}
+.footer-newsletter button{padding:.58rem 1.15rem;background:var(--dark);color:#fff;border:none;border-radius:8px;cursor:pointer;font-family:var(--sans);font-size:.73rem;font-weight:700;letter-spacing:.06em;transition:background .2s;}
+.footer-newsletter button:hover{background:#3A1060;}
+.footer-social{display:flex;gap:.7rem;margin-top:1.1rem;}
+.footer-social a{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(28,16,37,.2);display:flex;align-items:center;justify-content:center;font-size:.82rem;color:var(--dark);transition:all .2s;}
+.footer-social a:hover{background:var(--dark);color:#fff;}
+.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;}
+.footer-col h4{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dark);margin-bottom:1rem;}
+.footer-col ul{list-style:none;}
+.footer-col li{margin-bottom:.48rem;}
+.footer-col a{font-size:.79rem;color:rgba(28,16,37,.68);transition:color .2s;}
+.footer-col a:hover{color:var(--dark);}
+.footer-bottom{background:rgba(0,0,0,.1);padding:1.2rem 2rem;text-align:center;font-size:.69rem;color:rgba(28,16,37,.52);line-height:1.65;}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.25,1,.5,1),transform .7s cubic-bezier(.25,1,.5,1);}
+.rv.in{opacity:1;transform:none;}
+.rv-left{opacity:0;transform:translateX(-26px);transition:opacity .8s cubic-bezier(.25,1,.5,1),transform .8s cubic-bezier(.25,1,.5,1);}
+.rv-left.in{opacity:1;transform:none;}
+.rv-right{opacity:0;transform:translateX(26px);transition:opacity .8s cubic-bezier(.25,1,.5,1),transform .8s cubic-bezier(.25,1,.5,1);}
+.rv-right.in{opacity:1;transform:none;}
+.rv-d1{transition-delay:.1s;}.rv-d2{transition-delay:.2s;}.rv-d3{transition-delay:.3s;}
+
+/* ── GRAIN ── */
+.gin-grain{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* ── SHOE CURSOR ── */
+@media(hover:hover){*{cursor:none!important;}}
+#gin-cursor{position:fixed;left:0;top:0;pointer-events:none;z-index:10001;opacity:0;transition:opacity .25s ease;}
+#gin-shoe{display:block;font-size:40px;line-height:1;user-select:none;transform:rotate(-15deg);transition:font-size .2s cubic-bezier(.34,1.56,.64,1),transform .22s cubic-bezier(.34,1.56,.64,1),filter .2s ease;filter:drop-shadow(0 3px 14px rgba(240,36,122,.55));}
+#gin-cursor.hov #gin-shoe{font-size:56px;transform:rotate(-26deg) scale(1.1);}
+#gin-cursor.click #gin-shoe{font-size:34px;transform:rotate(-38deg) scale(.85);transition:font-size .07s ease,transform .07s ease;}
+@media(hover:none){#gin-cursor{display:none!important;}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .meet-leelee-inner{grid-template-columns:1fr;gap:3rem;}
+  .leelee-photo{max-height:480px;overflow:hidden;}
+  .values-grid{grid-template-columns:1fr 1fr 1fr;}
+  .footer-top{grid-template-columns:1fr;gap:2rem;}
+  .footer-cols{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:680px){
+  nav{padding:0 1.25rem;}
+  .nav-links,.nav-give{display:none;}
+  .hamburger{display:flex;}
+  .page-hero{padding:5.5rem 1.5rem 4rem;}
+  .page-hero h1{font-size:clamp(3rem,12vw,5rem);}
+  .meet-leelee{padding:5rem 1.5rem;}
+  .gin-story{padding:5rem 1.5rem;}
+  .values{padding:5rem 1.5rem;}
+  .values-grid{grid-template-columns:1fr;}
+  .about-cta{padding:5rem 1.5rem;}
+  .about-cta-btns{flex-direction:column;align-items:center;}
+  .footer-newsletter{flex-direction:column;}
+  .footer-newsletter input,.footer-newsletter button{width:100%;}
+}
+@media(max-width:480px){
+  .footer-cols{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
-<div class="grain"></div>
+<div id="gin-cursor" aria-hidden="true"><span id="gin-shoe">👟</span></div>
+<div class="gin-grain"></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-close">&#10005;</button>
+  <a href="index.html">Home</a>
+  <a href="events.html">Join a Walk</a>
+  <a href="donate.html#love-boxes">Love Boxes</a>
+  <a href="donate.html#scholarships">Scholarships</a>
+  <a href="about.html">About LeeLee</a>
+  <a href="donate.html" class="m-give">&#10024;&nbsp; Give</a>
+</div>
 
 <!-- NAV -->
-<nav id="mainNav" style="position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 2.5rem;transition:all 0.3s ease;background:transparent;">
-  <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
-    <a href="index.html" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;">
-      <img src="assets/yin-logo.png" alt="You Inspire Now" style="height:48px;filter:invert(1) drop-shadow(0 0 10px rgba(46,184,176,0.6));">
-      <span style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#fff;letter-spacing:0.01em;">You Inspire Now</span>
-    </a>
-    <div style="display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="about.html" class="nav-link active">About</a>
-      <a href="pillars.html" class="nav-link">Our Pillars</a>
-      <a href="community.html" class="nav-link">Community</a>
-      <a href="resources.html" class="nav-link">Resources</a>
-      <a href="go-inspire-now.html" style="display:inline-block;padding:0.55rem 1.4rem;background:linear-gradient(135deg,#2EB8B0,#0D9488);border-radius:4px;color:#fff;font-size:0.78rem;font-weight:700;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;box-shadow:0 4px 20px rgba(46,184,176,0.3);transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.04)';this.style.boxShadow='0 8px 32px rgba(46,184,176,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(46,184,176,0.3)'">Go Inspire Now ♥</a>
-    </div>
+<nav>
+  <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" class="nav-logo"></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="events.html">Join a Walk</a>
+    <a href="donate.html#love-boxes">Love Boxes</a>
+    <a href="donate.html#scholarships">Scholarships</a>
+    <a href="about.html" class="active">About LeeLee</a>
   </div>
+  <a href="donate.html" class="nav-give">&#10024;&nbsp; Give</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- PAGE HERO -->
-<section style="background:linear-gradient(160deg,#04040A 0%,#0D0520 50%,#06060E 100%);padding:10rem 2.5rem 7rem;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 70% 50%,rgba(107,33,168,0.2),transparent),radial-gradient(ellipse 40% 60% at 20% 80%,rgba(46,184,176,0.08),transparent);"></div>
-  <!-- Decorative lines -->
-  <div style="position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;">
-    <div style="position:absolute;top:20%;left:-5%;width:40%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,162,39,0.15),transparent);transform:rotate(-8deg);"></div>
-    <div style="position:absolute;bottom:30%;right:-5%;width:35%;height:1px;background:linear-gradient(90deg,transparent,rgba(46,184,176,0.12),transparent);transform:rotate(6deg);"></div>
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="assets/leelee-hero.png" alt="LeeLee, Founder of Go Inspire Now">
   </div>
-  <!-- Unsplash hero image -->
-  <div style="position:absolute;right:0;top:0;width:45%;height:100%;overflow:hidden;">
-    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&h=900&fit=crop&crop=faces&q=80" alt="Woman of purpose" style="width:100%;height:100%;object-fit:cover;opacity:0.18;">
-    <div style="position:absolute;inset:0;background:linear-gradient(90deg,#04040A 0%,rgba(4,4,10,0.6) 50%,transparent 100%);"></div>
-  </div>
-  <div style="position:relative;z-index:1;max-width:1280px;margin:0 auto;">
-    <div style="max-width:640px;">
-      <span class="section-tag gold reveal-up">Our Story</span>
-      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6vw,4.5rem);color:#fff;font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:1.5rem;" class="reveal-up">
-        A Faith-Rooted<br><em style="color:#2EB8B0;font-style:italic;">Movement for Women</em>
-      </h1>
-      <p style="font-size:1.1rem;color:rgba(255,255,255,0.65);line-height:1.8;font-weight:300;max-width:520px;" class="reveal-up">
-        Born from a personal turning point — a story of overcoming brokenness and finding renewed purpose — You Inspire Now exists to be the support every woman deserves.
-      </p>
-    </div>
+  <div class="page-hero-inner rv">
+    <span class="page-hero-pre">The Heart Behind Go Inspire Now</span>
+    <h1>MEET<br><span class="pk">LEELEE.</span></h1>
+    <p>&ldquo;I&rsquo;ve always believed there is something inside every woman that the world needs.&rdquo;</p>
   </div>
 </section>
 
-<!-- FOUNDER STORY -->
-<section style="padding:8rem 2.5rem;background:#06060E;">
-  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
-    <div class="reveal-left">
-      <span class="section-tag">The Founder Story</span>
-      <h2 class="section-h2">From Brokenness<br>to Becoming</h2>
-      <p style="font-size:1.05rem;color:rgba(255,255,255,0.6);line-height:1.85;margin-bottom:1.5rem;font-weight:300;">
-        There was a season of confusion, shame, unhealthy patterns, and living for outward performance. A season where identity was buried under expectation and pain.
-      </p>
-      <p style="font-size:1.05rem;color:rgba(255,255,255,0.6);line-height:1.85;margin-bottom:1.75rem;font-weight:300;">
-        Then came a turning point. A surrender. An inward healing that changed everything. From that place of restored identity and discovered purpose, You Inspire Now was born — not as a polished program, but as a personal mission.
-      </p>
-      <blockquote style="font-family:'Playfair Display',serif;font-size:1.05rem;color:rgba(255,255,255,0.85);font-style:italic;border-left:3px solid #2EB8B0;padding-left:1.5rem;line-height:1.75;">
-        "What I found on the other side of surrender, I needed to pass on. No woman should have to find her way through the dark alone."
+<!-- MEET LEELEE -->
+<section class="meet-leelee">
+  <div class="meet-leelee-inner">
+    <div class="leelee-photo rv-left">
+      <img src="assets/leelee-hero.png" alt="LeeLee, Founder of Go Inspire Now">
+    </div>
+    <div class="leelee-text rv-right">
+      <p class="pre">Founder &amp; Vision Leader</p>
+      <h2 class="name">LEELEE</h2>
+      <p class="role">Founder, Go Inspire Now</p>
+      <div class="leelee-divider"></div>
+      <blockquote class="leelee-quote">
+        I&rsquo;ve always believed there is something inside every woman that the world needs. Sometimes all she needs is someone to walk beside her long enough to remember it.
       </blockquote>
-    </div>
-    <div class="reveal-right" style="position:relative;">
-      <div style="border-radius:4px;overflow:hidden;position:relative;">
-        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=700&h=800&fit=crop&crop=faces&q=80" alt="Woman of strength" style="width:100%;height:480px;object-fit:cover;display:block;">
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(4,4,10,0.8) 0%,rgba(107,33,168,0.15) 50%,transparent 100%);"></div>
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:2rem;">
-          <p style="font-family:'Playfair Display',serif;font-size:0.95rem;color:rgba(255,255,255,0.8);font-style:italic;">Faith · Healing · Identity · Purpose</p>
-        </div>
-      </div>
-      <!-- Accent border -->
-      <div style="position:absolute;top:-12px;right:-12px;bottom:12px;left:12px;border:1px solid rgba(201,162,39,0.2);border-radius:4px;pointer-events:none;"></div>
+      <p>Go Inspire Now didn&rsquo;t begin as a program or a plan. It began as a feeling LeeLee couldn&rsquo;t shake&mdash;that too many women were walking through life feeling unseen, undervalued, and quietly exhausted by carrying everything alone.</p>
+      <p>She had been one of those women. And she knew the moment everything changed wasn&rsquo;t when she found the right resource or attended the right event. It was when she found the right community. Women who walked beside her. Women who saw her. Women who reminded her of who she already was.</p>
+      <p>That&rsquo;s the movement LeeLee set out to build&mdash;one walk, one conversation, one friendship at a time.</p>
     </div>
   </div>
 </section>
 
-<!-- MISSION -->
-<section style="padding:8rem 2.5rem;background:#04040A;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(13,5,32,0.8),transparent);"></div>
-  <div style="max-width:1280px;margin:0 auto;position:relative;z-index:1;">
-    <div style="text-align:center;margin-bottom:5rem;">
-      <span class="section-tag reveal-up" style="justify-content:center;display:block;">Our Mission</span>
-      <h2 class="section-h2 reveal-up" style="max-width:700px;margin:0 auto 1.5rem;">Who We Are and<br>What We Stand For</h2>
-      <p style="font-size:1.05rem;color:rgba(255,255,255,0.5);max-width:660px;margin:0 auto;line-height:1.85;font-weight:300;" class="reveal-up">
-        To inspire women through encouragement, empowerment, community, mentorship, and supportive connections that build resilience, strengthen identity and purpose, and help women move forward with confidence.
-      </p>
+<!-- THE GIN STORY -->
+<section class="gin-story" id="gin-story">
+  <div class="gin-story-inner">
+    <p class="pre">Our Story</p>
+    <h2 class="rv">Go Inspire Now Wasn&rsquo;t Built in a Boardroom.</h2>
+    <p class="rv">It was built on a walk.</p>
+    <p class="rv">It was built in conversations between women who were tired of pretending to be fine. In moments where someone finally said, &ldquo;Me too.&rdquo; In friendships that started on a trail and grew into something neither woman expected.</p>
+    <p class="rv">Go Inspire Now exists because LeeLee believed&mdash;and still believes&mdash;that women were never meant to walk through life alone. Not the hard parts. Not the in-between parts. Not even the beautiful parts.</p>
+    <div class="highlight rv">
+      Go Inspire Now is a movement where women rediscover the woman they were created to be through community, stories, encouragement, and shared experiences.
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;">
-      <div class="reveal-up" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:2.25rem;transition:border-color 0.3s,background 0.3s;" onmouseover="this.style.borderColor='rgba(46,184,176,0.3)';this.style.background='rgba(46,184,176,0.04)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)'">
-        <div style="width:40px;height:2px;background:#2EB8B0;margin-bottom:1.5rem;"></div>
-        <h4 style="font-family:'Playfair Display',serif;font-size:1.15rem;color:#fff;margin-bottom:0.75rem;">Faith-Centered</h4>
-        <p style="font-size:0.93rem;color:rgba(255,255,255,0.5);line-height:1.8;">Rooted in the belief that every woman was created with purpose, value, and an irreplaceable story.</p>
+    <p class="rv">We are not a crisis organization. We are not a counseling center. We are a movement of women who show up for each other&mdash;as they are, where they are, with no prerequisites and no pressure.</p>
+    <p class="rv">Right now, we&rsquo;re focused on building one incredible movement in Dallas&ndash;Fort Worth before taking this anywhere else. Because we believe in doing things right before doing things big.</p>
+  </div>
+</section>
+
+<!-- SEEN VALUED LOVED -->
+<section class="values">
+  <div class="values-inner">
+    <div class="values-header rv">
+      <p class="pre">What Every Woman Deserves</p>
+      <h2>The Three Words Behind Everything We Do.</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card rv rv-d1">
+        <span class="value-word">SEEN.</span>
+        <p>In a world that moves too fast, every woman deserves to feel fully seen&mdash;not just noticed, but genuinely known. At Go Inspire Now, no woman walks unnoticed.</p>
       </div>
-      <div class="reveal-up" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:2.25rem;transition:border-color 0.3s,background 0.3s;" onmouseover="this.style.borderColor='rgba(201,162,39,0.3)';this.style.background='rgba(201,162,39,0.03)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)'">
-        <div style="width:40px;height:2px;background:#C9A227;margin-bottom:1.5rem;"></div>
-        <h4 style="font-family:'Playfair Display',serif;font-size:1.15rem;color:#fff;margin-bottom:0.75rem;">Warm &amp; Personal</h4>
-        <p style="font-size:0.93rem;color:rgba(255,255,255,0.5);line-height:1.8;">Like a trusted sister with conviction — never cold, corporate, or distant. Always real, honest, and human.</p>
+      <div class="value-card rv rv-d2">
+        <span class="value-word">VALUED.</span>
+        <p>You bring something to this world that no one else can. Go Inspire Now exists to remind women of their worth when the weight of life makes it hard to remember.</p>
       </div>
-      <div class="reveal-up" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:2.25rem;transition:border-color 0.3s,background 0.3s;" onmouseover="this.style.borderColor='rgba(168,85,247,0.3)';this.style.background='rgba(168,85,247,0.03)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)'">
-        <div style="width:40px;height:2px;background:#A855F7;margin-bottom:1.5rem;"></div>
-        <h4 style="font-family:'Playfair Display',serif;font-size:1.15rem;color:#fff;margin-bottom:0.75rem;">Identity-Centered</h4>
-        <p style="font-size:0.93rem;color:rgba(255,255,255,0.5);line-height:1.8;">We do not focus on performance. We anchor in truth — who you truly are matters more than what you've done.</p>
-      </div>
-      <div class="reveal-up" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:2.25rem;transition:border-color 0.3s,background 0.3s;" onmouseover="this.style.borderColor='rgba(46,184,176,0.3)';this.style.background='rgba(46,184,176,0.04)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)'">
-        <div style="width:40px;height:2px;background:#2EB8B0;margin-bottom:1.5rem;"></div>
-        <h4 style="font-family:'Playfair Display',serif;font-size:1.15rem;color:#fff;margin-bottom:0.75rem;">Growth-Focused</h4>
-        <p style="font-size:0.93rem;color:rgba(255,255,255,0.5);line-height:1.8;">We center growth, surrender, courage, and becoming — not perfection. Every step forward counts.</p>
+      <div class="value-card rv rv-d3">
+        <span class="value-word">LOVED.</span>
+        <p>Real community is rooted in love. We walk together, encourage one another, and show up&mdash;because that&rsquo;s what it means to love your neighbor well.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WHO WE SERVE -->
-<section style="padding:8rem 2.5rem;background:#06060E;">
-  <div style="max-width:1280px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
-      <div class="reveal-left">
-        <span class="section-tag">Our Audience</span>
-        <h2 class="section-h2">We Were<br>Built for You</h2>
-        <p style="font-size:1.05rem;color:rgba(255,255,255,0.5);line-height:1.85;font-weight:300;margin-bottom:3rem;">You Inspire Now was built for real women in real seasons — not idealized versions, but honest, beautiful, complex women becoming.</p>
-        <div style="display:flex;flex-direction:column;gap:1.5rem;">
-          <div style="display:flex;gap:1.25rem;align-items:flex-start;">
-            <div style="width:8px;height:8px;border-radius:50%;background:#2EB8B0;flex-shrink:0;margin-top:6px;"></div>
-            <div>
-              <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:#fff;margin-bottom:0.3rem;">Women feeling stuck or unseen</h4>
-              <p style="font-size:0.9rem;color:rgba(255,255,255,0.45);line-height:1.65;">Overwhelmed or disconnected from their true identity — searching for clarity and direction.</p>
-            </div>
-          </div>
-          <div style="display:flex;gap:1.25rem;align-items:flex-start;">
-            <div style="width:8px;height:8px;border-radius:50%;background:#C9A227;flex-shrink:0;margin-top:6px;"></div>
-            <div>
-              <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:#fff;margin-bottom:0.3rem;">Mothers in the trenches</h4>
-              <p style="font-size:0.9rem;color:rgba(255,255,255,0.45);line-height:1.65;">Seeking support, hope, practical resources, and renewed strength for the everyday journey.</p>
-            </div>
-          </div>
-          <div style="display:flex;gap:1.25rem;align-items:flex-start;">
-            <div style="width:8px;height:8px;border-radius:50%;background:#A855F7;flex-shrink:0;margin-top:6px;"></div>
-            <div>
-              <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:#fff;margin-bottom:0.3rem;">Women healing from past wounds</h4>
-              <p style="font-size:0.9rem;color:rgba(255,255,255,0.45);line-height:1.65;">From shame, abandonment, confusion, or performance-based living — finding truth and freedom.</p>
-            </div>
-          </div>
-          <div style="display:flex;gap:1.25rem;align-items:flex-start;">
-            <div style="width:8px;height:8px;border-radius:50%;background:#2EB8B0;flex-shrink:0;margin-top:6px;"></div>
-            <div>
-              <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:#fff;margin-bottom:0.3rem;">Women drawn to faith &amp; purpose</h4>
-              <p style="font-size:0.9rem;color:rgba(255,255,255,0.45);line-height:1.65;">Growing in faith, personal health, family, leadership, and the calling on their lives.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="reveal-right" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-        <div style="border-radius:4px;overflow:hidden;aspect-ratio:3/4;position:relative;">
-          <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&h=600&fit=crop&crop=faces&q=80" alt="Woman smiling" style="width:100%;height:100%;object-fit:cover;">
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(4,4,10,0.7),transparent);"></div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:1rem;margin-top:2rem;">
-          <div style="border-radius:4px;overflow:hidden;aspect-ratio:3/4;position:relative;">
-            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=600&fit=crop&crop=faces&q=80" alt="Confident woman" style="width:100%;height:100%;object-fit:cover;">
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(4,4,10,0.7),transparent);"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROMISE SECTION -->
-<section style="background:linear-gradient(160deg,#04040A 0%,#0D0520 60%,#04040A 100%);padding:8rem 2.5rem;text-align:center;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(107,33,168,0.25),transparent);"></div>
-  <!-- decorative rings -->
-  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;border:1px solid rgba(46,184,176,0.06);pointer-events:none;"></div>
-  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:400px;border-radius:50%;border:1px solid rgba(201,162,39,0.06);pointer-events:none;"></div>
-  <div style="max-width:700px;margin:0 auto;position:relative;z-index:1;">
-    <span class="section-tag gold reveal-up" style="display:block;justify-content:center;">Our Promise</span>
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);color:#fff;font-weight:700;margin-bottom:1.5rem;letter-spacing:-0.025em;line-height:1.15;" class="reveal-up">
-      You Leave Here<br><em style="color:#C9A227;font-style:italic;">Seen, Strengthened, and Called Forward</em>
-    </h2>
-    <p style="color:rgba(255,255,255,0.55);line-height:1.85;margin-bottom:3rem;font-size:1.05rem;" class="reveal-up">
-      Hope. Courage. Belonging. Clarity. Renewed confidence. That is what every woman who walks through our doors deserves — and what You Inspire Now is committed to delivering.
-    </p>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" class="reveal-up">
-      <a href="community.html" class="btn-primary">Find Your Community</a>
-      <a href="pillars.html" class="btn-ghost">Our Pillars</a>
+<!-- CTA -->
+<section class="about-cta">
+  <div class="about-cta-inner">
+    <h2 class="rv">You don&rsquo;t have to figure it all out before you take the first step.</h2>
+    <p class="rv">There&rsquo;s a community of women in DFW who are ready to walk beside you. Come as you are. You belong here.</p>
+    <div class="about-cta-btns rv">
+      <a href="events.html" class="btn-pk">&#129505;&nbsp; Join a Walk</a>
+      <a href="donate.html" class="btn-outline">&#10024;&nbsp; Give Hope</a>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer style="background:#030307;border-top:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.45);padding:5rem 2.5rem 2.5rem;">
-  <div style="max-width:1280px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:5rem;">
-      <div>
-        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
-          <img src="assets/yin-logo.png" alt="You Inspire Now" style="height:40px;filter:invert(1);opacity:0.755;">
-          <span style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:rgba(255,255,255,0.6);">You Inspire Now</span>
+<footer>
+  <div class="footer-main">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/gin-logo.png" alt="Go Inspire Now" class="footer-brand-logo">
+        <p>Join our newsletter for walk updates, stories of hope, and reminders that you are seen, valued, and loved.</p>
+        <div class="footer-newsletter">
+          <input type="email" placeholder="Your Email Address">
+          <button>Subscribe</button>
         </div>
-        <p style="font-size:0.88rem;line-height:1.8;max-width:280px;color:rgba(255,255,255,0.35);">Faith-rooted empowerment for women who are ready to rise into who they were created to be.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">&#9632;</a>
+          <a href="#" aria-label="YouTube">&#9654;</a>
+        </div>
       </div>
-      <div>
-        <h4 style="color:rgba(255,255,255,0.5);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:1.5rem;">Navigate</h4>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;">
-          <li><a href="index.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Home</a></li>
-          <li><a href="about.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">About</a></li>
-          <li><a href="pillars.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Our Pillars</a></li>
-          <li><a href="community.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Community</a></li>
-        </ul>
+      <div class="footer-cols">
+        <div class="footer-col"><h4>Walk With Us</h4><ul><li><a href="events.html">Join a Walk</a></li><li><a href="events.html#schedule">Walk Schedule</a></li><li><a href="events.html">The October 25K</a></li></ul></div>
+        <div class="footer-col"><h4>Programs</h4><ul><li><a href="donate.html#love-boxes">Love Boxes</a></li><li><a href="donate.html#scholarships">Scholarships</a></li><li><a href="donate.html">Give Hope</a></li></ul></div>
+        <div class="footer-col"><h4>About</h4><ul><li><a href="about.html">About LeeLee</a></li><li><a href="about.html#gin-story">Our Story</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+        <div class="footer-col"><h4>Give</h4><ul><li><a href="donate.html">Change a Woman&rsquo;s Story</a></li><li><a href="donate.html">Give Hope</a></li><li><a href="donate.html">Help Women Feel Seen</a></li></ul></div>
       </div>
-      <div>
-        <h4 style="color:rgba(255,255,255,0.5);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:1.5rem;">Resources</h4>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;">
-          <li><a href="resources.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Encouragement</a></li>
-          <li><a href="resources.html#faith" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Faith &amp; Surrender</a></li>
-          <li><a href="resources.html#health" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Health &amp; Wholeness</a></li>
-          <li><a href="resources.html#stories" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Stories</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 style="color:rgba(255,255,255,0.5);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:1.5rem;">Give</h4>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;">
-          <li><a href="go-inspire-now.html" style="color:#2EB8B0;text-decoration:none;font-size:0.88rem;">Go Inspire Now ♥</a></li>
-          <li><a href="go-inspire-now.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#2EB8B0'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Donate</a></li>
-        </ul>
-      </div>
-    </div>
-    <div style="border-top:1px solid rgba(255,255,255,0.05);padding-top:2rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;align-items:center;">
-      <p style="font-size:0.78rem;">© 2026 You Inspire Now. All rights reserved.</p>
-      <p style="font-size:0.78rem;color:rgba(255,255,255,0.25);">Purpose · Family · Health · Leadership</p>
     </div>
   </div>
+  <div class="footer-bottom">&copy;2026 Go Inspire Now &nbsp;&mdash;&nbsp; A movement where women rediscover who they were created to be through community, encouragement, and shared experiences. &nbsp;&mdash;&nbsp; <a href="contact.html" style="text-decoration:underline;color:inherit;">Contact</a></div>
 </footer>
 
 <script>
-const nav=document.getElementById('mainNav');
-window.addEventListener('scroll',()=>{if(window.scrollY>60)nav.classList.add('scrolled-nav');else nav.classList.remove('scrolled-nav');});
-const ro=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){const siblings=[...e.target.parentElement.querySelectorAll('.reveal-up,.reveal-left,.reveal-right,.reveal-scale')];const i=siblings.indexOf(e.target);e.target.style.transitionDelay=`${i*0.1}s`;e.target.classList.add('revealed');ro.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.reveal-up,.reveal-left,.reveal-right,.reveal-scale').forEach(el=>ro.observe(el));
+const ro = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.rv,.rv-left,.rv-right').forEach(el => ro.observe(el));
+
+(function(){
+  var btn = document.getElementById('hamburger');
+  var menu = document.getElementById('mobile-menu');
+  var closeBtn = document.getElementById('mobile-close');
+  if (!btn || !menu) return;
+  function open(){ btn.classList.add('open'); menu.classList.add('open'); document.body.style.overflow='hidden'; }
+  function close(){ btn.classList.remove('open'); menu.classList.remove('open'); document.body.style.overflow=''; }
+  btn.addEventListener('click', function(){ menu.classList.contains('open') ? close() : open(); });
+  if (closeBtn) closeBtn.addEventListener('click', close);
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+})();
+
+(function(){
+  if (!window.matchMedia('(hover: hover)').matches) return;
+  var c = document.getElementById('gin-cursor'), shoe = document.getElementById('gin-shoe');
+  if (!c || !shoe) return;
+  var cx = -200, cy2 = -200, ticking = false, visible = false;
+  function render(){ c.style.transform = 'translate('+(cx-4)+'px,'+(cy2-38)+'px)'; ticking = false; }
+  document.addEventListener('mousemove', function(e){
+    cx = e.clientX; cy2 = e.clientY;
+    if (!ticking){ ticking = true; requestAnimationFrame(render); }
+    if (!visible){ visible = true; c.style.opacity = '1'; }
+  }, { passive: true });
+  document.querySelectorAll('a,button').forEach(function(el){
+    el.addEventListener('mouseenter', function(){ c.classList.add('hov'); });
+    el.addEventListener('mouseleave', function(){ c.classList.remove('hov'); });
+  });
+  document.addEventListener('mousedown', function(){ c.classList.add('click'); });
+  document.addEventListener('mouseup', function(){ c.classList.remove('click'); });
+})();
 </script>
 </body>
 </html>

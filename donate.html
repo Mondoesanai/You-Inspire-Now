@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Give &mdash; Go Inspire Now</title>
+<title>Change a Woman's Story — Go Inspire Now</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -15,94 +15,116 @@ a{text-decoration:none;color:inherit;}
 
 :root{
   --pk:#F0247A;--pk-lt:#FFE0EF;--vi:#7B2FFF;--vi-lt:#EDE6FF;
-  --cy:#00C4DF;--go:#FFC425;--hero-bg:#D2EAE4;--cream:#F7F2EE;
+  --cy:#00C4DF;--go:#FFC425;--cream:#F7F2EE;
   --blush:#FFF0F5;--lav:#EAE3FF;--lav-mid:#C4B5F0;
   --dark:#1C1025;--mid:#4A3070;--muted:#8A7AAA;--border:#E0D8F0;
   --serif:'Playfair Display',serif;--sans:'Inter',sans-serif;
 }
 
+/* ── NAV ── */
 nav{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid var(--border);padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;}
 .nav-logo{height:44px;width:auto;}
 .nav-links{display:flex;align-items:center;gap:2rem;}
 .nav-links a{font-size:.78rem;font-weight:600;letter-spacing:.04em;color:var(--mid);transition:color .2s;}
-.nav-links a:hover{color:var(--pk);}
+.nav-links a:hover,.nav-links a.active{color:var(--pk);}
 .nav-give{background:var(--pk);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:.55rem 1.5rem;border-radius:100px;transition:background .2s,transform .15s;display:flex;align-items:center;gap:.35rem;}
 .nav-give:hover{background:#CC1060;transform:scale(1.04);}
 
-.page-hero{background:var(--blush);padding:5.5rem 2rem 4.5rem;text-align:center;}
-.page-hero-inner{max-width:640px;margin:0 auto;}
-.page-hero h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:600;color:var(--dark);margin-bottom:1rem;line-height:1.2;}
-.page-hero p{font-size:1rem;color:var(--mid);line-height:1.65;max-width:500px;margin:0 auto;}
+/* ── HAMBURGER ── */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;padding:.5rem .4rem;cursor:pointer;z-index:1100;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:transform .3s ease,opacity .3s ease;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-.give-main{background:#fff;padding:5rem 2rem;}
-.give-main-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 480px;gap:5rem;align-items:start;}
+/* ── MOBILE MENU ── */
+.mobile-menu{position:fixed;inset:0;z-index:1050;background:rgba(14,0,32,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.8rem;opacity:0;pointer-events:none;transition:opacity .35s ease;}
+.mobile-menu.open{opacity:1;pointer-events:all;}
+.mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:rgba(255,255,255,.82);letter-spacing:.03em;line-height:1;transition:color .2s;}
+.mobile-menu a:hover{color:#fff;}
+.mobile-menu .m-give{margin-top:.5rem;background:var(--pk);color:#fff;font-family:'Inter',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 2.8rem;border-radius:100px;box-shadow:0 4px 24px rgba(240,36,122,.45);transition:background .2s;}
+.mobile-menu .m-give:hover{background:#CC1060;}
+.mobile-menu-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;cursor:pointer;font-size:1.6rem;color:rgba(255,255,255,.5);transition:color .2s;padding:.5rem;}
+.mobile-menu-close:hover{color:#fff;}
+
+/* ── PAGE HERO ── */
+.page-hero{position:relative;padding:7rem 2rem 5.5rem;text-align:center;overflow:hidden;}
+.page-hero-bg{position:absolute;inset:0;}
+.page-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 25%;}
+.page-hero-bg::after{content:'';position:absolute;inset:0;background:rgba(8,0,20,.6);}
+.page-hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.page-hero-pre{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:1.2rem;display:block;}
+.page-hero h1{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.8rem);font-weight:600;font-style:italic;color:#fff;margin-bottom:1.2rem;line-height:1.2;}
+.page-hero h1 em{color:#F0247A;font-style:normal;}
+.page-hero p{font-size:1rem;color:rgba(255,255,255,.72);line-height:1.7;max-width:520px;margin:0 auto;}
+
+/* ── GIVE MAIN ── */
+.give-main{background:#fff;padding:6rem 2rem;}
+.give-main-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 460px;gap:5rem;align-items:start;}
 .give-text h2{font-family:var(--serif);font-size:clamp(1.55rem,2.4vw,2.2rem);font-weight:600;color:var(--dark);line-height:1.3;margin-bottom:1.2rem;}
-.give-text h2 em{font-style:italic;color:var(--pk);}
-.give-text p{font-size:.9rem;line-height:1.7;color:var(--mid);margin-bottom:2.5rem;}
-.impact-list{list-style:none;}
+.give-text p{font-size:.9rem;line-height:1.75;color:var(--mid);margin-bottom:1.5rem;}
+.give-text .tagline{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--dark);margin-bottom:2rem;}
+.impact-list{list-style:none;margin-top:.5rem;}
 .impact-list li{display:flex;align-items:flex-start;gap:.85rem;padding:.9rem 0;border-bottom:1px solid var(--border);}
 .impact-list li:first-child{border-top:1px solid var(--border);}
 .impact-icon{width:38px;height:38px;border-radius:10px;background:var(--pk-lt);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
-.impact-detail strong{display:block;font-size:.84rem;font-weight:700;color:var(--dark);margin-bottom:.25rem;}
-.impact-detail span{font-size:.8rem;color:var(--mid);line-height:1.5;}
+.impact-detail strong{display:block;font-size:.85rem;font-weight:700;color:var(--dark);margin-bottom:.25rem;}
+.impact-detail span{font-size:.8rem;color:var(--mid);line-height:1.6;}
 
+/* ── DONATE WIDGET ── */
 .donate-widget{background:var(--cream);border-radius:20px;padding:2.25rem;box-shadow:0 4px 40px rgba(0,0,0,.06);position:sticky;top:80px;}
-.donate-widget-title{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--dark);margin-bottom:.35rem;}
+.donate-widget-title{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--dark);margin-bottom:.3rem;}
 .donate-widget-sub{font-size:.78rem;color:var(--muted);margin-bottom:1.5rem;}
 .donate-tabs{display:grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:1.3rem;background:#fff;}
 .donate-tab{padding:.65rem;text-align:center;cursor:pointer;font-size:.77rem;font-weight:600;letter-spacing:.04em;color:var(--muted);background:#fff;transition:all .2s;border:none;}
 .donate-tab.active{background:var(--pk);color:#fff;}
 .donate-amounts{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:.85rem;}
-.donate-amt{padding:.55rem .25rem;text-align:center;border:1.5px solid var(--border);border-radius:10px;font-size:.82rem;font-weight:700;color:var(--mid);cursor:pointer;background:#fff;transition:all .2s;}
-.donate-amt:hover,.donate-amt.active{border-color:var(--pk);color:var(--pk);background:var(--pk-lt);}
+.donate-amt{padding:.55rem .25rem;text-align:center;border:1.5px solid var(--border);border-radius:10px;font-size:.82rem;font-weight:700;color:var(--mid);cursor:pointer;background:#fff;transition:all .2s;border:none;}
+.donate-amt:hover,.donate-amt.active{border:1.5px solid var(--pk);color:var(--pk);background:var(--pk-lt);}
 .donate-custom{display:flex;align-items:center;gap:.5rem;border:1.5px solid var(--border);border-radius:10px;padding:.65rem .95rem;margin-bottom:.5rem;background:#fff;}
 .donate-custom span{font-size:.95rem;color:var(--muted);}
 .donate-custom input{flex:1;border:none;outline:none;font-family:var(--sans);font-size:1.35rem;font-weight:700;color:var(--dark);background:transparent;}
-.donate-custom select{border:none;outline:none;background:transparent;font-size:.72rem;color:var(--muted);cursor:pointer;}
 .donate-note{font-size:.73rem;color:var(--muted);margin-bottom:1.2rem;}
 .donate-give-btn{width:100%;padding:.9rem;background:var(--pk);color:#fff;border:none;border-radius:12px;cursor:pointer;font-family:var(--sans);font-size:.88rem;font-weight:700;letter-spacing:.04em;transition:background .2s,transform .15s;}
 .donate-give-btn:hover{background:#CC1060;transform:translateY(-1px);}
 .donate-security{display:flex;align-items:center;justify-content:center;gap:.45rem;margin-top:1rem;font-size:.7rem;color:var(--muted);}
 
-.impact-stats{background:var(--cream);padding:5rem 2rem;}
-.impact-stats-inner{max-width:1100px;margin:0 auto;}
-.section-heading{font-family:var(--serif);font-size:clamp(1.55rem,2.4vw,2.1rem);font-weight:600;color:var(--dark);text-align:center;margin-bottom:2.5rem;}
-.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1.5px solid var(--border);border-bottom:1.5px solid var(--border);padding:2.5rem 0;margin-bottom:2.5rem;}
-.stats-item{text-align:center;padding:0 2rem;border-right:1.5px solid var(--border);}
-.stats-item:last-child{border-right:none;}
-.stats-num{font-family:var(--serif);font-size:clamp(2.4rem,4vw,3.6rem);font-weight:700;color:var(--pk);line-height:1;margin-bottom:.5rem;}
-.stats-label{font-size:.72rem;font-weight:600;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;}
+/* ── WALKING TOWARD BEAUTIFUL ── */
+.walking-toward{background:var(--blush);padding:6rem 2rem;text-align:center;}
+.walking-toward-inner{max-width:720px;margin:0 auto;}
+.walking-toward h2{font-family:var(--serif);font-size:clamp(1.65rem,3vw,2.5rem);font-weight:600;font-style:italic;color:var(--dark);margin-bottom:2rem;line-height:1.3;}
+.walking-toward .lines{font-size:1rem;line-height:2.4;color:var(--mid);margin-bottom:1.5rem;}
+.walking-toward .lines .em{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--dark);}
+.walking-toward .punch{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--pk);font-weight:600;}
 
-.tiers{background:#fff;padding:5rem 2rem;}
-.tiers-inner{max-width:1100px;margin:0 auto;}
-.tiers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-.tier-card{border-radius:20px;border:1.5px solid var(--border);padding:2rem 1.75rem;transition:all .2s;}
-.tier-card:hover{border-color:var(--pk);box-shadow:0 8px 40px rgba(240,36,122,.1);}
-.tier-card.featured{background:var(--pk);border-color:var(--pk);color:#fff;}
-.tier-label{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pk);margin-bottom:.6rem;}
-.tier-card.featured .tier-label{color:rgba(255,255,255,.7);}
-.tier-card h3{font-family:var(--serif);font-size:1.55rem;font-weight:600;color:var(--dark);margin-bottom:.25rem;}
-.tier-card.featured h3{color:#fff;}
-.tier-price{font-size:2.2rem;font-weight:700;color:var(--dark);margin-bottom:.2rem;}
-.tier-card.featured .tier-price{color:#fff;}
-.tier-period{font-size:.8rem;color:var(--muted);margin-bottom:1.3rem;}
-.tier-card.featured .tier-period{color:rgba(255,255,255,.65);}
-.tier-features{list-style:none;margin-bottom:1.75rem;}
-.tier-features li{display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:var(--mid);padding:.45rem 0;border-bottom:1px solid var(--border);}
-.tier-card.featured .tier-features li{color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.2);}
-.tier-features li:last-child{border-bottom:none;}
-.tier-check{color:var(--pk);font-weight:700;}
-.tier-card.featured .tier-check{color:rgba(255,255,255,.9);}
-.tier-btn{display:block;width:100%;padding:.75rem;text-align:center;border-radius:100px;font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1.5px solid var(--pk);color:var(--pk);background:transparent;}
-.tier-btn:hover{background:var(--pk);color:#fff;}
-.tier-card.featured .tier-btn{background:#fff;color:var(--pk);border-color:#fff;}
-.tier-card.featured .tier-btn:hover{background:var(--pk-lt);}
+/* ── DONATION LEVELS ── */
+.levels{background:#fff;padding:6rem 2rem;}
+.levels-inner{max-width:1100px;margin:0 auto;}
+.section-heading{font-family:var(--serif);font-size:clamp(1.55rem,2.4vw,2.1rem);font-weight:600;color:var(--dark);text-align:center;margin-bottom:.6rem;}
+.section-sub{text-align:center;font-size:.92rem;color:var(--mid);line-height:1.65;margin-bottom:3rem;}
+.levels-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;}
+.level-card{border-radius:16px;border:1.5px solid var(--border);padding:1.5rem 1.25rem;text-align:center;transition:all .2s;}
+.level-card:hover{border-color:var(--pk);box-shadow:0 6px 30px rgba(240,36,122,.1);transform:translateY(-3px);}
+.level-icon{font-size:1.8rem;margin-bottom:.75rem;display:block;}
+.level-amount{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;color:var(--pk);line-height:1;margin-bottom:.6rem;}
+.level-desc{font-size:.78rem;line-height:1.6;color:var(--mid);}
 
-.pull-quote{background:var(--blush);padding:5rem 2rem;}
+/* ── LOVE BOXES & SCHOLARSHIPS ── */
+.programs-section{background:var(--cream);padding:6rem 2rem;}
+.programs-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.program-card{background:#fff;border-radius:20px;padding:2.5rem 2rem;border:1.5px solid var(--border);}
+.program-card-icon{font-size:2rem;margin-bottom:1rem;display:block;}
+.program-card-label{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pk);margin-bottom:.5rem;}
+.program-card h3{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--dark);margin-bottom:1rem;}
+.program-card p{font-size:.88rem;line-height:1.72;color:var(--mid);}
+
+/* ── PULL QUOTE ── */
+.pull-quote{background:var(--lav);padding:5.5rem 2rem;}
 .pull-quote-inner{max-width:860px;margin:0 auto;text-align:center;}
-.pull-quote blockquote{font-family:var(--serif);font-size:clamp(1.05rem,1.9vw,1.45rem);font-style:italic;line-height:1.65;color:var(--dark);}
+.pull-quote blockquote{font-family:var(--serif);font-size:clamp(1.05rem,1.9vw,1.45rem);font-style:italic;line-height:1.7;color:var(--dark);}
 .pull-quote cite{display:block;margin-top:1.5rem;font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-style:normal;}
 
+/* ── FOOTER ── */
 footer{background:var(--lav-mid);}
 .footer-main{max-width:1200px;margin:0 auto;padding:4rem 2rem 3rem;}
 .footer-top{display:grid;grid-template-columns:260px 1fr;gap:5rem;padding-bottom:3rem;border-bottom:1px solid rgba(28,16,37,.12);margin-bottom:2.5rem;}
@@ -124,141 +146,130 @@ footer{background:var(--lav-mid);}
 .footer-col a:hover{color:var(--dark);}
 .footer-bottom{background:rgba(0,0,0,.1);padding:1.2rem 2rem;text-align:center;font-size:.69rem;color:rgba(28,16,37,.52);line-height:1.65;}
 
+/* ── SCROLL REVEAL ── */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.25,1,.5,1),transform .7s cubic-bezier(.25,1,.5,1);}
 .rv.in{opacity:1;transform:none;}
+.rv-d1{transition-delay:.08s;}.rv-d2{transition-delay:.16s;}.rv-d3{transition-delay:.24s;}.rv-d4{transition-delay:.32s;}.rv-d5{transition-delay:.4s;}
 
+/* ── GRAIN ── */
+.gin-grain{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* ── SHOE CURSOR ── */
+@media(hover:hover){*{cursor:none!important;}}
+#gin-cursor{position:fixed;left:0;top:0;pointer-events:none;z-index:10001;opacity:0;transition:opacity .25s ease;}
+#gin-shoe{display:block;font-size:40px;line-height:1;user-select:none;transform:rotate(-15deg);transition:font-size .2s cubic-bezier(.34,1.56,.64,1),transform .22s cubic-bezier(.34,1.56,.64,1),filter .2s ease;filter:drop-shadow(0 3px 14px rgba(240,36,122,.55));}
+#gin-cursor.hov #gin-shoe{font-size:56px;transform:rotate(-26deg) scale(1.1);}
+#gin-cursor.click #gin-shoe{font-size:34px;transform:rotate(-38deg) scale(.85);transition:font-size .07s ease,transform .07s ease;}
+@media(hover:none){#gin-cursor{display:none!important;}}
+
+/* ── RESPONSIVE ── */
 @media(max-width:960px){
   .give-main-inner{grid-template-columns:1fr;gap:3rem;}
   .donate-widget{position:static;}
-  .stats-grid{grid-template-columns:1fr 1fr;border:none;gap:0;}
-  .stats-item{border-right:none;border-bottom:1.5px solid var(--border);padding:1.5rem 0;}
-  .stats-item:nth-child(even){border-left:1.5px solid var(--border);}
-  .stats-item:last-child{border-bottom:none;}
-  .tiers-grid{grid-template-columns:1fr}
+  .levels-grid{grid-template-columns:1fr 1fr 1fr;}
+  .programs-inner{grid-template-columns:1fr;}
   .footer-top{grid-template-columns:1fr;gap:2rem;}
   .footer-cols{grid-template-columns:1fr 1fr;}
 }
-@media(max-width:768px){
-  .page-hero{padding:4rem 2rem 3rem;}
-  .page-hero h1{font-size:clamp(2rem,7vw,2.8rem);}
-  .page-hero p{font-size:1rem;}
-  .give-main{padding:4rem 2rem;}
-  .give-text h2{font-size:clamp(1.55rem,4vw,2rem);}
-  .give-text p{font-size:1rem;}
-  .impact-detail strong{font-size:.9rem;}
-  .impact-detail span{font-size:.85rem;}
-  .donate-widget{padding:2rem 1.75rem;}
-  .impact-stats{padding:4rem 2rem;}
-  .tiers{padding:4rem 2rem;}
-  .pull-quote{padding:4rem 2rem;}
-  .footer-main{padding:3.5rem 2rem 2.5rem;}
-  .footer-newsletter{flex-direction:column;gap:.5rem;}
+@media(max-width:680px){
+  nav{padding:0 1.25rem;}
+  .nav-links,.nav-give{display:none;}
+  .hamburger{display:flex;}
+  .page-hero{padding:5.5rem 1.5rem 4rem;}
+  .page-hero h1{font-size:clamp(1.8rem,7vw,2.8rem);}
+  .give-main{padding:4.5rem 1.5rem;}
+  .walking-toward{padding:4.5rem 1.5rem;}
+  .levels{padding:4.5rem 1.5rem;}
+  .levels-grid{grid-template-columns:1fr 1fr;}
+  .programs-section{padding:4.5rem 1.5rem;}
+  .pull-quote{padding:4rem 1.5rem;}
+  .footer-newsletter{flex-direction:column;}
   .footer-newsletter input,.footer-newsletter button{width:100%;}
 }
-@media(max-width:600px){
-  nav{padding:0 1.5rem;}
-  .nav-links{display:none;}
-  .nav-give{padding:.8rem 1.75rem;font-size:.84rem;}
-  .page-hero{padding:3.5rem 1.5rem 2.5rem;}
-  .page-hero h1{font-size:clamp(1.9rem,8vw,2.6rem);}
-  .give-main{padding:3.5rem 1.5rem;}
-  .give-text h2{font-size:clamp(1.6rem,5vw,2rem);}
-  .give-text p{font-size:1rem;line-height:1.7;}
-  .impact-list li{padding:.75rem 0;gap:.75rem;}
-  .impact-icon{width:34px;height:34px;}
-  .impact-detail strong{font-size:.9rem;}
-  .impact-detail span{font-size:.85rem;line-height:1.5;}
-  .donate-widget{padding:1.75rem 1.25rem;}
-  .donate-amounts{gap:.4rem;}
-  .donate-amt{font-size:.85rem;}
-  .donate-widget-title{font-size:1.1rem;}
-  .impact-stats{padding:3.5rem 1.5rem;}
-  .stats-grid{grid-template-columns:1fr;}
-  .stats-item{border-right:none;border-left:none;padding:1.5rem 0;}
-  .stats-item:nth-child(even){border-left:none;}
-  .stats-num{font-size:clamp(2.6rem,10vw,3.8rem);}
-  .stats-label{font-size:.85rem;}
-  .tiers{padding:3.5rem 1.5rem;}
-  .pull-quote{padding:3.5rem 1.5rem;}
-  .pull-quote blockquote{font-size:1.05rem;}
-  .footer-main{padding:3rem 1.5rem 2rem;}
+@media(max-width:480px){
+  .levels-grid{grid-template-columns:1fr;}
   .footer-cols{grid-template-columns:1fr;}
 }
-
-/* ── GRAIN TEXTURE ── */
-.gin-grain{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;opacity:0.038;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
-
-/* ── SHOE CURSOR ── */
-body{cursor:none;}
-a,button,label,select,input,textarea{cursor:none!important;}
-@media(hover:none){body,a,button,label,select,input,textarea{cursor:auto!important;}}
-#gin-cursor{
-  position:fixed;left:-100px;top:-100px;
-  pointer-events:none;z-index:10000;
-  font-size:42px;line-height:1;user-select:none;
-  transform:rotate(-15deg);
-  transition:font-size .15s ease,transform .15s ease;
-  filter:drop-shadow(0 2px 10px rgba(240,36,122,.5));}
-#gin-cursor.hov{font-size:54px;transform:rotate(-22deg);}
-@media(hover:none){#gin-cursor{display:none;}}
 </style>
 </head>
 <body>
-<div id="gin-cursor">👟</div>
+<div id="gin-cursor" aria-hidden="true"><span id="gin-shoe">👟</span></div>
 <div class="gin-grain"></div>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-close">&#10005;</button>
+  <a href="index.html">Home</a>
+  <a href="events.html">Join a Walk</a>
+  <a href="#love-boxes">Love Boxes</a>
+  <a href="#scholarships">Scholarships</a>
+  <a href="about.html">About LeeLee</a>
+  <a href="donate.html" class="m-give">&#10024;&nbsp; Give</a>
+</div>
+
+<!-- NAV -->
 <nav>
   <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" class="nav-logo"></a>
   <div class="nav-links">
     <a href="index.html">Home</a>
-    <a href="events.html">Events</a>
-    <a href="podcast.html">Podcast</a>
-    <a href="contact.html">Contact</a>
+    <a href="events.html">Join a Walk</a>
+    <a href="#love-boxes">Love Boxes</a>
+    <a href="#scholarships">Scholarships</a>
+    <a href="about.html">About LeeLee</a>
   </div>
-  <a href="donate.html" class="nav-give">&#9829; Give</a>
+  <a href="donate.html" class="nav-give active">&#10024;&nbsp; Give</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- HERO -->
 <section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="images/founder-2.jpg" alt="Every gift helps a woman remember she matters">
+  </div>
   <div class="page-hero-inner rv">
-    <h1>Give to Go Inspire Now</h1>
-    <p>Every gift you give walks alongside a woman in crisis, helps a family find community, and builds a world where no one faces their hardest moment alone.</p>
+    <span class="page-hero-pre">Change a Woman&rsquo;s Story</span>
+    <h1>Every Gift Helps a Woman Remember She <em>Matters.</em></h1>
+    <p>Your generosity creates spaces where women slow down, breathe, build meaningful friendships, and rediscover the woman they were created to be.</p>
   </div>
 </section>
 
+<!-- GIVE MAIN -->
 <section class="give-main">
   <div class="give-main-inner">
     <div class="rv">
-      <h2>Your generosity changes <em>everything</em> for a woman in crisis.</h2>
-      <p>Go Inspire Now exists because of donors like you. Your gift funds community groups, equips group leaders, supports single moms, and helps families find the resources they need to move forward with hope.</p>
+      <h2>Together, we&rsquo;re building something bigger than events.</h2>
+      <p>Every donation helps create spaces where women can slow down, breathe, build meaningful friendships, and rediscover the woman they were created to be.</p>
+      <p>Your generosity helps us host inspirational walks, provide encouragement through Love Boxes, offer scholarships, and create experiences where women feel seen, valued, and loved.</p>
+      <p class="tagline">Together, we&rsquo;re building a movement.</p>
       <ul class="impact-list">
-        <li><div class="impact-icon">&#9829;</div><div class="impact-detail"><strong>$10 / month</strong><span>Covers resource materials for one woman in a GIN community group for an entire month.</span></div></li>
-        <li><div class="impact-icon">&#127968;</div><div class="impact-detail"><strong>$30 / month</strong><span>Helps host one local community gathering where women find connection and support.</span></div></li>
-        <li><div class="impact-icon">&#10024;</div><div class="impact-detail"><strong>$55 / month</strong><span>Trains and equips one group leader to walk alongside women in their city all year long.</span></div></li>
-        <li><div class="impact-icon">&#127758;</div><div class="impact-detail"><strong>$120 / month</strong><span>Funds a new community group launch in an underserved city where women need GIN most.</span></div></li>
-        <li><div class="impact-icon">&#128149;</div><div class="impact-detail"><strong>$250 / month</strong><span>Sponsors a full quarter of programming, events, and resources for an entire GIN community.</span></div></li>
+        <li><div class="impact-icon">&#129505;</div><div class="impact-detail"><strong>$10</strong><span>Helps welcome one woman to a Go Inspire Walk&mdash;giving her a community she didn&rsquo;t know she needed.</span></div></li>
+        <li><div class="impact-icon">&#127807;</div><div class="impact-detail"><strong>$30</strong><span>Provides encouragement and meaningful resources that help women feel seen, valued, and loved.</span></div></li>
+        <li><div class="impact-icon">&#128694;</div><div class="impact-detail"><strong>$55</strong><span>Helps create inspiring walking experiences that spark genuine friendships and lasting connections.</span></div></li>
+        <li><div class="impact-icon">&#129309;</div><div class="impact-detail"><strong>$120</strong><span>Supports additional Go Inspire Walks across DFW so more women can experience authentic community.</span></div></li>
+        <li><div class="impact-icon">&#127758;</div><div class="impact-detail"><strong>$250</strong><span>Helps grow the Go Inspire Now movement and expand opportunities for women throughout our communities.</span></div></li>
       </ul>
     </div>
 
     <div class="donate-widget rv">
-      <div class="donate-widget-title">Make Your Gift</div>
-      <div class="donate-widget-sub">100% of your gift goes directly to program impact.</div>
+      <div class="donate-widget-title">Give Hope Today</div>
+      <div class="donate-widget-sub">Every gift goes directly to women in DFW.</div>
       <div class="donate-tabs">
         <button class="donate-tab" onclick="setDonateTab(this)">One-time</button>
-        <button class="donate-tab active" onclick="setDonateTab(this)">&#9829;&nbsp; Monthly</button>
+        <button class="donate-tab active" onclick="setDonateTab(this)">&#129505;&nbsp; Monthly</button>
       </div>
       <div class="donate-amounts">
-        <button class="donate-amt" onclick="setAmt(this,'250')">$250</button>
-        <button class="donate-amt" onclick="setAmt(this,'120')">$120</button>
-        <button class="donate-amt" onclick="setAmt(this,'55')">$55</button>
-        <button class="donate-amt active" onclick="setAmt(this,'30')">$30</button>
-        <button class="donate-amt" onclick="setAmt(this,'10')">$10</button>
-        <button class="donate-amt" onclick="setAmt(this,'5')">$5</button>
+        <button class="donate-amt" onclick="setAmt(this,'250')" style="border:1.5px solid #E0D8F0;">$250</button>
+        <button class="donate-amt" onclick="setAmt(this,'120')" style="border:1.5px solid #E0D8F0;">$120</button>
+        <button class="donate-amt" onclick="setAmt(this,'55')" style="border:1.5px solid #E0D8F0;">$55</button>
+        <button class="donate-amt active" onclick="setAmt(this,'30')" style="border:1.5px solid #F0247A;color:#F0247A;background:#FFE0EF;">$30</button>
+        <button class="donate-amt" onclick="setAmt(this,'10')" style="border:1.5px solid #E0D8F0;">$10</button>
+        <button class="donate-amt" onclick="setAmt(this,'5')" style="border:1.5px solid #E0D8F0;">$5</button>
       </div>
       <div class="donate-custom">
         <span>$</span>
         <input type="number" id="donate-input" value="30" min="1">
-        <select><option>USD</option></select>
       </div>
       <p class="donate-note">&#128274; Secure, encrypted giving. Cancel anytime.</p>
       <button class="donate-give-btn">Give Now</button>
@@ -267,79 +278,91 @@ a,button,label,select,input,textarea{cursor:none!important;}
   </div>
 </section>
 
-<section class="impact-stats">
-  <div class="impact-stats-inner">
-    <h2 class="section-heading rv">Our Impact So Far</h2>
-    <div class="stats-grid rv">
-      <div class="stats-item"><div class="stats-num" data-target="500">0</div><div class="stats-label">Women Supported</div></div>
-      <div class="stats-item"><div class="stats-num" data-target="25">0</div><div class="stats-label">Community Groups</div></div>
-      <div class="stats-item"><div class="stats-num" data-target="10">0</div><div class="stats-label">Cities &amp; Growing</div></div>
+<!-- WALKING TOWARD SOMETHING BEAUTIFUL -->
+<section class="walking-toward">
+  <div class="walking-toward-inner">
+    <h2 class="rv">Together, We&rsquo;re Walking Toward Something Beautiful.</h2>
+    <div class="lines rv">
+      <p>Every gift helps create meaningful experiences that remind women they are not alone.</p>
+      <p>Because one conversation&hellip;</p>
+      <p>One walk&hellip;</p>
+      <p>One act of kindness&hellip;</p>
+      <p class="em">can change everything.</p>
     </div>
+    <p class="punch rv">Seen. Valued. Loved.</p>
   </div>
 </section>
 
-<section class="tiers">
-  <div class="tiers-inner">
-    <h2 class="section-heading rv">Choose Your Impact Level</h2>
-    <div class="tiers-grid">
-      <div class="tier-card rv">
-        <div class="tier-label">Hope Giver</div>
-        <h3>Encourager</h3>
-        <div class="tier-price">$10</div>
-        <div class="tier-period">per month</div>
-        <ul class="tier-features">
-          <li><span class="tier-check">&#10003;</span> Monthly email impact updates</li>
-          <li><span class="tier-check">&#10003;</span> Resource materials for one woman</li>
-          <li><span class="tier-check">&#10003;</span> Donor recognition in newsletter</li>
-          <li><span class="tier-check">&#10003;</span> Cancel anytime</li>
-        </ul>
-        <a href="#" class="tier-btn">Give $10/mo</a>
+<!-- DONATION LEVELS -->
+<section class="levels">
+  <div class="levels-inner">
+    <h2 class="section-heading rv">Choose Your Gift</h2>
+    <p class="section-sub rv">Every amount makes a real difference in a real woman&rsquo;s life.</p>
+    <div class="levels-grid">
+      <div class="level-card rv rv-d1">
+        <span class="level-icon">&#129505;</span>
+        <div class="level-amount">$10</div>
+        <p class="level-desc">Helps welcome one woman to a Go Inspire Walk.</p>
       </div>
-      <div class="tier-card featured rv">
-        <div class="tier-label">Most Popular</div>
-        <h3>Community Builder</h3>
-        <div class="tier-price">$55</div>
-        <div class="tier-period">per month</div>
-        <ul class="tier-features">
-          <li><span class="tier-check">&#10003;</span> All Encourager benefits</li>
-          <li><span class="tier-check">&#10003;</span> Funds a group leader for one year</li>
-          <li><span class="tier-check">&#10003;</span> Quarterly impact report</li>
-          <li><span class="tier-check">&#10003;</span> Named in annual report</li>
-        </ul>
-        <a href="#" class="tier-btn">Give $55/mo</a>
+      <div class="level-card rv rv-d2">
+        <span class="level-icon">&#127807;</span>
+        <div class="level-amount">$30</div>
+        <p class="level-desc">Provides encouragement and meaningful resources that help women feel seen, valued, and loved.</p>
       </div>
-      <div class="tier-card rv">
-        <div class="tier-label">Movement Maker</div>
-        <h3>City Sponsor</h3>
-        <div class="tier-price">$250</div>
-        <div class="tier-period">per month</div>
-        <ul class="tier-features">
-          <li><span class="tier-check">&#10003;</span> All Community Builder benefits</li>
-          <li><span class="tier-check">&#10003;</span> Sponsors full community programming</li>
-          <li><span class="tier-check">&#10003;</span> Personal impact call with GIN team</li>
-          <li><span class="tier-check">&#10003;</span> Featured in city launch stories</li>
-        </ul>
-        <a href="#" class="tier-btn">Give $250/mo</a>
+      <div class="level-card rv rv-d3">
+        <span class="level-icon">&#128694;</span>
+        <div class="level-amount">$55</div>
+        <p class="level-desc">Helps create inspiring walking experiences that build lasting friendships.</p>
+      </div>
+      <div class="level-card rv rv-d4">
+        <span class="level-icon">&#129309;</span>
+        <div class="level-amount">$120</div>
+        <p class="level-desc">Supports additional Go Inspire Walks across DFW so more women can experience authentic community.</p>
+      </div>
+      <div class="level-card rv rv-d5">
+        <span class="level-icon">&#127758;</span>
+        <div class="level-amount">$250</div>
+        <p class="level-desc">Helps grow the Go Inspire Now movement and expand opportunities for women throughout our communities.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- LOVE BOXES + SCHOLARSHIPS -->
+<section class="programs-section">
+  <div class="programs-inner">
+    <div class="program-card rv" id="love-boxes">
+      <span class="program-card-icon">&#10084;&#65039;</span>
+      <div class="program-card-label">Program</div>
+      <h3>Love Boxes</h3>
+      <p>Small acts of encouragement. Lasting reminders that someone cares. Love Boxes are curated packages delivered to women who need to feel seen, valued, and reminded that they matter. Your gift helps us put more love in more hands.</p>
+    </div>
+    <div class="program-card rv" id="scholarships">
+      <span class="program-card-icon">&#127807;</span>
+      <div class="program-card-label">Program</div>
+      <h3>Scholarships</h3>
+      <p>No woman should be held back by a price tag. Our scholarships help women attend transformational experiences they otherwise couldn&rsquo;t afford&mdash;because the women who need it most deserve access to community, encouragement, and connection.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
 <section class="pull-quote">
   <div class="pull-quote-inner rv">
-    <blockquote>&ldquo;I never knew $30 a month could change someone&rsquo;s life. Then I heard Jasmine&rsquo;s story. Now I know &mdash; it&rsquo;s not just $30. It&rsquo;s everything to her.&rdquo;</blockquote>
-    <cite>&mdash; Marcus, Monthly GIN Donor</cite>
+    <blockquote>&ldquo;I didn&rsquo;t think one walk could change anything. Then I met women who actually saw me&mdash;not my circumstances, not my past, not my to-do list. Just me. I haven&rsquo;t walked alone since.&rdquo;</blockquote>
+    <cite>&mdash; A Go Inspire Now Walker, DFW</cite>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-main">
     <div class="footer-top">
       <div class="footer-brand">
         <img src="assets/gin-logo.png" alt="Go Inspire Now" class="footer-brand-logo">
-        <p>Join our email newsletter for stories of hope, event updates, and ways to get involved.</p>
+        <p>Join our newsletter for walk updates, stories of hope, and reminders that you are seen, valued, and loved.</p>
         <div class="footer-newsletter">
-          <input type="email" placeholder="Email Address">
+          <input type="email" placeholder="Your Email Address">
           <button>Subscribe</button>
         </div>
         <div class="footer-social">
@@ -349,60 +372,70 @@ a,button,label,select,input,textarea{cursor:none!important;}
         </div>
       </div>
       <div class="footer-cols">
-        <div class="footer-col"><h4>About Us</h4><ul><li><a href="#">Our Story</a></li><li><a href="#">Our Mission</a></li><li><a href="#">Leadership</a></li><li><a href="podcast.html">The Podcast</a></li></ul></div>
-        <div class="footer-col"><h4>Programs</h4><ul><li><a href="#">Women in Crisis</a></li><li><a href="#">Single Moms</a></li><li><a href="#">Family Support</a></li><li><a href="events.html">Events</a></li></ul></div>
-        <div class="footer-col"><h4>Get Involved</h4><ul><li><a href="donate.html">Give</a></li><li><a href="#">Volunteer</a></li><li><a href="#">Start a Group</a></li><li><a href="#">Partner With Us</a></li></ul></div>
-        <div class="footer-col"><h4>Connect</h4><ul><li><a href="contact.html">Contact Us</a></li><li><a href="#">Privacy Policy</a></li><li><a href="podcast.html">Podcast</a></li><li><a href="#">Social Media</a></li></ul></div>
+        <div class="footer-col"><h4>Walk With Us</h4><ul><li><a href="events.html">Join a Walk</a></li><li><a href="events.html#schedule">Walk Schedule</a></li><li><a href="events.html">The October 25K</a></li></ul></div>
+        <div class="footer-col"><h4>Programs</h4><ul><li><a href="#love-boxes">Love Boxes</a></li><li><a href="#scholarships">Scholarships</a></li><li><a href="donate.html">Give Hope</a></li></ul></div>
+        <div class="footer-col"><h4>About</h4><ul><li><a href="about.html">About LeeLee</a></li><li><a href="about.html">Our Mission</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+        <div class="footer-col"><h4>Give</h4><ul><li><a href="donate.html">Change a Woman&rsquo;s Story</a></li><li><a href="donate.html">Give Hope</a></li><li><a href="donate.html">Help Women Feel Seen</a></li></ul></div>
       </div>
     </div>
   </div>
-  <div class="footer-bottom">&copy;2026 All Rights Reserved &nbsp;|&nbsp; Go Inspire Now, a nonprofit organization dedicated to empowering women through community, hope, and purpose. &nbsp;|&nbsp; <a href="contact.html" style="text-decoration:underline;color:inherit;">Contact Us</a></div>
+  <div class="footer-bottom">&copy;2026 Go Inspire Now &nbsp;&mdash;&nbsp; A movement where women rediscover who they were created to be through community, encouragement, and shared experiences. &nbsp;&mdash;&nbsp; <a href="contact.html" style="text-decoration:underline;color:inherit;">Contact</a></div>
 </footer>
 
 <script>
-function setDonateTab(btn) {
+function setDonateTab(btn){
   document.querySelectorAll('.donate-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
 }
-function setAmt(btn, val) {
-  document.querySelectorAll('.donate-amt').forEach(b => b.classList.remove('active'));
+function setAmt(btn, val){
+  document.querySelectorAll('.donate-amt').forEach(b => {
+    b.classList.remove('active');
+    b.style.border = '1.5px solid #E0D8F0';
+    b.style.color = '';
+    b.style.background = '';
+  });
   btn.classList.add('active');
+  btn.style.border = '1.5px solid #F0247A';
+  btn.style.color = '#F0247A';
+  btn.style.background = '#FFE0EF';
   document.getElementById('donate-input').value = val;
 }
+
 const ro = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 document.querySelectorAll('.rv').forEach(el => ro.observe(el));
-document.querySelectorAll('.stats-num[data-target]').forEach(el => {
-  const co = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      const target = +el.dataset.target;
-      const dur = 1800, t0 = performance.now();
-      function tick(now) {
-        const p = Math.min((now - t0) / dur, 1);
-        el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target).toLocaleString() + '+';
-        if (p < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-      co.unobserve(el);
-    });
-  }, { threshold: 0.5 });
-  co.observe(el);
-});
 
-// Shoe cursor
 (function(){
-  var c = document.getElementById('gin-cursor');
-  if(!c) return;
-  document.addEventListener('mousemove',function(e){
-    c.style.left = (e.clientX - 6) + 'px';
-    c.style.top  = (e.clientY - 32) + 'px';
-  });
+  var btn = document.getElementById('hamburger');
+  var menu = document.getElementById('mobile-menu');
+  var closeBtn = document.getElementById('mobile-close');
+  if (!btn || !menu) return;
+  function open(){ btn.classList.add('open'); menu.classList.add('open'); document.body.style.overflow='hidden'; }
+  function close(){ btn.classList.remove('open'); menu.classList.remove('open'); document.body.style.overflow=''; }
+  btn.addEventListener('click', function(){ menu.classList.contains('open') ? close() : open(); });
+  if (closeBtn) closeBtn.addEventListener('click', close);
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+})();
+
+(function(){
+  if (!window.matchMedia('(hover: hover)').matches) return;
+  var c = document.getElementById('gin-cursor'), shoe = document.getElementById('gin-shoe');
+  if (!c || !shoe) return;
+  var cx = -200, cy2 = -200, ticking = false, visible = false;
+  function render(){ c.style.transform = 'translate('+(cx-4)+'px,'+(cy2-38)+'px)'; ticking = false; }
+  document.addEventListener('mousemove', function(e){
+    cx = e.clientX; cy2 = e.clientY;
+    if (!ticking){ ticking = true; requestAnimationFrame(render); }
+    if (!visible){ visible = true; c.style.opacity = '1'; }
+  }, { passive: true });
   document.querySelectorAll('a,button').forEach(function(el){
-    el.addEventListener('mouseenter',function(){ c.classList.add('hov'); });
-    el.addEventListener('mouseleave',function(){ c.classList.remove('hov'); });
+    el.addEventListener('mouseenter', function(){ c.classList.add('hov'); });
+    el.addEventListener('mouseleave', function(){ c.classList.remove('hov'); });
   });
+  document.addEventListener('mousedown', function(){ c.classList.add('click'); });
+  document.addEventListener('mouseup', function(){ c.classList.remove('click'); });
 })();
 </script>
 </body>

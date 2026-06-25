@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Events &amp; Gatherings &mdash; Go Inspire Now</title>
+<title>Join a Walk — Go Inspire Now</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -15,12 +15,13 @@ a{text-decoration:none;color:inherit;}
 
 :root{
   --pk:#F0247A;--pk-lt:#FFE0EF;--vi:#7B2FFF;--vi-lt:#EDE6FF;
-  --cy:#00C4DF;--go:#FFC425;--hero-bg:#D2EAE4;--cream:#F7F2EE;
+  --cy:#00C4DF;--go:#FFC425;--cream:#F7F2EE;
   --blush:#FFF0F5;--lav:#EAE3FF;--lav-mid:#C4B5F0;
   --dark:#1C1025;--mid:#4A3070;--muted:#8A7AAA;--border:#E0D8F0;
   --serif:'Playfair Display',serif;--sans:'Inter',sans-serif;
 }
 
+/* ── NAV ── */
 nav{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid var(--border);padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;}
 .nav-logo{height:44px;width:auto;}
 .nav-links{display:flex;align-items:center;gap:2rem;}
@@ -29,61 +30,100 @@ nav{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid v
 .nav-give{background:var(--pk);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:.55rem 1.5rem;border-radius:100px;transition:background .2s,transform .15s;display:flex;align-items:center;gap:.35rem;}
 .nav-give:hover{background:#CC1060;transform:scale(1.04);}
 
-.page-hero{background:var(--hero-bg);padding:5.5rem 2rem 4.5rem;text-align:center;}
-.page-hero-inner{max-width:640px;margin:0 auto;}
-.page-hero h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:600;color:var(--dark);margin-bottom:1rem;line-height:1.2;}
-.page-hero p{font-size:1rem;color:var(--mid);line-height:1.65;max-width:500px;margin:0 auto;}
+/* ── HAMBURGER ── */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;padding:.5rem .4rem;cursor:pointer;z-index:1100;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:transform .3s ease,opacity .3s ease;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-.section-heading{font-family:var(--serif);font-size:clamp(1.55rem,2.4vw,2.1rem);font-weight:600;color:var(--dark);text-align:center;margin-bottom:2.5rem;}
-.btn-pk{display:inline-flex;align-items:center;justify-content:center;padding:.7rem 2rem;background:var(--pk);color:#fff;border-radius:100px;font-size:.77rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:background .2s,transform .15s;border:none;cursor:pointer;}
-.btn-pk:hover{background:#CC1060;transform:scale(1.04);}
+/* ── MOBILE MENU ── */
+.mobile-menu{position:fixed;inset:0;z-index:1050;background:rgba(14,0,32,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.8rem;opacity:0;pointer-events:none;transition:opacity .35s ease;}
+.mobile-menu.open{opacity:1;pointer-events:all;}
+.mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:rgba(255,255,255,.82);letter-spacing:.03em;line-height:1;transition:color .2s;}
+.mobile-menu a:hover{color:#fff;}
+.mobile-menu .m-give{margin-top:.5rem;background:var(--pk);color:#fff;font-family:'Inter',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 2.8rem;border-radius:100px;box-shadow:0 4px 24px rgba(240,36,122,.45);transition:background .2s;}
+.mobile-menu .m-give:hover{background:#CC1060;}
+.mobile-menu-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;cursor:pointer;font-size:1.6rem;color:rgba(255,255,255,.5);transition:color .2s;padding:.5rem;}
+.mobile-menu-close:hover{color:#fff;}
 
-.featured-event{background:var(--cream);padding:5rem 2rem;}
-.featured-event-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 460px;gap:5rem;align-items:center;}
-.featured-event-label{font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--pk);margin-bottom:1rem;}
-.featured-event h2{font-family:var(--serif);font-size:clamp(1.55rem,2.5vw,2.3rem);font-weight:600;color:var(--dark);line-height:1.3;margin-bottom:1.1rem;}
-.featured-event-meta{display:flex;gap:2rem;margin-bottom:1.3rem;}
-.featured-meta-item{display:flex;flex-direction:column;gap:.2rem;}
-.featured-meta-item span:first-child{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
-.featured-meta-item span:last-child{font-size:.88rem;font-weight:600;color:var(--dark);}
-.featured-event p{font-size:.88rem;line-height:1.7;color:var(--mid);margin-bottom:1.7rem;}
-.featured-event-photo{border-radius:20px;overflow:hidden;aspect-ratio:4/3;}
-.featured-event-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+/* ── PAGE HERO ── */
+.page-hero{position:relative;padding:7rem 2rem 5.5rem;text-align:center;overflow:hidden;}
+.page-hero-bg{position:absolute;inset:0;}
+.page-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%;}
+.page-hero-bg::after{content:'';position:absolute;inset:0;background:rgba(8,0,20,.55);}
+.page-hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.page-hero-pre{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:1.2rem;display:block;}
+.page-hero h1{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.8rem);font-weight:600;font-style:italic;color:#fff;margin-bottom:1.2rem;line-height:1.2;}
+.page-hero p{font-size:1rem;color:rgba(255,255,255,.72);line-height:1.7;max-width:540px;margin:0 auto 2rem;}
+.btn-pk{display:inline-flex;align-items:center;justify-content:center;padding:.78rem 2.1rem;background:var(--pk);color:#fff;border-radius:100px;font-size:.77rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:background .2s,transform .15s;border:none;cursor:pointer;}
+.btn-pk:hover{background:#CC1060;transform:translateY(-2px);}
 
-.events-section{background:#fff;padding:5rem 2rem;}
-.events-inner{max-width:1100px;margin:0 auto;}
-.events-filter{display:flex;align-items:center;gap:.75rem;margin-bottom:3rem;flex-wrap:wrap;}
-.events-filter-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:.5rem;}
-.filter-btn{padding:.45rem 1.2rem;border-radius:100px;border:1.5px solid var(--border);font-size:.74rem;font-weight:600;color:var(--mid);background:#fff;cursor:pointer;transition:all .2s;}
-.filter-btn:hover,.filter-btn.active{background:var(--pk);color:#fff;border-color:var(--pk);}
-.events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
-.event-card{border-radius:16px;overflow:hidden;border:1.5px solid var(--border);background:#fff;transition:box-shadow .2s,transform .2s;}
-.event-card:hover{box-shadow:0 8px 40px rgba(240,36,122,.12);transform:translateY(-3px);}
-.event-card-img{position:relative;aspect-ratio:4/3;overflow:hidden;}
-.event-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
-.event-card:hover .event-card-img img{transform:scale(1.04);}
-.event-date-badge{position:absolute;top:1rem;left:1rem;background:#fff;border-radius:10px;padding:.45rem .75rem;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.1);}
-.event-date-badge .month{font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pk);}
-.event-date-badge .day{font-size:1.4rem;font-weight:700;line-height:1;color:var(--dark);}
-.event-card-body{padding:1.35rem 1.5rem 1.5rem;}
-.event-tag{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--vi);margin-bottom:.6rem;}
-.event-card-body h3{font-family:var(--serif);font-size:1.08rem;font-weight:600;color:var(--dark);margin-bottom:.5rem;line-height:1.35;}
-.event-meta{display:flex;align-items:center;gap:.35rem;font-size:.74rem;color:var(--muted);margin-bottom:.75rem;}
-.event-card-body p{font-size:.82rem;line-height:1.6;color:var(--mid);margin-bottom:1.1rem;}
-.event-cta{display:inline-flex;align-items:center;gap:.4rem;font-size:.76rem;font-weight:700;letter-spacing:.04em;color:var(--pk);transition:gap .2s;}
-.event-cta:hover{gap:.7rem;}
+/* ── SCHEDULE SECTION ── */
+.walk-schedule{background:var(--cream);padding:6rem 2rem;}
+.walk-schedule-inner{max-width:1100px;margin:0 auto;}
+.schedule-header{text-align:center;margin-bottom:4rem;}
+.schedule-eyebrow{font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pk);margin-bottom:.8rem;}
+.schedule-header h2{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.6rem);font-weight:600;color:var(--dark);margin-bottom:1rem;line-height:1.2;}
+.schedule-header h2 .pk{color:var(--pk);}
+.schedule-header .sub{font-size:.95rem;color:var(--mid);line-height:1.7;max-width:520px;margin:0 auto 2rem;}
+.schedule-mantra{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--muted);}
+.schedule-mantra span{color:var(--pk);font-style:normal;font-weight:700;margin:0 .3rem;}
 
-.host-event{background:var(--blush);padding:5rem 2rem;}
-.host-event-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
-.host-event-text h2{font-family:var(--serif);font-size:clamp(1.45rem,2.4vw,2.1rem);font-weight:600;color:var(--dark);line-height:1.35;margin-bottom:1rem;}
-.host-event-text p{font-size:.88rem;line-height:1.7;color:var(--mid);margin-bottom:1.7rem;}
-.host-event-features{list-style:none;margin-bottom:2rem;}
-.host-event-features li{display:flex;align-items:flex-start;gap:.75rem;font-size:.85rem;line-height:1.55;color:var(--mid);padding:.5rem 0;border-bottom:1px solid var(--border);}
-.host-event-features li:last-child{border-bottom:none;}
-.host-feature-dot{width:20px;height:20px;border-radius:50%;background:var(--pk-lt);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:.65rem;color:var(--pk);}
-.host-event-photo{border-radius:20px;overflow:hidden;aspect-ratio:3/4;}
-.host-event-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.schedule-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-bottom:2.5rem;}
+.area-card{background:#fff;border-radius:16px;padding:1.75rem 1.5rem;border:1.5px solid var(--border);transition:box-shadow .2s,transform .2s;}
+.area-card:hover{box-shadow:0 6px 28px rgba(240,36,122,.1);transform:translateY(-2px);}
+.area-card:nth-child(1){border-top:3px solid var(--pk);}
+.area-card:nth-child(2){border-top:3px solid var(--cy);}
+.area-card:nth-child(3){border-top:3px solid var(--go);}
+.area-card:nth-child(4){border-top:3px solid var(--vi);}
+.area-tag{font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;}
+.area-name{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--dark);margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.area-walks{list-style:none;}
+.area-walk{padding:.55rem 0;border-bottom:1px solid rgba(224,216,240,.5);}
+.area-walk:last-child{border-bottom:none;}
+.walk-date{font-size:.82rem;font-weight:700;color:var(--dark);display:block;}
+.walk-loc{font-size:.75rem;color:var(--muted);display:block;margin-top:.1rem;}
 
+.schedule-continues{background:#fff;border-radius:16px;padding:1.5rem 2rem;border:1.5px solid var(--border);text-align:center;max-width:600px;margin:0 auto;}
+.continues-label{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pk);margin-bottom:.6rem;}
+.continues-title{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--dark);margin-bottom:.5rem;}
+.continues-dates{font-size:.88rem;color:var(--mid);line-height:1.8;}
+
+/* ── FEATURED 25K ── */
+.featured-25k{background:#fff;padding:6rem 2rem;}
+.featured-25k-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 460px;gap:5rem;align-items:center;}
+.featured-25k-label{font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--pk);margin-bottom:.9rem;}
+.featured-25k h2{font-family:var(--serif);font-size:clamp(1.65rem,2.8vw,2.5rem);font-weight:600;color:var(--dark);line-height:1.25;margin-bottom:.9rem;}
+.featured-25k-date-tag{display:inline-block;background:var(--pk);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.06em;padding:.3rem 1rem;border-radius:8px;margin-bottom:1.1rem;}
+.featured-25k-taglines{margin-bottom:1.2rem;}
+.featured-25k-taglines p{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--mid);line-height:2;}
+.featured-25k p.body{font-size:.9rem;line-height:1.75;color:var(--mid);margin-bottom:.6rem;}
+.featured-25k .reg-note{font-size:.78rem;color:var(--muted);font-style:italic;margin-bottom:1.8rem;}
+.featured-photo{border-radius:20px;overflow:hidden;aspect-ratio:4/3;}
+.featured-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+
+/* ── WHAT TO EXPECT ── */
+.what-to-expect{background:var(--blush);padding:6rem 2rem;}
+.what-to-expect-inner{max-width:1100px;margin:0 auto;}
+.section-heading{font-family:var(--serif);font-size:clamp(1.55rem,2.4vw,2.1rem);font-weight:600;color:var(--dark);text-align:center;margin-bottom:.6rem;}
+.section-sub{text-align:center;font-size:.92rem;color:var(--mid);line-height:1.65;margin-bottom:3rem;}
+.expect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+.expect-item{background:#fff;border-radius:16px;padding:1.5rem 1.75rem;border:1.5px solid var(--border);}
+.expect-icon{font-size:1.6rem;margin-bottom:.75rem;display:block;}
+.expect-item p{font-size:.85rem;line-height:1.65;color:var(--mid);}
+
+/* ── MORE THAN A WALK ── */
+.more-than{background:var(--cream);padding:6rem 2rem;}
+.more-than-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.more-than-text h2{font-family:var(--serif);font-size:clamp(1.55rem,2.5vw,2.2rem);font-weight:600;color:var(--dark);line-height:1.3;margin-bottom:1.1rem;}
+.more-than-text p{font-size:.9rem;line-height:1.75;color:var(--mid);margin-bottom:1.1rem;}
+.more-than-text .quote-line{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--dark);margin:.5rem 0;}
+.more-than-text .outro{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--pk);font-weight:600;margin-top:.5rem;margin-bottom:1.8rem;}
+.more-than-photo{border-radius:20px;overflow:hidden;aspect-ratio:3/4;}
+.more-than-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+
+/* ── FOOTER ── */
 footer{background:var(--lav-mid);}
 .footer-main{max-width:1200px;margin:0 auto;padding:4rem 2rem 3rem;}
 .footer-top{display:grid;grid-template-columns:260px 1fr;gap:5rem;padding-bottom:3rem;border-bottom:1px solid rgba(28,16,37,.12);margin-bottom:2.5rem;}
@@ -105,210 +145,262 @@ footer{background:var(--lav-mid);}
 .footer-col a:hover{color:var(--dark);}
 .footer-bottom{background:rgba(0,0,0,.1);padding:1.2rem 2rem;text-align:center;font-size:.69rem;color:rgba(28,16,37,.52);line-height:1.65;}
 
+/* ── SCROLL REVEAL ── */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.25,1,.5,1),transform .7s cubic-bezier(.25,1,.5,1);}
 .rv.in{opacity:1;transform:none;}
+.rv-d1{transition-delay:.1s;}.rv-d2{transition-delay:.2s;}.rv-d3{transition-delay:.3s;}.rv-d4{transition-delay:.4s;}
 
+/* ── GRAIN ── */
+.gin-grain{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* ── SHOE CURSOR ── */
+@media(hover:hover){*{cursor:none!important;}}
+#gin-cursor{position:fixed;left:0;top:0;pointer-events:none;z-index:10001;opacity:0;transition:opacity .25s ease;}
+#gin-shoe{display:block;font-size:40px;line-height:1;user-select:none;transform:rotate(-15deg);transition:font-size .2s cubic-bezier(.34,1.56,.64,1),transform .22s cubic-bezier(.34,1.56,.64,1),filter .2s ease;filter:drop-shadow(0 3px 14px rgba(240,36,122,.55));}
+#gin-cursor.hov #gin-shoe{font-size:56px;transform:rotate(-26deg) scale(1.1);}
+#gin-cursor.click #gin-shoe{font-size:34px;transform:rotate(-38deg) scale(.85);transition:font-size .07s ease,transform .07s ease;}
+@media(hover:none){#gin-cursor{display:none!important;}}
+
+/* ── RESPONSIVE ── */
 @media(max-width:960px){
-  .events-grid{grid-template-columns:1fr 1fr;}
-  .featured-event-inner{grid-template-columns:1fr;gap:2.5rem;}
-  .host-event-inner{grid-template-columns:1fr;gap:2.5rem;}
-  .host-event-photo{aspect-ratio:16/9;}
+  .schedule-grid{grid-template-columns:1fr 1fr;}
+  .featured-25k-inner{grid-template-columns:1fr;gap:2.5rem;}
+  .expect-grid{grid-template-columns:1fr 1fr;}
+  .more-than-inner{grid-template-columns:1fr;gap:2.5rem;}
+  .more-than-photo{aspect-ratio:16/9;}
   .footer-top{grid-template-columns:1fr;gap:2rem;}
   .footer-cols{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:680px){
-  nav{padding:0 1.2rem;}
-  .nav-links{display:none;}
-  .events-grid{grid-template-columns:1fr;}
+  nav{padding:0 1.25rem;}
+  .nav-links,.nav-give{display:none;}
+  .hamburger{display:flex;}
+  .page-hero{padding:5.5rem 1.5rem 4rem;}
+  .page-hero h1{font-size:clamp(1.8rem,7vw,2.8rem);}
+  .walk-schedule{padding:4.5rem 1.5rem;}
+  .schedule-grid{grid-template-columns:1fr 1fr;}
+  .featured-25k{padding:4.5rem 1.5rem;}
+  .what-to-expect{padding:4.5rem 1.5rem;}
+  .expect-grid{grid-template-columns:1fr;}
+  .more-than{padding:4.5rem 1.5rem;}
+  .footer-newsletter{flex-direction:column;}
+  .footer-newsletter input,.footer-newsletter button{width:100%;}
 }
-
-/* ── GRAIN TEXTURE ── */
-.gin-grain{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;opacity:0.038;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
-
-/* ── SHOE CURSOR ── */
-body{cursor:none;}
-a,button,label,select,input,textarea{cursor:none!important;}
-@media(hover:none){body,a,button,label,select,input,textarea{cursor:auto!important;}}
-#gin-cursor{
-  position:fixed;left:-100px;top:-100px;
-  pointer-events:none;z-index:10000;
-  font-size:42px;line-height:1;user-select:none;
-  transform:rotate(-15deg);
-  transition:font-size .15s ease,transform .15s ease;
-  filter:drop-shadow(0 2px 10px rgba(240,36,122,.5));}
-#gin-cursor.hov{font-size:54px;transform:rotate(-22deg);}
-@media(hover:none){#gin-cursor{display:none;}}
+@media(max-width:480px){
+  .schedule-grid{grid-template-columns:1fr;}
+  .footer-cols{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
-<div id="gin-cursor">👟</div>
+<div id="gin-cursor" aria-hidden="true"><span id="gin-shoe">👟</span></div>
 <div class="gin-grain"></div>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-close">&#10005;</button>
+  <a href="index.html">Home</a>
+  <a href="events.html">Join a Walk</a>
+  <a href="donate.html#love-boxes">Love Boxes</a>
+  <a href="donate.html#scholarships">Scholarships</a>
+  <a href="about.html">About LeeLee</a>
+  <a href="donate.html" class="m-give">&#10024;&nbsp; Give</a>
+</div>
+
+<!-- NAV -->
 <nav>
   <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" class="nav-logo"></a>
   <div class="nav-links">
     <a href="index.html">Home</a>
-    <a href="events.html" class="active">Events</a>
-    <a href="podcast.html">Podcast</a>
-    <a href="contact.html">Contact</a>
+    <a href="events.html" class="active">Join a Walk</a>
+    <a href="donate.html#love-boxes">Love Boxes</a>
+    <a href="donate.html#scholarships">Scholarships</a>
+    <a href="about.html">About LeeLee</a>
   </div>
-  <a href="donate.html" class="nav-give">&#9829; Give</a>
+  <a href="donate.html" class="nav-give">&#10024;&nbsp; Give</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- HERO -->
 <section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="images/women-4.jpg" alt="Women walking together">
+  </div>
   <div class="page-hero-inner rv">
-    <h1>Events &amp; Gatherings</h1>
-    <p>Come find your community. Our events are designed to connect women, encourage hearts, and equip leaders. There is a seat at the table for you.</p>
+    <span class="page-hero-pre">Go Inspire Now &bull; Dallas&ndash;Fort Worth</span>
+    <h1>Find the Walk You Didn&rsquo;t Know You Needed.</h1>
+    <p>Some days you need fresh air. Some days you need someone who understands. Sometimes you simply need to remember who you are.</p>
+    <a href="#schedule" class="btn-pk">View the Walk Schedule</a>
   </div>
 </section>
 
-<section class="featured-event">
-  <div class="featured-event-inner">
+<!-- WALK SCHEDULE -->
+<section class="walk-schedule" id="schedule">
+  <div class="walk-schedule-inner">
+    <div class="schedule-header rv">
+      <div class="schedule-eyebrow">The Go Inspire Walk Series</div>
+      <h2>Every Other Saturday&nbsp;&bull;&nbsp;<span class="pk">Across DFW</span></h2>
+      <p class="sub">Each walk is designed to encourage women through movement, meaningful conversations, authentic friendships, and unforgettable moments together.</p>
+      <div class="schedule-mantra">Walk.<span>&#10004;</span>Connect.<span>&#10004;</span>Be Inspired.</div>
+    </div>
+
+    <div class="schedule-grid">
+
+      <div class="area-card rv rv-d1">
+        <div class="area-tag">Area</div>
+        <div class="area-name">North DFW</div>
+        <ul class="area-walks">
+          <li class="area-walk">
+            <span class="walk-date">July 11</span>
+            <span class="walk-loc">Denton</span>
+          </li>
+          <li class="area-walk">
+            <span class="walk-date">July 25</span>
+            <span class="walk-loc">North DFW</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="area-card rv rv-d2">
+        <div class="area-tag">Area</div>
+        <div class="area-name">East DFW</div>
+        <ul class="area-walks">
+          <li class="area-walk">
+            <span class="walk-date">August 1</span>
+            <span class="walk-loc">East DFW</span>
+          </li>
+          <li class="area-walk">
+            <span class="walk-date">August 15</span>
+            <span class="walk-loc">East DFW</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="area-card rv rv-d3">
+        <div class="area-tag">Area</div>
+        <div class="area-name">South DFW</div>
+        <ul class="area-walks">
+          <li class="area-walk">
+            <span class="walk-date">September 12</span>
+            <span class="walk-loc">South DFW</span>
+          </li>
+          <li class="area-walk">
+            <span class="walk-date">September 26</span>
+            <span class="walk-loc">South DFW</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="area-card rv rv-d4">
+        <div class="area-tag">Area</div>
+        <div class="area-name">West DFW</div>
+        <ul class="area-walks">
+          <li class="area-walk">
+            <span class="walk-date">October 3</span>
+            <span class="walk-loc">West DFW</span>
+          </li>
+          <li class="area-walk">
+            <span class="walk-date">October 24</span>
+            <span class="walk-loc">West DFW</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="schedule-continues rv">
+      <div class="continues-label">Community Walks Continue</div>
+      <div class="continues-title">The movement doesn&rsquo;t stop.</div>
+      <div class="continues-dates">November 7 &nbsp;&bull;&nbsp; November 21</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FEATURED: THE OCTOBER 25K -->
+<section class="featured-25k">
+  <div class="featured-25k-inner">
     <div class="rv">
-      <p class="featured-event-label">Upcoming &mdash; Featured Event</p>
-      <h2>Women&rsquo;s Empowerment Summit 2026</h2>
-      <div class="featured-event-meta">
-        <div class="featured-meta-item"><span>Date</span><span>June 14, 2026</span></div>
-        <div class="featured-meta-item"><span>Location</span><span>Atlanta, GA</span></div>
-        <div class="featured-meta-item"><span>Format</span><span>In-Person + Livestream</span></div>
+      <p class="featured-25k-label">Signature Annual Event</p>
+      <div class="featured-25k-date-tag">October 25</div>
+      <h2>The Go Inspire Now 25K Walk</h2>
+      <div class="featured-25k-taglines">
+        <p>One Community.</p>
+        <p>One Purpose.</p>
+        <p>One Unforgettable Day.</p>
       </div>
-      <p>An immersive day of community, workshops, and connection for women ready to walk boldly into their next chapter. Hear from powerful speakers, connect with women across the GIN community, and leave equipped to lead with love.</p>
-      <a href="donate.html" class="btn-pk">Register Now</a>
+      <p class="body">Join women from across DFW for our signature annual 25K walk&mdash;a day filled with encouragement, friendship, inspiration, and the reminder that no woman was ever meant to walk alone.</p>
+      <p class="reg-note">Registration Coming Soon</p>
+      <a href="donate.html" class="btn-pk">&#129505;&nbsp; Join the Movement</a>
     </div>
-    <div class="featured-event-photo rv">
-      <img src="images/women-3.jpg" alt="Women&rsquo;s Empowerment Summit">
-    </div>
-  </div>
-</section>
-
-<section class="events-section">
-  <div class="events-inner">
-    <div class="events-filter rv">
-      <span class="events-filter-label">Filter by:</span>
-      <button class="filter-btn active">All Events</button>
-      <button class="filter-btn">Summits</button>
-      <button class="filter-btn">Community Groups</button>
-      <button class="filter-btn">Workshops</button>
-      <button class="filter-btn">Online</button>
-    </div>
-    <div class="events-grid">
-
-      <div class="event-card rv">
-        <div class="event-card-img">
-          <img src="images/women-1.jpg" alt="Hope Circle Gathering">
-          <div class="event-date-badge"><div class="month">Jun</div><div class="day">21</div></div>
-        </div>
-        <div class="event-card-body">
-          <div class="event-tag">Community Group</div>
-          <h3>Hope Circle Gathering</h3>
-          <div class="event-meta"><span>&#128205;</span><span>Houston, TX</span></div>
-          <p>A warm, welcoming circle for women walking through life&rsquo;s unexpected seasons. Come as you are &mdash; leave feeling known, loved, and less alone.</p>
-          <a href="contact.html" class="event-cta">Learn More &#8594;</a>
-        </div>
-      </div>
-
-      <div class="event-card rv">
-        <div class="event-card-img">
-          <img src="images/founder-1.jpg" alt="Single Moms Brunch">
-          <div class="event-date-badge"><div class="month">Jul</div><div class="day">12</div></div>
-        </div>
-        <div class="event-card-body">
-          <div class="event-tag">Workshop</div>
-          <h3>Single Moms Community Brunch</h3>
-          <div class="event-meta"><span>&#128205;</span><span>Charlotte, NC</span></div>
-          <p>A relaxed brunch where single moms connect, share stories, and build friendships that carry them through. Childcare provided.</p>
-          <a href="contact.html" class="event-cta">Learn More &#8594;</a>
-        </div>
-      </div>
-
-      <div class="event-card rv">
-        <div class="event-card-img">
-          <img src="images/brand-1.jpg" alt="Inspire &amp; Equip Workshop">
-          <div class="event-date-badge"><div class="month">Jul</div><div class="day">26</div></div>
-        </div>
-        <div class="event-card-body">
-          <div class="event-tag">Workshop</div>
-          <h3>Inspire &amp; Equip Leadership Workshop</h3>
-          <div class="event-meta"><span>&#128205;</span><span>Online &mdash; Livestream</span></div>
-          <p>A virtual training for women who feel called to start a community group. Get the tools, the coaching, and the confidence to lead.</p>
-          <a href="contact.html" class="event-cta">Register &#8594;</a>
-        </div>
-      </div>
-
-      <div class="event-card rv">
-        <div class="event-card-img">
-          <img src="images/women-4.jpg" alt="Family Forward Day">
-          <div class="event-date-badge"><div class="month">Aug</div><div class="day">9</div></div>
-        </div>
-        <div class="event-card-body">
-          <div class="event-tag">Community Event</div>
-          <h3>Family Forward Day</h3>
-          <div class="event-meta"><span>&#128205;</span><span>Dallas, TX</span></div>
-          <p>A family-friendly day of celebration, connection, and resources for families who have been part of the GIN community. Bring the whole crew.</p>
-          <a href="contact.html" class="event-cta">Learn More &#8594;</a>
-        </div>
-      </div>
-
-      <div class="event-card rv">
-        <div class="event-card-img">
-          <img src="images/founder-2.jpg" alt="Crisis Support Circle">
-          <div class="event-date-badge"><div class="month">Aug</div><div class="day">23</div></div>
-        </div>
-        <div class="event-card-body">
-          <div class="event-tag">Community Group</div>
-          <h3>Crisis Support Circle &mdash; Chicago</h3>
-          <div class="event-meta"><span>&#128205;</span><span>Chicago, IL</span></div>
-          <p>A safe, confidential gathering for women in the middle of a life crisis. Come and find a community that gets it &mdash; no judgment, just love.</p>
-          <a href="contact.html" class="event-cta">Learn More &#8594;</a>
-        </div>
-      </div>
-
-      <div class="event-card rv">
-        <div class="event-card-img">
-          <img src="images/women-2.jpg" alt="New Season Retreat">
-          <div class="event-date-badge"><div class="month">Sep</div><div class="day">6</div></div>
-        </div>
-        <div class="event-card-body">
-          <div class="event-tag">Summit</div>
-          <h3>New Season, New Purpose Retreat</h3>
-          <div class="event-meta"><span>&#128205;</span><span>Miami, FL</span></div>
-          <p>A weekend retreat designed to help women rediscover their purpose, reset their direction, and walk boldly into the next season of life.</p>
-          <a href="donate.html" class="event-cta">Register &#8594;</a>
-        </div>
-      </div>
-
+    <div class="featured-photo rv">
+      <img src="images/women-3.jpg" alt="The Go Inspire Now 25K Walk">
     </div>
   </div>
 </section>
 
-<section class="host-event">
-  <div class="host-event-inner">
+<!-- WHAT TO EXPECT -->
+<section class="what-to-expect">
+  <div class="what-to-expect-inner">
+    <h2 class="section-heading rv">What to Expect</h2>
+    <p class="section-sub rv">Every Go Inspire Walk is designed to feel like a breath of fresh air for your soul.</p>
+    <div class="expect-grid">
+      <div class="expect-item rv rv-d1">
+        <span class="expect-icon">&#128149;</span>
+        <p>A <strong>welcoming community</strong> where you belong exactly as you are&mdash;no pretending, no performing, no prerequisites.</p>
+      </div>
+      <div class="expect-item rv rv-d2">
+        <span class="expect-icon">&#128694;</span>
+        <p><strong>Walking routes for all fitness levels.</strong> Whether you stroll or stride, every pace is welcome on a Go Inspire Walk.</p>
+      </div>
+      <div class="expect-item rv rv-d3">
+        <span class="expect-icon">&#128172;</span>
+        <p><strong>Genuine conversations</strong> with women who get it&mdash;real talk, real stories, and real connection that goes deeper than small talk.</p>
+      </div>
+      <div class="expect-item rv rv-d1">
+        <span class="expect-icon">&#10024;</span>
+        <p><strong>New friendships</strong> with women who are walking the same journey and ready to walk it beside you.</p>
+      </div>
+      <div class="expect-item rv rv-d2">
+        <span class="expect-icon">&#127774;</span>
+        <p><strong>Encouragement for whatever season you&rsquo;re in&mdash;</strong>whether you&rsquo;re thriving, rebuilding, or just trying to take the next step.</p>
+      </div>
+      <div class="expect-item rv rv-d3">
+        <span class="expect-icon">&#128247;</span>
+        <p><strong>Beautiful moments</strong> worth capturing&mdash;and inspiration that stays with you long after the walk ends.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MORE THAN A WALK -->
+<section class="more-than">
+  <div class="more-than-inner">
     <div class="rv">
-      <h2>Host a Go Inspire Now Event in Your City</h2>
-      <p>You have the passion, we have the resources. Partner with us to bring a gathering, workshop, or community circle to your city. We will walk alongside you every step of the way.</p>
-      <ul class="host-event-features">
-        <li><div class="host-feature-dot">&#10003;</div><span>Full event planning guides and templates provided</span></li>
-        <li><div class="host-feature-dot">&#10003;</div><span>Speaker resources and talk outlines available</span></li>
-        <li><div class="host-feature-dot">&#10003;</div><span>Marketing materials and social graphics included</span></li>
-        <li><div class="host-feature-dot">&#10003;</div><span>Direct coaching from the GIN team throughout</span></li>
-      </ul>
-      <a href="contact.html" class="btn-pk">Apply to Host</a>
+      <h2>More Than a Walk.</h2>
+      <p>Every Go Inspire Walk is an opportunity to slow down, breathe deeply, reconnect with yourself, and build meaningful relationships with women who simply understand.</p>
+      <p class="quote-line">Some women come looking for exercise.</p>
+      <p class="quote-line">Many leave with lifelong friendships.</p>
+      <p class="outro">Every woman leaves reminded that she is seen, valued, and loved.</p>
+      <a href="donate.html" class="btn-pk">&#129485;&nbsp; Join the Next Walk</a>
     </div>
-    <div class="host-event-photo rv">
-      <img src="images/brand-2.jpg" alt="Host a GIN event">
+    <div class="more-than-photo rv">
+      <img src="images/brand-2.jpg" alt="Women walking together at Go Inspire Now">
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-main">
     <div class="footer-top">
       <div class="footer-brand">
         <img src="assets/gin-logo.png" alt="Go Inspire Now" class="footer-brand-logo">
-        <p>Join our email newsletter for stories of hope, event updates, and ways to get involved.</p>
+        <p>Join our newsletter for walk updates, stories of hope, and reminders that you are seen, valued, and loved.</p>
         <div class="footer-newsletter">
-          <input type="email" placeholder="Email Address">
+          <input type="email" placeholder="Your Email Address">
           <button>Subscribe</button>
         </div>
         <div class="footer-social">
@@ -318,40 +410,52 @@ a,button,label,select,input,textarea{cursor:none!important;}
         </div>
       </div>
       <div class="footer-cols">
-        <div class="footer-col"><h4>About Us</h4><ul><li><a href="#">Our Story</a></li><li><a href="#">Our Mission</a></li><li><a href="#">Leadership</a></li><li><a href="podcast.html">The Podcast</a></li></ul></div>
-        <div class="footer-col"><h4>Programs</h4><ul><li><a href="#">Women in Crisis</a></li><li><a href="#">Single Moms</a></li><li><a href="#">Family Support</a></li><li><a href="events.html">Events</a></li></ul></div>
-        <div class="footer-col"><h4>Get Involved</h4><ul><li><a href="donate.html">Give</a></li><li><a href="#">Volunteer</a></li><li><a href="#">Start a Group</a></li><li><a href="#">Partner With Us</a></li></ul></div>
-        <div class="footer-col"><h4>Connect</h4><ul><li><a href="contact.html">Contact Us</a></li><li><a href="#">Privacy Policy</a></li><li><a href="podcast.html">Podcast</a></li><li><a href="#">Social Media</a></li></ul></div>
+        <div class="footer-col"><h4>Walk With Us</h4><ul><li><a href="events.html">Join a Walk</a></li><li><a href="events.html#schedule">Walk Schedule</a></li><li><a href="events.html">The October 25K</a></li></ul></div>
+        <div class="footer-col"><h4>Programs</h4><ul><li><a href="donate.html#love-boxes">Love Boxes</a></li><li><a href="donate.html#scholarships">Scholarships</a></li><li><a href="donate.html">Give Hope</a></li></ul></div>
+        <div class="footer-col"><h4>About</h4><ul><li><a href="about.html">About LeeLee</a></li><li><a href="about.html">Our Mission</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+        <div class="footer-col"><h4>Give</h4><ul><li><a href="donate.html">Change a Woman&rsquo;s Story</a></li><li><a href="donate.html">Give Hope</a></li><li><a href="donate.html">Help Women Feel Seen</a></li></ul></div>
       </div>
     </div>
   </div>
-  <div class="footer-bottom">&copy;2026 All Rights Reserved &nbsp;|&nbsp; Go Inspire Now, a nonprofit organization dedicated to empowering women through community, hope, and purpose. &nbsp;|&nbsp; <a href="contact.html" style="text-decoration:underline;color:inherit;">Contact Us</a></div>
+  <div class="footer-bottom">&copy;2026 Go Inspire Now &nbsp;&mdash;&nbsp; A movement where women rediscover who they were created to be through community, encouragement, and shared experiences. &nbsp;&mdash;&nbsp; <a href="contact.html" style="text-decoration:underline;color:inherit;">Contact</a></div>
 </footer>
 
 <script>
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-  });
-});
 const ro = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 document.querySelectorAll('.rv').forEach(el => ro.observe(el));
 
-// Shoe cursor
 (function(){
-  var c = document.getElementById('gin-cursor');
-  if(!c) return;
-  document.addEventListener('mousemove',function(e){
-    c.style.left = (e.clientX - 6) + 'px';
-    c.style.top  = (e.clientY - 32) + 'px';
-  });
+  var btn = document.getElementById('hamburger');
+  var menu = document.getElementById('mobile-menu');
+  var closeBtn = document.getElementById('mobile-close');
+  if (!btn || !menu) return;
+  function open(){ btn.classList.add('open'); menu.classList.add('open'); document.body.style.overflow='hidden'; }
+  function close(){ btn.classList.remove('open'); menu.classList.remove('open'); document.body.style.overflow=''; }
+  btn.addEventListener('click', function(){ menu.classList.contains('open') ? close() : open(); });
+  if (closeBtn) closeBtn.addEventListener('click', close);
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+})();
+
+(function(){
+  if (!window.matchMedia('(hover: hover)').matches) return;
+  var c = document.getElementById('gin-cursor'), shoe = document.getElementById('gin-shoe');
+  if (!c || !shoe) return;
+  var cx = -200, cy2 = -200, ticking = false, visible = false;
+  function render(){ c.style.transform = 'translate('+(cx-4)+'px,'+(cy2-38)+'px)'; ticking = false; }
+  document.addEventListener('mousemove', function(e){
+    cx = e.clientX; cy2 = e.clientY;
+    if (!ticking){ ticking = true; requestAnimationFrame(render); }
+    if (!visible){ visible = true; c.style.opacity = '1'; }
+  }, { passive: true });
   document.querySelectorAll('a,button').forEach(function(el){
-    el.addEventListener('mouseenter',function(){ c.classList.add('hov'); });
-    el.addEventListener('mouseleave',function(){ c.classList.remove('hov'); });
+    el.addEventListener('mouseenter', function(){ c.classList.add('hov'); });
+    el.addEventListener('mouseleave', function(){ c.classList.remove('hov'); });
   });
+  document.addEventListener('mousedown', function(){ c.classList.add('click'); });
+  document.addEventListener('mouseup', function(){ c.classList.remove('click'); });
 })();
 </script>
 </body>
