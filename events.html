@@ -101,21 +101,35 @@ nav{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid v
   transition:background .15s,color .15s;flex-shrink:0;
 }
 .walk-reg:hover{background:var(--pk);color:#fff;}
-/* Becoming Walk section */
-.becoming-walk{background:linear-gradient(145deg,#0E0020 0%,#2B005C 60%,#0E0020 100%);padding:7rem 2rem;position:relative;overflow:hidden;}
+/* GIN Journey 25K section */
+.becoming-walk{background:linear-gradient(145deg,#0E0020 0%,#2B005C 60%,#0E0020 100%);padding:7rem 2rem 5rem;position:relative;overflow:hidden;}
 .becoming-walk::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(240,36,122,.22) 0%,transparent 60%);pointer-events:none;}
-.becoming-walk-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 440px;gap:5rem;align-items:center;position:relative;z-index:1;}
+.becoming-walk-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 400px;gap:5rem;align-items:start;position:relative;z-index:1;}
 .bw-badge{display:inline-block;background:rgba(240,36,122,.15);border:1px solid rgba(240,36,122,.35);color:var(--pk);font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.35rem 1rem;border-radius:100px;margin-bottom:1rem;}
 .bw-date-pill{display:inline-block;background:var(--pk);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.06em;padding:.3rem 1.1rem;border-radius:10px;margin-bottom:1.2rem;}
 .bw-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5vw,4.5rem);color:#fff;line-height:.88;margin-bottom:.6rem;letter-spacing:.02em;}
 .bw-tm{color:var(--pk);}
-.bw-sub{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.6);margin-bottom:1.4rem;line-height:1.65;}
-.bw-body{font-size:.9rem;line-height:1.8;color:rgba(255,255,255,.45);margin-bottom:.8rem;}
-.bw-feats{list-style:none;margin-bottom:2rem;}
-.bw-feat{font-size:.82rem;color:rgba(255,255,255,.55);padding:.3rem 0;display:flex;align-items:center;gap:.5rem;}
-.bw-feat::before{content:'✦';color:var(--go);font-size:.65rem;}
-.bw-photo{border-radius:20px;overflow:hidden;aspect-ratio:4/3;}
+.bw-sub{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.75);margin-bottom:.6rem;line-height:1.65;}
+.bw-sub2{font-size:.88rem;line-height:1.85;color:rgba(255,255,255,.5);margin-bottom:1.6rem;max-width:540px;}
+.bw-section-label{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--go);margin:1.6rem 0 .7rem;display:block;}
+.bw-feats{list-style:none;margin-bottom:1.2rem;}
+.bw-feat{font-size:.82rem;color:rgba(255,255,255,.7);padding:.28rem 0;display:flex;align-items:flex-start;gap:.55rem;line-height:1.5;}
+.bw-feat::before{content:'✔';color:var(--go);font-size:.72rem;margin-top:.1rem;flex-shrink:0;}
+.bw-photo{border-radius:20px;overflow:hidden;aspect-ratio:4/3;position:sticky;top:90px;}
 .bw-photo img{width:100%;height:100%;object-fit:cover;object-position:center;}
+/* Pace block */
+.bw-pace{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:1.4rem 1.5rem;margin:1.2rem 0;}
+.bw-pace-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:#fff;letter-spacing:.05em;margin-bottom:.6rem;}
+.bw-pace p{font-size:.82rem;line-height:1.8;color:rgba(255,255,255,.52);}
+.bw-pace p strong{color:rgba(255,255,255,.8);}
+/* Experience hearts */
+.bw-hearts{list-style:none;column-count:2;column-gap:1rem;margin-bottom:1.4rem;}
+.bw-heart{font-size:.8rem;color:rgba(255,255,255,.6);padding:.22rem 0;break-inside:avoid;}
+/* Moments */
+.bw-moments{margin:1rem 0 1.8rem;display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;}
+.bw-moment{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.75rem .6rem;text-align:center;}
+.bw-moment-num{font-family:'Bebas Neue',sans-serif;font-size:.85rem;color:var(--pk);letter-spacing:.1em;display:block;}
+.bw-moment-word{font-size:.75rem;font-weight:600;color:#fff;letter-spacing:.04em;}
 /* Signup modal */
 .signup-modal-overlay{position:fixed;inset:0;z-index:9900;background:rgba(14,0,32,.7);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .25s;}
 .signup-modal-overlay.vis{opacity:1;pointer-events:all;}
@@ -226,6 +240,15 @@ footer{background:var(--lav-mid);}
   .more-than-photo{aspect-ratio:16/9;}
   .footer-top{grid-template-columns:1fr;gap:2rem;}
   .footer-cols{grid-template-columns:1fr 1fr;}
+  .becoming-walk-inner{grid-template-columns:1fr;gap:3rem;}
+  .bw-photo{position:static;aspect-ratio:16/9;}
+  .bw-hearts{column-count:1;}
+  .bw-moments{grid-template-columns:repeat(4,1fr);}
+}
+@media(max-width:520px){
+  .bw-moments{grid-template-columns:repeat(4,1fr);gap:.35rem;}
+  .bw-moment{padding:.55rem .3rem;}
+  .bw-hearts{column-count:1;}
 }
 @media(max-width:680px){
   nav{padding:0 1.25rem;}
@@ -448,26 +471,64 @@ footer{background:var(--lav-mid);}
   </div>
 </section>
 
-<!-- THE BECOMING WALK -->
-<section class="becoming-walk" id="becoming-walk">
+<!-- THE GIN JOURNEY 25K -->
+<section class="becoming-walk" id="gin-25k">
   <div class="becoming-walk-inner">
     <div class="rv">
-      <span class="bw-badge">Signature Annual Event</span>
+      <span class="bw-badge">Signature Annual Event &mdash; Denton, Texas</span>
       <div class="bw-date-pill">October 25, 2026</div>
-      <h2 class="bw-title">THE BECOMING<br>WALK<span class="bw-tm">™</span></h2>
-      <p class="bw-sub">More than a walk. It&rsquo;s a declaration.</p>
-      <p class="bw-body">25,000 steps. One community. One unforgettable day of purpose, encouragement, and the kind of connection that changes a woman&rsquo;s life.</p>
+      <h2 class="bw-title">THE GO INSPIRE NOW<br>JOURNEY<span class="bw-tm"> 25K</span></h2>
+      <p class="bw-sub">More Than a Walk. A Journey Back to Yourself.</p>
+      <p class="bw-sub2">Join hundreds of women for an unforgettable day of movement, meaningful conversations, encouragement, celebration, and connection as we walk 25 kilometers together across beautiful Denton, Texas. Whether you&rsquo;re walking beside lifelong friends or meeting someone new, every step is a reminder that you were never meant to walk alone.</p>
+
+      <span class="bw-section-label">What Makes This Walk Different</span>
       <ul class="bw-feats">
-        <li class="bw-feat">Open to all fitness levels — every pace is welcome</li>
-        <li class="bw-feat">Women from across Dallas–Fort Worth</li>
-        <li class="bw-feat">Music, stories, and moments that move you</li>
-        <li class="bw-feat">25K steps walked together, on purpose</li>
+        <li class="bw-feat">25-kilometer guided community walk &mdash; over 25,000 steps of purpose</li>
+        <li class="bw-feat">Maintained at approximately a 3.0+ mph pace</li>
+        <li class="bw-feat">Encouraging pace leaders throughout the route</li>
+        <li class="bw-feat">Inspiring mile markers featuring powerful women&rsquo;s stories</li>
+        <li class="bw-feat">Water and refreshment stations along the course</li>
+        <li class="bw-feat">Music, encouragement, and cheering squads</li>
+        <li class="bw-feat">Opportunities for meaningful conversations while walking</li>
+        <li class="bw-feat">Finish-line celebration with music, food trucks, and community</li>
+        <li class="bw-feat">Professional photos to capture your journey</li>
+        <li class="bw-feat">A welcoming experience for women of all backgrounds</li>
         <li class="bw-feat">Free with registration</li>
       </ul>
-      <button class="btn-pk" onclick="openSignup('The Becoming Walk™','October 25, 2026')">&#129505;&nbsp; Register for The Becoming Walk™</button>
+
+      <div class="bw-pace">
+        <div class="bw-pace-title">Is This Walk for Me?</div>
+        <p>This is an inspirational community walk &mdash; <strong>not a race.</strong> Participants should be comfortable maintaining approximately a <strong>3.0 mph or faster pace</strong> for the duration of the event. We&rsquo;ll have designated pace leaders, scheduled hydration stops, and an encouraging atmosphere from start to finish.<br><br><em>Our goal isn&rsquo;t to finish first. Our goal is to finish together.</em></p>
+      </div>
+
+      <span class="bw-section-label">What You&rsquo;ll Experience</span>
+      <ul class="bw-hearts">
+        <li class="bw-heart">&#10084; Real conversations</li>
+        <li class="bw-heart">&#10084; New friendships</li>
+        <li class="bw-heart">&#10084; Beautiful scenic trails</li>
+        <li class="bw-heart">&#10084; Inspirational story stations</li>
+        <li class="bw-heart">&#10084; Reflection moments</li>
+        <li class="bw-heart">&#10084; Laughter &amp; tears</li>
+        <li class="bw-heart">&#10084; Celebration</li>
+        <li class="bw-heart">&#10084; A finish line you&rsquo;ll never forget</li>
+      </ul>
+
+      <span class="bw-section-label">The 7 Moments Along the Journey</span>
+      <div class="bw-moments">
+        <div class="bw-moment"><span class="bw-moment-num">1</span><span class="bw-moment-word">Breathe</span></div>
+        <div class="bw-moment"><span class="bw-moment-num">2</span><span class="bw-moment-word">Release</span></div>
+        <div class="bw-moment"><span class="bw-moment-num">3</span><span class="bw-moment-word">Forgive</span></div>
+        <div class="bw-moment"><span class="bw-moment-num">4</span><span class="bw-moment-word">Hope</span></div>
+        <div class="bw-moment"><span class="bw-moment-num">5</span><span class="bw-moment-word">Courage</span></div>
+        <div class="bw-moment"><span class="bw-moment-num">6</span><span class="bw-moment-word">Belong</span></div>
+        <div class="bw-moment"><span class="bw-moment-num" style="color:var(--cy);">7</span><span class="bw-moment-word">Rise</span></div>
+      </div>
+      <p style="font-size:.75rem;color:rgba(255,255,255,.38);margin-bottom:2rem;line-height:1.7;">As you walk, you&rsquo;ll encounter beautifully designed story stations featuring real women who chose courage over fear, hope over despair, and resilience over giving up. Instead of mile markers, we call them <em>Moments</em> &mdash; because women won&rsquo;t remember &ldquo;mile 4&rdquo;; they&rsquo;ll remember the Forgive Moment that made them cry.</p>
+
+      <button class="btn-pk" onclick="openSignup('The Go Inspire Now Journey 25K','October 25, 2026')">&#129505;&nbsp; Register for the GIN Journey 25K</button>
     </div>
     <div class="bw-photo rv">
-      <img src="images/walk-25k.png" alt="The Becoming Walk — Go Inspire Now">
+      <img src="images/walk-25k.png" alt="The Go Inspire Now Journey 25K">
     </div>
   </div>
 </section>
