@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact &mdash; Go Inspire Now</title>
+<title>Contact Us — Go Inspire Now</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -14,13 +14,14 @@ img{display:block;max-width:100%;height:auto;}
 a{text-decoration:none;color:inherit;}
 
 :root{
-  --pk:#F0247A;--pk-lt:#FFE0EF;--vi:#7B2FFF;--vi-lt:#EDE6FF;
-  --cy:#00C4DF;--go:#FFC425;--hero-bg:#D2EAE4;--cream:#F7F2EE;
+  --pk:#F0247A;--pk-lt:#FFE0EF;--vi:#7B2FFF;
+  --cy:#00C4DF;--go:#FFC425;--cream:#F7F2EE;
   --blush:#FFF0F5;--lav:#EAE3FF;--lav-mid:#C4B5F0;
   --dark:#1C1025;--mid:#4A3070;--muted:#8A7AAA;--border:#E0D8F0;
   --serif:'Playfair Display',serif;--sans:'Inter',sans-serif;
 }
 
+/* ── NAV ── */
 nav{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid var(--border);padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;}
 .nav-logo{height:44px;width:auto;}
 .nav-links{display:flex;align-items:center;gap:2rem;}
@@ -28,63 +29,71 @@ nav{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid v
 .nav-links a:hover,.nav-links a.active{color:var(--pk);}
 .nav-give{background:var(--pk);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:.55rem 1.5rem;border-radius:100px;transition:background .2s,transform .15s;display:flex;align-items:center;gap:.35rem;}
 .nav-give:hover{background:#CC1060;transform:scale(1.04);}
+.nav-dropdown{position:relative;}
+.nav-dd-trigger{background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.04em;color:var(--mid);padding:0;display:flex;align-items:center;gap:.3rem;transition:color .2s;}
+.nav-dd-trigger:hover,.nav-dropdown.open .nav-dd-trigger{color:var(--pk);}
+.nav-dd-arrow{display:inline-block;transition:transform .2s;font-size:.5rem;}
+.nav-dropdown.open .nav-dd-arrow{transform:rotate(180deg);}
+.nav-dd-menu{position:absolute;top:calc(100% + .9rem);left:50%;transform:translateX(-50%) translateY(-6px);background:#fff;border-radius:14px;box-shadow:0 4px 32px rgba(14,0,32,.12);border:1px solid rgba(224,216,240,.6);padding:.5rem;min-width:210px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,transform .2s,visibility .2s;z-index:1200;}
+.nav-dropdown:hover .nav-dd-menu,.nav-dropdown.open .nav-dd-menu{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.nav-dd-menu a{display:block;padding:.7rem 1.1rem;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);border-radius:8px;transition:background .15s,color .15s;}
+.nav-dd-menu a:hover{background:#FFE0EF;color:var(--pk);}
 
-.page-hero{background:var(--lav);padding:5.5rem 2rem 4.5rem;text-align:center;}
-.page-hero-inner{max-width:640px;margin:0 auto;}
-.page-hero h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:600;color:var(--dark);margin-bottom:1rem;line-height:1.2;}
-.page-hero p{font-size:1rem;color:var(--mid);line-height:1.65;max-width:500px;margin:0 auto;}
+/* ── HAMBURGER ── */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;padding:.5rem .4rem;cursor:pointer;z-index:1100;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:transform .3s ease,opacity .3s ease;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-.contact-main{background:#fff;padding:5rem 2rem;}
-.contact-main-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:5rem;align-items:start;}
+/* ── MOBILE MENU ── */
+.mobile-menu{position:fixed;inset:0;z-index:1050;background:rgba(14,0,32,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.8rem;opacity:0;pointer-events:none;transition:opacity .35s ease;}
+.mobile-menu.open{opacity:1;pointer-events:all;}
+.mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:rgba(255,255,255,.82);letter-spacing:.03em;line-height:1;transition:color .2s;}
+.mobile-menu a:hover{color:#fff;}
+.mobile-menu .m-give{margin-top:.5rem;background:var(--pk);color:#fff;font-family:'Inter',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 2.8rem;border-radius:100px;box-shadow:0 4px 24px rgba(240,36,122,.45);transition:background .2s;}
+.mobile-menu .m-give:hover{background:#CC1060;}
+.mobile-menu-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;cursor:pointer;font-size:1.6rem;color:rgba(255,255,255,.5);transition:color .2s;padding:.5rem;}
+.mobile-menu-close:hover{color:#fff;}
 
-.contact-form-wrap h2{font-family:var(--serif);font-size:clamp(1.45rem,2.4vw,2rem);font-weight:600;color:var(--dark);margin-bottom:.6rem;}
-.contact-form-wrap p{font-size:.88rem;line-height:1.65;color:var(--mid);margin-bottom:2.2rem;}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
-.form-group{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1rem;}
-.form-group label{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dark);}
-.form-group input,.form-group select,.form-group textarea{width:100%;padding:.7rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-family:var(--sans);font-size:.88rem;color:var(--dark);background:#fff;outline:none;transition:border-color .2s,box-shadow .2s;}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--vi);box-shadow:0 0 0 3px rgba(123,47,255,.08);}
-.form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted);}
-.form-group textarea{resize:vertical;min-height:130px;line-height:1.6;}
-.form-group select{cursor:pointer;}
+/* ── PAGE HERO ── */
+.page-hero{position:relative;padding:7rem 2rem 5.5rem;text-align:center;overflow:hidden;}
+.page-hero-bg{position:absolute;inset:0;}
+.page-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 40%;}
+.page-hero-bg::after{content:'';position:absolute;inset:0;background:rgba(8,0,20,.58);}
+.page-hero-inner{position:relative;z-index:1;max-width:580px;margin:0 auto;}
+.page-hero-pre{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:1.2rem;display:block;}
+.page-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,6rem);color:#fff;letter-spacing:.02em;line-height:.9;margin-bottom:1.2rem;}
+.page-hero h1 .pk{color:#F0247A;}
+.page-hero p{font-family:var(--serif);font-style:italic;font-size:clamp(1rem,1.8vw,1.2rem);color:rgba(255,255,255,.72);line-height:1.65;}
+
+/* ── CONTACT MAIN ── */
+.contact-main{background:#fff;padding:7rem 2rem;}
+.contact-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 460px;gap:6rem;align-items:start;}
+.contact-info h2{font-family:var(--serif);font-size:clamp(1.5rem,2.5vw,2.2rem);font-weight:600;color:var(--dark);line-height:1.3;margin-bottom:1.2rem;}
+.contact-info p{font-size:.9rem;line-height:1.78;color:var(--mid);margin-bottom:1rem;}
+.contact-info .tagline{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--pk);margin-top:1.5rem;display:block;}
+.contact-ways{margin-top:2.5rem;display:flex;flex-direction:column;gap:1rem;}
+.contact-way{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border:1.5px solid var(--border);border-radius:14px;transition:border-color .2s,box-shadow .2s;}
+.contact-way:hover{border-color:var(--pk);box-shadow:0 4px 20px rgba(240,36,122,.08);}
+.cw-icon{width:40px;height:40px;border-radius:10px;background:var(--pk-lt);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.cw-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.2rem;}
+.cw-value{font-size:.88rem;font-weight:600;color:var(--dark);}
+
+/* ── FORM ── */
+.contact-form-wrap{background:var(--cream);border-radius:22px;padding:2.5rem;box-shadow:0 4px 40px rgba(0,0,0,.05);}
+.contact-form-wrap h3{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--dark);margin-bottom:.4rem;}
+.contact-form-wrap .form-desc{font-size:.78rem;color:var(--muted);margin-bottom:1.8rem;}
+.form-group{margin-bottom:1.1rem;}
+.form-group label{display:block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);margin-bottom:.45rem;}
+.form-group input,.form-group textarea{width:100%;padding:.72rem .95rem;border:1.5px solid var(--border);border-radius:10px;font-family:var(--sans);font-size:.88rem;color:var(--dark);background:#fff;outline:none;transition:border-color .2s;}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--pk);}
+.form-group textarea{resize:vertical;min-height:110px;}
 .form-submit{width:100%;padding:.9rem;background:var(--pk);color:#fff;border:none;border-radius:12px;cursor:pointer;font-family:var(--sans);font-size:.88rem;font-weight:700;letter-spacing:.04em;transition:background .2s,transform .15s;}
 .form-submit:hover{background:#CC1060;transform:translateY(-1px);}
-.form-note{font-size:.72rem;color:var(--muted);margin-top:.75rem;text-align:center;}
+.form-note{font-size:.7rem;color:var(--muted);text-align:center;margin-top:.8rem;}
 
-.contact-info-wrap{background:var(--cream);border-radius:20px;padding:2.2rem;}
-.contact-info-wrap h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--dark);margin-bottom:1.5rem;}
-.contact-info-item{display:flex;align-items:flex-start;gap:.9rem;padding:1rem 0;border-bottom:1px solid var(--border);}
-.contact-info-item:first-of-type{border-top:1px solid var(--border);}
-.contact-info-icon{width:38px;height:38px;border-radius:10px;background:var(--pk-lt);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
-.contact-info-detail strong{display:block;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem;}
-.contact-info-detail span,.contact-info-detail a{font-size:.88rem;color:var(--dark);line-height:1.45;}
-.contact-info-detail a:hover{color:var(--pk);}
-.contact-social-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:1.5rem;margin-bottom:.75rem;display:block;}
-.contact-social-links{display:flex;gap:.6rem;}
-.contact-social-links a{width:38px;height:38px;border-radius:10px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--mid);transition:all .2s;background:#fff;}
-.contact-social-links a:hover{background:var(--pk);color:#fff;border-color:var(--pk);}
-
-.faq{background:var(--cream);padding:5rem 2rem;}
-.faq-inner{max-width:860px;margin:0 auto;}
-.section-heading{font-family:var(--serif);font-size:clamp(1.55rem,2.4vw,2.1rem);font-weight:600;color:var(--dark);text-align:center;margin-bottom:2.5rem;}
-.faq-list{display:flex;flex-direction:column;gap:.75rem;}
-.faq-item{background:#fff;border:1.5px solid var(--border);border-radius:14px;overflow:hidden;}
-.faq-question{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;cursor:pointer;font-size:.9rem;font-weight:600;color:var(--dark);transition:color .2s;width:100%;background:none;border:none;text-align:left;}
-.faq-question:hover{color:var(--pk);}
-.faq-icon{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--muted);flex-shrink:0;transition:all .2s;}
-.faq-item.open .faq-icon{background:var(--pk);color:#fff;border-color:var(--pk);transform:rotate(45deg);}
-.faq-answer{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.25,1,.5,1);}
-.faq-answer p{padding:0 1.5rem 1.2rem;font-size:.86rem;line-height:1.65;color:var(--mid);}
-
-.start-group{background:var(--hero-bg);padding:5rem 2rem;}
-.start-group-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 480px;gap:5rem;align-items:center;}
-.start-group-text h2{font-family:var(--serif);font-size:clamp(1.55rem,2.5vw,2.4rem);font-weight:600;color:var(--dark);line-height:1.3;margin-bottom:1.1rem;}
-.start-group-text p{font-size:.9rem;line-height:1.7;color:var(--mid);margin-bottom:1.7rem;}
-.btn-pk{display:inline-flex;align-items:center;gap:.5rem;justify-content:center;padding:.75rem 2rem;background:var(--pk);color:#fff;border-radius:100px;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:background .2s,transform .15s;border:none;cursor:pointer;}
-.btn-pk:hover{background:#CC1060;transform:scale(1.04);}
-.start-group-photo{border-radius:20px;overflow:hidden;aspect-ratio:4/3;}
-.start-group-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
-
+/* ── FOOTER ── */
 footer{background:var(--lav-mid);}
 .footer-main{max-width:1200px;margin:0 auto;padding:4rem 2rem 3rem;}
 .footer-top{display:grid;grid-template-columns:260px 1fr;gap:5rem;padding-bottom:3rem;border-bottom:1px solid rgba(28,16,37,.12);margin-bottom:2.5rem;}
@@ -106,179 +115,160 @@ footer{background:var(--lav-mid);}
 .footer-col a:hover{color:var(--dark);}
 .footer-bottom{background:rgba(0,0,0,.1);padding:1.2rem 2rem;text-align:center;font-size:.69rem;color:rgba(28,16,37,.52);line-height:1.65;}
 
+/* ── SCROLL REVEAL ── */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.25,1,.5,1),transform .7s cubic-bezier(.25,1,.5,1);}
 .rv.in{opacity:1;transform:none;}
 
-@media(max-width:960px){
-  .contact-main-inner{grid-template-columns:1fr;gap:3rem;}
-  .form-row{grid-template-columns:1fr;}
-  .start-group-inner{grid-template-columns:1fr;gap:2.5rem;}
-  .start-group-photo{aspect-ratio:16/9;}
+/* ── GRAIN ── */
+.gin-grain{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* ── SHOE CURSOR ── */
+@media(hover:hover){*{cursor:none!important;}}
+#gin-cursor{position:fixed;left:0;top:0;pointer-events:none;z-index:10001;opacity:0;transition:opacity .25s ease;}
+#gin-shoe{display:block;font-size:40px;line-height:1;user-select:none;transform:rotate(-15deg);transition:font-size .2s cubic-bezier(.34,1.56,.64,1),transform .22s cubic-bezier(.34,1.56,.64,1),filter .2s ease;filter:drop-shadow(0 3px 14px rgba(240,36,122,.55));}
+#gin-cursor.hov #gin-shoe{font-size:56px;transform:rotate(-26deg) scale(1.1);}
+#gin-cursor.click #gin-shoe{font-size:34px;transform:rotate(-38deg) scale(.85);transition:font-size .07s ease,transform .07s ease;}
+@media(hover:none){#gin-cursor{display:none!important;}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .contact-inner{grid-template-columns:1fr;gap:3rem;}
   .footer-top{grid-template-columns:1fr;gap:2rem;}
   .footer-cols{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:680px){
-  nav{padding:0 1.2rem;}
-  .nav-links{display:none;}
+  nav{padding:0 1.25rem;}
+  .nav-links,.nav-give{display:none;}
+  .hamburger{display:flex;}
+  .page-hero{padding:5.5rem 1.5rem 4rem;}
+  .contact-main{padding:5rem 1.5rem;}
+  .footer-newsletter{flex-direction:column;}
+  .footer-newsletter input,.footer-newsletter button{width:100%;}
 }
-
-/* ── GRAIN TEXTURE ── */
-.gin-grain{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;opacity:0.038;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
-
-/* ── SHOE CURSOR ── */
-body{cursor:none;}
-a,button,label,select,input,textarea{cursor:none!important;}
-@media(hover:none){body,a,button,label,select,input,textarea{cursor:auto!important;}}
-#gin-cursor{
-  position:fixed;left:-100px;top:-100px;
-  pointer-events:none;z-index:10000;
-  font-size:42px;line-height:1;user-select:none;
-  transform:rotate(-15deg);
-  transition:font-size .15s ease,transform .15s ease;
-  filter:drop-shadow(0 2px 10px rgba(240,36,122,.5));}
-#gin-cursor.hov{font-size:54px;transform:rotate(-22deg);}
-@media(hover:none){#gin-cursor{display:none;}}
+@media(max-width:480px){.footer-cols{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
-<div id="gin-cursor">👟</div>
+<div id="gin-cursor" aria-hidden="true"><span id="gin-shoe">👟</span></div>
 <div class="gin-grain"></div>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-close">&#10005;</button>
+  <a href="index.html">Home</a>
+  <a href="events.html">Join a Walk</a>
+  <a href="donate.html#love-boxes">Love Boxes</a>
+  <a href="donate.html#scholarships">Scholarships</a>
+  <a href="nominate.html">Nominate a Woman</a>
+  <a href="contact.html">Contact</a>
+  <a href="about.html">About LeeLee</a>
+  <a href="donate.html" class="m-give">&#10024;&nbsp; Give</a>
+</div>
+
+<!-- NAV -->
 <nav>
   <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" class="nav-logo"></a>
   <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="events.html">Events</a>
-    <a href="podcast.html">Podcast</a>
+    <a href="events.html">Join a Walk</a>
+    <div class="nav-dropdown" id="nav-giving">
+      <button class="nav-dd-trigger" aria-expanded="false">Giving <span class="nav-dd-arrow">▼</span></button>
+      <div class="nav-dd-menu">
+        <a href="donate.html#love-boxes">Love Boxes</a>
+        <a href="donate.html#scholarships">Scholarships</a>
+        <a href="nominate.html">Nominate a Woman</a>
+      </div>
+    </div>
     <a href="contact.html" class="active">Contact</a>
+    <a href="about.html">About LeeLee</a>
   </div>
-  <a href="donate.html" class="nav-give">&#9829; Give</a>
+  <a href="donate.html" class="nav-give">&#10024;&nbsp; Give</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- HERO -->
 <section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="images/walk-embrace.png" alt="Women connecting at Go Inspire Now">
+  </div>
   <div class="page-hero-inner rv">
-    <h1>Get In Touch</h1>
-    <p>We&rsquo;d love to hear from you. Whether you want to find a community group, partner with us, or just say hello &mdash; we are here.</p>
+    <span class="page-hero-pre">We&rsquo;d Love to Hear From You</span>
+    <h1>LET&rsquo;S<br><span class="pk">CONNECT.</span></h1>
+    <p>Questions, ideas, stories, prayers&mdash;we&rsquo;re here for all of it.</p>
   </div>
 </section>
 
+<!-- CONTACT MAIN -->
 <section class="contact-main">
-  <div class="contact-main-inner">
+  <div class="contact-inner">
+
+    <div class="rv">
+      <h2>We&rsquo;re Real Women Who Read Every Message.</h2>
+      <p>Go Inspire Now is a community built on connection. If you have a question about a walk, want to share your story, or simply need someone to know you exist&mdash;we want to hear from you.</p>
+      <p>We typically respond within 1&ndash;2 business days. If you&rsquo;re looking to nominate a woman who needs to be loved on, <a href="nominate.html" style="color:var(--pk);text-decoration:underline;">visit our nomination page</a>.</p>
+      <span class="tagline">You matter to us. Every single message.</span>
+
+      <div class="contact-ways">
+        <div class="contact-way">
+          <div class="cw-icon">&#128140;</div>
+          <div>
+            <span class="cw-label">Email</span>
+            <span class="cw-value">info.goinspirenow@gmail.com</span>
+          </div>
+        </div>
+        <div class="contact-way">
+          <div class="cw-icon">&#128247;</div>
+          <div>
+            <span class="cw-label">Instagram</span>
+            <span class="cw-value">@goinspirenow</span>
+          </div>
+        </div>
+        <div class="contact-way">
+          <div class="cw-icon">&#129505;</div>
+          <div>
+            <span class="cw-label">Location</span>
+            <span class="cw-value">Dallas&ndash;Fort Worth, Texas</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="contact-form-wrap rv">
-      <h2>Send Us a Message</h2>
-      <p>Fill out the form below and our team will get back to you within 1&ndash;2 business days.</p>
-      <form onsubmit="return false;">
-        <div class="form-row">
-          <div class="form-group"><label for="first-name">First Name</label><input type="text" id="first-name" placeholder="Your first name"></div>
-          <div class="form-group"><label for="last-name">Last Name</label><input type="text" id="last-name" placeholder="Your last name"></div>
-        </div>
-        <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" placeholder="you@email.com"></div>
-        <div class="form-group">
-          <label for="topic">What can we help you with?</label>
-          <select id="topic">
-            <option value="">Select a topic&hellip;</option>
-            <option>Find a Community Group</option>
-            <option>Start a Group in My City</option>
-            <option>Event Information</option>
-            <option>Donation &amp; Giving</option>
-            <option>Podcast &amp; Media</option>
-            <option>Partner With GIN</option>
-            <option>General Inquiry</option>
-          </select>
-        </div>
-        <div class="form-group"><label for="message">Message</label><textarea id="message" placeholder="Tell us how we can help you&hellip;"></textarea></div>
-        <button type="submit" class="form-submit">Send Message</button>
-        <p class="form-note">&#128274; Your information is safe with us. We never share or sell your data.</p>
-      </form>
-    </div>
-
-    <div class="contact-info-wrap rv">
-      <h3>Contact Information</h3>
-      <div class="contact-info-item">
-        <div class="contact-info-icon">&#9993;</div>
-        <div class="contact-info-detail"><strong>Email</strong><a href="mailto:hello@goinspire.now">hello@goinspire.now</a></div>
+      <h3>Send Us a Message</h3>
+      <p class="form-desc">Fill out the form and we&rsquo;ll open an email draft with everything pre-filled.</p>
+      <div class="form-group">
+        <label for="ct-name">Your Name</label>
+        <input type="text" id="ct-name" placeholder="First &amp; Last Name">
       </div>
-      <div class="contact-info-item">
-        <div class="contact-info-icon">&#127967;</div>
-        <div class="contact-info-detail"><strong>Headquartered In</strong><span>Atlanta, Georgia</span></div>
+      <div class="form-group">
+        <label for="ct-email">Email Address</label>
+        <input type="email" id="ct-email" placeholder="you@email.com">
       </div>
-      <div class="contact-info-item">
-        <div class="contact-info-icon">&#128205;</div>
-        <div class="contact-info-detail"><strong>Communities in</strong><span>10+ cities across the U.S. and growing</span></div>
+      <div class="form-group">
+        <label for="ct-subject">Subject</label>
+        <input type="text" id="ct-subject" placeholder="What&rsquo;s on your heart?">
       </div>
-      <div class="contact-info-item">
-        <div class="contact-info-icon">&#9200;</div>
-        <div class="contact-info-detail"><strong>Response Time</strong><span>1&ndash;2 business days</span></div>
+      <div class="form-group">
+        <label for="ct-message">Your Message</label>
+        <textarea id="ct-message" placeholder="Share whatever is on your heart. We&rsquo;re listening."></textarea>
       </div>
-      <span class="contact-social-label">Follow Us</span>
-      <div class="contact-social-links">
-        <a href="#" aria-label="Facebook">f</a>
-        <a href="#" aria-label="Instagram">&#9632;</a>
-        <a href="#" aria-label="YouTube">&#9654;</a>
-        <a href="#" aria-label="TikTok">&#9835;</a>
-      </div>
+      <button class="form-submit" id="ct-submit">Send Message &#8594;</button>
+      <p class="form-note">Clicking will open your email app with everything pre-filled.</p>
     </div>
 
   </div>
 </section>
 
-<section class="faq">
-  <div class="faq-inner">
-    <h2 class="section-heading rv">Frequently Asked Questions</h2>
-    <div class="faq-list rv">
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)"><span>How do I find a Go Inspire Now community group near me?</span><div class="faq-icon">+</div></button>
-        <div class="faq-answer"><p>Use the search bar on our homepage to find groups by city, or send us a message here and we will connect you directly with a group leader in your area. We are growing rapidly &mdash; if there&rsquo;s no group near you yet, ask about starting one!</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)"><span>What does it take to start a GIN group in my city?</span><div class="faq-icon">+</div></button>
-        <div class="faq-answer"><p>All you need is a heart for women in your community and a desire to lead. We provide all the training, materials, and coaching you need. Fill out the form and select &ldquo;Start a Group in My City&rdquo; &mdash; our team will reach out within 48 hours.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)"><span>Is Go Inspire Now a registered nonprofit?</span><div class="faq-icon">+</div></button>
-        <div class="faq-answer"><p>Yes. Go Inspire Now is a registered 501(c)(3) nonprofit organization. All donations are tax-deductible to the extent permitted by law. You will receive a donation receipt for every gift you make.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)"><span>How can I get involved as a volunteer?</span><div class="faq-icon">+</div></button>
-        <div class="faq-answer"><p>We love volunteers! Send us a message letting us know your city and how you&rsquo;d like to serve. Opportunities include group facilitation, event support, social media help, and more. We will match you with a role that fits your gifts.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)"><span>How can I partner with GIN as an organization or business?</span><div class="faq-icon">+</div></button>
-        <div class="faq-answer"><p>We welcome partnerships with businesses, churches, nonprofits, and community organizations. Fill out the contact form, select &ldquo;Partner With GIN&rdquo;, and our partnerships team will be in touch to discuss how we can collaborate.</p></div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="start-group">
-  <div class="start-group-inner">
-    <div class="rv">
-      <h2>Ready to Start a Group in Your City?</h2>
-      <p>You don&rsquo;t have to wait for someone else to bring hope to your community. With our full support system behind you &mdash; training, materials, and coaching &mdash; you can launch a GIN group that changes women&rsquo;s lives right where you live.</p>
-      <a href="#" class="btn-pk">Apply to Lead a Group &#8594;</a>
-    </div>
-    <div class="start-group-photo rv">
-      <img src="images/founder-3.jpg" alt="Start a GIN Group">
-    </div>
-  </div>
-</section>
-
+<!-- FOOTER -->
 <footer>
   <div class="footer-main">
     <div class="footer-top">
       <div class="footer-brand">
         <img src="assets/gin-logo.png" alt="Go Inspire Now" class="footer-brand-logo">
-        <p>Join our email newsletter for stories of hope, event updates, and ways to get involved.</p>
+        <p>Join our newsletter for walk updates, stories of hope, and reminders that you are seen, valued, and loved.</p>
         <div class="footer-newsletter">
-          <input type="email" placeholder="Email Address">
+          <input type="email" placeholder="Your Email Address">
           <button>Subscribe</button>
         </div>
         <div class="footer-social">
@@ -288,47 +278,71 @@ a,button,label,select,input,textarea{cursor:none!important;}
         </div>
       </div>
       <div class="footer-cols">
-        <div class="footer-col"><h4>About Us</h4><ul><li><a href="#">Our Story</a></li><li><a href="#">Our Mission</a></li><li><a href="#">Leadership</a></li><li><a href="podcast.html">The Podcast</a></li></ul></div>
-        <div class="footer-col"><h4>Programs</h4><ul><li><a href="#">Women in Crisis</a></li><li><a href="#">Single Moms</a></li><li><a href="#">Family Support</a></li><li><a href="events.html">Events</a></li></ul></div>
-        <div class="footer-col"><h4>Get Involved</h4><ul><li><a href="donate.html">Give</a></li><li><a href="#">Volunteer</a></li><li><a href="#">Start a Group</a></li><li><a href="#">Partner With Us</a></li></ul></div>
-        <div class="footer-col"><h4>Connect</h4><ul><li><a href="contact.html">Contact Us</a></li><li><a href="#">Privacy Policy</a></li><li><a href="podcast.html">Podcast</a></li><li><a href="#">Social Media</a></li></ul></div>
+        <div class="footer-col"><h4>Walk With Us</h4><ul><li><a href="events.html">Join a Walk</a></li><li><a href="events.html">The Becoming Walk&#8482;</a></li><li><a href="events.html#schedule">Walk Schedule</a></li></ul></div>
+        <div class="footer-col"><h4>Programs</h4><ul><li><a href="donate.html#love-boxes">Love Boxes</a></li><li><a href="donate.html#scholarships">Scholarships</a></li><li><a href="nominate.html">Nominate a Woman</a></li></ul></div>
+        <div class="footer-col"><h4>About</h4><ul><li><a href="about.html">About LeeLee</a></li><li><a href="about.html#gin-story">Our Story</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+        <div class="footer-col"><h4>Give</h4><ul><li><a href="donate.html">Change a Woman&rsquo;s Story</a></li><li><a href="donate.html">Give Hope</a></li><li><a href="https://cash.app/$youinspirenow" target="_blank">CashApp: $youinspirenow</a></li></ul></div>
       </div>
     </div>
   </div>
-  <div class="footer-bottom">&copy;2026 All Rights Reserved &nbsp;|&nbsp; Go Inspire Now, a nonprofit organization dedicated to empowering women through community, hope, and purpose. &nbsp;|&nbsp; <a href="contact.html" style="text-decoration:underline;color:inherit;">Contact Us</a></div>
+  <div class="footer-bottom">&copy;2026 Go Inspire Now &nbsp;&mdash;&nbsp; A movement where women rediscover who they were created to be. &nbsp;&mdash;&nbsp; <a href="contact.html" style="text-decoration:underline;color:inherit;">Contact</a></div>
 </footer>
 
 <script>
-function toggleFaq(btn) {
-  const item = btn.closest('.faq-item');
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(i => {
-    i.classList.remove('open');
-    i.querySelector('.faq-answer').style.maxHeight = null;
-  });
-  if (!isOpen) {
-    item.classList.add('open');
-    const answer = item.querySelector('.faq-answer');
-    answer.style.maxHeight = answer.scrollHeight + 'px';
-  }
-}
 const ro = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 document.querySelectorAll('.rv').forEach(el => ro.observe(el));
 
-// Shoe cursor
 (function(){
-  var c = document.getElementById('gin-cursor');
-  if(!c) return;
-  document.addEventListener('mousemove',function(e){
-    c.style.left = (e.clientX - 6) + 'px';
-    c.style.top  = (e.clientY - 32) + 'px';
-  });
+  var btn = document.getElementById('hamburger');
+  var menu = document.getElementById('mobile-menu');
+  var closeBtn = document.getElementById('mobile-close');
+  if (!btn || !menu) return;
+  function open(){ btn.classList.add('open'); menu.classList.add('open'); document.body.style.overflow='hidden'; }
+  function close(){ btn.classList.remove('open'); menu.classList.remove('open'); document.body.style.overflow=''; }
+  btn.addEventListener('click', function(){ menu.classList.contains('open') ? close() : open(); });
+  if (closeBtn) closeBtn.addEventListener('click', close);
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+})();
+
+(function(){
+  var dd = document.getElementById('nav-giving');
+  if (!dd) return;
+  var trigger = dd.querySelector('.nav-dd-trigger');
+  function toggleDd(open){ dd.classList.toggle('open',open); trigger.setAttribute('aria-expanded',open?'true':'false'); }
+  trigger.addEventListener('click',function(e){ e.stopPropagation(); toggleDd(!dd.classList.contains('open')); });
+  document.addEventListener('click',function(){ toggleDd(false); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') toggleDd(false); });
+})();
+
+document.getElementById('ct-submit').addEventListener('click', function(){
+  var name = document.getElementById('ct-name').value || '';
+  var email = document.getElementById('ct-email').value || '';
+  var subject = document.getElementById('ct-subject').value || 'Message from Go Inspire Now Website';
+  var message = document.getElementById('ct-message').value || '';
+  var body = 'Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message;
+  window.location.href = 'mailto:info.goinspirenow@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+});
+
+(function(){
+  if (!window.matchMedia('(hover: hover)').matches) return;
+  var c = document.getElementById('gin-cursor'), shoe = document.getElementById('gin-shoe');
+  if (!c || !shoe) return;
+  var cx = -200, cy2 = -200, ticking = false, visible = false;
+  function render(){ c.style.transform = 'translate('+(cx-20)+'px,'+(cy2-20)+'px)'; ticking = false; }
+  document.addEventListener('mousemove', function(e){
+    cx = e.clientX; cy2 = e.clientY;
+    if (!ticking){ ticking = true; requestAnimationFrame(render); }
+    if (!visible){ visible = true; c.style.opacity = '1'; }
+  }, { passive: true });
   document.querySelectorAll('a,button').forEach(function(el){
-    el.addEventListener('mouseenter',function(){ c.classList.add('hov'); });
-    el.addEventListener('mouseleave',function(){ c.classList.remove('hov'); });
+    el.addEventListener('mouseenter', function(){ c.classList.add('hov'); });
+    el.addEventListener('mouseleave', function(){ c.classList.remove('hov'); });
   });
+  document.addEventListener('mousedown', function(){ c.classList.add('click'); });
+  document.addEventListener('mouseup', function(){ c.classList.remove('click'); });
 })();
 </script>
 </body>

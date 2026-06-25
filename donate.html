@@ -29,6 +29,19 @@ nav{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid v
 .nav-links a:hover,.nav-links a.active{color:var(--pk);}
 .nav-give{background:var(--pk);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:.55rem 1.5rem;border-radius:100px;transition:background .2s,transform .15s;display:flex;align-items:center;gap:.35rem;}
 .nav-give:hover{background:#CC1060;transform:scale(1.04);}
+/* Nav dropdown */
+.nav-dropdown{position:relative;}
+.nav-dd-trigger{background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.04em;color:var(--mid);padding:0;display:flex;align-items:center;gap:.3rem;transition:color .2s;}
+.nav-dd-trigger:hover,.nav-dropdown.open .nav-dd-trigger{color:var(--pk);}
+.nav-dd-arrow{display:inline-block;transition:transform .2s;font-size:.5rem;}
+.nav-dropdown.open .nav-dd-arrow{transform:rotate(180deg);}
+.nav-dd-menu{position:absolute;top:calc(100% + .9rem);left:50%;transform:translateX(-50%) translateY(-6px);background:#fff;border-radius:14px;box-shadow:0 4px 32px rgba(14,0,32,.12);border:1px solid rgba(224,216,240,.6);padding:.5rem;min-width:210px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,transform .2s,visibility .2s;z-index:1200;}
+.nav-dropdown:hover .nav-dd-menu,.nav-dropdown.open .nav-dd-menu{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.nav-dd-menu a{display:block;padding:.7rem 1.1rem;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);border-radius:8px;transition:background .15s,color .15s;}
+.nav-dd-menu a:hover{background:#FFE0EF;color:var(--pk);}
+/* CashApp link on level cards */
+.level-card a{display:block;margin-top:.8rem;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--pk);text-decoration:underline;transition:color .2s;}
+.level-card a:hover{color:#CC1060;}
 
 /* ── HAMBURGER ── */
 .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;padding:.5rem .4rem;cursor:pointer;z-index:1100;}
@@ -203,6 +216,8 @@ footer{background:var(--lav-mid);}
   <a href="events.html">Join a Walk</a>
   <a href="#love-boxes">Love Boxes</a>
   <a href="#scholarships">Scholarships</a>
+  <a href="nominate.html">Nominate a Woman</a>
+  <a href="contact.html">Contact</a>
   <a href="about.html">About LeeLee</a>
   <a href="donate.html" class="m-give">&#10024;&nbsp; Give</a>
 </div>
@@ -211,13 +226,19 @@ footer{background:var(--lav-mid);}
 <nav>
   <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" class="nav-logo"></a>
   <div class="nav-links">
-    <a href="index.html">Home</a>
     <a href="events.html">Join a Walk</a>
-    <a href="#love-boxes">Love Boxes</a>
-    <a href="#scholarships">Scholarships</a>
+    <div class="nav-dropdown" id="nav-giving">
+      <button class="nav-dd-trigger" aria-expanded="false">Giving <span class="nav-dd-arrow">▼</span></button>
+      <div class="nav-dd-menu">
+        <a href="#love-boxes">Love Boxes</a>
+        <a href="#scholarships">Scholarships</a>
+        <a href="nominate.html">Nominate a Woman</a>
+      </div>
+    </div>
+    <a href="contact.html">Contact</a>
     <a href="about.html">About LeeLee</a>
   </div>
-  <a href="donate.html" class="nav-give active">&#10024;&nbsp; Give</a>
+  <a href="donate.html" class="nav-give">&#10024;&nbsp; Give</a>
   <button class="hamburger" id="hamburger" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
@@ -226,7 +247,7 @@ footer{background:var(--lav-mid);}
 <!-- HERO -->
 <section class="page-hero">
   <div class="page-hero-bg">
-    <img src="images/founder-2.jpg" alt="Every gift helps a woman remember she matters">
+    <img src="images/walk-confetti.png" alt="Every gift helps a woman remember she matters">
   </div>
   <div class="page-hero-inner rv">
     <span class="page-hero-pre">Change a Woman&rsquo;s Story</span>
@@ -271,9 +292,9 @@ footer{background:var(--lav-mid);}
         <span>$</span>
         <input type="number" id="donate-input" value="30" min="1">
       </div>
-      <p class="donate-note">&#128274; Secure, encrypted giving. Cancel anytime.</p>
-      <button class="donate-give-btn">Give Now</button>
-      <div class="donate-security">&#128274; Secured by SSL &nbsp;&bull;&nbsp; Tax-deductible nonprofit gift</div>
+      <p class="donate-note">&#128274; Giving via CashApp: $youinspirenow</p>
+      <a href="https://cash.app/$youinspirenow" target="_blank" rel="noopener" class="donate-give-btn" style="display:block;text-align:center;text-decoration:none;">Give Now via CashApp &#8599;</a>
+      <div class="donate-security">CashApp: <strong>$youinspirenow</strong> &nbsp;&bull;&nbsp; Tax-deductible nonprofit</div>
     </div>
   </div>
 </section>
@@ -303,26 +324,31 @@ footer{background:var(--lav-mid);}
         <span class="level-icon">&#129505;</span>
         <div class="level-amount">$10</div>
         <p class="level-desc">Helps welcome one woman to a Go Inspire Walk.</p>
+        <a href="https://cash.app/$youinspirenow" target="_blank" rel="noopener">Give $10 via CashApp ↗</a>
       </div>
       <div class="level-card rv rv-d2">
         <span class="level-icon">&#127807;</span>
         <div class="level-amount">$30</div>
         <p class="level-desc">Provides encouragement and meaningful resources that help women feel seen, valued, and loved.</p>
+        <a href="https://cash.app/$youinspirenow" target="_blank" rel="noopener">Give $30 via CashApp ↗</a>
       </div>
       <div class="level-card rv rv-d3">
         <span class="level-icon">&#128694;</span>
         <div class="level-amount">$55</div>
         <p class="level-desc">Helps create inspiring walking experiences that build lasting friendships.</p>
+        <a href="https://cash.app/$youinspirenow" target="_blank" rel="noopener">Give $55 via CashApp ↗</a>
       </div>
       <div class="level-card rv rv-d4">
         <span class="level-icon">&#129309;</span>
         <div class="level-amount">$120</div>
         <p class="level-desc">Supports additional Go Inspire Walks across DFW so more women can experience authentic community.</p>
+        <a href="https://cash.app/$youinspirenow" target="_blank" rel="noopener">Give $120 via CashApp ↗</a>
       </div>
       <div class="level-card rv rv-d5">
         <span class="level-icon">&#127758;</span>
         <div class="level-amount">$250</div>
         <p class="level-desc">Helps grow the Go Inspire Now movement and expand opportunities for women throughout our communities.</p>
+        <a href="https://cash.app/$youinspirenow" target="_blank" rel="noopener">Give $250 via CashApp ↗</a>
       </div>
     </div>
   </div>
@@ -424,7 +450,7 @@ document.querySelectorAll('.rv').forEach(el => ro.observe(el));
   var c = document.getElementById('gin-cursor'), shoe = document.getElementById('gin-shoe');
   if (!c || !shoe) return;
   var cx = -200, cy2 = -200, ticking = false, visible = false;
-  function render(){ c.style.transform = 'translate('+(cx-4)+'px,'+(cy2-38)+'px)'; ticking = false; }
+  function render(){ c.style.transform = 'translate('+(cx-20)+'px,'+(cy2-20)+'px)'; ticking = false; }
   document.addEventListener('mousemove', function(e){
     cx = e.clientX; cy2 = e.clientY;
     if (!ticking){ ticking = true; requestAnimationFrame(render); }
@@ -436,6 +462,15 @@ document.querySelectorAll('.rv').forEach(el => ro.observe(el));
   });
   document.addEventListener('mousedown', function(){ c.classList.add('click'); });
   document.addEventListener('mouseup', function(){ c.classList.remove('click'); });
+})();
+(function(){
+  var dd = document.getElementById('nav-giving');
+  if (!dd) return;
+  var trigger = dd.querySelector('.nav-dd-trigger');
+  function toggleDd(open){ dd.classList.toggle('open',open); trigger.setAttribute('aria-expanded',open?'true':'false'); }
+  trigger.addEventListener('click',function(e){ e.stopPropagation(); toggleDd(!dd.classList.contains('open')); });
+  document.addEventListener('click',function(){ toggleDd(false); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') toggleDd(false); });
 })();
 </script>
 </body>

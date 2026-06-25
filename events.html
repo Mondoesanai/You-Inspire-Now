@@ -29,6 +29,16 @@ nav{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid v
 .nav-links a:hover,.nav-links a.active{color:var(--pk);}
 .nav-give{background:var(--pk);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:.55rem 1.5rem;border-radius:100px;transition:background .2s,transform .15s;display:flex;align-items:center;gap:.35rem;}
 .nav-give:hover{background:#CC1060;transform:scale(1.04);}
+/* Nav dropdown */
+.nav-dropdown{position:relative;}
+.nav-dd-trigger{background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.04em;color:var(--mid);padding:0;display:flex;align-items:center;gap:.3rem;transition:color .2s;}
+.nav-dd-trigger:hover,.nav-dropdown.open .nav-dd-trigger{color:var(--pk);}
+.nav-dd-arrow{display:inline-block;transition:transform .2s;font-size:.5rem;}
+.nav-dropdown.open .nav-dd-arrow{transform:rotate(180deg);}
+.nav-dd-menu{position:absolute;top:calc(100% + .9rem);left:50%;transform:translateX(-50%) translateY(-6px);background:#fff;border-radius:14px;box-shadow:0 4px 32px rgba(14,0,32,.12);border:1px solid rgba(224,216,240,.6);padding:.5rem;min-width:210px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,transform .2s,visibility .2s;z-index:1200;}
+.nav-dropdown:hover .nav-dd-menu,.nav-dropdown.open .nav-dd-menu{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.nav-dd-menu a{display:block;padding:.7rem 1.1rem;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);border-radius:8px;transition:background .15s,color .15s;}
+.nav-dd-menu a:hover{background:#FFE0EF;color:var(--pk);}
 
 /* ── HAMBURGER ── */
 .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;padding:.5rem .4rem;cursor:pointer;z-index:1100;}
@@ -71,13 +81,59 @@ nav{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid v
 .schedule-mantra span{color:var(--pk);font-style:normal;font-weight:700;margin:0 .3rem;}
 
 .schedule-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-bottom:2.5rem;}
-.area-card{background:#fff;border-radius:16px;padding:1.75rem 1.5rem;border:1.5px solid var(--border);transition:box-shadow .2s,transform .2s;}
-.area-card:hover{box-shadow:0 6px 28px rgba(240,36,122,.1);transform:translateY(-2px);}
-.area-card:nth-child(1){border-top:3px solid var(--pk);}
-.area-card:nth-child(2){border-top:3px solid var(--cy);}
-.area-card:nth-child(3){border-top:3px solid var(--go);}
-.area-card:nth-child(4){border-top:3px solid var(--vi);}
+.area-card{background:#fff;border-radius:18px;padding:1.75rem 1.5rem;border:1.5px solid var(--border);transition:box-shadow .2s,transform .2s;overflow:hidden;}
+.area-card:hover{box-shadow:0 8px 32px rgba(240,36,122,.12);transform:translateY(-3px);}
+.area-card:nth-child(1){border-top:4px solid var(--pk);}
+.area-card:nth-child(2){border-top:4px solid var(--cy);}
+.area-card:nth-child(3){border-top:4px solid var(--go);}
+.area-card:nth-child(4){border-top:4px solid var(--vi);}
 .area-tag{font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;}
+/* Date item with register button */
+.area-walk{padding:.6rem 0;border-bottom:1px solid rgba(224,216,240,.5);}
+.area-walk:last-child{border-bottom:none;}
+.walk-date-row{display:flex;align-items:center;justify-content:space-between;gap:.5rem;}
+.walk-date{font-size:.88rem;font-weight:700;color:var(--dark);}
+.walk-loc{font-size:.73rem;color:var(--muted);margin-top:.15rem;}
+.walk-reg{
+  background:none;border:1px solid var(--pk);color:var(--pk);
+  font-family:var(--sans);font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:.25rem .6rem;border-radius:100px;cursor:pointer;white-space:nowrap;
+  transition:background .15s,color .15s;flex-shrink:0;
+}
+.walk-reg:hover{background:var(--pk);color:#fff;}
+/* Becoming Walk section */
+.becoming-walk{background:linear-gradient(145deg,#0E0020 0%,#2B005C 60%,#0E0020 100%);padding:7rem 2rem;position:relative;overflow:hidden;}
+.becoming-walk::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(240,36,122,.22) 0%,transparent 60%);pointer-events:none;}
+.becoming-walk-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 440px;gap:5rem;align-items:center;position:relative;z-index:1;}
+.bw-badge{display:inline-block;background:rgba(240,36,122,.15);border:1px solid rgba(240,36,122,.35);color:var(--pk);font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.35rem 1rem;border-radius:100px;margin-bottom:1rem;}
+.bw-date-pill{display:inline-block;background:var(--pk);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.06em;padding:.3rem 1.1rem;border-radius:10px;margin-bottom:1.2rem;}
+.bw-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5vw,4.5rem);color:#fff;line-height:.88;margin-bottom:.6rem;letter-spacing:.02em;}
+.bw-tm{color:var(--pk);}
+.bw-sub{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.6);margin-bottom:1.4rem;line-height:1.65;}
+.bw-body{font-size:.9rem;line-height:1.8;color:rgba(255,255,255,.45);margin-bottom:.8rem;}
+.bw-feats{list-style:none;margin-bottom:2rem;}
+.bw-feat{font-size:.82rem;color:rgba(255,255,255,.55);padding:.3rem 0;display:flex;align-items:center;gap:.5rem;}
+.bw-feat::before{content:'✦';color:var(--go);font-size:.65rem;}
+.bw-photo{border-radius:20px;overflow:hidden;aspect-ratio:4/3;}
+.bw-photo img{width:100%;height:100%;object-fit:cover;object-position:center;}
+/* Signup modal */
+.signup-modal-overlay{position:fixed;inset:0;z-index:9900;background:rgba(14,0,32,.7);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .25s;}
+.signup-modal-overlay.vis{opacity:1;pointer-events:all;}
+.signup-modal{position:fixed;z-index:9901;top:50%;left:50%;transform:translate(-50%,-50%) scale(.94);width:min(480px,92vw);background:#fff;border-radius:22px;padding:2.2rem;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s cubic-bezier(.34,1.56,.64,1);box-shadow:0 24px 60px rgba(0,0,0,.25);}
+.signup-modal.vis{opacity:1;pointer-events:all;transform:translate(-50%,-50%) scale(1);}
+.signup-modal h3{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--dark);margin-bottom:.4rem;}
+.signup-modal .sm-event{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pk);margin-bottom:1.4rem;display:block;}
+.signup-modal label{display:block;font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--mid);margin-bottom:.3rem;margin-top:.9rem;}
+.signup-modal input,.signup-modal textarea{width:100%;padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:10px;font-family:var(--sans);font-size:.85rem;color:var(--dark);outline:none;transition:border-color .2s;}
+.signup-modal input:focus,.signup-modal textarea:focus{border-color:var(--pk);}
+.signup-modal textarea{resize:vertical;min-height:80px;}
+.sm-btns{display:flex;gap:.7rem;margin-top:1.4rem;}
+.sm-submit{flex:1;padding:.8rem;background:var(--pk);color:#fff;border:none;border-radius:100px;font-family:var(--sans);font-size:.78rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:background .2s;}
+.sm-submit:hover{background:#CC1060;}
+.sm-cancel{padding:.8rem 1.2rem;background:none;border:1.5px solid var(--border);border-radius:100px;font-family:var(--sans);font-size:.78rem;font-weight:600;color:var(--mid);cursor:pointer;transition:all .2s;}
+.sm-cancel:hover{border-color:var(--dark);color:var(--dark);}
+.sm-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.2rem;color:var(--muted);cursor:pointer;padding:.3rem;line-height:1;transition:color .2s;}
+.sm-close:hover{color:var(--dark);}
 .area-name{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--dark);margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
 .area-walks{list-style:none;}
 .area-walk{padding:.55rem 0;border-bottom:1px solid rgba(224,216,240,.5);}
@@ -193,6 +249,26 @@ footer{background:var(--lav-mid);}
 </style>
 </head>
 <body>
+<!-- SIGNUP MODAL -->
+<div class="signup-modal-overlay" id="signup-overlay"></div>
+<div class="signup-modal" id="signup-modal" role="dialog" aria-modal="true">
+  <button class="sm-close" id="sm-close" aria-label="Close">&#10005;</button>
+  <h3>Join a Go Inspire Walk</h3>
+  <span class="sm-event" id="sm-event-name">Walk Name</span>
+  <label for="sm-name">Your Name</label>
+  <input type="text" id="sm-name" placeholder="First &amp; Last Name">
+  <label for="sm-email">Email Address</label>
+  <input type="email" id="sm-email" placeholder="you@email.com">
+  <label for="sm-phone">Phone Number</label>
+  <input type="tel" id="sm-phone" placeholder="(000) 000-0000">
+  <label for="sm-note">Anything you&rsquo;d like us to know? (optional)</label>
+  <textarea id="sm-note" placeholder="I&rsquo;m so excited to join!"></textarea>
+  <div class="sm-btns">
+    <button class="sm-cancel" id="sm-cancel">Cancel</button>
+    <button class="sm-submit" id="sm-submit">Send Registration &#8594;</button>
+  </div>
+</div>
+
 <div id="gin-cursor" aria-hidden="true"><span id="gin-shoe">👟</span></div>
 <div class="gin-grain"></div>
 
@@ -203,6 +279,8 @@ footer{background:var(--lav-mid);}
   <a href="events.html">Join a Walk</a>
   <a href="donate.html#love-boxes">Love Boxes</a>
   <a href="donate.html#scholarships">Scholarships</a>
+  <a href="nominate.html">Nominate a Woman</a>
+  <a href="contact.html">Contact</a>
   <a href="about.html">About LeeLee</a>
   <a href="donate.html" class="m-give">&#10024;&nbsp; Give</a>
 </div>
@@ -211,10 +289,16 @@ footer{background:var(--lav-mid);}
 <nav>
   <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" class="nav-logo"></a>
   <div class="nav-links">
-    <a href="index.html">Home</a>
     <a href="events.html" class="active">Join a Walk</a>
-    <a href="donate.html#love-boxes">Love Boxes</a>
-    <a href="donate.html#scholarships">Scholarships</a>
+    <div class="nav-dropdown" id="nav-giving">
+      <button class="nav-dd-trigger" aria-expanded="false">Giving <span class="nav-dd-arrow">▼</span></button>
+      <div class="nav-dd-menu">
+        <a href="donate.html#love-boxes">Love Boxes</a>
+        <a href="donate.html#scholarships">Scholarships</a>
+        <a href="nominate.html">Nominate a Woman</a>
+      </div>
+    </div>
+    <a href="contact.html">Contact</a>
     <a href="about.html">About LeeLee</a>
   </div>
   <a href="donate.html" class="nav-give">&#10024;&nbsp; Give</a>
@@ -226,7 +310,7 @@ footer{background:var(--lav-mid);}
 <!-- HERO -->
 <section class="page-hero">
   <div class="page-hero-bg">
-    <img src="images/women-4.jpg" alt="Women walking together">
+    <img src="images/walk-signs.png" alt="Women walking together at Go Inspire Now">
   </div>
   <div class="page-hero-inner rv">
     <span class="page-hero-pre">Go Inspire Now &bull; Dallas&ndash;Fort Worth</span>
@@ -249,61 +333,101 @@ footer{background:var(--lav-mid);}
     <div class="schedule-grid">
 
       <div class="area-card rv rv-d1">
-        <div class="area-tag">Area</div>
-        <div class="area-name">North DFW</div>
+        <div class="area-tag">North DFW</div>
+        <div class="area-name">Walking North</div>
         <ul class="area-walks">
           <li class="area-walk">
-            <span class="walk-date">July 11</span>
-            <span class="walk-loc">Denton</span>
+            <div class="walk-date-row">
+              <div>
+                <span class="walk-date">July 11</span>
+                <span class="walk-loc">Denton</span>
+              </div>
+              <button class="walk-reg" onclick="openSignup('North DFW Community Walk','July 11, 2026 — Denton')">Join</button>
+            </div>
           </li>
           <li class="area-walk">
-            <span class="walk-date">July 25</span>
-            <span class="walk-loc">North DFW</span>
+            <div class="walk-date-row">
+              <div>
+                <span class="walk-date">July 25</span>
+                <span class="walk-loc">North DFW</span>
+              </div>
+              <button class="walk-reg" onclick="openSignup('North DFW Community Walk','July 25, 2026')">Join</button>
+            </div>
           </li>
         </ul>
       </div>
 
       <div class="area-card rv rv-d2">
-        <div class="area-tag">Area</div>
-        <div class="area-name">East DFW</div>
+        <div class="area-tag">East DFW</div>
+        <div class="area-name">Walking East</div>
         <ul class="area-walks">
           <li class="area-walk">
-            <span class="walk-date">August 1</span>
-            <span class="walk-loc">East DFW</span>
+            <div class="walk-date-row">
+              <div>
+                <span class="walk-date">August 1</span>
+                <span class="walk-loc">East DFW</span>
+              </div>
+              <button class="walk-reg" onclick="openSignup('East DFW Community Walk','August 1, 2026')">Join</button>
+            </div>
           </li>
           <li class="area-walk">
-            <span class="walk-date">August 15</span>
-            <span class="walk-loc">East DFW</span>
+            <div class="walk-date-row">
+              <div>
+                <span class="walk-date">August 15</span>
+                <span class="walk-loc">East DFW</span>
+              </div>
+              <button class="walk-reg" onclick="openSignup('East DFW Community Walk','August 15, 2026')">Join</button>
+            </div>
           </li>
         </ul>
       </div>
 
       <div class="area-card rv rv-d3">
-        <div class="area-tag">Area</div>
-        <div class="area-name">South DFW</div>
+        <div class="area-tag">South DFW</div>
+        <div class="area-name">Walking South</div>
         <ul class="area-walks">
           <li class="area-walk">
-            <span class="walk-date">September 12</span>
-            <span class="walk-loc">South DFW</span>
+            <div class="walk-date-row">
+              <div>
+                <span class="walk-date">September 12</span>
+                <span class="walk-loc">South DFW</span>
+              </div>
+              <button class="walk-reg" onclick="openSignup('South DFW Community Walk','September 12, 2026')">Join</button>
+            </div>
           </li>
           <li class="area-walk">
-            <span class="walk-date">September 26</span>
-            <span class="walk-loc">South DFW</span>
+            <div class="walk-date-row">
+              <div>
+                <span class="walk-date">September 26</span>
+                <span class="walk-loc">South DFW</span>
+              </div>
+              <button class="walk-reg" onclick="openSignup('South DFW Community Walk','September 26, 2026')">Join</button>
+            </div>
           </li>
         </ul>
       </div>
 
       <div class="area-card rv rv-d4">
-        <div class="area-tag">Area</div>
-        <div class="area-name">West DFW</div>
+        <div class="area-tag">West DFW</div>
+        <div class="area-name">Walking West</div>
         <ul class="area-walks">
           <li class="area-walk">
-            <span class="walk-date">October 3</span>
-            <span class="walk-loc">West DFW</span>
+            <div class="walk-date-row">
+              <div>
+                <span class="walk-date">October 3</span>
+                <span class="walk-loc">West DFW</span>
+              </div>
+              <button class="walk-reg" onclick="openSignup('West DFW Community Walk','October 3, 2026')">Join</button>
+            </div>
           </li>
           <li class="area-walk">
-            <span class="walk-date">October 24</span>
-            <span class="walk-loc">West DFW</span>
+            <div class="walk-date-row">
+              <div>
+                <span class="walk-date">October 24</span>
+                <span class="walk-loc">West DFW</span>
+              </div>
+              <button class="walk-reg" onclick="openSignup('West DFW Community Walk','October 24, 2026')">Join</button>
+            </div>
           </li>
         </ul>
       </div>
@@ -313,30 +437,37 @@ footer{background:var(--lav-mid);}
     <div class="schedule-continues rv">
       <div class="continues-label">Community Walks Continue</div>
       <div class="continues-title">The movement doesn&rsquo;t stop.</div>
-      <div class="continues-dates">November 7 &nbsp;&bull;&nbsp; November 21</div>
+      <div class="continues-dates">
+        <span>November 7</span>&nbsp;&bull;&nbsp;<span>November 21</span>
+        <div style="margin-top:.6rem;">
+          <button class="walk-reg" onclick="openSignup('November Community Walk','November 2026')" style="font-size:.68rem;padding:.35rem .9rem;">Join November Walks</button>
+        </div>
+      </div>
     </div>
 
   </div>
 </section>
 
-<!-- FEATURED: THE OCTOBER 25K -->
-<section class="featured-25k">
-  <div class="featured-25k-inner">
+<!-- THE BECOMING WALK -->
+<section class="becoming-walk" id="becoming-walk">
+  <div class="becoming-walk-inner">
     <div class="rv">
-      <p class="featured-25k-label">Signature Annual Event</p>
-      <div class="featured-25k-date-tag">October 25</div>
-      <h2>The Go Inspire Now 25K Walk</h2>
-      <div class="featured-25k-taglines">
-        <p>One Community.</p>
-        <p>One Purpose.</p>
-        <p>One Unforgettable Day.</p>
-      </div>
-      <p class="body">Join women from across DFW for our signature annual 25K walk&mdash;a day filled with encouragement, friendship, inspiration, and the reminder that no woman was ever meant to walk alone.</p>
-      <p class="reg-note">Registration Coming Soon</p>
-      <a href="donate.html" class="btn-pk">&#129505;&nbsp; Join the Movement</a>
+      <span class="bw-badge">Signature Annual Event</span>
+      <div class="bw-date-pill">October 25, 2026</div>
+      <h2 class="bw-title">THE BECOMING<br>WALK<span class="bw-tm">™</span></h2>
+      <p class="bw-sub">More than a walk. It&rsquo;s a declaration.</p>
+      <p class="bw-body">25,000 steps. One community. One unforgettable day of purpose, encouragement, and the kind of connection that changes a woman&rsquo;s life.</p>
+      <ul class="bw-feats">
+        <li class="bw-feat">Open to all fitness levels — every pace is welcome</li>
+        <li class="bw-feat">Women from across Dallas–Fort Worth</li>
+        <li class="bw-feat">Music, stories, and moments that move you</li>
+        <li class="bw-feat">25K steps walked together, on purpose</li>
+        <li class="bw-feat">Free with registration</li>
+      </ul>
+      <button class="btn-pk" onclick="openSignup('The Becoming Walk™','October 25, 2026')">&#129505;&nbsp; Register for The Becoming Walk™</button>
     </div>
-    <div class="featured-photo rv">
-      <img src="images/women-3.jpg" alt="The Go Inspire Now 25K Walk">
+    <div class="bw-photo rv">
+      <img src="images/walk-25k.png" alt="The Becoming Walk — Go Inspire Now">
     </div>
   </div>
 </section>
@@ -387,7 +518,7 @@ footer{background:var(--lav-mid);}
       <a href="donate.html" class="btn-pk">&#129485;&nbsp; Join the Next Walk</a>
     </div>
     <div class="more-than-photo rv">
-      <img src="images/brand-2.jpg" alt="Women walking together at Go Inspire Now">
+      <img src="images/walk-highfive.png" alt="Women walking together at Go Inspire Now">
     </div>
   </div>
 </section>
@@ -444,7 +575,7 @@ document.querySelectorAll('.rv').forEach(el => ro.observe(el));
   var c = document.getElementById('gin-cursor'), shoe = document.getElementById('gin-shoe');
   if (!c || !shoe) return;
   var cx = -200, cy2 = -200, ticking = false, visible = false;
-  function render(){ c.style.transform = 'translate('+(cx-4)+'px,'+(cy2-38)+'px)'; ticking = false; }
+  function render(){ c.style.transform = 'translate('+(cx-20)+'px,'+(cy2-20)+'px)'; ticking = false; }
   document.addEventListener('mousemove', function(e){
     cx = e.clientX; cy2 = e.clientY;
     if (!ticking){ ticking = true; requestAnimationFrame(render); }
@@ -456,6 +587,55 @@ document.querySelectorAll('.rv').forEach(el => ro.observe(el));
   });
   document.addEventListener('mousedown', function(){ c.classList.add('click'); });
   document.addEventListener('mouseup', function(){ c.classList.remove('click'); });
+})();
+
+// Nav giving dropdown
+(function(){
+  var dd = document.getElementById('nav-giving');
+  if (!dd) return;
+  var trigger = dd.querySelector('.nav-dd-trigger');
+  function toggleDd(open){ dd.classList.toggle('open',open); trigger.setAttribute('aria-expanded',open?'true':'false'); }
+  trigger.addEventListener('click',function(e){ e.stopPropagation(); toggleDd(!dd.classList.contains('open')); });
+  document.addEventListener('click',function(){ toggleDd(false); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') toggleDd(false); });
+})();
+
+// Event signup modal
+var currentEvent = '';
+function openSignup(name, date) {
+  currentEvent = name + ' — ' + date;
+  var overlay = document.getElementById('signup-overlay');
+  var modal = document.getElementById('signup-modal');
+  var evtName = document.getElementById('sm-event-name');
+  if (evtName) evtName.textContent = currentEvent;
+  overlay.classList.add('vis');
+  modal.classList.add('vis');
+  document.body.style.overflow = 'hidden';
+}
+function closeSignup() {
+  document.getElementById('signup-overlay').classList.remove('vis');
+  document.getElementById('signup-modal').classList.remove('vis');
+  document.body.style.overflow = '';
+}
+(function(){
+  var overlay = document.getElementById('signup-overlay');
+  var cancelBtn = document.getElementById('sm-cancel');
+  var closeBtn = document.getElementById('sm-close');
+  var submitBtn = document.getElementById('sm-submit');
+  if (overlay) overlay.addEventListener('click', closeSignup);
+  if (cancelBtn) cancelBtn.addEventListener('click', closeSignup);
+  if (closeBtn) closeBtn.addEventListener('click', closeSignup);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeSignup(); });
+  if (submitBtn) submitBtn.addEventListener('click', function(){
+    var name = (document.getElementById('sm-name')||{}).value || '';
+    var email = (document.getElementById('sm-email')||{}).value || '';
+    var phone = (document.getElementById('sm-phone')||{}).value || '';
+    var note = (document.getElementById('sm-note')||{}).value || '';
+    var subject = 'Walk Registration: ' + currentEvent;
+    var body = 'Hi Go Inspire Now!\n\nI would love to join:\n' + currentEvent + '\n\nName: ' + name + '\nEmail: ' + email + '\nPhone: ' + phone + (note ? '\n\nNote: ' + note : '') + '\n\nSee you on the walk!\n\nWith love,\n' + name;
+    window.open('mailto:info.goinspirenow@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body));
+    closeSignup();
+  });
 })();
 </script>
 </body>

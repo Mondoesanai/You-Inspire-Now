@@ -29,6 +29,16 @@ nav{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid v
 .nav-links a:hover,.nav-links a.active{color:var(--pk);}
 .nav-give{background:var(--pk);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:.55rem 1.5rem;border-radius:100px;transition:background .2s,transform .15s;display:flex;align-items:center;gap:.35rem;}
 .nav-give:hover{background:#CC1060;transform:scale(1.04);}
+/* Nav dropdown */
+.nav-dropdown{position:relative;}
+.nav-dd-trigger{background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.04em;color:var(--mid);padding:0;display:flex;align-items:center;gap:.3rem;transition:color .2s;}
+.nav-dd-trigger:hover,.nav-dropdown.open .nav-dd-trigger{color:var(--pk);}
+.nav-dd-arrow{display:inline-block;transition:transform .2s;font-size:.5rem;}
+.nav-dropdown.open .nav-dd-arrow{transform:rotate(180deg);}
+.nav-dd-menu{position:absolute;top:calc(100% + .9rem);left:50%;transform:translateX(-50%) translateY(-6px);background:#fff;border-radius:14px;box-shadow:0 4px 32px rgba(14,0,32,.12);border:1px solid rgba(224,216,240,.6);padding:.5rem;min-width:210px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,transform .2s,visibility .2s;z-index:1200;}
+.nav-dropdown:hover .nav-dd-menu,.nav-dropdown.open .nav-dd-menu{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.nav-dd-menu a{display:block;padding:.7rem 1.1rem;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);border-radius:8px;transition:background .15s,color .15s;}
+.nav-dd-menu a:hover{background:#FFE0EF;color:var(--pk);}
 
 /* ── HAMBURGER ── */
 .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;padding:.5rem .4rem;cursor:pointer;z-index:1100;}
@@ -185,6 +195,8 @@ footer{background:var(--lav-mid);}
   <a href="events.html">Join a Walk</a>
   <a href="donate.html#love-boxes">Love Boxes</a>
   <a href="donate.html#scholarships">Scholarships</a>
+  <a href="nominate.html">Nominate a Woman</a>
+  <a href="contact.html">Contact</a>
   <a href="about.html">About LeeLee</a>
   <a href="donate.html" class="m-give">&#10024;&nbsp; Give</a>
 </div>
@@ -193,10 +205,16 @@ footer{background:var(--lav-mid);}
 <nav>
   <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" class="nav-logo"></a>
   <div class="nav-links">
-    <a href="index.html">Home</a>
     <a href="events.html">Join a Walk</a>
-    <a href="donate.html#love-boxes">Love Boxes</a>
-    <a href="donate.html#scholarships">Scholarships</a>
+    <div class="nav-dropdown" id="nav-giving">
+      <button class="nav-dd-trigger" aria-expanded="false">Giving <span class="nav-dd-arrow">▼</span></button>
+      <div class="nav-dd-menu">
+        <a href="donate.html#love-boxes">Love Boxes</a>
+        <a href="donate.html#scholarships">Scholarships</a>
+        <a href="nominate.html">Nominate a Woman</a>
+      </div>
+    </div>
+    <a href="contact.html">Contact</a>
     <a href="about.html" class="active">About LeeLee</a>
   </div>
   <a href="donate.html" class="nav-give">&#10024;&nbsp; Give</a>
@@ -208,12 +226,12 @@ footer{background:var(--lav-mid);}
 <!-- HERO -->
 <section class="page-hero">
   <div class="page-hero-bg">
-    <img src="assets/leelee-hero.png" alt="LeeLee, Founder of Go Inspire Now">
+    <img src="images/leelee-fearless.png" alt="LeeLee, Founder of Go Inspire Now">
   </div>
   <div class="page-hero-inner rv">
     <span class="page-hero-pre">The Heart Behind Go Inspire Now</span>
     <h1>MEET<br><span class="pk">LEELEE.</span></h1>
-    <p>&ldquo;I&rsquo;ve always believed there is something inside every woman that the world needs.&rdquo;</p>
+    <p>&ldquo;I didn&rsquo;t start a movement. I went for a walk. And somewhere along the way, I remembered who I was.&rdquo;</p>
   </div>
 </section>
 
@@ -221,7 +239,7 @@ footer{background:var(--lav-mid);}
 <section class="meet-leelee">
   <div class="meet-leelee-inner">
     <div class="leelee-photo rv-left">
-      <img src="assets/leelee-hero.png" alt="LeeLee, Founder of Go Inspire Now">
+      <img src="images/leelee-inspired.png" alt="LeeLee, Founder of Go Inspire Now">
     </div>
     <div class="leelee-text rv-right">
       <p class="pre">Founder &amp; Vision Leader</p>
@@ -229,11 +247,13 @@ footer{background:var(--lav-mid);}
       <p class="role">Founder, Go Inspire Now</p>
       <div class="leelee-divider"></div>
       <blockquote class="leelee-quote">
-        I&rsquo;ve always believed there is something inside every woman that the world needs. Sometimes all she needs is someone to walk beside her long enough to remember it.
+        I&rsquo;m a mother of 11. I was raised by a single father. I&rsquo;ve spent most of my life caring for others&mdash;and somewhere in all of that, I lost myself. Not dramatically. Quietly. In all the ways a woman loses herself when she gives everything and forgets to save any for her own soul.
       </blockquote>
-      <p>Go Inspire Now didn&rsquo;t begin as a program or a plan. It began as a feeling LeeLee couldn&rsquo;t shake&mdash;that too many women were walking through life feeling unseen, undervalued, and quietly exhausted by carrying everything alone.</p>
-      <p>She had been one of those women. And she knew the moment everything changed wasn&rsquo;t when she found the right resource or attended the right event. It was when she found the right community. Women who walked beside her. Women who saw her. Women who reminded her of who she already was.</p>
-      <p>That&rsquo;s the movement LeeLee set out to build&mdash;one walk, one conversation, one friendship at a time.</p>
+      <p>One day, I just&hellip; went for a walk.</p>
+      <p>No plan. No mission. Just me and the sidewalk and the weight of everything I&rsquo;d been carrying. And on that walk, I passed women living on the street. Women without homes. Women without certainty about their next meal.</p>
+      <p>And I felt something I didn&rsquo;t expect: recognition.</p>
+      <p>Not because our circumstances were the same&mdash;they weren&rsquo;t. But because I recognized something in their eyes that I had felt in mine. A kind of homelessness that has nothing to do with an address. A feeling of being lost from yourself. Of not quite knowing who you are anymore&mdash;or if anyone sees you at all.</p>
+      <p><em>That&rsquo;s</em> when I knew.</p>
     </div>
   </div>
 </section>
@@ -241,16 +261,18 @@ footer{background:var(--lav-mid);}
 <!-- THE GIN STORY -->
 <section class="gin-story" id="gin-story">
   <div class="gin-story-inner">
-    <p class="pre">Our Story</p>
-    <h2 class="rv">Go Inspire Now Wasn&rsquo;t Built in a Boardroom.</h2>
-    <p class="rv">It was built on a walk.</p>
-    <p class="rv">It was built in conversations between women who were tired of pretending to be fine. In moments where someone finally said, &ldquo;Me too.&rdquo; In friendships that started on a trail and grew into something neither woman expected.</p>
-    <p class="rv">Go Inspire Now exists because LeeLee believed&mdash;and still believes&mdash;that women were never meant to walk through life alone. Not the hard parts. Not the in-between parts. Not even the beautiful parts.</p>
+    <p class="pre">How Go Inspire Now Began</p>
+    <h2 class="rv">I Didn&rsquo;t Start a Movement. I Went for a Walk.</h2>
+    <p class="rv">Go Inspire Now was born from that walk&mdash;and every walk I&rsquo;ve taken since. Because I realized that what I needed, and what those women on the street needed, and what so many of us need&hellip; wasn&rsquo;t a program. It wasn&rsquo;t a resource guide. It was someone to walk beside us long enough to say:</p>
     <div class="highlight rv">
-      Go Inspire Now is a movement where women rediscover the woman they were created to be through community, stories, encouragement, and shared experiences.
+      &ldquo;I see you. You matter. You are not alone.&rdquo;
     </div>
+    <p class="rv">I&rsquo;m a woman who spent years taking care of everyone else&mdash;my children, my family, my community. I helped care for my grandmother. I poured into everyone around me. And I did it with love.</p>
+    <p class="rv">But I forgot to pour into myself.</p>
+    <p class="rv">Go Inspire Now is my answer to that. It&rsquo;s the community I wish I had found sooner. It&rsquo;s the reminder that you don&rsquo;t have to have it all together to belong. You don&rsquo;t have to be healed to be welcomed. You just have to be willing to take the next step.</p>
     <p class="rv">We are not a crisis organization. We are not a counseling center. We are a movement of women who show up for each other&mdash;as they are, where they are, with no prerequisites and no pressure.</p>
-    <p class="rv">Right now, we&rsquo;re focused on building one incredible movement in Dallas&ndash;Fort Worth before taking this anywhere else. Because we believe in doing things right before doing things big.</p>
+    <p class="rv">I didn&rsquo;t discover who I was on that walk. I <em>remembered</em>. And that&rsquo;s what I want for every woman who walks with us.</p>
+    <p class="rv" style="font-family:var(--serif);font-style:italic;color:var(--pk);font-size:1.05rem;">With love,<br><strong style="font-style:normal;font-size:1.15rem;">LeeLee</strong></p>
   </div>
 </section>
 
@@ -342,7 +364,7 @@ document.querySelectorAll('.rv,.rv-left,.rv-right').forEach(el => ro.observe(el)
   var c = document.getElementById('gin-cursor'), shoe = document.getElementById('gin-shoe');
   if (!c || !shoe) return;
   var cx = -200, cy2 = -200, ticking = false, visible = false;
-  function render(){ c.style.transform = 'translate('+(cx-4)+'px,'+(cy2-38)+'px)'; ticking = false; }
+  function render(){ c.style.transform = 'translate('+(cx-20)+'px,'+(cy2-20)+'px)'; ticking = false; }
   document.addEventListener('mousemove', function(e){
     cx = e.clientX; cy2 = e.clientY;
     if (!ticking){ ticking = true; requestAnimationFrame(render); }
@@ -354,6 +376,15 @@ document.querySelectorAll('.rv,.rv-left,.rv-right').forEach(el => ro.observe(el)
   });
   document.addEventListener('mousedown', function(){ c.classList.add('click'); });
   document.addEventListener('mouseup', function(){ c.classList.remove('click'); });
+})();
+(function(){
+  var dd = document.getElementById('nav-giving');
+  if (!dd) return;
+  var trigger = dd.querySelector('.nav-dd-trigger');
+  function toggleDd(open){ dd.classList.toggle('open',open); trigger.setAttribute('aria-expanded',open?'true':'false'); }
+  trigger.addEventListener('click',function(e){ e.stopPropagation(); toggleDd(!dd.classList.contains('open')); });
+  document.addEventListener('click',function(){ toggleDd(false); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') toggleDd(false); });
 })();
 </script>
 </body>
