@@ -1,0 +1,61 @@
+/* Go Inspire Now — light theme. The inverse of You Inspire Now: white base, pink lead, purple + teal accents.
+   Same components and proportions as YIN (assets/site.css is identical on both sites). */
+:root{
+  --a1:#E0127A;--a1-rgb:224,18,122;--a1-ink:#fff;      /* pink — deepened slightly so white text stays readable */
+  --a2:#7C2AE8;--a2-rgb:124,42,232;--a2-ink:#fff;      /* purple */
+  --a3:#00A39C;--a3-rgb:0,163,156;                     /* teal (from the fingerprint logo) */
+  --a4:#E39A12;
+  --give:#E0127A;--give-rgb:224,18,122;--give-ink:#fff;
+  --focus:#7C2AE8;
+
+  --bg:#FFFFFF;--bg-alt:#FFF5FA;--bg-deep:#FFF0F7;
+  --card:#FFFFFF;--card-2:#FFF8FC;
+  --tx:#1A0B24;
+  --tx-strong:rgba(26,11,36,.9);
+  --tx-lead:rgba(26,11,36,.7);
+  --tx-body:rgba(26,11,36,.64);
+  --tx-muted:rgba(26,11,36,.5);
+  --tx-faint:rgba(26,11,36,.38);
+  --line:rgba(26,11,36,.08);--line-2:rgba(26,11,36,.13);--line-3:rgba(26,11,36,.22);
+  --fill:rgba(224,18,122,.04);--fill-2:rgba(224,18,122,.08);
+  --shadow-rgb:70,20,90;
+  --glass-bg:rgba(255,255,255,.82);
+
+  --nav-bg:rgba(255,255,255,.72);--nav-bg-2:rgba(255,255,255,.97);--nav-line:rgba(26,11,36,.07);
+  --logo-filter:none;--logo-blend:normal;
+  --intro-bg:rgba(255,255,255,.84);--intro-logo-filter:drop-shadow(0 10px 24px rgba(224,18,122,.35));
+
+  --blob-1:rgba(255,45,158,.16);--blob-2:rgba(124,42,232,.13);--blob-3:rgba(0,200,190,.12);
+  --grain-op:.035;--grain-blend:multiply;
+
+  --hero-filter:saturate(1.05);
+  --hero-overlay:linear-gradient(105deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.86) 36%,rgba(255,255,255,.3) 62%,rgba(255,255,255,0) 100%),linear-gradient(to top,rgba(255,255,255,.96) 0%,transparent 42%);
+  --hero-tint:linear-gradient(120deg,rgba(255,45,158,.18),rgba(124,42,232,.1));--hero-tint-blend:multiply;
+  --page-hero-filter:saturate(1.05);
+  --page-hero-overlay:linear-gradient(to top,#fff 0%,rgba(255,255,255,.72) 42%,rgba(255,255,255,.28) 100%),linear-gradient(100deg,rgba(255,255,255,.95) 0%,rgba(255,255,255,.5) 45%,transparent 75%);
+  --media-tint:linear-gradient(140deg,rgba(255,45,158,.2),rgba(124,42,232,.1));
+  --media-tint-soft:linear-gradient(140deg,rgba(255,45,158,.12),rgba(124,42,232,.08));
+
+  /* the marquee is a bold pink band here — she said the old one wasn't noticeable */
+  --mq-bg:linear-gradient(90deg,#E0127A,#FF3FA4 45%,#9B3BF0);
+  --mq-line:transparent;--mq-ink:#fff;--mq-star:#fff;
+  --band-bg:linear-gradient(135deg,rgba(255,45,158,.08) 0%,rgba(124,42,232,.07) 100%);
+
+  --input-bg:#fff;--input-bg-focus:#fff;--input-line:rgba(26,11,36,.15);
+  --contrast-bg:#1A0B24;--contrast-ink:#fff;
+  --etch-s1:.1;--etch-s2:.55;
+
+  /* The portal on GIN opens into You Inspire Now: black, teal and purple paint */
+  --portal-sec-bg:radial-gradient(ellipse at 75% 50%,rgba(124,42,232,.12),transparent 55%),radial-gradient(ellipse at 15% 80%,rgba(0,200,190,.1),transparent 50%),#FFF5FA;
+  --portal-glow-rgb:0,232,200;
+  --portal-ring:rgba(124,42,232,.55);
+  --portal-core-bg:radial-gradient(circle at 50% 38%,#1B1B1B 0%,#0B0B0B 55%,#05201D 85%,#00E8C8 100%);
+  --portal-vortex:conic-gradient(from 0deg,rgba(0,232,200,0),rgba(0,232,200,.55),rgba(139,47,255,0),rgba(139,47,255,.6),rgba(0,232,200,0),rgba(255,45,158,.45),rgba(0,232,200,0));
+  --portal-core-ink:#fff;--portal-logo-filter:invert(1);
+  --portal-splat-1:#8B2FFF;--portal-splat-2:#0B0B0B;
+  --ribbon-bg:#0B0B0B;--ribbon-ink:#00E8C8;--ribbon-star:#FF2D9E;--ribbon-glow:0,0,0;
+  --sister-dot:#00E8C8;
+}
+/* GIN-only details (":root" prefix so these beat site.css, which loads after this file) */
+:root .marquee-wrap .mq-star{color:#fff;}
+:root .portal-core img{width:30%;}

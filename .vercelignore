@@ -1,0 +1,17 @@
+# Only the website ships. Keep working files, screenshots and source media out of the deploy.
+GoInsireNowImages
+assets/Images
+assets/Sara Bareilles - Brave (Lyrics).mp3
+assets/music.mp3
+assets/leelee-hero.png
+go-inspire-now
+node_modules
+temporary screenshots
+Screenshot_*
+*.zip
+*.md
+serve.mjs
+screenshot.mjs
+package.json
+package-lock.json
+START SERVER.bat

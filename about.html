@@ -1,391 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About LeeLee — Go Inspire Now</title>
+<meta name="description" content="Meet LeeLee — wife, mother of eleven, and founder of You Inspire Now and its giveback branch, Go Inspire Now.">
+<meta name="theme-color" content="#E0127A">
+<link rel="icon" href="assets/gin-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;overflow-x:hidden;}
-body{font-family:'Inter',sans-serif;background:#fff;color:#1C1025;overflow-x:hidden;max-width:100%;}
-img{display:block;max-width:100%;height:auto;}
-a{text-decoration:none;color:inherit;}
-
-:root{
-  --pk:#F0247A;--pk-lt:#FFE0EF;--vi:#7B2FFF;--vi-lt:#EDE6FF;
-  --cy:#00C4DF;--go:#FFC425;--cream:#F7F2EE;
-  --blush:#FFF0F5;--lav:#EAE3FF;--lav-mid:#C4B5F0;
-  --dark:#1C1025;--mid:#4A3070;--muted:#8A7AAA;--border:#E0D8F0;
-  --serif:'Playfair Display',serif;--sans:'Inter',sans-serif;
-}
-
-/* ── NAV ── */
-nav{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid var(--border);padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;}
-.nav-logo{height:44px;width:auto;}
-.nav-links{display:flex;align-items:center;gap:2rem;}
-.nav-links a{font-size:.78rem;font-weight:600;letter-spacing:.04em;color:var(--mid);transition:color .2s;}
-.nav-links a:hover,.nav-links a.active{color:var(--pk);}
-.nav-give{background:var(--pk);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:.55rem 1.5rem;border-radius:100px;transition:background .2s,transform .15s;display:flex;align-items:center;gap:.35rem;}
-.nav-give:hover{background:#CC1060;transform:scale(1.04);}
-/* Nav dropdown */
-.nav-dropdown{position:relative;}
-.nav-dd-trigger{background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.04em;color:var(--mid);padding:0;display:flex;align-items:center;gap:.3rem;transition:color .2s;}
-.nav-dd-trigger:hover,.nav-dropdown.open .nav-dd-trigger{color:var(--pk);}
-.nav-dd-arrow{display:inline-block;transition:transform .2s;font-size:.5rem;}
-.nav-dropdown.open .nav-dd-arrow{transform:rotate(180deg);}
-.nav-dd-menu{position:absolute;top:calc(100% + .9rem);left:50%;transform:translateX(-50%) translateY(-6px);background:#fff;border-radius:14px;box-shadow:0 4px 32px rgba(14,0,32,.12);border:1px solid rgba(224,216,240,.6);padding:.5rem;min-width:210px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,transform .2s,visibility .2s;z-index:1200;}
-.nav-dropdown:hover .nav-dd-menu,.nav-dropdown.open .nav-dd-menu{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0);}
-.nav-dd-menu a{display:block;padding:.7rem 1.1rem;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);border-radius:8px;transition:background .15s,color .15s;}
-.nav-dd-menu a:hover{background:#FFE0EF;color:var(--pk);}
-
-/* ── HAMBURGER ── */
-.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;padding:.5rem .4rem;cursor:pointer;z-index:1100;}
-.hamburger span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:transform .3s ease,opacity .3s ease;}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-
-/* ── MOBILE MENU ── */
-.mobile-menu{position:fixed;inset:0;z-index:1050;background:rgba(14,0,32,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.8rem;opacity:0;pointer-events:none;transition:opacity .35s ease;}
-.mobile-menu.open{opacity:1;pointer-events:all;}
-.mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:rgba(255,255,255,.82);letter-spacing:.03em;line-height:1;transition:color .2s;}
-.mobile-menu a:hover{color:#fff;}
-.mobile-menu .m-give{margin-top:.5rem;background:var(--pk);color:#fff;font-family:'Inter',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 2.8rem;border-radius:100px;box-shadow:0 4px 24px rgba(240,36,122,.45);transition:background .2s;}
-.mobile-menu .m-give:hover{background:#CC1060;}
-.mobile-menu-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;cursor:pointer;font-size:1.6rem;color:rgba(255,255,255,.5);transition:color .2s;padding:.5rem;}
-.mobile-menu-close:hover{color:#fff;}
-
-/* ── PAGE HERO ── */
-.page-hero{position:relative;padding:7rem 2rem 6rem;text-align:center;overflow:hidden;}
-.page-hero-bg{position:absolute;inset:0;}
-.page-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 20%;}
-.page-hero-bg::after{content:'';position:absolute;inset:0;background:rgba(8,0,20,.58);}
-.page-hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
-.page-hero-pre{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:1.2rem;display:block;}
-.page-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,7vw,7rem);color:#fff;letter-spacing:.02em;line-height:.9;margin-bottom:1.2rem;}
-.page-hero h1 .pk{color:#F0247A;}
-.page-hero p{font-family:var(--serif);font-style:italic;font-size:clamp(1rem,1.8vw,1.25rem);color:rgba(255,255,255,.75);line-height:1.65;max-width:520px;margin:0 auto;}
-
-/* ── MEET LEELEE ── */
-.meet-leelee{padding:7rem 2rem;background:#fff;}
-.meet-leelee-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:420px 1fr;gap:7rem;align-items:start;}
-.leelee-photo{border-radius:24px;overflow:hidden;position:relative;}
-.leelee-photo img{width:100%;display:block;object-fit:cover;object-position:center top;}
-.leelee-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(123,47,255,.15) 0%,transparent 50%);pointer-events:none;}
-.leelee-text .pre{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pk);margin-bottom:.8rem;}
-.leelee-text .name{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,5vw,5.5rem);color:var(--dark);line-height:.9;margin-bottom:.5rem;}
-.leelee-text .role{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--muted);margin-bottom:2rem;}
-.leelee-divider{width:40px;height:3px;background:var(--pk);margin-bottom:2rem;}
-.leelee-quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,2vw,1.45rem);line-height:1.7;color:var(--dark);margin-bottom:2rem;padding-left:1.5rem;border-left:3px solid var(--pk);}
-.leelee-text p{font-size:.9rem;line-height:1.78;color:var(--mid);margin-bottom:1.2rem;}
-
-/* ── GIN STORY ── */
-.gin-story{padding:7rem 2rem;background:var(--blush);}
-.gin-story-inner{max-width:780px;margin:0 auto;text-align:center;}
-.gin-story-inner .pre{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pk);margin-bottom:1rem;}
-.gin-story-inner h2{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.6rem);font-weight:600;color:var(--dark);margin-bottom:2.5rem;line-height:1.3;}
-.gin-story-inner p{font-size:.95rem;line-height:1.85;color:var(--mid);margin-bottom:1.5rem;text-align:left;}
-.highlight{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--dark);text-align:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.5rem 0;margin:2rem 0;}
-
-/* ── VALUES ── */
-.values{padding:7rem 2rem;background:var(--cream);}
-.values-inner{max-width:1100px;margin:0 auto;}
-.values-header{text-align:center;margin-bottom:4rem;}
-.values-header .pre{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pk);margin-bottom:.8rem;}
-.values-header h2{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.6rem);font-weight:600;color:var(--dark);}
-.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-.value-card{background:#fff;border-radius:20px;padding:2.5rem 2rem;border:1.5px solid var(--border);text-align:center;}
-.value-word{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:.9;margin-bottom:.75rem;display:block;}
-.value-card:nth-child(1) .value-word{color:var(--pk);}
-.value-card:nth-child(2) .value-word{color:var(--cy);}
-.value-card:nth-child(3) .value-word{color:var(--go);}
-.value-card p{font-size:.88rem;line-height:1.7;color:var(--mid);}
-
-/* ── CTA ── */
-.about-cta{padding:6rem 2rem;background:var(--lav);text-align:center;}
-.about-cta-inner{max-width:620px;margin:0 auto;}
-.about-cta h2{font-family:var(--serif);font-size:clamp(1.65rem,3vw,2.5rem);font-weight:600;font-style:italic;color:var(--dark);margin-bottom:1.2rem;line-height:1.3;}
-.about-cta p{font-size:.92rem;line-height:1.75;color:var(--mid);margin-bottom:2.5rem;}
-.about-cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
-.btn-pk{display:inline-flex;align-items:center;justify-content:center;padding:.78rem 2.1rem;background:var(--pk);color:#fff;border-radius:100px;font-size:.77rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:background .2s,transform .15s;}
-.btn-pk:hover{background:#CC1060;transform:translateY(-2px);}
-.btn-outline{display:inline-flex;align-items:center;justify-content:center;padding:.78rem 2.1rem;border:1.5px solid var(--pk);color:var(--pk);border-radius:100px;font-size:.77rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:all .2s;}
-.btn-outline:hover{background:var(--pk);color:#fff;transform:translateY(-2px);}
-
-/* ── FOOTER ── */
-footer{background:var(--lav-mid);}
-.footer-main{max-width:1200px;margin:0 auto;padding:4rem 2rem 3rem;}
-.footer-top{display:grid;grid-template-columns:260px 1fr;gap:5rem;padding-bottom:3rem;border-bottom:1px solid rgba(28,16,37,.12);margin-bottom:2.5rem;}
-.footer-brand-logo{height:50px;width:auto;margin-bottom:1.1rem;}
-.footer-brand p{font-size:.79rem;color:var(--dark);opacity:.7;margin-bottom:1.3rem;line-height:1.55;}
-.footer-newsletter{display:flex;gap:.5rem;}
-.footer-newsletter input{flex:1;padding:.58rem .95rem;border:1.5px solid rgba(28,16,37,.18);border-radius:8px;font-family:var(--sans);font-size:.79rem;color:var(--dark);background:rgba(255,255,255,.6);outline:none;}
-.footer-newsletter input::placeholder{color:rgba(28,16,37,.4);}
-.footer-newsletter button{padding:.58rem 1.15rem;background:var(--dark);color:#fff;border:none;border-radius:8px;cursor:pointer;font-family:var(--sans);font-size:.73rem;font-weight:700;letter-spacing:.06em;transition:background .2s;}
-.footer-newsletter button:hover{background:#3A1060;}
-.footer-social{display:flex;gap:.7rem;margin-top:1.1rem;}
-.footer-social a{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(28,16,37,.2);display:flex;align-items:center;justify-content:center;font-size:.82rem;color:var(--dark);transition:all .2s;}
-.footer-social a:hover{background:var(--dark);color:#fff;}
-.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;}
-.footer-col h4{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dark);margin-bottom:1rem;}
-.footer-col ul{list-style:none;}
-.footer-col li{margin-bottom:.48rem;}
-.footer-col a{font-size:.79rem;color:rgba(28,16,37,.68);transition:color .2s;}
-.footer-col a:hover{color:var(--dark);}
-.footer-bottom{background:rgba(0,0,0,.1);padding:1.2rem 2rem;text-align:center;font-size:.69rem;color:rgba(28,16,37,.52);line-height:1.65;}
-
-/* ── REVEAL ── */
-.rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.25,1,.5,1),transform .7s cubic-bezier(.25,1,.5,1);}
-.rv.in{opacity:1;transform:none;}
-.rv-left{opacity:0;transform:translateX(-26px);transition:opacity .8s cubic-bezier(.25,1,.5,1),transform .8s cubic-bezier(.25,1,.5,1);}
-.rv-left.in{opacity:1;transform:none;}
-.rv-right{opacity:0;transform:translateX(26px);transition:opacity .8s cubic-bezier(.25,1,.5,1),transform .8s cubic-bezier(.25,1,.5,1);}
-.rv-right.in{opacity:1;transform:none;}
-.rv-d1{transition-delay:.1s;}.rv-d2{transition-delay:.2s;}.rv-d3{transition-delay:.3s;}
-
-/* ── GRAIN ── */
-.gin-grain{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
-
-/* ── SHOE CURSOR ── */
-@media(hover:hover){*{cursor:none!important;}}
-#gin-cursor{position:fixed;left:0;top:0;pointer-events:none;z-index:10001;opacity:0;transition:opacity .25s ease;}
-#gin-shoe{display:block;font-size:40px;line-height:1;user-select:none;transform:rotate(-15deg);transition:font-size .2s cubic-bezier(.34,1.56,.64,1),transform .22s cubic-bezier(.34,1.56,.64,1),filter .2s ease;filter:drop-shadow(0 3px 14px rgba(240,36,122,.55));}
-#gin-cursor.hov #gin-shoe{font-size:56px;transform:rotate(-26deg) scale(1.1);}
-#gin-cursor.click #gin-shoe{font-size:34px;transform:rotate(-38deg) scale(.85);transition:font-size .07s ease,transform .07s ease;}
-@media(hover:none){#gin-cursor{display:none!important;}}
-
-/* ── RESPONSIVE ── */
-@media(max-width:960px){
-  .meet-leelee-inner{grid-template-columns:1fr;gap:3rem;}
-  .leelee-photo{max-height:480px;overflow:hidden;}
-  .values-grid{grid-template-columns:1fr 1fr 1fr;}
-  .footer-top{grid-template-columns:1fr;gap:2rem;}
-  .footer-cols{grid-template-columns:1fr 1fr;}
-}
-@media(max-width:680px){
-  nav{padding:0 1.25rem;}
-  .nav-links,.nav-give{display:none;}
-  .hamburger{display:flex;}
-  .page-hero{padding:5.5rem 1.5rem 4rem;}
-  .page-hero h1{font-size:clamp(3rem,12vw,5rem);}
-  .meet-leelee{padding:5rem 1.5rem;}
-  .gin-story{padding:5rem 1.5rem;}
-  .values{padding:5rem 1.5rem;}
-  .values-grid{grid-template-columns:1fr;}
-  .about-cta{padding:5rem 1.5rem;}
-  .about-cta-btns{flex-direction:column;align-items:center;}
-  .footer-newsletter{flex-direction:column;}
-  .footer-newsletter input,.footer-newsletter button{width:100%;}
-}
-@media(max-width:480px){
-  .footer-cols{grid-template-columns:1fr;}
-}
+.page-hero .hero-bg{background-image:url('images/leelee-smile.jpg');background-position:72% 22%;}
+.story{display:grid;grid-template-columns:.85fr 1.15fr;gap:6rem;align-items:start;}
+.story-photo{position:sticky;top:110px;}
+.story-photo .photo{aspect-ratio:4/5.4;max-width:420px;}
+.story-photo .photo img{object-position:50% 20%;}
+.sig{font-family:'Playfair Display',serif;font-style:italic;font-size:1.5rem;color:var(--tx);margin-top:.4rem;}
+.sig small{display:block;font-family:'Inter',sans-serif;font-style:normal;font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--tx-muted);margin-top:.4rem;}
+.homes{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;}
+.home-card{position:relative;border-radius:24px;padding:3rem;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.4rem;transition:transform .45s cubic-bezier(.34,1.56,.64,1);}
+.home-card:hover{transform:translateY(-8px);}
+.home-card:active{transform:scale(.99);}
+.home-card.yin{background:radial-gradient(ellipse at 100% 0%,rgba(0,232,200,.25),transparent 55%),radial-gradient(ellipse at 0% 100%,rgba(139,47,255,.3),transparent 55%),#0B0B0B;color:#fff;box-shadow:0 40px 80px -40px rgba(0,0,0,.6);}
+.home-card.gin{background:linear-gradient(160deg,#fff,#FFF0F7);border:1px solid rgba(var(--a1-rgb),.22);box-shadow:0 40px 80px -46px rgba(var(--a1-rgb),.6);}
+.home-card img{height:56px;width:auto;margin-bottom:1rem;}
+.home-card.yin img{filter:invert(1);mix-blend-mode:screen;}
+.home-card .k{font-size:.6rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;}
+.home-card.yin .k{color:#00E8C8;} .home-card.gin .k{color:var(--a1);}
+.home-card h3{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(2.4rem,4vw,3.4rem);line-height:.95;}
+.home-card p{font-size:.95rem;line-height:1.75;opacity:.78;margin:.4rem 0 1.4rem;}
+.home-card .go{font-size:.66rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-top:auto;}
+@media(max-width:1024px){.story{gap:3.5rem;}}
+@media(max-width:860px){.story{grid-template-columns:1fr;}.story-photo{position:static;}.story-photo .photo{max-width:100%;aspect-ratio:1/1.1;}.homes{grid-template-columns:1fr;}.home-card{padding:2.2rem;}}
+@media(max-width:760px){.page-hero .hero-bg{background-position:78% 20%;}}
 </style>
 </head>
 <body>
-<div id="gin-cursor" aria-hidden="true"><span id="gin-shoe">👟</span></div>
-<div class="gin-grain"></div>
+<div class="grain" aria-hidden="true"></div>
+<audio id="bg-music" loop preload="none"><source src="assets/every-little-step-instrumental.mp3" type="audio/mpeg"></audio>
+<button id="music-btn" type="button" aria-label="Play music" aria-pressed="false">
+  <svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+  <svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+</button><span class="music-tip">Music</span>
 
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobile-menu">
-  <button class="mobile-menu-close" id="mobile-close">&#10005;</button>
-  <a href="index.html">Home</a>
-  <a href="events.html">Join a Walk</a>
-  <a href="donate.html#love-boxes">Love Boxes</a>
-  <a href="donate.html#scholarships">Scholarships</a>
-  <a href="nominate.html">Nominate a Woman</a>
-  <a href="contact.html">Contact</a>
-  <a href="about.html">About LeeLee</a>
-  <a href="donate.html" class="m-give">&#10024;&nbsp; Give</a>
-</div>
-
-<!-- NAV -->
-<nav>
-  <a href="index.html"><img src="assets/gin-logo.png" alt="Go Inspire Now" class="nav-logo"></a>
-  <div class="nav-links">
-    <a href="events.html">Join a Walk</a>
-    <div class="nav-dropdown" id="nav-giving">
-      <button class="nav-dd-trigger" aria-expanded="false">Giving <span class="nav-dd-arrow">▼</span></button>
-      <div class="nav-dd-menu">
-        <a href="donate.html#love-boxes">Love Boxes</a>
-        <a href="donate.html#scholarships">Scholarships</a>
-        <a href="nominate.html">Nominate a Woman</a>
-      </div>
+<nav id="nav" aria-label="Main">
+  <div class="nav-in">
+    <a href="index.html" class="nav-logo" aria-label="Go Inspire Now — home"><img src="assets/gin-logo.png" alt="Go Inspire Now" width="46" height="50"></a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html" class="nav-a">Home</a>
+      <a href="events.html" class="nav-a">Walks</a>
+      <a href="love-boxes.html" class="nav-a">Love Boxes</a>
+      <a href="about.html" class="nav-a active" aria-current="page">About</a>
+      <a href="contact.html" class="nav-a">Connect</a>
+      <a href="https://you-inspire-now-v2.vercel.app" class="nav-a nav-sister">You Inspire Now ↗</a>
     </div>
-    <a href="contact.html">Contact</a>
-    <a href="about.html" class="active">About LeeLee</a>
+    <div class="nav-actions">
+      <a href="donate.html" class="nav-pill"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Give</a>
+      <button class="nav-burger" id="nav-burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    </div>
   </div>
-  <a href="donate.html" class="nav-give">&#10024;&nbsp; Give</a>
-  <button class="hamburger" id="hamburger" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
-<!-- HERO -->
+<main>
 <section class="page-hero">
-  <div class="page-hero-bg">
-    <img src="images/leelee-fearless.png" alt="LeeLee, Founder of Go Inspire Now">
-  </div>
-  <div class="page-hero-inner rv">
-    <span class="page-hero-pre">The Heart Behind Go Inspire Now</span>
-    <h1>MEET<br><span class="pk">LEELEE.</span></h1>
-    <p>&ldquo;I didn&rsquo;t start a movement. I went for a walk. And somewhere along the way, I remembered who I was.&rdquo;</p>
-  </div>
-</section>
-
-<!-- MEET LEELEE -->
-<section class="meet-leelee">
-  <div class="meet-leelee-inner">
-    <div class="leelee-photo rv-left">
-      <img src="images/leelee-inspired.png" alt="LeeLee, Founder of Go Inspire Now">
-    </div>
-    <div class="leelee-text rv-right">
-      <p class="pre">Founder &amp; Vision Leader</p>
-      <h2 class="name">LEELEE</h2>
-      <p class="role">Founder, Go Inspire Now</p>
-      <div class="leelee-divider"></div>
-      <blockquote class="leelee-quote">
-        I&rsquo;m a mother of 11. I was raised by a single father. I&rsquo;ve spent most of my life caring for others&mdash;and somewhere in all of that, I lost myself. Not dramatically. Quietly. In all the ways a woman loses herself when she gives everything and forgets to save any for her own soul.
-      </blockquote>
-      <p>One day, I just&hellip; went for a walk.</p>
-      <p>No plan. No mission. Just me and the sidewalk and the weight of everything I&rsquo;d been carrying. And on that walk, I passed women living on the street. Women without homes. Women without certainty about their next meal.</p>
-      <p>And I felt something I didn&rsquo;t expect: recognition.</p>
-      <p>Not because our circumstances were the same&mdash;they weren&rsquo;t. But because I recognized something in their eyes that I had felt in mine. A kind of homelessness that has nothing to do with an address. A feeling of being lost from yourself. Of not quite knowing who you are anymore&mdash;or if anyone sees you at all.</p>
-      <p><em>That&rsquo;s</em> when I knew.</p>
-    </div>
+  <div class="hero-bg" role="img" aria-label="LeeLee smiling"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-tag">The Heart Behind Go Inspire Now</div>
+    <h1 class="hero-h1">Meet<br><span class="c-a1">LeeLee.</span></h1>
+    <p class="hero-sub"><strong>Wife. Mother of eleven. Founder of You Inspire Now</strong> — and a woman on a mission to make sure no woman she meets goes unseen.</p>
   </div>
 </section>
 
-<!-- THE GIN STORY -->
-<section class="gin-story" id="gin-story">
-  <div class="gin-story-inner">
-    <p class="pre">How Go Inspire Now Began</p>
-    <h2 class="rv">I Didn&rsquo;t Start a Movement. I Went for a Walk.</h2>
-    <p class="rv">Go Inspire Now was born from that walk&mdash;and every walk I&rsquo;ve taken since. Because I realized that what I needed, and what those women on the street needed, and what so many of us need&hellip; wasn&rsquo;t a program. It wasn&rsquo;t a resource guide. It was someone to walk beside us long enough to say:</p>
-    <div class="highlight rv">
-      &ldquo;I see you. You matter. You are not alone.&rdquo;
+<section class="sec sec-line" id="story">
+  <div class="blob blob-a2" style="width:600px;height:600px;top:10%;right:-200px;--bd:18s;opacity:.7;"></div>
+  <div class="wrap story">
+    <div class="story-photo reveal-left">
+      <figure class="photo"><img src="images/leelee-field.jpg" alt="LeeLee standing in a field at golden hour" width="412" height="625"><div class="media-tint" aria-hidden="true"></div></figure>
     </div>
-    <p class="rv">I&rsquo;m a woman who spent years taking care of everyone else&mdash;my children, my family, my community. I helped care for my grandmother. I poured into everyone around me. And I did it with love.</p>
-    <p class="rv">But I forgot to pour into myself.</p>
-    <p class="rv">Go Inspire Now is my answer to that. It&rsquo;s the community I wish I had found sooner. It&rsquo;s the reminder that you don&rsquo;t have to have it all together to belong. You don&rsquo;t have to be healed to be welcomed. You just have to be willing to take the next step.</p>
-    <p class="rv">We are not a crisis organization. We are not a counseling center. We are a movement of women who show up for each other&mdash;as they are, where they are, with no prerequisites and no pressure.</p>
-    <p class="rv">I didn&rsquo;t discover who I was on that walk. I <em>remembered</em>. And that&rsquo;s what I want for every woman who walks with us.</p>
-    <p class="rv" style="font-family:var(--serif);font-style:italic;color:var(--pk);font-size:1.05rem;">With love,<br><strong style="font-style:normal;font-size:1.15rem;">LeeLee</strong></p>
-  </div>
-</section>
-
-<!-- SEEN VALUED LOVED -->
-<section class="values">
-  <div class="values-inner">
-    <div class="values-header rv">
-      <p class="pre">What Every Woman Deserves</p>
-      <h2>The Three Words Behind Everything We Do.</h2>
-    </div>
-    <div class="values-grid">
-      <div class="value-card rv rv-d1">
-        <span class="value-word">SEEN.</span>
-        <p>In a world that moves too fast, every woman deserves to feel fully seen&mdash;not just noticed, but genuinely known. At Go Inspire Now, no woman walks unnoticed.</p>
+    <div class="reveal-right">
+      <div class="section-label">Her Story</div>
+      <h2 class="section-h">She Remembered<br><span class="pk">Who She Was.</span></h2>
+      <div class="prose" style="margin-top:2rem;">
+        <p><strong>I've spent most of my life caring for others</strong> — my eleven children, my family, my grandmother when she needed me, my community. I was raised by a single father, and I learned early how to show up for the people I love. Somewhere in all that giving, I lost track of me. Not dramatically. Quietly.</p>
+        <p>Then God met me in a season of surrender, and I remembered who I was — who He created me to be. That's the heart of <a href="https://you-inspire-now-v2.vercel.app" style="color:var(--a2);font-weight:600;">You Inspire Now</a>: calling out the greatness within every woman.</p>
       </div>
-      <div class="value-card rv rv-d2">
-        <span class="value-word">VALUED.</span>
-        <p>You bring something to this world that no one else can. Go Inspire Now exists to remind women of their worth when the weight of life makes it hard to remember.</p>
+      <p class="pull">"We are reminding women of who they're called to be."</p>
+      <div class="prose">
+        <p><strong>Go Inspire Now is how we give back.</strong> It's the Inspiring Walk, the Love Boxes, and the little retreats — the places where women find each other. We're building a community of women who support one another in their journey of becoming.</p>
+        <p>Because every woman we encounter should feel loved, seen, and valued.</p>
       </div>
-      <div class="value-card rv rv-d3">
-        <span class="value-word">LOVED.</span>
-        <p>Real community is rooted in love. We walk together, encourage one another, and show up&mdash;because that&rsquo;s what it means to love your neighbor well.</p>
+      <div class="sig">— LeeLee<small>Founder, Go Inspire Now &amp; You Inspire Now</small></div>
+      <div class="hero-btns" style="margin-top:2.4rem;">
+        <a href="events.html#schedule" class="btn btn-a1" data-magnetic>Walk With Us</a>
+        <a href="contact.html" class="btn btn-ghost">Say Hello</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="about-cta">
-  <div class="about-cta-inner">
-    <h2 class="rv">You don&rsquo;t have to figure it all out before you take the first step.</h2>
-    <p class="rv">There&rsquo;s a community of women in DFW who are ready to walk beside you. Come as you are. You belong here.</p>
-    <div class="about-cta-btns rv">
-      <a href="events.html" class="btn-pk">&#129505;&nbsp; Join a Walk</a>
-      <a href="donate.html" class="btn-outline">&#10024;&nbsp; Give Hope</a>
+<section class="sec sec-alt" id="homes">
+  <div class="blob blob-a3" style="width:600px;height:600px;top:-150px;left:-200px;--bd:17s;"></div>
+  <div class="wrap">
+    <div class="center reveal" style="margin-bottom:3.5rem;">
+      <div class="section-label center">One Heart</div>
+      <h2 class="section-h">Two <span class="tl">Homes.</span></h2>
+      <p class="section-sub center" style="margin-bottom:0;">You Inspire Now is the ministry. Go Inspire Now is how it gives back. Same heart, same founder — two doors in.</p>
+    </div>
+    <div class="homes">
+      <a class="home-card yin reveal" href="https://you-inspire-now-v2.vercel.app">
+        <img src="assets/yin-mark.png" alt="" width="61" height="56">
+        <span class="k">The Ministry</span>
+        <h3>You Inspire Now</h3>
+        <p>Adventure Odyssey, the 2027 drops, and daily inspiration rooted in purpose, health, family, and leadership. There is more within.</p>
+        <span class="go">Step inside ↗</span>
+      </a>
+      <a class="home-card gin reveal" href="index.html" style="transition-delay:.08s">
+        <img src="assets/gin-logo.png" alt="" width="52" height="56">
+        <span class="k">The Giveback · You're Here</span>
+        <h3>Go Inspire Now</h3>
+        <p>The Inspiring Walk, Love Boxes, and retreats — so every woman we encounter feels loved, seen, and valued.</p>
+        <span class="go">Home →</span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<section class="mission-cta sec-line">
+  <div class="blob blob-a1" style="width:600px;height:600px;top:-200px;left:20%;--bd:16s;opacity:.6;"></div>
+  <div class="mc-in">
+    <div class="mc-tag reveal">Come As You Are</div>
+    <h2 class="mc-h reveal">Take The<br><span class="pk">First Step.</span></h2>
+    <p class="mc-sub reveal">You don't have to figure it all out first. There's a community of women in DFW ready to walk beside you.</p>
+    <div class="mc-btns reveal">
+      <a href="events.html#schedule" class="btn btn-a1" data-magnetic>Join a Walk</a>
+      <a href="donate.html" class="btn btn-ghost">Give</a>
+    </div>
+  </div>
+</section>
+</main>
+
 <footer>
-  <div class="footer-main">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img src="assets/gin-logo.png" alt="Go Inspire Now" class="footer-brand-logo">
-        <p>Join our newsletter for walk updates, stories of hope, and reminders that you are seen, valued, and loved.</p>
-        <div class="footer-newsletter">
-          <input type="email" placeholder="Your Email Address">
-          <button>Subscribe</button>
-        </div>
-        <div class="footer-social">
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="Instagram">&#9632;</a>
-          <a href="#" aria-label="YouTube">&#9654;</a>
-        </div>
+  <div class="ft-in">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="assets/gin-logo.png" alt="Go Inspire Now" width="65" height="70">
+        <p>Women walking together across DFW — so every woman knows she is loved, seen, and valued.</p>
+        <a class="ft-sister" href="https://you-inspire-now-v2.vercel.app"><i></i>Our home: You Inspire Now ↗</a>
       </div>
-      <div class="footer-cols">
-        <div class="footer-col"><h4>Walk With Us</h4><ul><li><a href="events.html">Join a Walk</a></li><li><a href="events.html#schedule">Walk Schedule</a></li><li><a href="events.html">The October 25K</a></li></ul></div>
-        <div class="footer-col"><h4>Programs</h4><ul><li><a href="donate.html#love-boxes">Love Boxes</a></li><li><a href="donate.html#scholarships">Scholarships</a></li><li><a href="donate.html">Give Hope</a></li></ul></div>
-        <div class="footer-col"><h4>About</h4><ul><li><a href="about.html">About LeeLee</a></li><li><a href="about.html#gin-story">Our Story</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
-        <div class="footer-col"><h4>Give</h4><ul><li><a href="donate.html">Change a Woman&rsquo;s Story</a></li><li><a href="donate.html">Give Hope</a></li><li><a href="donate.html">Help Women Feel Seen</a></li></ul></div>
-      </div>
+      <div class="ft-col"><h4>Walk With Us</h4><div class="ft-links"><a href="events.html#schedule">2027 Walk Schedule</a><a href="events.html#register">Register for a Walk</a><a href="events.html#annual">The Annual Walk</a><a href="events.html#retreats">Retreats</a></div></div>
+      <div class="ft-col"><h4>Give Back</h4><div class="ft-links"><a href="donate.html">Give</a><a href="love-boxes.html">Love Boxes</a><a href="love-boxes.html#nominate">Nominate a Woman</a><a href="donate.html?amount=5">$5 Walk Donation</a></div></div>
+      <div class="ft-col"><h4>Connect</h4><div class="ft-links"><a href="about.html">About LeeLee</a><a href="contact.html">Contact Us</a><a href="https://you-inspire-now-v2.vercel.app">You Inspire Now ↗</a></div></div>
     </div>
+    <div class="ft-bot"><p class="ft-copy">© <span data-year>2026</span> Go Inspire Now. All Rights Reserved.</p><p class="ft-copy">Loved · Seen · Valued · Walk Like The Woman You Were Made To Be</p></div>
   </div>
-  <div class="footer-bottom">&copy;2026 Go Inspire Now &nbsp;&mdash;&nbsp; A movement where women rediscover who they were created to be through community, encouragement, and shared experiences. &nbsp;&mdash;&nbsp; <a href="contact.html" style="text-decoration:underline;color:inherit;">Contact</a></div>
 </footer>
-
-<script>
-const ro = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
-}, { threshold: 0.08 });
-document.querySelectorAll('.rv,.rv-left,.rv-right').forEach(el => ro.observe(el));
-
-(function(){
-  var btn = document.getElementById('hamburger');
-  var menu = document.getElementById('mobile-menu');
-  var closeBtn = document.getElementById('mobile-close');
-  if (!btn || !menu) return;
-  function open(){ btn.classList.add('open'); menu.classList.add('open'); document.body.style.overflow='hidden'; }
-  function close(){ btn.classList.remove('open'); menu.classList.remove('open'); document.body.style.overflow=''; }
-  btn.addEventListener('click', function(){ menu.classList.contains('open') ? close() : open(); });
-  if (closeBtn) closeBtn.addEventListener('click', close);
-  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
-})();
-
-(function(){
-  if (!window.matchMedia('(hover: hover)').matches) return;
-  var c = document.getElementById('gin-cursor'), shoe = document.getElementById('gin-shoe');
-  if (!c || !shoe) return;
-  var cx = -200, cy2 = -200, ticking = false, visible = false;
-  function render(){ c.style.transform = 'translate('+(cx-20)+'px,'+(cy2-20)+'px)'; ticking = false; }
-  document.addEventListener('mousemove', function(e){
-    cx = e.clientX; cy2 = e.clientY;
-    if (!ticking){ ticking = true; requestAnimationFrame(render); }
-    if (!visible){ visible = true; c.style.opacity = '1'; }
-  }, { passive: true });
-  document.querySelectorAll('a,button').forEach(function(el){
-    el.addEventListener('mouseenter', function(){ c.classList.add('hov'); });
-    el.addEventListener('mouseleave', function(){ c.classList.remove('hov'); });
-  });
-  document.addEventListener('mousedown', function(){ c.classList.add('click'); });
-  document.addEventListener('mouseup', function(){ c.classList.remove('click'); });
-})();
-(function(){
-  var dd = document.getElementById('nav-giving');
-  if (!dd) return;
-  var trigger = dd.querySelector('.nav-dd-trigger');
-  function toggleDd(open){ dd.classList.toggle('open',open); trigger.setAttribute('aria-expanded',open?'true':'false'); }
-  trigger.addEventListener('click',function(e){ e.stopPropagation(); toggleDd(!dd.classList.contains('open')); });
-  document.addEventListener('click',function(){ toggleDd(false); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape') toggleDd(false); });
-})();
-</script>
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
 </body>
 </html>
