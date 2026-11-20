@@ -26,7 +26,7 @@
 .home-card:active{transform:scale(.99);}
 .home-card.yin{background:radial-gradient(ellipse at 100% 0%,rgba(0,232,200,.25),transparent 55%),radial-gradient(ellipse at 0% 100%,rgba(139,47,255,.3),transparent 55%),#0B0B0B;color:#fff;box-shadow:0 40px 80px -40px rgba(0,0,0,.6);}
 .home-card.gin{background:linear-gradient(160deg,#fff,#FFF0F7);border:1px solid rgba(var(--a1-rgb),.22);box-shadow:0 40px 80px -46px rgba(var(--a1-rgb),.6);}
-.home-card img{height:56px;width:auto;margin-bottom:1rem;}
+.home-card img{height:60px;width:auto;max-width:none;align-self:flex-start;object-fit:contain;margin-bottom:1.2rem;}
 .home-card.yin img{filter:invert(1);mix-blend-mode:screen;}
 .home-card .k{font-size:.6rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;}
 .home-card.yin .k{color:#00E8C8;} .home-card.gin .k{color:var(--a1);}
@@ -78,8 +78,12 @@
 <section class="sec sec-line" id="story">
   <div class="blob blob-a2" style="width:600px;height:600px;top:10%;right:-200px;--bd:18s;opacity:.7;"></div>
   <div class="wrap story">
-    <div class="story-photo reveal-left">
+    <div class="story-photo with-print reveal-left">
       <figure class="photo"><img src="images/leelee-field.jpg" alt="LeeLee standing in a field at golden hour" width="412" height="625"><div class="media-tint" aria-hidden="true"></div></figure>
+      <figure class="family-print">
+        <img src="images/leelee-family.jpg" alt="LeeLee and her family gathered together for a family portrait" width="680" height="453" loading="lazy">
+        <figcaption>The Davis Family<small>Where it all starts</small></figcaption>
+      </figure>
     </div>
     <div class="reveal-right">
       <div class="section-label">Her Story</div>
@@ -145,6 +149,13 @@
 
 <footer>
   <div class="ft-in">
+    <div class="ft-give">
+      <div class="ft-give-txt">
+        <span class="ft-give-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+        <p><b>Every walk, Love Box, and retreat starts with someone who gave.</b>Even $5 helps a woman feel loved, seen, and valued.</p>
+      </div>
+      <a href="donate.html" class="btn btn-give">Give Today →</a>
+    </div>
     <div class="ft-grid">
       <div class="ft-brand">
         <img src="assets/gin-logo.png" alt="Go Inspire Now" width="65" height="70">

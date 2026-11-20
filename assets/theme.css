@@ -45,17 +45,26 @@
   --contrast-bg:#1A0B24;--contrast-ink:#fff;
   --etch-s1:.1;--etch-s2:.55;
 
-  /* The portal on GIN opens into You Inspire Now: black, teal and purple paint */
-  --portal-sec-bg:radial-gradient(ellipse at 75% 50%,rgba(124,42,232,.12),transparent 55%),radial-gradient(ellipse at 15% 80%,rgba(0,200,190,.1),transparent 50%),#FFF5FA;
-  --portal-glow-rgb:0,232,200;
-  --portal-ring:rgba(124,42,232,.55);
-  --portal-core-bg:radial-gradient(circle at 50% 38%,#1B1B1B 0%,#0B0B0B 55%,#05201D 85%,#00E8C8 100%);
-  --portal-vortex:conic-gradient(from 0deg,rgba(0,232,200,0),rgba(0,232,200,.55),rgba(139,47,255,0),rgba(139,47,255,.6),rgba(0,232,200,0),rgba(255,45,158,.45),rgba(0,232,200,0));
-  --portal-core-ink:#fff;--portal-logo-filter:invert(1);
-  --portal-splat-1:#8B2FFF;--portal-splat-2:#0B0B0B;
-  --ribbon-bg:#0B0B0B;--ribbon-ink:#00E8C8;--ribbon-star:#FF2D9E;--ribbon-glow:0,0,0;
+  /* The portal on GIN is a rift into You Inspire Now: a purple-and-black hole torn into the light page */
+  --portal-pad:11rem;
+  --portal-sec-bg:#07020F;--rift-edge-glow:224,18,122;
+  --rift-bg:radial-gradient(ellipse 48% 66% at 74% 50%,rgba(139,47,255,.55),transparent 72%),radial-gradient(ellipse 40% 55% at 12% 28%,rgba(0,232,200,.13),transparent 72%),
+    radial-gradient(ellipse 60% 40% at 45% 104%,rgba(224,18,122,.28),transparent 72%),radial-gradient(ellipse 60% 40% at 55% -4%,rgba(224,18,122,.22),transparent 72%),#07020F;
+  --star:rgba(228,212,255,.9);--star-2:rgba(0,232,200,.95);--star-op:.8;
+  --portal-glow-rgb:139,47,255;
+  --portal-ring:rgba(190,150,255,.55);
+  --portal-core-bg:radial-gradient(circle at 50% 50%,#000 0%,#030108 26%,#120529 56%,#36126E 82%,#8B2FFF 100%);
+  --portal-vortex:conic-gradient(from 0deg,rgba(0,232,200,0),rgba(0,232,200,.45),rgba(139,47,255,0),rgba(139,47,255,.6),rgba(0,232,200,0),rgba(255,45,158,.35),rgba(0,232,200,0));
+  --tunnel-ring:rgba(180,125,255,.75);
+  --portal-core-ink:#fff;--portal-logo-filter:invert(1) drop-shadow(0 0 10px rgba(139,47,255,.9));--portal-name-shadow:0 0 18px rgba(139,47,255,.95);
+  --portal-splat-1:#000000;--portal-splat-2:#8B2FFF;--portal-splat-filter:drop-shadow(0 0 16px rgba(139,47,255,.85));
+  --portal-label-ink:rgba(236,224,255,.72);--portal-label-dot:#00E8C8;
   --sister-dot:#00E8C8;
 }
 /* GIN-only details (":root" prefix so these beat site.css, which loads after this file) */
 :root .marquee-wrap .mq-star{color:#fff;}
-:root .portal-core img{width:30%;}
+:root .portal-core img{width:28%;}
+/* inside the rift the page "inverts": light text and lifted accents on the dark */
+:root .portal-sec{--tx:#fff;--tx-strong:rgba(255,255,255,.92);--tx-lead:rgba(255,255,255,.74);--tx-body:rgba(255,255,255,.62);--tx-muted:rgba(255,255,255,.5);
+  --line:rgba(255,255,255,.1);--line-2:rgba(255,255,255,.16);--line-3:rgba(255,255,255,.32);--contrast-bg:#fff;--contrast-ink:#1A0B24;
+  --a2:#B98AFF;--a2-rgb:185,138,255;--a3:#2FE3D2;--a3-rgb:47,227,210;--a1:#FF5FB3;--a1-rgb:255,95,179;color:#fff;}
