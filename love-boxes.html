@@ -59,11 +59,12 @@
 
 <nav id="nav" aria-label="Main">
   <div class="nav-in">
-    <a href="index.html" class="nav-logo" aria-label="Go Inspire Now — home"><img src="assets/gin-logo.png" alt="Go Inspire Now" width="46" height="50"></a>
+    <a href="index.html" class="nav-logo" aria-label="Go Inspire Now — home"><img src="assets/gin-logo.png" alt="Go Inspire Now" width="65" height="70"></a>
     <div class="nav-links" id="nav-links">
       <a href="index.html" class="nav-a">Home</a>
       <a href="events.html" class="nav-a">Walks</a>
       <a href="love-boxes.html" class="nav-a active" aria-current="page">Love Boxes</a>
+      <a href="encouragement.html" class="nav-a">Encouragement</a>
       <a href="about.html" class="nav-a">About</a>
       <a href="contact.html" class="nav-a">Connect</a>
       <a href="https://you-inspire-now-v2.vercel.app" class="nav-a nav-sister">You Inspire Now ↗</a>
@@ -127,7 +128,7 @@
       <li><b>05</b><h3>12 Months Of Encouragement</h3><p>A card for every month of the year ahead.</p></li>
       <li><b>06</b><h3>A Letter For You</h3><p>A personal note, written just for her.</p></li>
       <li><b>07</b><h3>A Gift From YIN</h3><p>15% off her next inspirational shirt drop from You Inspire Now.</p></li>
-      <li><b>08</b><h3>An Invitation</h3><p>A personal invite to join us on the Inspiring Walk.</p></li>
+      <li><b>08</b><h3>An Invitation</h3><p>A personal invite to join us on a Love Walk.</p></li>
     </ol>
     <p class="inside-note">Every Love Box is packed by hand, so what's inside can vary a little from box to box.</p>
   </div>
@@ -172,9 +173,14 @@
         <div class="f-legend">About Her</div>
         <div class="f-row">
           <label>Her name<input type="text" name="Her name" required></label>
-          <label>Her city or area<input type="text" name="Her area" required placeholder="e.g. Denton, Arlington…"></label>
+          <label><span>Her phone <small>(optional)</small></span><input type="tel" name="Her phone"></label>
         </div>
-        <label><span>Her phone <small>(optional)</small></span><input type="tel" name="Her phone"></label>
+        <label>Her mailing address<span class="f-hint">So we can send the Love Box right to her doorstep.</span><input type="text" name="Her street address" required autocomplete="off" placeholder="Street address, apt or unit"></label>
+        <div class="f-row f-row-3">
+          <label>City<input type="text" name="Her city" required autocomplete="off"></label>
+          <label>State<input type="text" name="Her state" required autocomplete="off" maxlength="20" placeholder="TX"></label>
+          <label>ZIP<input type="text" name="Her ZIP" required autocomplete="off" inputmode="numeric" maxlength="10"></label>
+        </div>
         <label>Her season — why she needs to feel seen<textarea name="Her story" required placeholder="Share as much or as little as you're comfortable with."></textarea></label>
         <div class="conf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Every nomination is kept confidential. We never share her information without permission.</div>
         <button type="submit" class="btn btn-a1 btn-block">Send Her Some Love ♥</button>
@@ -200,19 +206,19 @@
     <div class="ft-give">
       <div class="ft-give-txt">
         <span class="ft-give-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
-        <p><b>Every walk, Love Box, and retreat starts with someone who gave.</b>Even $5 helps a woman feel loved, seen, and valued.</p>
+        <p><b>Every walk, Love Box, and event starts with someone who gave.</b>Even $5 helps a woman feel loved, seen, and valued.</p>
       </div>
       <a href="donate.html" class="btn btn-give">Give Today →</a>
     </div>
     <div class="ft-grid">
       <div class="ft-brand">
-        <img src="assets/gin-logo.png" alt="Go Inspire Now" width="65" height="70">
-        <p>Women walking together across DFW — so every woman knows she is loved, seen, and valued.</p>
+        <img src="assets/gin-logo.png" alt="Go Inspire Now" width="102" height="110">
+        <p>Women walking side by side — reminded with every step that she is loved, seen, and valued.</p>
         <a class="ft-sister" href="https://you-inspire-now-v2.vercel.app"><i></i>Our home: You Inspire Now ↗</a>
       </div>
-      <div class="ft-col"><h4>Walk With Us</h4><div class="ft-links"><a href="events.html#schedule">2027 Walk Schedule</a><a href="events.html#register">Register for a Walk</a><a href="events.html#annual">The Annual Walk</a><a href="events.html#retreats">Retreats</a></div></div>
+      <div class="ft-col"><h4>Walk With Us</h4><div class="ft-links"><a href="events.html#schedule">2027 Love Walks</a><a href="events.html#register">Register for a Walk</a><a href="events.html#annual">The Inspiring Walk 25K</a><a href="events.html#retreats">Freedom Retreats</a></div></div>
       <div class="ft-col"><h4>Give Back</h4><div class="ft-links"><a href="donate.html">Give</a><a href="love-boxes.html">Love Boxes</a><a href="love-boxes.html#nominate">Nominate a Woman</a><a href="donate.html?amount=5">$5 Walk Donation</a></div></div>
-      <div class="ft-col"><h4>Connect</h4><div class="ft-links"><a href="about.html">About LeeLee</a><a href="contact.html">Contact Us</a><a href="https://you-inspire-now-v2.vercel.app">You Inspire Now ↗</a></div></div>
+      <div class="ft-col"><h4>Connect</h4><div class="ft-links"><a href="encouragement.html">Encouragement</a><a href="about.html">About LeeLee</a><a href="contact.html">Contact Us</a><a href="https://you-inspire-now-v2.vercel.app">You Inspire Now ↗</a></div></div>
     </div>
     <div class="ft-bot"><p class="ft-copy">© <span data-year>2026</span> Go Inspire Now. All Rights Reserved.</p><p class="ft-copy">Loved · Seen · Valued · Walk Like The Woman You Were Made To Be</p></div>
   </div>

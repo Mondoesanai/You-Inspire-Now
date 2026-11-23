@@ -39,6 +39,15 @@
 .wk.is-next .wk-date b,.wk.is-next .wk-date small{color:#fff;}
 .wk.is-next .wk-btn{background:var(--a1);color:#fff;border-color:transparent;}
 .wk.past{opacity:.45;}
+/* the once-a-year 25K stands out inside the schedule */
+.wk-ic.big{background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;}
+.wk.big{background:linear-gradient(120deg,rgba(var(--a1-rgb),.1),rgba(var(--a2-rgb),.08));}
+.wk.big .wk-date{background:linear-gradient(160deg,var(--a1),var(--a2));}
+.wk.big .wk-date b,.wk.big .wk-date small{color:#fff;}
+.wk.big .wk-info b{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:1.15rem;letter-spacing:.03em;}
+.wk.big .wk-btn{background:var(--a2);color:#fff;border-color:transparent;}
+.wk-mini.big{border-color:rgba(var(--a2-rgb),.4);background:linear-gradient(120deg,rgba(var(--a1-rgb),.06),rgba(var(--a2-rgb),.06));}
+.wk-mini.big .wk-where{color:var(--a2);}
 .wk-tag{color:var(--tx-muted);background:var(--bg-alt);}
 @media(max-width:1200px){.wk-groups{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:860px){.wk-groups{grid-template-columns:1fr 1fr;}}

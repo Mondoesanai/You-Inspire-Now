@@ -4,22 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Go Inspire Now — Walk Like the Woman You Were Made to Be</title>
-<meta name="description" content="Go Inspire Now is the giveback heart of You Inspire Now: the Inspiring Walk, Love Boxes, and retreats — so every woman we encounter feels loved, seen, and valued.">
+<meta name="description" content="Go Inspire Now is the giveback heart of You Inspire Now: Love Walks, the Inspiring Walk 25K, Love Boxes, and Freedom Retreats — so every woman we encounter feels loved, seen, and valued.">
 <meta name="theme-color" content="#E0127A">
 <meta property="og:title" content="Go Inspire Now — Walk Like the Woman You Were Made to Be">
-<meta property="og:description" content="Walk with us across DFW. Every woman loved, seen, and valued.">
-<meta property="og:image" content="images/walk-coffee.jpg">
+<meta property="og:description" content="Walk with us. Every woman loved, seen, and valued.">
+<meta property="og:image" content="images/walk-road.jpg">
 <link rel="icon" href="assets/gin-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="images/walk-coffee.jpg">
+<link rel="preload" as="image" href="images/walk-road.jpg">
 <link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/walks.css">
 <script>try{if(sessionStorage.getItem('gin-intro-seen'))document.documentElement.classList.add('js-intro-seen')}catch(e){}</script>
 <style>
-#hero .hero-bg{background-image:url('images/walk-coffee.jpg');background-position:68% 35%;}
+/* LeeLee: fit women walking a road together, heading out on a journey — the photo fills the right side and fades into the page */
+#hero .hero-bg{background-image:url('images/walk-road.jpg');left:38%;background-position:50% 66%;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 30%);mask-image:linear-gradient(to right,transparent 0,#000 30%);}
+#hero .hero-overlay{background:linear-gradient(105deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.9) 30%,rgba(255,255,255,.35) 44%,rgba(255,255,255,0) 56%),linear-gradient(to top,rgba(255,255,255,.95) 0%,transparent 26%);}
+.hero-chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2.4rem;}
+.hero-chips .hero-chip{margin-top:0;}
+.hero-chip.big .dot{background:var(--a2);}
 #hero .hero-h1{font-size:clamp(4.4rem,7.6vw,8.2rem);line-height:.93;}
 #hero .hero-sub{max-width:500px;}
 .def-word.stack{font-size:clamp(3.6rem,7vw,6.4rem);line-height:.92;}
@@ -46,9 +51,10 @@
 .or-email p{font-size:.88rem;color:var(--tx-body);}
 @media(max-width:1024px){.nw,.home-connect-grid{grid-template-columns:1fr;gap:3.5rem;}}
 @media(max-width:760px){
-  #hero{padding-top:47svh;min-height:100svh;}
-  #hero .hero-bg{bottom:auto;height:50svh;background-position:62% 30%;transform:none;}
-  #hero .hero-overlay{background:linear-gradient(to bottom,rgba(255,255,255,0) 0,rgba(255,255,255,0) 30svh,rgba(255,255,255,.88) 42svh,#fff 47svh);}
+  #hero{padding-top:52svh;min-height:100svh;}
+  /* zoom in on the two women so they fill the phone screen instead of the sky */
+  #hero .hero-bg{left:0;bottom:auto;height:54svh;background-size:165% auto;background-position:50% 90%;transform:none;-webkit-mask-image:none;mask-image:none;}
+  #hero .hero-overlay{background:linear-gradient(to bottom,rgba(255,255,255,0) 0,rgba(255,255,255,0) 41svh,rgba(255,255,255,.85) 49svh,#fff 54svh);}
   #hero .hero-h1{font-size:clamp(3.4rem,15.5vw,5rem);}
 }
 @media(max-width:600px){.nw-card{padding:1.6rem;}.meet{grid-template-columns:110px 1fr;gap:1rem;}.nw-facts b{font-size:1.5rem;}}
@@ -78,11 +84,12 @@
 
 <nav id="nav" aria-label="Main">
   <div class="nav-in">
-    <a href="index.html" class="nav-logo" aria-label="Go Inspire Now — home"><img src="assets/gin-logo.png" alt="Go Inspire Now" width="46" height="50"></a>
+    <a href="index.html" class="nav-logo" aria-label="Go Inspire Now — home"><img src="assets/gin-logo.png" alt="Go Inspire Now" width="65" height="70"></a>
     <div class="nav-links" id="nav-links">
       <a href="index.html" class="nav-a active" aria-current="page">Home</a>
       <a href="events.html" class="nav-a">Walks</a>
       <a href="love-boxes.html" class="nav-a">Love Boxes</a>
+      <a href="encouragement.html" class="nav-a">Encouragement</a>
       <a href="about.html" class="nav-a">About</a>
       <a href="contact.html" class="nav-a">Connect</a>
       <a href="https://you-inspire-now-v2.vercel.app" class="nav-a nav-sister">You Inspire Now ↗</a>
@@ -97,10 +104,10 @@
 <main>
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg" role="img" aria-label="Two friends walking and laughing together, coffee in hand"></div>
+  <div class="hero-bg" role="img" aria-label="Two women in workout clothes walking down an open road toward the mountains, arms raised"></div>
   <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-content">
-    <div class="hero-tag">A You Inspire Now Giveback · DFW</div>
+    <div class="hero-tag">A You Inspire Now Giveback</div>
     <h1 class="hero-h1">
       <span class="hero-line" style="animation-delay:.1s">Walk Like</span>
       <span class="hero-line l2" style="animation-delay:.2s">The Woman</span>
@@ -112,9 +119,14 @@
       <a href="events.html#schedule" class="btn btn-a1" data-magnetic>Join a Walk</a>
       <a href="donate.html" class="btn btn-ghost">Give</a>
     </div>
-    <a class="hero-chip hero-line" style="animation-delay:.76s" href="events.html#register" data-walks="next" data-walk-link>
-      <span class="dot" aria-hidden="true"></span><span>Next walk · <b><span data-w="day">Sat</span>, <span data-w="date">Feb 6</span></b> · <span data-w="time">6–9 AM</span> · <span data-w="region">North DFW</span></span>
-    </a>
+    <div class="hero-chips hero-line" style="animation-delay:.76s">
+      <a class="hero-chip" href="events.html#register" data-walks="next" data-walk-link>
+        <span class="dot" aria-hidden="true"></span><span>Next Love Walk · <b><span data-w="day">Sat</span>, <span data-w="date">Feb 6</span></b> · <span data-w="time">6–9 AM</span></span>
+      </a>
+      <a class="hero-chip big" href="events.html#annual" data-walks="big">
+        <span class="dot" aria-hidden="true"></span><span>The Inspiring Walk 25K · <b><span data-w="day">Sat</span>, <span data-w="date">Sep 25</span></b></span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -124,7 +136,7 @@
     <span class="mq">Loved</span><span class="mq-star" aria-hidden="true">✦</span>
     <span class="mq">Seen</span><span class="mq-star" aria-hidden="true">✦</span>
     <span class="mq">Valued</span><span class="mq-star" aria-hidden="true">✦</span>
-    <span class="mq outline">Walk Like The Woman You Were Made To Be</span><span class="mq-star" aria-hidden="true">✦</span>
+    <span class="mq">Walk Like The Woman You Were Made To Be</span><span class="mq-star" aria-hidden="true">✦</span>
     <span class="mq">You Carry Something The World Needs</span><span class="mq-star" aria-hidden="true">✦</span>
   </div></div>
 </div>
@@ -140,8 +152,8 @@
       <p class="def-text">Go Inspire Now is the <em>giveback branch of You Inspire Now</em> — a community of women who show up for one another in the journey of becoming.</p>
     </div>
     <div class="reveal-right" style="transition-delay:.15s">
-      <div class="def-statement">WE'RE REMINDING<br>WOMEN WHO<br><span class="pk">THEY'RE CALLED</span><br><span class="tl">TO BE.</span></div>
-      <p class="def-sub">Every walk, every Love Box, every retreat has one job: make sure the woman in front of us knows she is loved, seen, and valued — and cheer her on into who she's becoming.</p>
+      <div class="def-statement">WE'RE REMINDING<br>WOMEN OF<br><span class="pk">THEIR VALUE.</span></div>
+      <p class="def-sub">Their great purpose, and the opportunity before them to walk fully in their greatness. Every Love Walk, every Love Box, every Freedom Retreat has one job: make sure the woman in front of us knows she is loved, seen, and valued.</p>
     </div>
   </div>
 </section>
@@ -172,7 +184,7 @@
       <a class="pcard reveal" href="events.html#schedule" style="--pc-tint:rgba(224,18,122,.28)">
         <img src="images/walk-trail.jpg" alt="Two women walking and laughing on a trail" loading="lazy" width="1000" height="1500">
         <div class="media-tint"></div><div class="media-shade"></div>
-        <div class="pcard-body"><div class="pcard-k">Twice a month · All of DFW</div><div class="pcard-t">The Inspiring Walk</div><p class="pcard-d">Morning and evening walks, every other Saturday. $5 a walk — and every dollar goes straight to the mission.</p><span class="pcard-go">See the 2027 walks</span></div>
+        <div class="pcard-body"><div class="pcard-k">Twice a month · Saturdays</div><div class="pcard-t">Love Walks</div><p class="pcard-d">Morning and evening walks, 6 to 8 miles together. A suggested $5 a walk — and every dollar goes straight to the mission.</p><span class="pcard-go">See the 2027 walks</span></div>
       </a>
       <a class="pcard reveal" href="love-boxes.html" style="--pc-tint:rgba(124,42,232,.28);transition-delay:.08s">
         <img src="images/love-box.jpg" alt="An opened gift box with a card and pink flowers" loading="lazy" width="1000" height="1250">
@@ -180,14 +192,14 @@
         <div class="pcard-body"><div class="pcard-k">Encouragement, delivered</div><div class="pcard-t">Love Boxes</div><p class="pcard-d">Little boxes of big love for women who need to feel seen. Know someone? Nominate her.</p><span class="pcard-go">Send some love</span></div>
       </a>
       <a class="pcard reveal" href="events.html#retreats" style="--pc-tint:rgba(0,163,156,.26);transition-delay:.16s">
-        <img src="images/friends-park.jpg" alt="Two friends laughing together outdoors" loading="lazy" width="1400" height="934">
+        <img src="images/retreat-climb.jpg" alt="Women in climbing harnesses taking on a rock wall together" loading="lazy" width="1200" height="800" style="object-position:62% 50%">
         <div class="media-tint"></div><div class="media-shade"></div>
-        <div class="pcard-body"><div class="pcard-k">Rest &amp; reconnect</div><div class="pcard-t">Retreats</div><p class="pcard-d">Small, intimate getaways for women to rest, reconnect, and remember who they're called to be.</p><span class="pcard-go">Get on the list</span></div>
+        <div class="pcard-body"><div class="pcard-k">Time away with the Lord</div><div class="pcard-t">Freedom Retreats</div><p class="pcard-d">Fun, challenges, and a little fear factor — time away with the Lord to see what you're really made of.</p><span class="pcard-go">Get on the list</span></div>
       </a>
     </div>
     <div class="horizon reveal">
-      <span><span class="tag">Once a year</span><b>The Annual Inspiring Walk</b> — our big fundraising walk. 2027 date coming soon.</span>
-      <a href="events.html#annual" class="btn btn-ghost btn-sm">Get Notified</a>
+      <span><span class="tag">Once a year · 25K</span><b>The Inspiring Walk</b> — our big fundraising walk, all of us together. Saturday, September 25, 2027.</span>
+      <a href="events.html#annual" class="btn btn-ghost btn-sm">Save Me A Spot</a>
     </div>
   </div>
 </section>
@@ -198,7 +210,7 @@
   <div class="blob blob-a1" style="width:400px;height:400px;bottom:-80px;left:30%;--bd:18s;--bdel:-7s;"></div>
   <div class="wrap nw">
     <div class="nw-card reveal-left" data-walks="next">
-      <div class="nw-k"><span class="dot" aria-hidden="true"></span>The Next Inspiring Walk</div>
+      <div class="nw-k"><span class="dot" aria-hidden="true"></span>The Next Love Walk</div>
       <div class="nw-when"><span data-w="long">Saturday, February 6</span></div>
       <div class="nw-meta"><span class="chip" data-w="slot">Morning walk</span><span class="chip" data-w="time">6–9 AM</span><span class="chip" data-w="region">North DFW</span></div>
       <div class="cd" data-walk-cd role="timer" aria-label="Countdown to the next walk">
@@ -212,9 +224,9 @@
         <a href="events.html#schedule" class="btn btn-ghost">Full 2027 Schedule</a>
       </div>
       <div class="nw-facts">
-        <div><b>$5</b><span>Walk donation</span></div>
+        <div><b>$5</b><span>Suggested donation</span></div>
         <div><b>2x</b><span>A month · AM + PM</span></div>
-        <div><b>4</b><span>Corners of DFW</span></div>
+        <div><b>6–8</b><span>Miles together</span></div>
       </div>
     </div>
     <div class="reveal-right" style="transition-delay:.1s">
@@ -308,7 +320,7 @@
       <h2 class="section-h">Meet<br><span class="pk">LeeLee.</span></h2>
       <div class="meet">
         <figure class="photo"><img src="images/leelee-portrait.jpg" alt="LeeLee, founder of Go Inspire Now, smiling" width="900" height="1298" loading="lazy"></figure>
-        <p>Wife, mother of eleven, and founder of You Inspire Now. LeeLee started Go Inspire Now so that every woman she meets — on a walk, at an event, anywhere — leaves knowing she is loved, seen, and valued.</p>
+        <p>LeeLee knows what it feels like to go unseen. She started Go Inspire Now so that every woman she meets — on a walk, at an event, anywhere — leaves knowing she is loved, seen, and valued.</p>
       </div>
       <a href="about.html" class="btn btn-ghost">Her Story →</a>
     </div>
@@ -354,19 +366,19 @@
     <div class="ft-give">
       <div class="ft-give-txt">
         <span class="ft-give-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
-        <p><b>Every walk, Love Box, and retreat starts with someone who gave.</b>Even $5 helps a woman feel loved, seen, and valued.</p>
+        <p><b>Every walk, Love Box, and event starts with someone who gave.</b>Even $5 helps a woman feel loved, seen, and valued.</p>
       </div>
       <a href="donate.html" class="btn btn-give">Give Today →</a>
     </div>
     <div class="ft-grid">
       <div class="ft-brand">
-        <img src="assets/gin-logo.png" alt="Go Inspire Now" width="65" height="70">
-        <p>Women walking together across DFW — so every woman knows she is loved, seen, and valued.</p>
+        <img src="assets/gin-logo.png" alt="Go Inspire Now" width="102" height="110">
+        <p>Women walking side by side — reminded with every step that she is loved, seen, and valued.</p>
         <a class="ft-sister" href="https://you-inspire-now-v2.vercel.app"><i></i>Our home: You Inspire Now ↗</a>
       </div>
-      <div class="ft-col"><h4>Walk With Us</h4><div class="ft-links"><a href="events.html#schedule">2027 Walk Schedule</a><a href="events.html#register">Register for a Walk</a><a href="events.html#annual">The Annual Walk</a><a href="events.html#retreats">Retreats</a></div></div>
+      <div class="ft-col"><h4>Walk With Us</h4><div class="ft-links"><a href="events.html#schedule">2027 Love Walks</a><a href="events.html#register">Register for a Walk</a><a href="events.html#annual">The Inspiring Walk 25K</a><a href="events.html#retreats">Freedom Retreats</a></div></div>
       <div class="ft-col"><h4>Give Back</h4><div class="ft-links"><a href="donate.html">Give</a><a href="love-boxes.html">Love Boxes</a><a href="love-boxes.html#nominate">Nominate a Woman</a><a href="donate.html?amount=5">$5 Walk Donation</a></div></div>
-      <div class="ft-col"><h4>Connect</h4><div class="ft-links"><a href="about.html">About LeeLee</a><a href="contact.html">Contact Us</a><a href="https://you-inspire-now-v2.vercel.app">You Inspire Now ↗</a></div></div>
+      <div class="ft-col"><h4>Connect</h4><div class="ft-links"><a href="encouragement.html">Encouragement</a><a href="about.html">About LeeLee</a><a href="contact.html">Contact Us</a><a href="https://you-inspire-now-v2.vercel.app">You Inspire Now ↗</a></div></div>
     </div>
     <div class="ft-bot"><p class="ft-copy">© <span data-year>2026</span> Go Inspire Now. All Rights Reserved.</p><p class="ft-copy">Loved · Seen · Valued · Walk Like The Woman You Were Made To Be</p></div>
   </div>

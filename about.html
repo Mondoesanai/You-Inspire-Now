@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About LeeLee — Go Inspire Now</title>
-<meta name="description" content="Meet LeeLee — wife, mother of eleven, and founder of You Inspire Now and its giveback branch, Go Inspire Now.">
+<meta name="description" content="Meet LeeLee — founder of You Inspire Now and its giveback, Go Inspire Now — on a mission to make sure no woman she meets goes unseen.">
 <meta name="theme-color" content="#E0127A">
 <link rel="icon" href="assets/gin-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,8 @@
 <link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-.page-hero .hero-bg{background-image:url('images/leelee-smile.jpg');background-position:72% 22%;}
+/* her own photo, not the one YIN's home uses — fills the right side and fades into the page */
+.page-hero .hero-bg{background-image:url('images/leelee-inspired-hd.jpg');left:42%;background-position:50% 16%;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 30%);mask-image:linear-gradient(to right,transparent 0,#000 30%);}
 .story{display:grid;grid-template-columns:.85fr 1.15fr;gap:6rem;align-items:start;}
 .story-photo{position:sticky;top:110px;}
 .story-photo .photo{aspect-ratio:4/5.4;max-width:420px;}
@@ -35,7 +36,7 @@
 .home-card .go{font-size:.66rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-top:auto;}
 @media(max-width:1024px){.story{gap:3.5rem;}}
 @media(max-width:860px){.story{grid-template-columns:1fr;}.story-photo{position:static;}.story-photo .photo{max-width:100%;aspect-ratio:1/1.1;}.homes{grid-template-columns:1fr;}.home-card{padding:2.2rem;}}
-@media(max-width:760px){.page-hero .hero-bg{background-position:78% 20%;}}
+@media(max-width:760px){.page-hero .hero-bg{left:0;background-position:50% 12%;-webkit-mask-image:none;mask-image:none;}}
 </style>
 </head>
 <body>
@@ -48,11 +49,12 @@
 
 <nav id="nav" aria-label="Main">
   <div class="nav-in">
-    <a href="index.html" class="nav-logo" aria-label="Go Inspire Now — home"><img src="assets/gin-logo.png" alt="Go Inspire Now" width="46" height="50"></a>
+    <a href="index.html" class="nav-logo" aria-label="Go Inspire Now — home"><img src="assets/gin-logo.png" alt="Go Inspire Now" width="65" height="70"></a>
     <div class="nav-links" id="nav-links">
       <a href="index.html" class="nav-a">Home</a>
       <a href="events.html" class="nav-a">Walks</a>
       <a href="love-boxes.html" class="nav-a">Love Boxes</a>
+      <a href="encouragement.html" class="nav-a">Encouragement</a>
       <a href="about.html" class="nav-a active" aria-current="page">About</a>
       <a href="contact.html" class="nav-a">Connect</a>
       <a href="https://you-inspire-now-v2.vercel.app" class="nav-a nav-sister">You Inspire Now ↗</a>
@@ -66,12 +68,12 @@
 
 <main>
 <section class="page-hero">
-  <div class="hero-bg" role="img" aria-label="LeeLee smiling"></div>
+  <div class="hero-bg" role="img" aria-label="LeeLee smiling in her Inspired tee"></div>
   <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-content">
     <div class="hero-tag">The Heart Behind Go Inspire Now</div>
     <h1 class="hero-h1">Meet<br><span class="c-a1">LeeLee.</span></h1>
-    <p class="hero-sub"><strong>Wife. Mother of eleven. Founder of You Inspire Now</strong> — and a woman on a mission to make sure no woman she meets goes unseen.</p>
+    <p class="hero-sub"><strong>She knows what it feels like to go unseen.</strong> Now she's on a mission to make sure no woman she meets ever does.</p>
   </div>
 </section>
 
@@ -79,8 +81,10 @@
   <div class="blob blob-a2" style="width:600px;height:600px;top:10%;right:-200px;--bd:18s;opacity:.7;"></div>
   <div class="wrap story">
     <div class="story-photo with-print reveal-left">
-      <figure class="photo"><img src="images/leelee-field.jpg" alt="LeeLee standing in a field at golden hour" width="412" height="625"><div class="media-tint" aria-hidden="true"></div></figure>
-      <figure class="family-print">
+      <figure class="photo"><img src="images/leelee-field-hd.jpg" alt="LeeLee standing in a field at golden hour" width="989" height="1500"><div class="media-tint" aria-hidden="true"></div></figure>
+      <!-- tap to open full screen (site.js [data-zoom]); images/leelee-family.jpg came in as a 320px thumbnail — drop the full-size original in under the same name -->
+      <figure class="family-print" data-zoom aria-label="See the Davis family photo full screen">
+        <span class="zoom-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
         <img src="images/leelee-family.jpg" alt="LeeLee and her family gathered together for a family portrait" width="680" height="453" loading="lazy">
         <figcaption>The Davis Family<small>Where it all starts</small></figcaption>
       </figure>
@@ -89,12 +93,13 @@
       <div class="section-label">Her Story</div>
       <h2 class="section-h">She Remembered<br><span class="pk">Who She Was.</span></h2>
       <div class="prose" style="margin-top:2rem;">
-        <p><strong>I've spent most of my life caring for others</strong> — my eleven children, my family, my grandmother when she needed me, my community. I was raised by a single father, and I learned early how to show up for the people I love. Somewhere in all that giving, I lost track of me. Not dramatically. Quietly.</p>
-        <p>Then God met me in a season of surrender, and I remembered who I was — who He created me to be. That's the heart of <a href="https://you-inspire-now-v2.vercel.app" style="color:var(--a2);font-weight:600;">You Inspire Now</a>: calling out the greatness within every woman.</p>
+        <!-- DRAFT opening (LeeLee, Nov 23: lead with something a woman connects to right away, not the kids and family — she's still thinking about her story) -->
+        <p><strong>Have you ever been surrounded by people and still felt unseen?</strong> I have. For years I was the one holding everything together — showing up for everyone, performing on the outside while I was empty on the inside. Somewhere in all that giving, I lost track of me. Not dramatically. Quietly.</p>
+        <p>Then God met me in a season of surrender, and I remembered who I was — who He created me to be. He's given me a beautiful platform: I'm a wife, a mother of eleven, and the founder of <a href="https://you-inspire-now-v2.vercel.app" style="color:var(--a2);font-weight:600;">You Inspire Now</a>. But my story starts with the woman who forgot who she was — and the God who reminded her.</p>
       </div>
-      <p class="pull">"We are reminding women of who they're called to be."</p>
+      <p class="pull">"We are reminding women of who they know themselves to be — in the core, in the depths of their heart."</p>
       <div class="prose">
-        <p><strong>Go Inspire Now is how we give back.</strong> It's the Inspiring Walk, the Love Boxes, and the little retreats — the places where women find each other. We're building a community of women who support one another in their journey of becoming.</p>
+        <p><strong>Go Inspire Now is how we give back.</strong> It's our Love Walks, the Inspiring Walk 25K, the Love Boxes, and our Freedom Retreats — the places where women find each other. We're building a community of women who support one another in their journey of becoming.</p>
         <p>Because every woman we encounter should feel loved, seen, and valued.</p>
       </div>
       <div class="sig">— LeeLee<small>Founder, Go Inspire Now &amp; You Inspire Now</small></div>
@@ -126,7 +131,7 @@
         <img src="assets/gin-logo.png" alt="" width="52" height="56">
         <span class="k">The Giveback · You're Here</span>
         <h3>Go Inspire Now</h3>
-        <p>The Inspiring Walk, Love Boxes, and retreats — so every woman we encounter feels loved, seen, and valued.</p>
+        <p>Love Walks, the Inspiring Walk 25K, Love Boxes, and Freedom Retreats — so every woman we encounter feels loved, seen, and valued.</p>
         <span class="go">Home →</span>
       </a>
     </div>
@@ -138,7 +143,7 @@
   <div class="mc-in">
     <div class="mc-tag reveal">Come As You Are</div>
     <h2 class="mc-h reveal">Take The<br><span class="pk">First Step.</span></h2>
-    <p class="mc-sub reveal">You don't have to figure it all out first. There's a community of women in DFW ready to walk beside you.</p>
+    <p class="mc-sub reveal">You don't have to figure it all out first. There's a community of women ready to walk beside you.</p>
     <div class="mc-btns reveal">
       <a href="events.html#schedule" class="btn btn-a1" data-magnetic>Join a Walk</a>
       <a href="donate.html" class="btn btn-ghost">Give</a>
@@ -152,19 +157,19 @@
     <div class="ft-give">
       <div class="ft-give-txt">
         <span class="ft-give-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
-        <p><b>Every walk, Love Box, and retreat starts with someone who gave.</b>Even $5 helps a woman feel loved, seen, and valued.</p>
+        <p><b>Every walk, Love Box, and event starts with someone who gave.</b>Even $5 helps a woman feel loved, seen, and valued.</p>
       </div>
       <a href="donate.html" class="btn btn-give">Give Today →</a>
     </div>
     <div class="ft-grid">
       <div class="ft-brand">
-        <img src="assets/gin-logo.png" alt="Go Inspire Now" width="65" height="70">
-        <p>Women walking together across DFW — so every woman knows she is loved, seen, and valued.</p>
+        <img src="assets/gin-logo.png" alt="Go Inspire Now" width="102" height="110">
+        <p>Women walking side by side — reminded with every step that she is loved, seen, and valued.</p>
         <a class="ft-sister" href="https://you-inspire-now-v2.vercel.app"><i></i>Our home: You Inspire Now ↗</a>
       </div>
-      <div class="ft-col"><h4>Walk With Us</h4><div class="ft-links"><a href="events.html#schedule">2027 Walk Schedule</a><a href="events.html#register">Register for a Walk</a><a href="events.html#annual">The Annual Walk</a><a href="events.html#retreats">Retreats</a></div></div>
+      <div class="ft-col"><h4>Walk With Us</h4><div class="ft-links"><a href="events.html#schedule">2027 Love Walks</a><a href="events.html#register">Register for a Walk</a><a href="events.html#annual">The Inspiring Walk 25K</a><a href="events.html#retreats">Freedom Retreats</a></div></div>
       <div class="ft-col"><h4>Give Back</h4><div class="ft-links"><a href="donate.html">Give</a><a href="love-boxes.html">Love Boxes</a><a href="love-boxes.html#nominate">Nominate a Woman</a><a href="donate.html?amount=5">$5 Walk Donation</a></div></div>
-      <div class="ft-col"><h4>Connect</h4><div class="ft-links"><a href="about.html">About LeeLee</a><a href="contact.html">Contact Us</a><a href="https://you-inspire-now-v2.vercel.app">You Inspire Now ↗</a></div></div>
+      <div class="ft-col"><h4>Connect</h4><div class="ft-links"><a href="encouragement.html">Encouragement</a><a href="about.html">About LeeLee</a><a href="contact.html">Contact Us</a><a href="https://you-inspire-now-v2.vercel.app">You Inspire Now ↗</a></div></div>
     </div>
     <div class="ft-bot"><p class="ft-copy">© <span data-year>2026</span> Go Inspire Now. All Rights Reserved.</p><p class="ft-copy">Loved · Seen · Valued · Walk Like The Woman You Were Made To Be</p></div>
   </div>

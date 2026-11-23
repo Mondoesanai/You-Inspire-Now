@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Join a Walk — 2027 Inspiring Walk Schedule | Go Inspire Now</title>
-<meta name="description" content="The Inspiring Walk: two walks a month across DFW, February–November 2027. Morning walks 6–9 AM, evening walks 6–9 PM. $5 a walk, straight to the mission.">
+<title>Join a Walk — 2027 Love Walks &amp; The Inspiring Walk 25K | Go Inspire Now</title>
+<meta name="description" content="Love Walks: two Saturday walks a month, February–November 2027 — 6 to 8 miles at a 14–20 minute mile, suggested $5 donation. Plus the Inspiring Walk 25K on Saturday, September 25, 2027.">
 <meta name="theme-color" content="#E0127A">
 <link rel="icon" href="assets/gin-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,14 +31,33 @@
 .bcard .photo{border-radius:0;box-shadow:none;aspect-ratio:16/9;}
 .bcard-body{padding:2.4rem;display:flex;flex-direction:column;gap:.2rem;flex:1;}
 .bcard-body .section-h{font-size:clamp(2.4rem,4vw,3.4rem);}
-.bcard-body .lead{font-size:.98rem;margin:.6rem 0 1.6rem;}
+.bcard-body .lead{font-size:.98rem;margin:.6rem 0 1.2rem;}
+.bcard-body .f{margin-top:auto;}
 .bcard .f-row{grid-template-columns:1fr 1fr;}
+.date-chip{display:inline-flex;align-items:center;gap:.6rem;align-self:flex-start;margin:.2rem 0 1.4rem;padding:.55rem 1rem .55rem .6rem;border-radius:100px;background:linear-gradient(120deg,rgba(var(--a1-rgb),.1),rgba(var(--a2-rgb),.1));font-size:.78rem;font-weight:700;color:var(--tx);}
+.date-chip i{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;font-style:normal;}
+.date-chip i svg{width:13px;height:13px;}
+/* what to expect: her words first, then the facts, then the packing list */
+.expect-lead{max-width:640px;margin:1.2rem auto 0;text-align:center;font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;line-height:1.7;color:var(--tx-lead);}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);margin:0 0 1.4rem;border-radius:22px;background:var(--card);border:1px solid var(--line);box-shadow:0 2px 6px rgba(var(--shadow-rgb),.05),0 34px 70px -46px rgba(var(--a1-rgb),.55);overflow:hidden;}
+.facts div{padding:1.8rem 1.6rem;border-right:1px solid var(--line);}
+.facts div:last-child{border-right:none;}
+.facts b{display:block;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(2.2rem,3.4vw,3rem);line-height:1;color:var(--a1);}
+.facts div:nth-child(2) b{color:var(--a2);} .facts div:nth-child(3) b{color:var(--a3);}
+.facts span{display:block;margin-top:.45rem;font-size:.66rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--tx);}
+.facts small{display:block;margin-top:.3rem;font-size:.8rem;color:var(--tx-muted);line-height:1.5;}
 .expect{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
 .expect .etch{padding:2rem 1.8rem;}
 .expect .etch-desc{font-size:.9rem;}
+.pack{margin-top:1.4rem;display:grid;grid-template-columns:auto 1fr;gap:1.5rem 2.4rem;align-items:center;padding:2rem 2.2rem;border-radius:22px;background:linear-gradient(120deg,rgba(var(--a1-rgb),.07),rgba(var(--a2-rgb),.06));border:1px solid rgba(var(--a1-rgb),.16);}
+.pack h3{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:2.2rem;line-height:.95;letter-spacing:.02em;color:var(--tx);}
+.pack h3 small{display:block;font-family:'Inter',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--a1);margin-bottom:.4rem;}
+.pack ul{list-style:none;display:flex;flex-wrap:wrap;gap:.6rem;}
+.pack li{display:inline-flex;align-items:center;gap:.55rem;padding:.65rem 1.05rem .65rem .7rem;border-radius:100px;background:#fff;border:1px solid var(--line);font-size:.86rem;font-weight:600;color:var(--tx);box-shadow:0 8px 20px -16px rgba(var(--shadow-rgb),.6);}
+.pack li svg{width:18px;height:18px;color:var(--a1);flex-shrink:0;}
 .paid{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin-top:1.2rem;}
-@media(max-width:1024px){.steps{grid-template-columns:1fr;}.reg,.beyond{grid-template-columns:1fr;gap:3rem;}.expect{grid-template-columns:1fr 1fr;}}
-@media(max-width:600px){.expect{grid-template-columns:1fr;}.bcard-body{padding:1.6rem;}.bcard .f-row{grid-template-columns:1fr;}.step{padding:1.8rem;}}
+@media(max-width:1024px){.steps{grid-template-columns:1fr;}.reg,.beyond{grid-template-columns:1fr;gap:3rem;}.expect{grid-template-columns:1fr 1fr;}.facts{grid-template-columns:1fr 1fr;}.facts div:nth-child(2){border-right:none;}.facts div:nth-child(-n+2){border-bottom:1px solid var(--line);}.pack{grid-template-columns:1fr;}}
+@media(max-width:600px){.expect{grid-template-columns:1fr;}.bcard-body{padding:1.6rem;}.bcard .f-row{grid-template-columns:1fr;}.step{padding:1.8rem;}.facts div{padding:1.3rem 1.1rem;}.pack{padding:1.6rem 1.3rem;}.pack li{font-size:.8rem;}.expect-lead{font-size:1.02rem;}}
 </style>
 </head>
 <body>
@@ -51,11 +70,12 @@
 
 <nav id="nav" aria-label="Main">
   <div class="nav-in">
-    <a href="index.html" class="nav-logo" aria-label="Go Inspire Now — home"><img src="assets/gin-logo.png" alt="Go Inspire Now" width="46" height="50"></a>
+    <a href="index.html" class="nav-logo" aria-label="Go Inspire Now — home"><img src="assets/gin-logo.png" alt="Go Inspire Now" width="65" height="70"></a>
     <div class="nav-links" id="nav-links">
       <a href="index.html" class="nav-a">Home</a>
       <a href="events.html" class="nav-a active" aria-current="page">Walks</a>
       <a href="love-boxes.html" class="nav-a">Love Boxes</a>
+      <a href="encouragement.html" class="nav-a">Encouragement</a>
       <a href="about.html" class="nav-a">About</a>
       <a href="contact.html" class="nav-a">Connect</a>
       <a href="https://you-inspire-now-v2.vercel.app" class="nav-a nav-sister">You Inspire Now ↗</a>
@@ -72,9 +92,9 @@
   <div class="hero-bg" role="img" aria-label="Three women walking together through a field of flowers"></div>
   <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-content">
-    <div class="hero-tag">The Inspiring Walk · DFW 2027</div>
+    <div class="hero-tag">Love Walks · 2027</div>
     <h1 class="hero-h1">Find The Walk<br>You Didn't Know<br><span class="c-a1">You Needed.</span></h1>
-    <p class="hero-sub"><strong>Two walks a month, February through November</strong> — a morning walk and an evening walk, rotating through every corner of DFW.</p>
+    <p class="hero-sub"><strong>Love Walks happen twice a month, February through November</strong> — a morning walk and an evening walk, rotating through every corner of DFW. And once a year, we walk the Inspiring Walk 25K together.</p>
     <div class="hero-btns">
       <a href="#schedule" class="btn btn-a1" data-magnetic>See The Schedule</a>
       <a href="#register" class="btn btn-ghost">Register</a>
@@ -82,34 +102,72 @@
   </div>
 </section>
 
+<!-- WHAT TO EXPECT — first, so women know how to come ready (LeeLee, Nov 23) -->
+<section class="sec sec-line" id="expect">
+  <div class="blob blob-a3" style="width:550px;height:550px;top:-150px;right:-150px;--bd:17s;"></div>
+  <div class="wrap">
+    <div class="center reveal" style="margin-bottom:3rem;">
+      <div class="section-label center">What To Expect</div>
+      <h2 class="section-h">A Breath Of Fresh Air<br>For Your <span class="pk">Soul.</span></h2>
+      <p class="expect-lead">"We walk for love. With every step we take, we believe we're infusing love, peace, and joy into the area — and into the women in it."</p>
+    </div>
+    <div class="facts reveal">
+      <div><b>14–20</b><span>Minute mile</span><small>About 3 to 4 mph — the more miles we do, the faster we go.</small></div>
+      <div><b>6–8</b><span>Miles</span><small>Every Love Walk. The Inspiring Walk is the big one: 25K.</small></div>
+      <div><b>3 Hrs</b><span>On a Saturday</span><small>Mornings 6–9 AM, evenings 6–9 PM.</small></div>
+      <div><b>$5</b><span>Suggested</span><small>A suggested donation — no woman will be turned away.</small></div>
+    </div>
+    <div class="expect">
+      <div class="etch t-blush reveal"><h3 class="etch-name sm">You Belong</h3><p class="etch-desc">A welcoming community where you come exactly as you are — no pretending, no performing, no prerequisites.</p></div>
+      <div class="etch t-lav reveal" style="transition-delay:.06s"><h3 class="etch-name sm">Real Talk</h3><p class="etch-desc">Genuine conversations with women who get it — real stories and real connection that go deeper than small talk.</p></div>
+      <div class="etch t-mint reveal" style="transition-delay:.12s"><h3 class="etch-name sm">New Friends &amp; Fun</h3><p class="etch-desc">Moments of being silly, laughter, and smiling with women walking the same journey — long after the walk ends.</p></div>
+      <div class="etch t-butter reveal"><h3 class="etch-name sm">Time To Reflect</h3><p class="etch-desc">Built-in stretches of quiet. Moments of silence to breathe, pray, and hear what God is speaking over you.</p></div>
+      <div class="etch t-sky reveal" style="transition-delay:.06s"><h3 class="etch-name sm">Encouragement</h3><p class="etch-desc">For whatever season you're in — thriving, rebuilding, or just trying to take the next step.</p></div>
+      <div class="etch t-blush reveal" style="transition-delay:.12s"><h3 class="etch-name sm">We Walk For Love</h3><p class="etch-desc">Our mission is love — so that every woman we pass along the way feels it.</p></div>
+    </div>
+    <div class="pack reveal">
+      <h3><small>Come ready</small>What To<br>Bring.</h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8a5 5 0 0 1 10 0v12H7z"/><path d="M10 3h4M7 13h10M10 13v3"/></svg>A backpack</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M12 13v6a2 2 0 0 0 4 0M12 5V3"/></svg>A poncho</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3 4 6v5h3v10h10V11h3V6l-5-3a3 3 0 0 1-6 0z"/></svg>Layers</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7c-4-3-8 0-7 5s4 9 7 8c3 1 6-3 7-8s-3-8-7-5z"/><path d="M12 7c0-2 1-3 3-4"/></svg>A small snack</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2h6M10 2v3L8 8v13h8V8l-2-3V2"/><path d="M8 13h8"/></svg>A water bottle</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17h18v2H3zM3 17V9l5 1 3 3 6 1a4 4 0 0 1 4 3"/></svg>Good walking shoes</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- HOW IT WORKS -->
-<section class="sec sec-line" id="how">
+<section class="sec sec-alt" id="how">
   <div class="blob blob-a2" style="width:600px;height:600px;top:-200px;right:-150px;--bd:16s;opacity:.7;"></div>
   <div class="wrap">
     <div class="center reveal" style="margin-bottom:3.5rem;">
       <div class="section-label center">Simple As 1–2–3</div>
-      <h2 class="section-h">How The <span class="pk">Walk</span> Works.</h2>
+      <h2 class="section-h">How Love Walks <span class="pk">Work.</span></h2>
     </div>
     <div class="steps">
       <div class="step reveal"><b>01</b><h3>Pick Your Saturday</h3><p>The first walk each month is a morning walk, 6–9 AM. The second is an evening walk, 6–9 PM. Choose one — or come to both.</p></div>
       <div class="step reveal" style="transition-delay:.08s"><b class="c-a2">02</b><h3>Register In A Minute</h3><p>Tell us you're coming and we'll send you the location and everything you need to know before you lace up.</p><a href="#register" class="btn btn-ghost btn-sm">Register →</a></div>
-      <div class="step reveal" style="transition-delay:.16s"><b class="c-a3">03</b><h3>Bring $5 · Change A Life</h3><p>Every walk is a $5 donation that goes directly to Go Inspire Now — the walks, the Love Boxes, the retreats.</p><a href="#" class="btn btn-a1 btn-sm" data-cash="5">Pay $5 On Cash App ↗</a></div>
+      <div class="step reveal" style="transition-delay:.16s"><b class="c-a3">03</b><h3>Suggested $5 · Change A Life</h3><p>Each walk has a suggested $5 donation that goes straight to Go Inspire Now — the walks, the Love Boxes, the Freedom Retreats. No woman will be turned away.</p><a href="#" class="btn btn-a1 btn-sm" data-cash="5">Give $5 On Cash App ↗</a></div>
     </div>
   </div>
 </section>
 
 <!-- SCHEDULE -->
-<section class="sec sec-alt" id="schedule">
+<section class="sec sec-line" id="schedule">
   <div class="blob blob-a1" style="width:600px;height:600px;top:-150px;left:-200px;--bd:15s;opacity:.7;"></div>
   <div class="wrap">
     <div class="sched-head reveal">
       <div>
-        <div class="section-label">The 2027 Walk Schedule</div>
+        <div class="section-label">The 2027 Love Walks</div>
         <h2 class="section-h">Every Corner<br>Of <span class="tl">DFW.</span></h2>
       </div>
       <div class="legend">
         <span><span class="wk-ic am"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 18h18M7 18a5 5 0 0 1 10 0M12 4v3M4.9 8.9l2.1 2.1M19.1 8.9 17 11"/></svg></span>Morning walk · 6–9 AM</span>
         <span><span class="wk-ic pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></span>Evening walk · 6–9 PM</span>
+        <span><span class="wk-ic big"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>The Inspiring Walk · 25K</span>
         <span>📍 Location sent when you register</span>
       </div>
     </div>
@@ -119,7 +177,7 @@
 </section>
 
 <!-- REGISTER -->
-<section class="sec sec-line" id="register">
+<section class="sec sec-alt" id="register">
   <div class="blob blob-a2" style="width:550px;height:550px;bottom:-200px;left:-150px;--bd:16s;opacity:.6;"></div>
   <div class="wrap reg">
     <div class="reveal-left">
@@ -127,9 +185,9 @@
       <h2 class="section-h">Register<br>For A <span class="pk">Walk.</span></h2>
       <p class="lead" style="margin-top:1rem;">It takes about a minute. Your registration goes straight to LeeLee, and we'll send you the location and details before your walk.</p>
       <ul class="ticks">
-        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5 9-10"/></svg></span><div><b>Every pace is welcome</b><span>Stroll or stride — no one gets left behind.</span></div></li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5 9-10"/></svg></span><div><b>Our pace</b><span>A 14–20 minute mile (about 3–4 mph), 6 to 8 miles.</span></div></li>
         <li><span class="ic a2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5 9-10"/></svg></span><div><b>Bring a friend</b><span>Tell us how many are coming with you.</span></div></li>
-        <li><span class="ic a3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5 9-10"/></svg></span><div><b>$5 walk donation</b><span>Pay ahead on Cash App or bring it with you.</span></div></li>
+        <li><span class="ic a3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5 9-10"/></svg></span><div><b>Suggested $5 walk donation</b><span>Pay ahead on Cash App or bring it with you. No woman will be turned away.</span></div></li>
       </ul>
     </div>
     <div class="panel reveal-right" data-form-wrap>
@@ -148,72 +206,54 @@
         <label>How many walkers (including you)?
           <select name="Walkers"><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select>
         </label>
-        <label><span>Anything we should know? <small>(optional)</small></span><textarea name="Notes" placeholder="Pace, accessibility, who you're bringing…"></textarea></label>
+        <label><span>Anything we should know? <small>(optional)</small></span><textarea name="Notes" placeholder="Accessibility, who you're bringing, anything on your heart…"></textarea></label>
         <button type="submit" class="btn btn-a1 btn-block">Register For This Walk →</button>
       </form>
-      <div class="f-done" role="status"><b>You're registered!</b><p>We'll send you the location before your walk. Your $5 walk donation goes straight to the mission:</p><div class="paid"><a href="#" class="btn btn-a1 btn-sm" data-cash="5">Pay $5 On Cash App ↗</a><span class="f-note">or bring it with you</span></div></div>
+      <div class="f-done" role="status"><b>You're registered!</b><p>We'll send you the location before your walk. The suggested $5 walk donation goes straight to the mission — and no woman is ever turned away:</p><div class="paid"><a href="#" class="btn btn-a1 btn-sm" data-cash="5">Give $5 On Cash App ↗</a><span class="f-note">or bring it with you</span></div></div>
       <div class="f-fallback" role="alert">That didn't send. <a href="#">Tap here to send it as an email instead →</a> (everything you typed is already filled in).</div>
     </div>
   </div>
 </section>
 
-<!-- BEYOND THE WALK: annual walk + retreats -->
-<section class="sec sec-alt" id="beyond">
+<!-- BEYOND THE WALK: the 25K + Freedom Retreats -->
+<section class="sec" id="beyond">
   <div class="wrap">
     <div class="center reveal" style="margin-bottom:3.5rem;">
-      <div class="section-label center">Beyond The Walk</div>
+      <div class="section-label center">Beyond The Love Walks</div>
       <h2 class="section-h">More Ways To <span class="tl">Show Up.</span></h2>
     </div>
     <div class="beyond">
-      <div class="bcard reveal" id="annual">
-        <figure class="photo"><img src="images/sisters-laugh.jpg" alt="Four friends laughing together at golden hour" loading="lazy" width="1600" height="900"><div class="media-tint" aria-hidden="true"></div></figure>
+      <div class="bcard reveal" id="annual" data-walks="big">
+        <figure class="photo"><img src="images/walk-25k-crowd.jpg" alt="A crowd of women in workout clothes walking together at sunset" loading="lazy" width="1000" height="1498" style="object-position:50% 40%"><div class="media-tint" aria-hidden="true"></div></figure>
         <div class="bcard-body" data-form-wrap>
-          <div class="section-label">Once A Year</div>
-          <h3 class="section-h">The Annual<br><span class="pk">Inspiring Walk.</span></h3>
-          <p class="lead">Our big fundraising walk — a day of movement, encouragement, and celebration that helps fund everything Go Inspire Now does all year. The 2027 date will be announced here first.</p>
-          <form class="f" data-form="Annual Walk — Notify Me">
+          <div class="section-label">Once A Year · 25K</div>
+          <h3 class="section-h">The Inspiring<br><span class="pk">Walk.</span></h3>
+          <span class="date-chip"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></i><span data-w="long">Saturday, September 25</span>, 2027</span>
+          <p class="lead">Our big fundraising walk — 25K (about 15.5 miles) together. A day of movement, encouragement, and celebration that funds everything Go Inspire Now does all year.</p>
+          <form class="f" data-form="Inspiring Walk 25K — Save My Spot">
             <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="f-row"><label>First name<input type="text" name="First name" required autocomplete="given-name"></label><label>Email<input type="email" name="Email" required autocomplete="email"></label></div>
-            <button type="submit" class="btn btn-a1 btn-block">Tell Me The Date →</button>
+            <button type="submit" class="btn btn-a1 btn-block">Save Me A Spot →</button>
           </form>
-          <div class="f-done" role="status"><b>You'll be first to know.</b><p>We'll email you the moment the 2027 date is set.</p></div>
+          <div class="f-done" role="status"><b>You're on the list.</b><p>We'll send the start time, the route, and everything you need for September 25.</p></div>
           <div class="f-fallback" role="alert">That didn't send. <a href="#">Send it as an email instead →</a></div>
         </div>
       </div>
       <div class="bcard reveal" id="retreats" style="transition-delay:.1s">
         <figure class="photo"><img src="images/retreat-summit.jpg" alt="Three women on a summit overlooking the sea" loading="lazy" width="1400" height="934"><div class="media-tint" aria-hidden="true"></div></figure>
         <div class="bcard-body" data-form-wrap>
-          <div class="section-label c-a2">Rest &amp; Reconnect</div>
-          <h3 class="section-h">Little Retreats,<br><span class="pu">Big Hearts.</span></h3>
-          <p class="lead">Small, intimate getaways where women rest, reconnect, and remember who they're called to be. Retreat dates go to our community first.</p>
-          <form class="f" data-form="Retreat Interest">
+          <div class="section-label c-a2">Time Away With The Lord</div>
+          <h3 class="section-h">Freedom<br><span class="pu">Retreats.</span></h3>
+          <p class="lead">Not just a getaway. Time away with the Lord to work on what's within, as He takes you on a journey to remind you who you are and what you're capable of. There's fun, there are challenges, and a little fear factor — we challenge ourselves physically, spiritually, and mentally, and get comfortable stepping into the uncomfortable to catch a glimpse of what we're really made of.</p>
+          <form class="f" data-form="Freedom Retreat Interest">
             <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="f-row"><label>First name<input type="text" name="First name" required autocomplete="given-name"></label><label>Email<input type="email" name="Email" required autocomplete="email"></label></div>
             <button type="submit" class="btn btn-a2 btn-block">I'm Interested →</button>
           </form>
-          <div class="f-done" role="status"><b>We saved you a seat.</b><p>You'll hear about the next retreat before anyone else.</p></div>
+          <div class="f-done" role="status"><b>We saved you a seat.</b><p>You'll hear about the next Freedom Retreat before anyone else.</p></div>
           <div class="f-fallback" role="alert">That didn't send. <a href="#">Send it as an email instead →</a></div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHAT TO EXPECT -->
-<section class="sec" id="expect">
-  <div class="blob blob-a3" style="width:550px;height:550px;top:-150px;right:-150px;--bd:17s;"></div>
-  <div class="wrap">
-    <div class="center reveal" style="margin-bottom:3.5rem;">
-      <div class="section-label center">What To Expect</div>
-      <h2 class="section-h">A Breath Of Fresh Air<br>For Your <span class="pk">Soul.</span></h2>
-    </div>
-    <div class="expect">
-      <div class="etch t-blush reveal"><h3 class="etch-name sm">You Belong</h3><p class="etch-desc">A welcoming community where you come exactly as you are — no pretending, no performing, no prerequisites.</p></div>
-      <div class="etch t-lav reveal" style="transition-delay:.06s"><h3 class="etch-name sm">Every Pace</h3><p class="etch-desc">Routes for all fitness levels. Whether you stroll or stride, every pace is welcome on an Inspiring Walk.</p></div>
-      <div class="etch t-mint reveal" style="transition-delay:.12s"><h3 class="etch-name sm">Real Talk</h3><p class="etch-desc">Genuine conversations with women who get it — real stories and real connection that go deeper than small talk.</p></div>
-      <div class="etch t-butter reveal"><h3 class="etch-name sm">New Friends</h3><p class="etch-desc">Women walking the same journey, ready to walk it beside you — long after the walk ends.</p></div>
-      <div class="etch t-sky reveal" style="transition-delay:.06s"><h3 class="etch-name sm">Encouragement</h3><p class="etch-desc">For whatever season you're in — thriving, rebuilding, or just trying to take the next step.</p></div>
-      <div class="etch t-blush reveal" style="transition-delay:.12s"><h3 class="etch-name sm">Fun</h3><p class="etch-desc">Music, laughter, and moments worth remembering. This is a celebration, not a chore.</p></div>
     </div>
   </div>
 </section>
@@ -223,7 +263,7 @@
   <div class="mc-in">
     <div class="mc-tag reveal">More Than A Walk</div>
     <h2 class="mc-h reveal">Take The<br><span class="pk">Next Step.</span></h2>
-    <p class="mc-sub reveal">Some women come looking for exercise. Many leave with lifelong friendships. Every woman leaves reminded that she is loved, seen, and valued.</p>
+    <p class="mc-sub reveal">Some women come looking for exercise. Many leave with lifelong friendships. Every woman leaves reminded that she is loved, seen, and valued — and fully capable to overcome whatever obstacle is placed before her.</p>
     <div class="mc-btns reveal">
       <a href="#register" class="btn btn-a1" data-magnetic>Register For A Walk</a>
       <a href="donate.html" class="btn btn-ghost">Give</a>
@@ -237,19 +277,19 @@
     <div class="ft-give">
       <div class="ft-give-txt">
         <span class="ft-give-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
-        <p><b>Every walk, Love Box, and retreat starts with someone who gave.</b>Even $5 helps a woman feel loved, seen, and valued.</p>
+        <p><b>Every walk, Love Box, and event starts with someone who gave.</b>Even $5 helps a woman feel loved, seen, and valued.</p>
       </div>
       <a href="donate.html" class="btn btn-give">Give Today →</a>
     </div>
     <div class="ft-grid">
       <div class="ft-brand">
-        <img src="assets/gin-logo.png" alt="Go Inspire Now" width="65" height="70">
-        <p>Women walking together across DFW — so every woman knows she is loved, seen, and valued.</p>
+        <img src="assets/gin-logo.png" alt="Go Inspire Now" width="102" height="110">
+        <p>Women walking side by side — reminded with every step that she is loved, seen, and valued.</p>
         <a class="ft-sister" href="https://you-inspire-now-v2.vercel.app"><i></i>Our home: You Inspire Now ↗</a>
       </div>
-      <div class="ft-col"><h4>Walk With Us</h4><div class="ft-links"><a href="events.html#schedule">2027 Walk Schedule</a><a href="events.html#register">Register for a Walk</a><a href="events.html#annual">The Annual Walk</a><a href="events.html#retreats">Retreats</a></div></div>
+      <div class="ft-col"><h4>Walk With Us</h4><div class="ft-links"><a href="events.html#schedule">2027 Love Walks</a><a href="events.html#register">Register for a Walk</a><a href="events.html#annual">The Inspiring Walk 25K</a><a href="events.html#retreats">Freedom Retreats</a></div></div>
       <div class="ft-col"><h4>Give Back</h4><div class="ft-links"><a href="donate.html">Give</a><a href="love-boxes.html">Love Boxes</a><a href="love-boxes.html#nominate">Nominate a Woman</a><a href="donate.html?amount=5">$5 Walk Donation</a></div></div>
-      <div class="ft-col"><h4>Connect</h4><div class="ft-links"><a href="about.html">About LeeLee</a><a href="contact.html">Contact Us</a><a href="https://you-inspire-now-v2.vercel.app">You Inspire Now ↗</a></div></div>
+      <div class="ft-col"><h4>Connect</h4><div class="ft-links"><a href="encouragement.html">Encouragement</a><a href="about.html">About LeeLee</a><a href="contact.html">Contact Us</a><a href="https://you-inspire-now-v2.vercel.app">You Inspire Now ↗</a></div></div>
     </div>
     <div class="ft-bot"><p class="ft-copy">© <span data-year>2026</span> Go Inspire Now. All Rights Reserved.</p><p class="ft-copy">Loved · Seen · Valued · Walk Like The Woman You Were Made To Be</p></div>
   </div>

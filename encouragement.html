@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Encouragement — Go Inspire Now</title>
+<meta name="description" content="Need a word today? Tell LeeLee and the Go Inspire Now team where you are in life, and we'll send a personal word of encouragement straight to you.">
+<meta name="theme-color" content="#E0127A">
+<link rel="icon" href="assets/gin-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+/* the page opens with a word you can take right now; the letter form follows */
+#enc-hero{position:relative;overflow:hidden;padding:170px 2.5rem 7rem;background:var(--bg);}
+.enc-in{position:relative;z-index:2;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+#enc-hero .hero-h1{font-size:clamp(4rem,8.4vw,8.4rem);line-height:.9;}
+#enc-hero .hero-sub{max-width:480px;margin-bottom:2.2rem;}
+.word{position:relative;padding:3rem 2.8rem 2.4rem;border-radius:26px;background:linear-gradient(165deg,#fff 0%,#FFF3F9 100%);border:1px solid rgba(var(--a1-rgb),.2);
+  box-shadow:0 2px 6px rgba(var(--shadow-rgb),.06),0 30px 60px -30px rgba(var(--a2-rgb),.45),0 60px 120px -60px rgba(var(--a1-rgb),.55);transform:rotate(1.2deg);}
+.word::before{content:'\201C';position:absolute;top:-.2rem;left:1.6rem;font-family:'Playfair Display',serif;font-size:7rem;line-height:1;color:rgba(var(--a1-rgb),.16);}
+.word-k{display:flex;align-items:center;gap:.6rem;font-size:.62rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--a1);margin-bottom:1.4rem;}
+.word-k i{width:8px;height:8px;border-radius:50%;background:var(--a1);animation:live 1.8s ease-out infinite;}
+.word-body{min-height:15rem;display:flex;flex-direction:column;justify-content:center;transition:opacity .35s ease,transform .45s cubic-bezier(.34,1.56,.64,1);}
+.word-body.swap{opacity:0;transform:translateY(10px);}
+.word-verse{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.45rem,2.3vw,1.95rem);line-height:1.4;color:var(--tx);}
+.word-ref{margin-top:.9rem;font-size:.66rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--a2);}
+.word-note{margin-top:1.4rem;padding-top:1.3rem;border-top:1px solid var(--line-2);font-size:1rem;line-height:1.75;color:var(--tx-lead);}
+.word-btns{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem;}
+.word-btns .btn svg{width:15px;height:15px;}
+.letter{display:grid;grid-template-columns:.85fr 1.15fr;gap:5rem;align-items:start;}
+.promise{list-style:none;display:flex;flex-direction:column;gap:1.1rem;margin-top:2rem;}
+.promise li{display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;}
+.promise b{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:rgba(var(--a1-rgb),.1);color:var(--a1);font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:1.3rem;}
+.promise li:nth-child(2) b{background:rgba(var(--a2-rgb),.1);color:var(--a2);} .promise li:nth-child(3) b{background:rgba(var(--a3-rgb),.12);color:var(--a3);}
+.promise h3{font-size:.98rem;font-weight:700;color:var(--tx);margin:.35rem 0 .2rem;}
+.promise p{font-size:.9rem;line-height:1.7;color:var(--tx-body);}
+.how-k{display:flex;flex-wrap:wrap;gap:.5rem;}
+.how-k label{flex-direction:row;align-items:center;gap:.5rem;padding:.7rem 1rem;border-radius:100px;border:1.5px solid var(--input-line);background:#fff;font-size:.8rem;letter-spacing:.04em;text-transform:none;font-weight:600;color:var(--tx-strong);cursor:pointer;transition:transform .25s cubic-bezier(.34,1.56,.64,1),border-color .2s;}
+.how-k label:hover{transform:translateY(-2px);}
+.how-k label:active{transform:scale(.97);}
+.how-k input{width:16px;height:16px;padding:0;margin:0;accent-color:var(--a1);-webkit-appearance:auto;appearance:auto;}
+.how-k label:has(input:checked){border-color:var(--a1);background:rgba(var(--a1-rgb),.06);}
+.f-group-k{font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--tx-muted);margin-bottom:.45rem;}
+@media(max-width:1024px){.enc-in,.letter{grid-template-columns:1fr;gap:3.5rem;}.word{transform:none;}}
+@media(max-width:600px){#enc-hero{padding:120px 1.25rem 4.5rem;}#enc-hero .hero-h1{font-size:clamp(3.4rem,15vw,5rem);}.word{padding:2.4rem 1.5rem 1.8rem;}.word-body{min-height:17rem;}}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<audio id="bg-music" loop preload="none"><source src="assets/every-little-step-instrumental.mp3" type="audio/mpeg"></audio>
+<button id="music-btn" type="button" aria-label="Play music" aria-pressed="false">
+  <svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+  <svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+</button><span class="music-tip">Music</span>
+
+<nav id="nav" aria-label="Main">
+  <div class="nav-in">
+    <a href="index.html" class="nav-logo" aria-label="Go Inspire Now — home"><img src="assets/gin-logo.png" alt="Go Inspire Now" width="65" height="70"></a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html" class="nav-a">Home</a>
+      <a href="events.html" class="nav-a">Walks</a>
+      <a href="love-boxes.html" class="nav-a">Love Boxes</a>
+      <a href="encouragement.html" class="nav-a active" aria-current="page">Encouragement</a>
+      <a href="about.html" class="nav-a">About</a>
+      <a href="contact.html" class="nav-a">Connect</a>
+      <a href="https://you-inspire-now-v2.vercel.app" class="nav-a nav-sister">You Inspire Now ↗</a>
+    </div>
+    <div class="nav-actions">
+      <a href="donate.html" class="nav-pill"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Give</a>
+      <button class="nav-burger" id="nav-burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<main>
+<!-- HERO: a word for right now -->
+<section id="enc-hero">
+  <div class="blob blob-a1" style="width:700px;height:700px;top:-220px;right:-200px;--bd:16s;opacity:.8;"></div>
+  <div class="blob blob-a2" style="width:520px;height:520px;bottom:-200px;left:-160px;--bd:19s;--bdel:-6s;opacity:.7;"></div>
+  <div class="enc-in">
+    <div>
+      <div class="hero-tag">Encouragement</div>
+      <h1 class="hero-h1">Need A Word<br><span class="c-a1">Today?</span></h1>
+      <p class="hero-sub"><strong>Wherever you are — thriving, rebuilding, or just trying to make it through today</strong> — you don't have to carry it alone. Take a word for right now, or tell us where you are and we'll write to you personally.</p>
+      <div class="hero-btns">
+        <a href="#letter" class="btn btn-a1" data-magnetic>Send Me Encouragement</a>
+        <a href="events.html" class="btn btn-ghost">Walk With Us</a>
+      </div>
+    </div>
+    <div class="word" aria-live="polite">
+      <div class="word-k"><i aria-hidden="true"></i>A word for you, right now</div>
+      <div class="word-body" id="word-body">
+        <p class="word-verse" id="word-verse">"You are the God who sees me."</p>
+        <div class="word-ref" id="word-ref">Genesis 16:13</div>
+        <p class="word-note" id="word-note">You are not invisible. Not to Him, and not to us. Whatever you're carrying today, He sees it — and He sees you.</p>
+      </div>
+      <div class="word-btns">
+        <button type="button" class="btn btn-a2 btn-sm" id="word-next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>Another Word</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="word-share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v13"/></svg><span>Send It To A Friend</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A PERSONAL WORD -->
+<section class="sec sec-alt sec-line" id="letter">
+  <div class="blob blob-a3" style="width:600px;height:600px;top:-150px;right:-200px;--bd:17s;"></div>
+  <div class="wrap letter">
+    <div class="reveal-left">
+      <div class="section-label c-a2">A Personal Word</div>
+      <h2 class="section-h">Tell Us<br>Where You <span class="pk">Are.</span></h2>
+      <p class="lead" style="margin-top:1rem;">Share as much or as little as you'd like. LeeLee and the Go Inspire Now team read every one — and we'll answer with a word written for you.</p>
+      <ul class="promise">
+        <li><b>1</b><div><h3>Something comes back right away</h3><p>The moment you send it, a word of encouragement is on its way to your inbox.</p></div></li>
+        <li><b>2</b><div><h3>Then a personal word</h3><p>A letter of encouragement written for your season — by email or text, whichever you choose.</p></div></li>
+        <li><b>3</b><div><h3>Kept between us</h3><p>What you share stays private. We never share your story without your permission.</p></div></li>
+      </ul>
+    </div>
+    <div class="panel reveal-right" data-form-wrap>
+      <form class="f" data-form="Encouragement Request">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <!-- FormSubmit emails this back to her automatically (needs the field named "email") -->
+        <input type="hidden" name="_autoresponse" value="You are loved, seen, and valued. Thank you for telling us where you are — LeeLee and the Go Inspire Now team will send you a personal word of encouragement soon. Until then, hold on to this: &quot;You are the God who sees me.&quot; (Genesis 16:13). He sees you, and so do we. — Go Inspire Now">
+        <div class="f-row">
+          <label>First name<input type="text" name="First name" required autocomplete="given-name"></label>
+          <label>Email<input type="email" name="email" required autocomplete="email"></label>
+        </div>
+        <label><span>Phone <small>(optional — if you'd like a text)</small></span><input type="tel" name="Phone" autocomplete="tel"></label>
+        <div>
+          <div class="f-group-k">How should we send it?</div>
+          <div class="how-k">
+            <label><input type="radio" name="Send it by" value="Email" checked> Email</label>
+            <label><input type="radio" name="Send it by" value="Text"> Text</label>
+            <label><input type="radio" name="Send it by" value="Either"> Either one</label>
+          </div>
+        </div>
+        <label>Where are you in life right now?
+          <select name="Season" required>
+            <option value="">Choose what fits</option>
+            <option>I'm in a hard season</option>
+            <option>I'm rebuilding</option>
+            <option>I feel stuck or unseen</option>
+            <option>I'm grieving</option>
+            <option>I'm starting something new</option>
+            <option>I'm thriving — and want to keep going</option>
+            <option>I just need a word today</option>
+          </select>
+        </label>
+        <label><span>Tell us a little about it <small>(optional)</small></span><textarea name="Her story" placeholder="Whatever is on your heart."></textarea></label>
+        <label class="f-check"><input type="checkbox" name="Keep it coming" value="Yes — send encouragement regularly"> Keep the encouragement coming — send me a word now and then</label>
+        <button type="submit" class="btn btn-a1 btn-block">Send Me Encouragement ♥</button>
+      </form>
+      <div class="f-done" role="status"><b>We've got you.</b><p>A word of encouragement is on its way to your inbox right now, and LeeLee and the team will follow up with one written just for you. You are loved, seen, and valued.</p></div>
+      <div class="f-fallback" role="alert">That didn't send. <a href="#">Tap here to send it as an email instead →</a> (everything you typed is already filled in).</div>
+    </div>
+  </div>
+</section>
+
+<section class="mission-cta">
+  <div class="blob blob-a1" style="width:600px;height:600px;top:-200px;left:20%;--bd:16s;opacity:.6;"></div>
+  <div class="mc-in">
+    <div class="mc-tag reveal">Better Together</div>
+    <h2 class="mc-h reveal">Don't Walk<br><span class="pk">Alone.</span></h2>
+    <p class="mc-sub reveal">Some of the best encouragement happens side by side. Come to a Love Walk and let a community of women remind you who you are — or hear real women's stories of rising on <a href="https://you-inspire-now-v2.vercel.app/#voices" style="color:var(--a2);font-weight:700;">Voices of Resilience ↗</a></p>
+    <div class="mc-btns reveal">
+      <a href="events.html#schedule" class="btn btn-a1" data-magnetic>Find A Walk</a>
+      <a href="love-boxes.html#nominate" class="btn btn-ghost">Encourage Someone Else</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="ft-in">
+    <div class="ft-give">
+      <div class="ft-give-txt">
+        <span class="ft-give-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+        <p><b>Every walk, Love Box, and event starts with someone who gave.</b>Even $5 helps a woman feel loved, seen, and valued.</p>
+      </div>
+      <a href="donate.html" class="btn btn-give">Give Today →</a>
+    </div>
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="assets/gin-logo.png" alt="Go Inspire Now" width="102" height="110">
+        <p>Women walking side by side — reminded with every step that she is loved, seen, and valued.</p>
+        <a class="ft-sister" href="https://you-inspire-now-v2.vercel.app"><i></i>Our home: You Inspire Now ↗</a>
+      </div>
+      <div class="ft-col"><h4>Walk With Us</h4><div class="ft-links"><a href="events.html#schedule">2027 Love Walks</a><a href="events.html#register">Register for a Walk</a><a href="events.html#annual">The Inspiring Walk 25K</a><a href="events.html#retreats">Freedom Retreats</a></div></div>
+      <div class="ft-col"><h4>Give Back</h4><div class="ft-links"><a href="donate.html">Give</a><a href="love-boxes.html">Love Boxes</a><a href="love-boxes.html#nominate">Nominate a Woman</a><a href="donate.html?amount=5">$5 Walk Donation</a></div></div>
+      <div class="ft-col"><h4>Connect</h4><div class="ft-links"><a href="encouragement.html">Encouragement</a><a href="about.html">About LeeLee</a><a href="contact.html">Contact Us</a><a href="https://you-inspire-now-v2.vercel.app">You Inspire Now ↗</a></div></div>
+    </div>
+    <div class="ft-bot"><p class="ft-copy">© <span data-year>2026</span> Go Inspire Now. All Rights Reserved.</p><p class="ft-copy">Loved · Seen · Valued · Walk Like The Woman You Were Made To Be</p></div>
+  </div>
+</footer>
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
+<script>
+/* A word for right now — scripture (NIV) + a short note. Add or edit freely. */
+(function () {
+  var W = [
+    ['You are the God who sees me.', 'Genesis 16:13', "You are not invisible. Not to Him, and not to us. Whatever you're carrying today, He sees it — and He sees you."],
+    ['I praise you because I am fearfully and wonderfully made.', 'Psalm 139:14', 'Nothing about you was an accident. You were made on purpose, with purpose.'],
+    ['She is clothed with strength and dignity; she can laugh at the days to come.', 'Proverbs 31:25', 'Walk like the woman you were made to be. Tomorrow does not get to steal your joy today.'],
+    ['For I know the plans I have for you, plans to give you hope and a future.', 'Jeremiah 29:11', 'This season is not the end of your story. There is more within you — and more ahead of you.'],
+    ['The LORD is close to the brokenhearted and saves those who are crushed in spirit.', 'Psalm 34:18', "If today hurts, you haven't been left. He is closest right where it's hardest."],
+    ['So do not fear, for I am with you; do not be dismayed, for I am your God.', 'Isaiah 41:10', "You don't have to be brave alone. Take the next step — He's already beside you."],
+    ['He will take great delight in you… he will rejoice over you with singing.', 'Zephaniah 3:17', 'Let that land for a second: God sings over you. You are loved, seen, and valued.'],
+    ['Because of the LORD’s great love we are not consumed… his compassions are new every morning.', 'Lamentations 3:22–23', "Yesterday doesn't get the final word. Today is new, and so is His mercy for you."],
+    ['For we are God’s handiwork, created in Christ Jesus to do good works.', 'Ephesians 2:10', 'You carry something the world needs. Nobody else can bring it the way you can.'],
+    ['If anyone is in Christ, the new creation has come: the old has gone, the new is here!', '2 Corinthians 5:17', 'Your past does not erase your purpose. You are becoming — and becoming is beautiful.'],
+    ['Since you are precious and honored in my sight, and because I love you…', 'Isaiah 43:4', 'Read it again, slowly. Precious. Honored. Loved. That is what He calls you.'],
+    ['I can do all this through him who gives me strength.', 'Philippians 4:13', 'Whatever obstacle is in front of you, you are fully capable — because you are not doing it alone.']
+  ];
+  var i = 0, body = document.getElementById('word-body'), v = document.getElementById('word-verse'), r = document.getElementById('word-ref'), n = document.getElementById('word-note');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var show = function (k) {
+    var put = function () { v.textContent = '“' + W[k][0] + '”'; r.textContent = W[k][1]; n.textContent = W[k][2]; body.classList.remove('swap'); };
+    if (reduce) { put(); return; }
+    body.classList.add('swap'); setTimeout(put, 280);
+  };
+  i = Math.floor(Math.random() * W.length); show(i);
+  document.getElementById('word-next').addEventListener('click', function () { i = (i + 1 + Math.floor(Math.random() * (W.length - 1))) % W.length; show(i); });
+  var share = document.getElementById('word-share');
+  share.addEventListener('click', function () {
+    var text = '“' + W[i][0] + '” — ' + W[i][1] + '\n\n' + W[i][2] + '\n\nA word for you from Go Inspire Now:';
+    var url = location.href.split('#')[0];
+    if (navigator.share) { navigator.share({ title: 'A word for you', text: text, url: url }).catch(function () {}); return; }
+    var done = function () { var s = share.querySelector('span'); s.textContent = 'Copied — paste it to her'; setTimeout(function () { s.textContent = 'Send It To A Friend'; }, 2200); };
+    if (navigator.clipboard) navigator.clipboard.writeText(text + ' ' + url).then(done, function () {});
+  });
+})();
+</script>
+</body>
+</html>

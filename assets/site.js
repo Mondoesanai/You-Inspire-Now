@@ -150,6 +150,11 @@
     a.target = '_blank'; a.rel = 'noopener';
   });
 
+  /* ── VOICES OF RESILIENCE: the "Watch" link only shows once SITE.voicesUrl is set ── */
+  document.querySelectorAll('[data-voices-link]').forEach(function (a) {
+    if (SITE.voicesUrl) { a.href = SITE.voicesUrl; a.hidden = false; }
+  });
+
   /* ── PREFILL selects/inputs from the URL (?walk=…&event=…&amount=…) ── */
   var params = new URLSearchParams(location.search);
   document.querySelectorAll('[data-param]').forEach(function (el) {
@@ -190,6 +195,43 @@
         .catch(fallback);
     });
   });
+
+  /* ── LIGHTBOX: tap anything with [data-zoom] (the family photo) to see it full screen; ×, Esc or a tap closes it ── */
+  var zooms = document.querySelectorAll('[data-zoom]');
+  if (zooms.length) {
+    var lb = null, lbImg, lbCap, lbClose, lbFrom = null;
+    var closeLb = function () {
+      if (!lb) return;
+      lb.classList.remove('open'); document.documentElement.classList.remove('lb-lock');
+      setTimeout(function () { lb.hidden = true; }, 320);
+      if (lbFrom) lbFrom.focus({ preventScroll: true });
+    };
+    var buildLb = function () { /* built on first tap, so there's no empty <img> on the page until it's needed */
+      lb = document.createElement('div');
+      lb.className = 'lightbox'; lb.hidden = true;
+      lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true'); lb.setAttribute('aria-label', 'Photo');
+      lb.innerHTML = '<button class="lb-close" type="button" aria-label="Close photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><figure class="lb-fig"><img alt=""><figcaption></figcaption></figure>';
+      document.body.appendChild(lb);
+      lbImg = lb.querySelector('img'); lbCap = lb.querySelector('figcaption'); lbClose = lb.querySelector('.lb-close');
+      lb.addEventListener('click', function (e) { if (!e.target.closest('figcaption')) closeLb(); });
+    };
+    var openLb = function (el) {
+      if (!lb) buildLb();
+      var img = el.tagName === 'IMG' ? el : el.querySelector('img');
+      lbImg.src = el.getAttribute('data-zoom') || img.currentSrc || img.src; lbImg.alt = img.alt || '';
+      var cap = el.querySelector('figcaption'); lbCap.innerHTML = cap ? cap.innerHTML : ''; lbCap.hidden = !cap;
+      lbFrom = el; lb.hidden = false; document.documentElement.classList.add('lb-lock');
+      requestAnimationFrame(function () { lb.classList.add('open'); });
+      lbClose.focus({ preventScroll: true });
+    };
+    zooms.forEach(function (el) {
+      el.setAttribute('tabindex', '0'); el.setAttribute('role', 'button');
+      if (!el.getAttribute('aria-label')) el.setAttribute('aria-label', 'View this photo full screen');
+      el.addEventListener('click', function () { openLb(el); });
+      el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(el); } });
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && lb && !lb.hidden) closeLb(); });
+  }
 
   /* ── 3D TILT + MAGNETIC (mouse only) ── */
   if (finePointer && !reduceMotion) {
