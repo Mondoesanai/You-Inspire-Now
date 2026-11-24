@@ -9,12 +9,19 @@
 <link rel="icon" href="assets/gin-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/walks.css">
 <style>
-.page-hero .hero-bg{background-image:url('images/walk-field.jpg');background-position:center 45%;}
+/* five women walking and talking (Pexels 7895761) stand to the right of the headline; the soft white wash stays — she liked it a little vague */
+.page-hero .hero-bg{background-image:url('images/walk-hero.jpg');left:36%;background-position:30% 46%;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 24%);mask-image:linear-gradient(to right,transparent 0,#000 24%);}
+/* phones: the women first, then the words */
+@media(max-width:760px){
+  .page-hero{padding-top:calc(44svh + 1rem);}
+  .page-hero .hero-bg{left:0;bottom:auto;height:46svh;background-position:46% 40%;transform:none;-webkit-mask-image:none;mask-image:none;}
+  .page-hero .hero-overlay{background:linear-gradient(to bottom,rgba(255,255,255,.2) 0,rgba(255,255,255,.12) 28svh,#fff 46svh);}
+}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
 .step{padding:2.4rem;border-radius:20px;background:var(--card);border:1px solid var(--line);box-shadow:0 2px 6px rgba(var(--shadow-rgb),.05),0 30px 60px -40px rgba(var(--a1-rgb),.5);}
 .step b{display:block;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:3.4rem;line-height:1;color:var(--a1);margin-bottom:.6rem;}
@@ -24,7 +31,9 @@
 .legend{display:flex;flex-wrap:wrap;gap:1.4rem;align-items:center;font-size:.82rem;color:var(--tx-body);}
 .legend span{display:inline-flex;align-items:center;gap:.5rem;}
 .sched-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:2.6rem;}
-.rest{margin-top:1.5rem;text-align:center;font-family:'Playfair Display',serif;font-style:italic;color:var(--tx-lead);}
+.sched-lead{margin:1rem 0 0;max-width:460px;}
+.legend{flex-direction:column;align-items:flex-start;gap:.7rem;}
+.rest{margin-top:1.5rem;text-align:center;font-size:.92rem;color:var(--tx-lead);}
 .reg{display:grid;grid-template-columns:.85fr 1.15fr;gap:5rem;align-items:start;}
 .beyond{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;}
 .bcard{border-radius:22px;overflow:hidden;background:var(--card);border:1px solid var(--line);box-shadow:0 2px 6px rgba(var(--shadow-rgb),.05),0 40px 70px -46px rgba(var(--a2-rgb),.55);display:flex;flex-direction:column;}
@@ -38,7 +47,7 @@
 .date-chip i{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;font-style:normal;}
 .date-chip i svg{width:13px;height:13px;}
 /* what to expect: her words first, then the facts, then the packing list */
-.expect-lead{max-width:640px;margin:1.2rem auto 0;text-align:center;font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;line-height:1.7;color:var(--tx-lead);}
+.expect-lead{max-width:640px;margin:1.2rem auto 0;text-align:center;font-weight:500;font-size:1.1rem;line-height:1.7;color:var(--tx-lead);}
 .facts{display:grid;grid-template-columns:repeat(4,1fr);margin:0 0 1.4rem;border-radius:22px;background:var(--card);border:1px solid var(--line);box-shadow:0 2px 6px rgba(var(--shadow-rgb),.05),0 34px 70px -46px rgba(var(--a1-rgb),.55);overflow:hidden;}
 .facts div{padding:1.8rem 1.6rem;border-right:1px solid var(--line);}
 .facts div:last-child{border-right:none;}
@@ -89,12 +98,12 @@
 
 <main>
 <section class="page-hero">
-  <div class="hero-bg" role="img" aria-label="Three women walking together through a field of flowers"></div>
+  <div class="hero-bg" role="img" aria-label="Five women walking arm in arm, talking and laughing together"></div>
   <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-content">
     <div class="hero-tag">Love Walks · 2027</div>
     <h1 class="hero-h1">Find The Walk<br>You Didn't Know<br><span class="c-a1">You Needed.</span></h1>
-    <p class="hero-sub"><strong>Love Walks happen twice a month, February through November</strong> — a morning walk and an evening walk, rotating through every corner of DFW. And once a year, we walk the Inspiring Walk 25K together.</p>
+    <p class="hero-sub"><strong>Love Walks happen on two Saturdays a month, February through November</strong> — one morning walk, one evening walk, right here in Dallas–Fort Worth. And once a year, we walk the Inspiring Walk 25K together.</p>
     <div class="hero-btns">
       <a href="#schedule" class="btn btn-a1" data-magnetic>See The Schedule</a>
       <a href="#register" class="btn btn-ghost">Register</a>
@@ -162,16 +171,16 @@
     <div class="sched-head reveal">
       <div>
         <div class="section-label">The 2027 Love Walks</div>
-        <h2 class="section-h">Every Corner<br>Of <span class="tl">DFW.</span></h2>
+        <h2 class="section-h">Two Saturdays<br>A <span class="tl">Month.</span></h2>
+        <p class="lead sched-lead">One morning walk and one evening walk, February through November. Pick one — or come to both.</p>
       </div>
       <div class="legend">
         <span><span class="wk-ic am"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 18h18M7 18a5 5 0 0 1 10 0M12 4v3M4.9 8.9l2.1 2.1M19.1 8.9 17 11"/></svg></span>Morning walk · 6–9 AM</span>
         <span><span class="wk-ic pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></span>Evening walk · 6–9 PM</span>
-        <span><span class="wk-ic big"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>The Inspiring Walk · 25K</span>
-        <span>📍 Location sent when you register</span>
+        <span><span class="wk-ic pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>We send the meeting spot when you register</span>
       </div>
     </div>
-    <div class="wk-groups reveal" data-walks="schedule"></div>
+    <div class="wm-grid reveal" data-walks="schedule"></div>
     <p class="rest reveal">December &amp; January we rest. See you in February.</p>
   </div>
 </section>
@@ -228,7 +237,7 @@
         <div class="bcard-body" data-form-wrap>
           <div class="section-label">Once A Year · 25K</div>
           <h3 class="section-h">The Inspiring<br><span class="pk">Walk.</span></h3>
-          <span class="date-chip"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></i><span data-w="long">Saturday, September 25</span>, 2027</span>
+          <span class="date-chip"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></i><span><span data-w="long">Saturday, September 25</span>, 2027</span></span>
           <p class="lead">Our big fundraising walk — 25K (about 15.5 miles) together. A day of movement, encouragement, and celebration that funds everything Go Inspire Now does all year.</p>
           <form class="f" data-form="Inspiring Walk 25K — Save My Spot">
             <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">

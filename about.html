@@ -9,17 +9,18 @@
 <link rel="icon" href="assets/gin-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-/* her own photo, not the one YIN's home uses — fills the right side and fades into the page */
-.page-hero .hero-bg{background-image:url('images/leelee-inspired-hd.jpg');left:42%;background-position:50% 16%;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 30%);mask-image:linear-gradient(to right,transparent 0,#000 30%);}
+/* her full-size brown-dress portrait (sent Nov 24) — fills the right side and fades into the page */
+.page-hero .hero-overlay{background:linear-gradient(to top,#fff 0%,rgba(255,255,255,.55) 20%,transparent 46%),linear-gradient(100deg,rgba(255,255,255,.95) 0%,rgba(255,255,255,.5) 45%,transparent 72%);}
+.page-hero .hero-bg{background-image:url('images/leelee-brown-dress.jpg');left:42%;background-position:50% 20%;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 30%);mask-image:linear-gradient(to right,transparent 0,#000 30%);}
 .story{display:grid;grid-template-columns:.85fr 1.15fr;gap:6rem;align-items:start;}
 .story-photo{position:sticky;top:110px;}
 .story-photo .photo{aspect-ratio:4/5.4;max-width:420px;}
 .story-photo .photo img{object-position:50% 20%;}
-.sig{font-family:'Playfair Display',serif;font-style:italic;font-size:1.5rem;color:var(--tx);margin-top:.4rem;}
+.sig{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:.03em;color:var(--tx);margin-top:.4rem;}
 .sig small{display:block;font-family:'Inter',sans-serif;font-style:normal;font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--tx-muted);margin-top:.4rem;}
 .homes{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;}
 .home-card{position:relative;border-radius:24px;padding:3rem;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.4rem;transition:transform .45s cubic-bezier(.34,1.56,.64,1);}
@@ -36,7 +37,11 @@
 .home-card .go{font-size:.66rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-top:auto;}
 @media(max-width:1024px){.story{gap:3.5rem;}}
 @media(max-width:860px){.story{grid-template-columns:1fr;}.story-photo{position:static;}.story-photo .photo{max-width:100%;aspect-ratio:1/1.1;}.homes{grid-template-columns:1fr;}.home-card{padding:2.2rem;}}
-@media(max-width:760px){.page-hero .hero-bg{left:0;background-position:50% 12%;-webkit-mask-image:none;mask-image:none;}}
+@media(max-width:760px){
+  .page-hero{padding-top:calc(48svh + 1rem);}
+  .page-hero .hero-bg{left:0;bottom:auto;height:50svh;background-position:50% 14%;transform:none;-webkit-mask-image:none;mask-image:none;}
+  .page-hero .hero-overlay{background:linear-gradient(to bottom,transparent 0,transparent 34svh,#fff 50svh);}
+}
 </style>
 </head>
 <body>
@@ -68,7 +73,7 @@
 
 <main>
 <section class="page-hero">
-  <div class="hero-bg" role="img" aria-label="LeeLee smiling in her Inspired tee"></div>
+  <div class="hero-bg" role="img" aria-label="LeeLee smiling in a rust-brown dress, leaning on a concrete pillar"></div>
   <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-content">
     <div class="hero-tag">The Heart Behind Go Inspire Now</div>
@@ -81,11 +86,11 @@
   <div class="blob blob-a2" style="width:600px;height:600px;top:10%;right:-200px;--bd:18s;opacity:.7;"></div>
   <div class="wrap story">
     <div class="story-photo with-print reveal-left">
-      <figure class="photo"><img src="images/leelee-field-hd.jpg" alt="LeeLee standing in a field at golden hour" width="989" height="1500"><div class="media-tint" aria-hidden="true"></div></figure>
-      <!-- tap to open full screen (site.js [data-zoom]); images/leelee-family.jpg came in as a 320px thumbnail — drop the full-size original in under the same name -->
+      <figure class="photo"><img src="images/leelee-field-2.jpg" alt="LeeLee standing in a field at golden hour" width="989" height="1500"><div class="media-tint" aria-hidden="true"></div></figure>
+      <!-- the full-size family photo she sent Nov 24; tap opens it full screen (site.js [data-zoom]) -->
       <figure class="family-print" data-zoom aria-label="See the Davis family photo full screen">
         <span class="zoom-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
-        <img src="images/leelee-family.jpg" alt="LeeLee and her family gathered together for a family portrait" width="680" height="453" loading="lazy">
+        <img src="images/leelee-family-full.jpg" alt="LeeLee and her family gathered together for a family portrait" width="1800" height="1200" loading="lazy">
         <figcaption>The Davis Family<small>Where it all starts</small></figcaption>
       </figure>
     </div>

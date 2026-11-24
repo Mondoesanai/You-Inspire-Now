@@ -9,7 +9,7 @@
 <link rel="icon" href="assets/gin-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/site.css">
 <style>
@@ -19,17 +19,6 @@
 @media(max-width:760px){.page-hero .hero-bg{background-size:cover;background-position:58% 50%;-webkit-mask-image:linear-gradient(to bottom,#000 0%,transparent 70%);mask-image:linear-gradient(to bottom,#000 0%,transparent 70%);opacity:.38;}}
 .lb .split{grid-template-columns:1.15fr .85fr;gap:5rem;}
 .lb .photo{aspect-ratio:3/2;}
-.inside{margin-top:6.5rem;}
-.inside-head{display:grid;grid-template-columns:1fr minmax(0,380px);gap:2rem;align-items:end;margin-bottom:2.6rem;}
-.inside-head .lead{margin:0;}
-.inside-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:22px;overflow:hidden;
-  box-shadow:0 2px 6px rgba(var(--shadow-rgb),.05),0 40px 80px -50px rgba(var(--a2-rgb),.55);}
-.inside-list li{background:var(--card);padding:1.9rem 1.7rem 2rem;}
-.inside-list b{display:block;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:2.6rem;line-height:1;color:var(--a1);margin-bottom:.7rem;}
-.inside-list li:nth-child(4n+2) b{color:var(--a2);} .inside-list li:nth-child(4n+3) b{color:var(--a3);} .inside-list li:nth-child(4n+4) b{color:#B81FC9;}
-.inside-list h3{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:1.55rem;letter-spacing:.02em;line-height:1.05;margin-bottom:.45rem;color:var(--tx);}
-.inside-list p{font-size:.88rem;color:var(--tx-body);line-height:1.7;}
-.inside-note{margin-top:1.2rem;font-size:.8rem;color:var(--tx-muted);text-align:center;}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
 .step{padding:2.4rem;border-radius:20px;background:var(--card);border:1px solid var(--line);box-shadow:0 2px 6px rgba(var(--shadow-rgb),.05),0 30px 60px -40px rgba(var(--a1-rgb),.5);}
 .step b{display:block;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:3.4rem;line-height:1;color:var(--a1);margin-bottom:.6rem;}
@@ -44,9 +33,8 @@
 .give-strip h3{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(2.2rem,4vw,3.2rem);line-height:.95;margin-bottom:.5rem;}
 .give-strip p{font-size:.98rem;opacity:.9;line-height:1.7;max-width:560px;}
 .give-strip .btn{background:#fff;color:#7A0B45;}
-@media(max-width:1024px){.steps{grid-template-columns:1fr;}.nom{grid-template-columns:1fr;gap:3rem;}.inside-list{grid-template-columns:repeat(2,1fr);}.inside-list li:nth-child(n) b{color:var(--a1);}.inside-list li:nth-child(4n+2) b,.inside-list li:nth-child(4n+3) b{color:var(--a2);}}
-@media(max-width:860px){.lb .split{grid-template-columns:1fr;gap:3rem;}.give-strip{grid-template-columns:1fr;padding:2rem;}.inside{margin-top:4.5rem;}.inside-head{grid-template-columns:1fr;gap:1rem;}}
-@media(max-width:560px){.inside-list{grid-template-columns:1fr;}.inside-list li{padding:1.5rem 1.4rem;display:grid;grid-template-columns:3rem 1fr;column-gap:.6rem;}.inside-list b{grid-row:span 2;font-size:2.2rem;margin:0;}.inside-list li:nth-child(n) b{color:var(--a1);}.inside-list li:nth-child(even) b{color:var(--a2);}}
+@media(max-width:1024px){.steps{grid-template-columns:1fr;}.nom{grid-template-columns:1fr;gap:3rem;}}
+@media(max-width:860px){.lb .split{grid-template-columns:1fr;gap:3rem;}.give-strip{grid-template-columns:1fr;padding:2rem;}}
 </style>
 </head>
 <body>
@@ -96,7 +84,7 @@
   <div class="blob blob-a2" style="width:600px;height:600px;top:-150px;right:-200px;--bd:16s;opacity:.7;"></div>
   <div class="wrap split">
     <!-- LeeLee's Love Box design (made in ChatGPT, sent 2026-11-19). Swap for a real photo once the first boxes are packed. -->
-    <figure class="photo reveal-left"><img src="images/love-box-gin.jpg" alt="An open Go Inspire Now Love Box: a black GIN tee, hand lotion, a plush towel, a candle, encouragement cards, a letter, and a gift card from You Inspire Now" loading="lazy" width="1536" height="1024"></figure>
+    <figure class="photo reveal-left"><img src="images/love-box-gin.jpg" alt="An open Go Inspire Now Love Box, lavender with pink and teal brush strokes, packed with gifts" loading="lazy" width="1536" height="1024"></figure>
     <div class="reveal-right">
       <div class="section-label">What's A Love Box?</div>
       <h2 class="section-h">A Box Full Of<br><span class="pk">"I See You."</span></h2>
@@ -109,28 +97,6 @@
         <li><span class="ic a2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12"/></svg></span><div><b>Funded by givers like you</b><span>Every Love Box is made possible by a gift.</span></div></li>
       </ul>
     </div>
-  </div>
-
-  <!-- WHAT'S INSIDE: items from LeeLee's Love Box design -->
-  <div class="wrap inside" id="inside">
-    <div class="inside-head reveal">
-      <div>
-        <div class="section-label">What's Inside</div>
-        <h2 class="section-h">Walk Like The Woman<br>You Were <span class="pk">Created To Be.</span></h2>
-      </div>
-      <p class="lead">A gift of encouragement, rest, and a reminder that she is seen, valued, and loved.</p>
-    </div>
-    <ol class="inside-list reveal">
-      <li><b>01</b><h3>The GIN Tee</h3><p>Go Inspire Now, with "Loved · Seen · Valued" across the front. Made for the walk.</p></li>
-      <li><b>02</b><h3>Restore Hand Lotion</h3><p>Nourish, soften, renew — a little care for the hands that care for everyone else.</p></li>
-      <li><b>03</b><h3>Something Soft</h3><p>A plush "Loved, Seen, Valued" towel, tied with a bow.</p></li>
-      <li><b>04</b><h3>A Moment For You</h3><p>A candle that gives her permission to slow down and rest.</p></li>
-      <li><b>05</b><h3>12 Months Of Encouragement</h3><p>A card for every month of the year ahead.</p></li>
-      <li><b>06</b><h3>A Letter For You</h3><p>A personal note, written just for her.</p></li>
-      <li><b>07</b><h3>A Gift From YIN</h3><p>15% off her next inspirational shirt drop from You Inspire Now.</p></li>
-      <li><b>08</b><h3>An Invitation</h3><p>A personal invite to join us on a Love Walk.</p></li>
-    </ol>
-    <p class="inside-note">Every Love Box is packed by hand, so what's inside can vary a little from box to box.</p>
   </div>
 </section>
 

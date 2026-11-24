@@ -3,57 +3,61 @@
 .wk-ic svg{width:16px;height:16px;}
 .wk-ic.am{background:rgba(227,154,18,.14);color:#B87400;}
 .wk-ic.pm{background:rgba(124,42,232,.12);color:var(--a2);}
+.wk-ic.big{background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;}
+.wk-ic.pin{background:rgba(var(--a1-rgb),.1);color:var(--a1);}
 
 /* compact list (home) */
 .wk-minis{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
 .wk-mini{display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;padding:1rem 1.2rem;border-radius:14px;background:var(--card);border:1px solid var(--line);}
 .wk-mini.is-next{border-color:rgba(var(--a1-rgb),.45);box-shadow:0 18px 40px -24px rgba(var(--a1-rgb),.6);}
+.wk-mini.big{border-color:rgba(var(--a2-rgb),.4);background:linear-gradient(120deg,rgba(var(--a1-rgb),.06),rgba(var(--a2-rgb),.06));}
 .wk-when b{display:block;font-size:.95rem;color:var(--tx);}
 .wk-when small{font-size:.78rem;color:var(--tx-muted);}
-.wk-where{font-size:.62rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--a1);}
+.wk-join{font-size:.6rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;color:var(--a1);text-decoration:none;padding:.5rem .85rem;border-radius:100px;border:1.5px solid rgba(var(--a1-rgb),.35);
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1);}
+.wk-join:hover{transform:scale(1.06);border-color:var(--a1);}
+.wk-join:focus-visible{outline:2px solid var(--focus);outline-offset:3px;}
+.wk-join:active{transform:scale(.95);}
+.wk-mini.big .wk-join{color:var(--a2);border-color:rgba(var(--a2-rgb),.35);}
 
-/* full schedule (walks page) */
-.wk-groups{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;align-items:start;}
-.wk-group{border-radius:18px;background:var(--card);border:1px solid var(--line);overflow:hidden;box-shadow:0 2px 6px rgba(var(--shadow-rgb),.05),0 24px 50px -34px rgba(var(--a2-rgb),.45);}
-.wk-group.finale{background:linear-gradient(170deg,#fff 0%,#FFF1F8 100%);border-color:rgba(var(--a1-rgb),.25);}
-.wk-head{padding:1.2rem 1.2rem 1rem;border-bottom:1px solid var(--line);background:linear-gradient(120deg,rgba(var(--a1-rgb),.07),rgba(var(--a2-rgb),.05));}
-.wk-region{display:block;font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.03em;line-height:1;color:var(--tx);}
-.wk-months{font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--a1);}
-.wk-note{display:block;font-size:.72rem;color:var(--tx-muted);margin-top:.3rem;}
-.wk-list{list-style:none;}
-.wk{display:grid;grid-template-columns:auto 1fr;gap:.2rem .8rem;align-items:center;padding:.9rem 1.2rem;border-bottom:1px solid var(--line);}
-.wk:last-child{border-bottom:none;}
-.wk-date{grid-row:span 2;width:46px;text-align:center;border-radius:10px;padding:.35rem 0;background:var(--bg-alt);}
-.wk-date b{display:block;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:1.6rem;line-height:1;color:var(--tx);}
-.wk-date small{font-size:.55rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--tx-muted);}
-.wk-info b{display:block;font-size:.82rem;color:var(--tx);font-weight:700;}
-.wk-info small{display:flex;align-items:center;gap:.4rem;font-size:.74rem;color:var(--tx-muted);margin-top:.15rem;}
-.wk-info .wk-ic{width:20px;height:20px;}
-.wk-info .wk-ic svg{width:12px;height:12px;}
-.wk-btn,.wk-tag{grid-column:2;justify-self:start;margin-top:.45rem;font-size:.58rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:.4rem .8rem;border-radius:100px;text-decoration:none;}
-.wk-btn{color:var(--a1);border:1.5px solid rgba(var(--a1-rgb),.4);transition:transform .25s cubic-bezier(.34,1.56,.64,1);}
-.wk-btn:hover{transform:scale(1.06);}
-.wk-btn:active{transform:scale(.96);}
-.wk.is-next{background:rgba(var(--a1-rgb),.05);}
-.wk.is-next .wk-date{background:var(--a1);}
-.wk.is-next .wk-date b,.wk.is-next .wk-date small{color:#fff;}
-.wk.is-next .wk-btn{background:var(--a1);color:#fff;border-color:transparent;}
-.wk.past{opacity:.45;}
-/* the once-a-year 25K stands out inside the schedule */
-.wk-ic.big{background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;}
-.wk.big{background:linear-gradient(120deg,rgba(var(--a1-rgb),.1),rgba(var(--a2-rgb),.08));}
-.wk.big .wk-date{background:linear-gradient(160deg,var(--a1),var(--a2));}
-.wk.big .wk-date b,.wk.big .wk-date small{color:#fff;}
-.wk.big .wk-info b{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:1.15rem;letter-spacing:.03em;}
-.wk.big .wk-btn{background:var(--a2);color:#fff;border-color:transparent;}
-.wk-mini.big{border-color:rgba(var(--a2-rgb),.4);background:linear-gradient(120deg,rgba(var(--a1-rgb),.06),rgba(var(--a2-rgb),.06));}
-.wk-mini.big .wk-where{color:var(--a2);}
-.wk-tag{color:var(--tx-muted);background:var(--bg-alt);}
-@media(max-width:1200px){.wk-groups{grid-template-columns:repeat(3,1fr);}}
-@media(max-width:860px){.wk-groups{grid-template-columns:1fr 1fr;}}
+/* full schedule (walks page): one card per month, two Saturdays in each. No regions — she asked to keep it simple. */
+.wm-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;}
+.wm{border-radius:18px;background:var(--card);border:1px solid var(--line);padding:1.15rem .9rem .9rem;
+  box-shadow:0 2px 6px rgba(var(--shadow-rgb),.05),0 24px 50px -34px rgba(var(--a2-rgb),.45);}
+.wm-month{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:1.75rem;letter-spacing:.03em;line-height:1;color:var(--tx);margin:0 .35rem .75rem;}
+.wm-list{list-style:none;display:flex;flex-direction:column;gap:.45rem;}
+.wm-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.65rem;padding:.65rem .7rem;border-radius:12px;background:var(--bg-alt);color:inherit;text-decoration:none;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);}
+a.wm-row:hover{transform:translateX(3px);background:rgba(var(--a1-rgb),.08);}
+a.wm-row:focus-visible{outline:2px solid var(--focus);outline-offset:2px;}
+a.wm-row:active{transform:scale(.97);}
+.wm-row .wk-ic{width:28px;height:28px;}
+.wm-row .wk-ic svg{width:14px;height:14px;}
+.wm-day{min-width:0;}
+.wm-day b{display:block;font-size:.92rem;font-weight:700;color:var(--tx);line-height:1.2;}
+.wm-day small{display:block;font-size:.72rem;color:var(--tx-muted);line-height:1.35;margin-top:.12rem;}
+.wm-go{font-size:.95rem;color:var(--a1);opacity:.45;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .2s ease;}
+a.wm-row:hover .wm-go{opacity:1;transform:translateX(2px);}
+.wm-tag{font-size:.54rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .55rem;border-radius:100px;color:var(--tx-muted);background:var(--card);}
+.wm-tag.next{background:var(--a1);color:#fff;}
+.wm-row.is-next{background:rgba(var(--a1-rgb),.1);box-shadow:inset 0 0 0 1.5px rgba(var(--a1-rgb),.45);}
+.wm-row.big{background:linear-gradient(120deg,rgba(var(--a1-rgb),.13),rgba(var(--a2-rgb),.13));}
+.wm-row.big .wm-day b{color:var(--a1);}
+.wm-row.big .wm-day small{color:var(--tx-body);font-weight:600;}
+.wm-row.past,.wm.past .wm-month{opacity:.45;}
+@media(max-width:1060px){.wm-grid{grid-template-columns:1fr 1fr;}}
+/* phones: still two months side by side — the times are in the legend right above, so each line drops them */
 @media(max-width:560px){
-  .wk-groups{grid-template-columns:1fr;}
-  .wk{grid-template-columns:auto 1fr auto;}
-  .wk-date{grid-row:auto;}
-  .wk-btn,.wk-tag{grid-column:auto;justify-self:end;margin-top:0;}
+  .wm-grid{gap:.7rem;}
+  .wm{padding:.9rem .65rem .65rem;border-radius:16px;}
+  .wm-month{font-size:1.5rem;margin:0 .25rem .6rem;}
+  .wm-list{gap:.35rem;}
+  .wm-row{gap:.45rem;padding:.55rem .5rem;border-radius:10px;}
+  .wm-row .wk-ic{width:24px;height:24px;}
+  .wm-row .wk-ic svg{width:12px;height:12px;}
+  .wm-day b{font-size:.86rem;}
+  .wm-day small{font-size:.68rem;}
+  .wm-time{display:none;}
+  .wm-tag.next{font-size:0;width:9px;height:9px;padding:0;}
 }
+@media(max-width:340px){.wm-grid{grid-template-columns:1fr;}}
